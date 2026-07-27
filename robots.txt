@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://slavpetroff.github.io/alpine-site/sitemap.xml
