@@ -118,6 +118,17 @@
   .about .fact b { color: var(--ink); display: block; font-size: 1.05rem; }
   .about .fact span { color: var(--muted); font-size: .88rem; }
 
+  .waitlist { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 44px 40px; margin-top: 0; }
+  .waitlist h2 { max-width: 30ch; }
+  .waitlist form { display: flex; gap: 12px; margin-top: 26px; max-width: 480px; flex-wrap: wrap; }
+  .waitlist input[type="email"] {
+    flex: 1; min-width: 220px; background: var(--bg); border: 1px solid var(--line); border-radius: 4px;
+    color: var(--ink); padding: 12px 14px; font: inherit; font-size: .95rem;
+  }
+  .waitlist input[type="email"]:focus { outline: none; border-color: var(--gold); }
+  .waitlist .micro { color: var(--muted); font-size: .82rem; margin-top: 12px; }
+  .waitlist .ok { color: var(--gold); font-weight: 600; margin-top: 18px; display: none; }
+
   .contact { text-align: center; }
   .contact h2 { margin: 10px auto 0; }
   .contact .lede { margin-left: auto; margin-right: auto; }
@@ -142,6 +153,7 @@
     <nav class="top">
       <a href="#work">What we do</a>
       <a href="#cases">Case studies</a>
+      <a href="#early-access">Early access</a>
       <a href="#about">About</a>
       <a class="cta" href="mailto:contact@alpine-engineering.eu?subject=Alpine%20%E2%80%94%20delivery%20audit">Contact</a>
     </nav>
@@ -249,6 +261,20 @@
     </ol>
   </section>
 
+  <section id="early-access">
+    <div class="waitlist">
+      <div class="eyebrow">Early access</div>
+      <h2>The system we deliver with is becoming a product.</h2>
+      <p class="lede">Every Alpine engagement runs on the same in-house platform: AI agents work the backlog, verification gates prove the work before anything merges, and every run shows exactly what it cost. In 2026 we're opening it to a limited number of engineering teams — onboarded personally, on their real backlog, at an early-access rate that stays locked for as long as they stay.</p>
+      <form id="waitlist-form" novalidate>
+        <input type="email" name="email" placeholder="Work email" required aria-label="Work email">
+        <button class="btn primary" type="submit">Join the waitlist</button>
+      </form>
+      <p class="micro">The list is the queue — places are offered in order. One email when doors open, maybe two before. No spam, ever.</p>
+      <p class="ok" id="waitlist-ok">You're on the list. We'll be in touch — in order.</p>
+    </div>
+  </section>
+
   <section id="about" class="about">
     <div class="eyebrow">About</div>
     <h2>One engineer, accountable.</h2>
@@ -284,5 +310,23 @@
   </footer>
 </div>
 
+<script>
+document.getElementById('waitlist-form').addEventListener('submit', function (e) {
+  e.preventDefault();
+  var input = this.querySelector('input[name="email"]');
+  var email = input.value.trim();
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { input.focus(); return; }
+  var body = new URLSearchParams({ 'entry.600134808': email });
+  fetch('https://docs.google.com/forms/d/e/1FAIpQLSdk4BOwrer39hiXQyoX7TCpcUqDNXhEJghLaiQiQfBXBpr-Zw/formResponse', {
+    method: 'POST', mode: 'no-cors',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: body.toString()
+  }).finally(function () {
+    document.getElementById('waitlist-form').style.display = 'none';
+    document.querySelector('#early-access .micro').style.display = 'none';
+    document.getElementById('waitlist-ok').style.display = 'block';
+  });
+});
+</script>
 </body>
 </html>
