@@ -27,7 +27,7 @@
   "areaServed": "EU",
   "sameAs": ["https://www.linkedin.com/company/138193958/"],
   "knowsAbout": ["Backend Engineering", "Platform Engineering", "Delivery Audits", "AI-Assisted Delivery", "Observability", "Python", "Go"],
-  "email": "slavpetroff@gmail.com"
+  "email": "contact@alpine-engineering.eu"
 }
 </script>
 <style>
@@ -55,15 +55,19 @@
     display: flex; justify-content: space-between; align-items: center;
     padding: 22px 0; border-bottom: 1px solid var(--line);
   }
-  .wordmark { font-weight: 700; letter-spacing: .45em; font-size: 1.05rem; color: var(--ink); text-transform: lowercase; }
+  .wordmark { font-weight: 700; letter-spacing: .45em; font-size: 1.05rem; color: var(--ink); text-transform: lowercase; display: flex; align-items: center; gap: 12px; }
   .wordmark:hover { text-decoration: none; }
+  .wordmark svg { width: 64px; height: auto; flex-shrink: 0; }
   nav.top a { color: var(--muted); margin-left: 22px; font-size: .92rem; }
   nav.top a:hover { color: var(--ink); text-decoration: none; }
   nav.top a.cta { color: var(--gold); border: 1px solid var(--gold); border-radius: 4px; padding: 7px 14px; }
 
-  .trace { display: block; margin: 0 auto; width: min(560px, 80%); }
-
-  .hero { padding: 90px 0 70px; text-align: left; }
+  .hero { padding: 90px 0 70px; text-align: left; position: relative; }
+  .hero > * { position: relative; z-index: 1; }
+  .hero .trace-bg {
+    position: absolute; left: 50%; transform: translateX(-50%);
+    width: 100vw; max-width: none; top: 58%; z-index: 0; pointer-events: none;
+  }
   .hero h1 { font-size: clamp(2rem, 5vw, 3.1rem); line-height: 1.12; font-weight: 700; max-width: 17ch; }
   .hero h1 em { color: var(--gold); font-style: normal; }
   .hero p.sub { margin-top: 22px; max-width: 58ch; color: var(--muted); font-size: 1.06rem; }
@@ -128,28 +132,32 @@
 
 <div class="wrap">
   <header class="site">
-    <a class="wordmark" href="#">alpine</a>
+    <a class="wordmark" href="#" aria-label="Alpine home">
+      <svg viewBox="0 0 644 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <polyline points="0,100 283,100 312,25 357,195 386,100 644,100" fill="none" stroke="#e0ad52" stroke-width="14" stroke-linejoin="miter" stroke-linecap="butt"/>
+      </svg>
+      alpine
+    </a>
     <nav class="top">
       <a href="#work">What we do</a>
       <a href="#cases">Case studies</a>
       <a href="#about">About</a>
-      <a class="cta" href="mailto:slavpetroff@gmail.com?subject=Alpine%20%E2%80%94%20delivery%20audit">Contact</a>
+      <a class="cta" href="mailto:contact@alpine-engineering.eu?subject=Alpine%20%E2%80%94%20delivery%20audit">Contact</a>
     </nav>
   </header>
 
   <div class="hero">
+    <svg class="trace-bg" viewBox="0 0 1440 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <polyline points="0,120 980,120 1030,32 1105,228 1155,120 1440,120" fill="none" stroke="#e0ad52" stroke-width="4" stroke-linejoin="miter" stroke-linecap="butt" opacity="0.85"/>
+    </svg>
     <h1>Systems where mistakes <em>cost money.</em></h1>
     <p class="sub">Alpine is a software engineering company. Clients bring the systems they can't afford to have wrong: a sovereign cloud's storage services, a fintech's payment paths, an energy trading tool, an AI product that outgrew what built it.</p>
     <div class="actions">
-      <a class="btn primary" href="mailto:slavpetroff@gmail.com?subject=Alpine%20%E2%80%94%20delivery%20audit">Request a delivery audit</a>
+      <a class="btn primary" href="mailto:contact@alpine-engineering.eu?subject=Alpine%20%E2%80%94%20delivery%20audit">Request a delivery audit</a>
       <a class="btn ghost" href="#cases">Read the case studies</a>
     </div>
     <p class="quiet">Based in Bulgaria · Clients across the EU · Engagements under NDA</p>
   </div>
-
-  <svg class="trace" viewBox="0 0 644 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Alpine trace mark">
-    <polyline points="0,100 283,100 312,25 357,195 386,100 644,100" fill="none" stroke="#e0ad52" stroke-width="6" stroke-linejoin="miter" stroke-linecap="butt"/>
-  </svg>
 
   <section id="work">
     <div class="eyebrow">What we do</div>
@@ -183,7 +191,7 @@
       <div class="case">
         <h3>No event may ever be lost</h3>
         <div class="client">Cloud division of Europe's largest retail group (€167B revenue)</div>
-        <p>A zero-loss audit-log pipeline built solo, end to end — in production today. Plus a measured 6x capacity rewrite of a crashing storage API, delivered in under three weeks.</p>
+        <p>A zero-loss audit-log pipeline designed and built end to end — in production today. Plus a measured 6x capacity rewrite of a crashing storage API, delivered in under three weeks.</p>
         <a class="pdf" href="files/alpine-case-study-sovereign-cloud.pdf">Read the one-pager →</a>
       </div>
       <div class="case">
@@ -201,19 +209,19 @@
       <div class="case">
         <h3>13 integrations, zero visibility — fixed as a program</h3>
         <div class="client">Pan-European parking operator</div>
-        <p>Evidence-based audit, implementation playbook, OpenTelemetry foundation, and designed failure containment for 13 partner integrations. Solo, three months.</p>
+        <p>Evidence-based audit, implementation playbook, OpenTelemetry foundation, and designed failure containment for 13 partner integrations. One accountable engineer, three months.</p>
         <a class="pdf" href="files/alpine-case-study-parking-observability.pdf">Read the one-pager →</a>
       </div>
       <div class="case">
         <h3>Money that can't silently disappear</h3>
         <div class="client">Swedish consumer fintech</div>
-        <p>Git-verified: 6,836 commits — more than any other engineer on the product — across five years of KYC and payment infrastructure. Failure paths engineered so money states never vanish.</p>
+        <p>Five years on a consumer fintech's money infrastructure — KYC and payment rails (Klarna, Stripe, Swish, Onfido), git-verified. Failure paths engineered so money states can never silently vanish.</p>
         <a class="pdf" href="files/alpine-case-study-fintech-money.pdf">Read the one-pager →</a>
       </div>
       <div class="case">
         <h3>Live data for people negotiating fuel prices</h3>
         <div class="client">One of Europe's largest energy companies</div>
-        <p>A trading tool started solo that became a large team's daily instrument: live data replacing hardcoded values, answers in seconds instead of warehouse waits. Three-year engagement.</p>
+        <p>A trading tool that grew from a small internal build into a large team's daily instrument: live data replacing hardcoded values, answers in seconds instead of warehouse waits. Three-year engagement.</p>
         <a class="pdf" href="files/alpine-case-study-energy-trading.pdf">Read the one-pager →</a>
       </div>
     </div>
@@ -235,13 +243,13 @@
     <h2>One engineer, accountable.</h2>
     <div class="cols">
       <div>
-        <p>Every Alpine engagement is led by a single accountable engineer — ten years of backend and platform engineering for European enterprises: sovereign cloud, Big Four, energy, fintech, mobility. No account managers between you and the person doing the work, and no junior handed your system after the sales call.</p>
+        <p>Every Alpine engagement is led by one accountable senior engineer — and ten-plus years in production is our bar, not the exception. Backend and platform work for European enterprises: sovereign cloud, Big Four, energy, fintech, mobility. No account managers between you and the person doing the work, and no junior handed your system after the sales call.</p>
         <p>The pattern across all of it: full-lifecycle ownership. Idea, architecture, implementation, production, and the monitoring to prove it works. A system nobody can observe is a risk nobody has priced.</p>
         <p>Founded 2024. Based in Bulgaria. Working with teams across the EU.</p>
       </div>
       <div>
-        <div class="fact"><b>10 years</b><span>backend &amp; platform engineering, Python and Go</span></div>
-        <div class="fact"><b>6,836 commits</b><span>#1 contributor on a fintech's money infrastructure</span></div>
+        <div class="fact"><b>10+ years</b><span>in production — the bar for every engineer we put on your system</span></div>
+        <div class="fact"><b>6x capacity</b><span>measured under load after rewriting a sovereign cloud's storage API</span></div>
         <div class="fact"><b>420,000+ users</b><span>served by a platform we rebuilt for scale</span></div>
         <div class="fact"><b>30 days</b><span>skeleton to working AI-agent platform, Big Four client</span></div>
       </div>
@@ -253,7 +261,7 @@
     <h2>Tell us what it costs you when it breaks.</h2>
     <p class="lede">One email. You'll get a straight answer about whether an audit makes sense for your system — and a fixed price if it does.</p>
     <div class="actions">
-      <a class="btn primary" href="mailto:slavpetroff@gmail.com?subject=Alpine%20%E2%80%94%20delivery%20audit">slavpetroff@gmail.com</a>
+      <a class="btn primary" href="mailto:contact@alpine-engineering.eu?subject=Alpine%20%E2%80%94%20delivery%20audit">contact@alpine-engineering.eu</a>
     </div>
   </section>
 
