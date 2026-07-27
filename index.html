@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Alpine — backend systems where mistakes cost money</title>
-<meta name="description" content="Alpine is a software engineering company for systems where mistakes cost money: sovereign cloud, fintech payments, energy trading, AI platforms at scale. Fixed-price delivery audits and full delivery, architecture to production.">
+<meta name="description" content="Alpine is a software engineering company for systems where mistakes cost money: sovereign cloud, fintech payments, energy trading, AI platforms at scale. Fixed-price delivery audits, full delivery, and complete products built from your idea to launch.">
 <link rel="canonical" href="https://alpine-engineering.eu/">
 <link rel="icon" type="image/png" href="assets/alpine-mark-dark.png">
 <meta property="og:type" content="website">
@@ -26,7 +26,7 @@
   "address": { "@type": "PostalAddress", "addressCountry": "BG" },
   "areaServed": "EU",
   "sameAs": ["https://www.linkedin.com/company/138193958/"],
-  "knowsAbout": ["Backend Engineering", "Platform Engineering", "Delivery Audits", "AI-Assisted Delivery", "Observability", "Python", "Go"],
+  "knowsAbout": ["Backend Engineering", "Platform Engineering", "Delivery Audits", "AI-Assisted Delivery", "Custom Software Development", "Observability", "Python", "Go"],
   "email": "contact@alpine-engineering.eu"
 }
 </script>
@@ -82,12 +82,13 @@
   .hero .quiet { margin-top: 18px; color: var(--muted); font-size: .85rem; }
 
   section { padding: 72px 0; border-top: 1px solid var(--line); }
+  section#work { border-top: 0; padding-top: 96px; }
   .eyebrow { color: var(--gold); font-size: .8rem; letter-spacing: .18em; text-transform: uppercase; font-weight: 600; }
   h2 { font-size: clamp(1.5rem, 3.4vw, 2.1rem); margin-top: 10px; line-height: 1.2; max-width: 26ch; }
   .lede { color: var(--muted); margin-top: 16px; max-width: 62ch; }
 
-  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 38px; }
-  @media (max-width: 720px) { .grid2 { grid-template-columns: 1fr; } }
+  .grid2 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 38px; }
+  @media (max-width: 900px) { .grid2 { grid-template-columns: 1fr; } }
   .card {
     background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 26px;
   }
@@ -151,7 +152,7 @@
       <polyline points="0,120 980,120 1030,32 1105,228 1155,120 1440,120" fill="none" stroke="#e0ad52" stroke-width="4" stroke-linejoin="miter" stroke-linecap="butt" opacity="0.85"/>
     </svg>
     <h1>Systems where mistakes <em>cost money.</em></h1>
-    <p class="sub">Alpine is a software engineering company. Clients bring the systems they can't afford to have wrong: a sovereign cloud's storage services, a fintech's payment paths, an energy trading tool, an AI product that outgrew what built it.</p>
+    <p class="sub">Alpine is a software engineering company. Clients bring the systems they can't afford to have wrong: a sovereign cloud's storage services, a fintech's payment paths, an energy trading tool, an AI product that outgrew what built it. And when there's no technical team at all — they bring the idea, and we build the whole thing.</p>
     <div class="actions">
       <a class="btn primary" href="mailto:contact@alpine-engineering.eu?subject=Alpine%20%E2%80%94%20delivery%20audit">Request a delivery audit</a>
       <a class="btn ghost" href="#cases">Read the case studies</a>
@@ -161,7 +162,7 @@
 
   <section id="work">
     <div class="eyebrow">What we do</div>
-    <h2>Two ways to engage. Both end with proof.</h2>
+    <h2>Three ways to engage. All end with proof.</h2>
     <div class="grid2">
       <div class="card">
         <div class="tag">Fixed price · two weeks</div>
@@ -179,6 +180,16 @@
         <h3>Full delivery</h3>
         <p>One engineer accountable end to end: architecture, implementation, production, and the monitoring that proves it works — so an incident shows its own cause instead of eating an engineering week.</p>
         <p>Current focus: AI-assisted delivery a business can bill and defend. Agents produce the work, verification gates prove it, every change traces to a requirement. If nobody can vouch for the code, it isn't an asset — it's inventory.</p>
+      </div>
+      <div class="card">
+        <div class="tag">Idea to launch</div>
+        <h3>We build it for you</h3>
+        <p>No technical team? You don't need one — you need the thing built. You describe what you want in plain words; we handle everything technical: design, build, launch, and keeping it running after.</p>
+        <ul>
+          <li><b>Fixed milestones</b> — at each one you get working software you can click, not a status report</li>
+          <li><b>Progress in plain language</b> — you always know what's done, what's next, and what it costs</li>
+          <li><b>You own everything</b> — the code, the accounts, the product. Walk away any time and keep it all</li>
+        </ul>
       </div>
     </div>
   </section>
@@ -258,8 +269,8 @@
 
   <section class="contact" id="contact">
     <div class="eyebrow">Contact</div>
-    <h2>Tell us what it costs you when it breaks.</h2>
-    <p class="lede">One email. You'll get a straight answer about whether an audit makes sense for your system — and a fixed price if it does.</p>
+    <h2>Tell us what it costs you when it breaks — or what you want built.</h2>
+    <p class="lede">One email, plain language. You'll get a straight answer about whether we're the right fit — and a fixed price if we are.</p>
     <div class="actions">
       <a class="btn primary" href="mailto:contact@alpine-engineering.eu?subject=Alpine%20%E2%80%94%20delivery%20audit">contact@alpine-engineering.eu</a>
     </div>
