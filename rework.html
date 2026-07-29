@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Price your rework — Alpine</title>
+<meta name="description" content="Three inputs, one number: what rework and review delays cost your software team per year. The line item no budget shows.">
+<link rel="canonical" href="https://alpine-engineering.eu/rework.html">
+<link rel="icon" type="image/png" href="assets/alpine-mark-dark.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Price your rework — the number no budget shows">
+<meta property="og:description" content="Three inputs, one number: what rework and review delays cost your team per year.">
+<meta property="og:image" content="https://alpine-engineering.eu/assets/og-banner.png">
+<meta property="og:url" content="https://alpine-engineering.eu/rework.html">
+<style>
+  :root {
+    --bg: #000000;
+    --surface: #0a0a0b;
+    --line: #1c1c1e;
+    --gold: #e0ad52;
+    --ink: #f5f5f5;
+    --muted: #9c9c9c;
+    --max: 760px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font: 16px/1.65 "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--gold); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+  header.site {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 22px 0; border-bottom: 1px solid var(--line);
+  }
+  .wordmark { font-weight: 700; letter-spacing: .45em; font-size: 1.05rem; color: var(--ink); text-transform: lowercase; }
+  .wordmark:hover { text-decoration: none; }
+  nav.top a { color: var(--muted); margin-left: 22px; font-size: .92rem; }
+  nav.top a:hover { color: var(--ink); text-decoration: none; }
+
+  .hero { padding: 70px 0 10px; }
+  .eyebrow { color: var(--gold); font-size: .8rem; letter-spacing: .18em; text-transform: uppercase; font-weight: 600; }
+  h1 { font-size: clamp(1.7rem, 4.5vw, 2.5rem); line-height: 1.15; font-weight: 700; margin-top: 10px; max-width: 20ch; }
+  p.sub { margin-top: 18px; max-width: 58ch; color: var(--muted); font-size: 1.02rem; }
+
+  .calc { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 28px; margin: 44px 0 0; }
+  .field { margin-top: 22px; }
+  .field:first-child { margin-top: 0; }
+  .field label { display: block; font-size: .95rem; font-weight: 600; }
+  .field .hint { color: var(--muted); font-size: .85rem; margin-top: 3px; }
+  .field input[type=number] {
+    margin-top: 10px; width: 160px; padding: 10px 12px;
+    background: var(--bg); border: 1px solid var(--line); border-radius: 4px;
+    color: var(--ink); font-size: 1rem;
+  }
+  .field input[type=range] { margin-top: 12px; width: 100%; accent-color: var(--gold); }
+  .field .rangeval { color: var(--gold); font-weight: 600; }
+  .field input:focus { outline: none; border-color: var(--gold); }
+
+  .result { margin-top: 34px; border-top: 1px solid var(--line); padding-top: 26px; }
+  .result .num { font-size: clamp(2rem, 6vw, 3rem); font-weight: 700; color: var(--gold); }
+  .result .per { color: var(--muted); font-size: .95rem; }
+  .result ul { margin: 16px 0 0 18px; color: var(--muted); font-size: .93rem; }
+  .result li { margin-top: 6px; }
+  .result li b { color: var(--ink); }
+
+  .method { margin-top: 56px; }
+  .method h2 { font-size: 1.3rem; }
+  .method p { color: var(--muted); margin-top: 12px; max-width: 60ch; font-size: .95rem; }
+  .method code { color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 2px 6px; font-size: .88rem; }
+
+  .gate { background: var(--surface); border: 1px solid var(--gold); border-radius: 8px; padding: 28px; margin: 56px 0 0; }
+  .gate h2 { font-size: 1.25rem; }
+  .gate p { color: var(--muted); margin-top: 10px; max-width: 58ch; font-size: .95rem; }
+  .gate form { margin-top: 18px; display: flex; gap: 12px; flex-wrap: wrap; }
+  .gate input[type=email] {
+    flex: 1; min-width: 240px; padding: 12px 14px;
+    background: var(--bg); border: 1px solid var(--line); border-radius: 4px;
+    color: var(--ink); font-size: .95rem;
+  }
+  .gate input[type=email]:focus { outline: none; border-color: var(--gold); }
+  .gate button {
+    padding: 12px 22px; border-radius: 4px; font-size: .95rem; font-weight: 600;
+    background: var(--gold); color: #000; border: 0; cursor: pointer;
+  }
+  .gate button:hover { filter: brightness(1.08); }
+  .gate .micro { color: var(--muted); font-size: .8rem; margin-top: 12px; }
+  .gate .ok { display: none; color: var(--gold); margin-top: 14px; font-size: .95rem; }
+
+  footer { border-top: 1px solid var(--line); margin-top: 72px; padding: 28px 0 44px; color: var(--muted); font-size: .85rem; }
+  footer a { color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site">
+    <a class="wordmark" href="index.html">alpine</a>
+    <nav class="top">
+      <a href="index.html#work">What we do</a>
+      <a href="index.html#cases">Case studies</a>
+      <a href="index.html#early-access">Early access</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <div class="eyebrow">The line item no budget shows</div>
+    <h1>Price your rework</h1>
+    <p class="sub">Salaries are a line. Cloud is a line. The feature built twice
+    and the review that sat two weeks hide inside the other lines — so nobody
+    manages them. Three inputs, one number.</p>
+  </div>
+
+  <div class="calc">
+    <div class="field">
+      <label for="eng">Engineers on the team</label>
+      <input type="number" id="eng" value="10" min="1" max="500">
+    </div>
+    <div class="field">
+      <label for="cost">Loaded monthly cost per engineer (€)</label>
+      <div class="hint">Salary + taxes + overhead. If unsure, salary × 1.35.</div>
+      <input type="number" id="cost" value="6500" min="1000" step="100">
+    </div>
+    <div class="field">
+      <label for="pct">Share of engineering time lost to rework and review wait: <span class="rangeval" id="pctval">15%</span></label>
+      <div class="hint">Work redone, changes waiting on review, context-switching back into stale branches. Industry surveys put typical teams at 10–25%.</div>
+      <input type="range" id="pct" value="15" min="5" max="40" step="1">
+    </div>
+    <div class="field">
+      <label for="esc">Client escalations per quarter</label>
+      <div class="hint">The cc'd-upward email that stops the roadmap. Costed at €12,000 each: alignment meetings, two engineers pulled onto the fire, the concession that calms things.</div>
+      <input type="number" id="esc" value="1" min="0" max="20">
+    </div>
+
+    <div class="result">
+      <div class="num" id="total">€0</div>
+      <div class="per">per year, leaking silently</div>
+      <ul>
+        <li><b id="rw">€0</b> — rework and review-wait hours, priced at loaded cost</li>
+        <li><b id="es">€0</b> — escalation handling</li>
+        <li>that is <b id="fte">0</b> senior-engineer salaries, spent producing nothing</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="method">
+    <h2>The arithmetic, in the open</h2>
+    <p><code>engineers × loaded cost × 12 × share lost</code> plus
+    <code>escalations × 4 × €12,000</code>. No model, no multipliers you can't
+    see. The share is the only estimate in it — and that is exactly the
+    problem: most teams have never measured it. One spreadsheet column for one
+    sprint replaces the estimate with a fact.</p>
+  </div>
+
+  <div class="gate" id="worksheet">
+    <h2>Measure it instead of estimating it</h2>
+    <p>We'll send you the one-sprint measurement column — the exact fields to
+    log when work comes back, so the slider above becomes your real number.
+    You'll also join the early-access list for the delivery system we use to
+    produce these numbers per task, automatically.</p>
+    <form id="wl-form">
+      <input type="email" id="wl-email" placeholder="work email" required>
+      <button type="submit">Send the worksheet</button>
+    </form>
+    <p class="micro">One short note a month on delivery economics. Unsubscribe anytime.</p>
+    <p class="ok" id="wl-ok">Done — the worksheet is on its way. Check your inbox in the next days.</p>
+  </div>
+
+  <footer>
+    Alpine LTD · <a href="mailto:contact@alpine-engineering.eu">contact@alpine-engineering.eu</a> ·
+    <a href="index.html">alpine-engineering.eu</a>
+  </footer>
+</div>
+
+<script>
+function fmt(n) { return '€' + Math.round(n).toLocaleString('en-US'); }
+function calc() {
+  var eng = +document.getElementById('eng').value || 0;
+  var cost = +document.getElementById('cost').value || 0;
+  var pct = +document.getElementById('pct').value || 0;
+  var esc = +document.getElementById('esc').value || 0;
+  document.getElementById('pctval').textContent = pct + '%';
+  var rework = eng * cost * 12 * (pct / 100);
+  var escCost = esc * 4 * 12000;
+  var total = rework + escCost;
+  document.getElementById('total').textContent = fmt(total);
+  document.getElementById('rw').textContent = fmt(rework);
+  document.getElementById('es').textContent = fmt(escCost);
+  document.getElementById('fte').textContent = (total / (cost * 12 * 1.15) || 0).toFixed(1);
+}
+['eng','cost','pct','esc'].forEach(function (id) {
+  document.getElementById(id).addEventListener('input', calc);
+});
+calc();
+
+document.getElementById('wl-form').addEventListener('submit', function (e) {
+  e.preventDefault();
+  var input = document.getElementById('wl-email');
+  var email = input.value.trim();
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { input.focus(); return; }
+  var body = new URLSearchParams({ 'entry.600134808': email });
+  fetch('https://docs.google.com/forms/d/e/1FAIpQLSdk4BOwrer39hiXQyoX7TCpcUqDNXhEJghLaiQiQfBXBpr-Zw/formResponse', {
+    method: 'POST', mode: 'no-cors',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: body.toString()
+  }).finally(function () {
+    document.getElementById('wl-form').style.display = 'none';
+    document.getElementById('wl-ok').style.display = 'block';
+  });
+});
+</script>
+</body>
+</html>
