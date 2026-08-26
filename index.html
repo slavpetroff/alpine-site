@@ -3,331 +3,154 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Alpine — software systems where mistakes cost money</title>
-<meta name="description" content="Alpine is a software engineering company for systems where mistakes cost money: sovereign cloud, fintech payments, energy trading, AI platforms at scale. Fixed-price delivery audits, full delivery, and complete products built from your idea to launch.">
+<title>Alpine — AI that works like a trained employee of your company</title>
+<meta name="description" content="The same AI is available to everyone. The system built on top of it isn't. I make general AI work like a trained employee of your company — your workflows, your decisions, your standards. In your repos, on any vendor. Every claim measured, receipts in public git.">
 <link rel="canonical" href="https://alpine-engineering.eu/">
 <link rel="icon" type="image/png" href="assets/alpine-mark-dark.png">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Alpine — software systems where mistakes cost money">
-<meta property="og:description" content="Fixed-price delivery audits and full delivery for systems that can't afford to be wrong. Sovereign cloud, fintech, energy, AI platforms.">
-<meta property="og:image" content="https://alpine-engineering.eu/assets/og-banner.png">
+<meta property="og:title" content="Alpine — AI that works like a trained employee of your company">
+<meta property="og:description" content="Your workflows, your decisions, your standards — in your repos, on any vendor. Measured, receipts in public git, losses included.">
+<meta property="og:image" content="https://alpine-engineering.eu/assets/og-banner-v2.png">
 <meta property="og:url" content="https://alpine-engineering.eu/">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Alpine LTD",
-  "alternateName": "Alpine",
-  "url": "https://alpine-engineering.eu/",
-  "logo": "https://alpine-engineering.eu/assets/alpine-mark-dark.png",
-  "description": "Software engineering company for systems where mistakes cost money: sovereign cloud, consumer fintech, energy trading, AI platforms at scale. Fixed-price delivery audits and full delivery.",
-  "foundingDate": "2024-04",
-  "address": { "@type": "PostalAddress", "addressCountry": "BG" },
-  "areaServed": "EU",
-  "sameAs": ["https://www.linkedin.com/company/138193958/"],
-  "knowsAbout": ["Software Engineering", "Backend Engineering", "Platform Engineering", "Delivery Audits", "AI-Assisted Delivery", "Custom Software Development", "Observability", "Python", "Go"],
-  "email": "contact@alpine-engineering.eu"
-}
-</script>
 <style>
-  :root {
-    --bg: #000000;
-    --surface: #0a0a0b;
-    --line: #1c1c1e;
-    --gold: #e0ad52;
-    --ink: #f5f5f5;
-    --muted: #9c9c9c;
-    --max: 980px;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    background: var(--bg); color: var(--ink);
-    font: 16px/1.65 "Helvetica Neue", Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-  }
-  a { color: var(--gold); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
-
-  header.site {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 22px 0; border-bottom: 1px solid var(--line);
-  }
-  .wordmark { font-weight: 700; letter-spacing: .45em; font-size: 1.05rem; color: var(--ink); text-transform: lowercase; display: flex; align-items: center; gap: 12px; }
-  .wordmark:hover { text-decoration: none; }
-  .wordmark svg { width: 64px; height: auto; flex-shrink: 0; }
-  nav.top a { color: var(--muted); margin-left: 22px; font-size: .92rem; }
-  nav.top a:hover { color: var(--ink); text-decoration: none; }
-  nav.top a.cta { color: var(--gold); border: 1px solid var(--gold); border-radius: 4px; padding: 7px 14px; }
-
-  .hero { padding: 90px 0 70px; text-align: left; position: relative; }
-  .hero > * { position: relative; z-index: 1; }
-  .hero .trace-bg {
-    position: absolute; left: 50%; transform: translateX(-50%);
-    width: 100vw; max-width: none; top: 58%; z-index: 0; pointer-events: none;
-  }
-  .hero h1 { font-size: clamp(2rem, 5vw, 3.1rem); line-height: 1.12; font-weight: 700; max-width: 17ch; }
-  .hero h1 em { color: var(--gold); font-style: normal; }
-  .hero p.sub { margin-top: 22px; max-width: 58ch; color: var(--muted); font-size: 1.06rem; }
-  .hero .actions { margin-top: 34px; display: flex; gap: 14px; flex-wrap: wrap; }
-  .btn {
-    display: inline-block; padding: 12px 22px; border-radius: 4px; font-size: .95rem; font-weight: 600;
-  }
-  .btn.primary { background: var(--gold); color: #000; }
-  .btn.primary:hover { text-decoration: none; filter: brightness(1.08); }
-  .btn.ghost { border: 1px solid var(--line); color: var(--ink); }
-  .btn.ghost:hover { border-color: var(--gold); text-decoration: none; }
-  .hero .quiet { margin-top: 18px; color: var(--muted); font-size: .85rem; }
-
-  section { padding: 72px 0; border-top: 1px solid var(--line); }
-  section#work { border-top: 0; padding-top: 96px; }
-  .eyebrow { color: var(--gold); font-size: .8rem; letter-spacing: .18em; text-transform: uppercase; font-weight: 600; }
-  h2 { font-size: clamp(1.5rem, 3.4vw, 2.1rem); margin-top: 10px; line-height: 1.2; max-width: 26ch; }
-  .lede { color: var(--muted); margin-top: 16px; max-width: 62ch; }
-
-  .grid2 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 38px; }
-  @media (max-width: 900px) { .grid2 { grid-template-columns: 1fr; } }
-  .card {
-    background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 26px;
-  }
-  .card h3 { font-size: 1.12rem; margin-bottom: 4px; }
-  .card .tag { color: var(--gold); font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 600; }
-  .card p { color: var(--muted); font-size: .95rem; margin-top: 10px; }
-  .card ul { margin: 12px 0 0 18px; color: var(--muted); font-size: .95rem; }
-  .card li { margin-top: 6px; }
-  .card b { color: var(--ink); font-weight: 600; }
-
-  .cases { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 38px; }
-  @media (max-width: 720px) { .cases { grid-template-columns: 1fr; } }
-  .case { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 24px; display: flex; flex-direction: column; }
-  .case h3 { font-size: 1.05rem; line-height: 1.35; }
-  .case .client { color: var(--gold); font-size: .82rem; margin-top: 6px; }
-  .case p { color: var(--muted); font-size: .92rem; margin-top: 12px; flex: 1; }
-  .case a.pdf { margin-top: 16px; font-size: .88rem; font-weight: 600; }
-
-  .how ol { margin: 30px 0 0 20px; max-width: 62ch; }
-  .how li { margin-top: 16px; color: var(--muted); }
-  .how li b { color: var(--ink); }
-
-  .about .cols { display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; margin-top: 30px; }
-  @media (max-width: 720px) { .about .cols { grid-template-columns: 1fr; } }
-  .about p { color: var(--muted); margin-top: 14px; max-width: 60ch; }
-  .about .fact { border-left: 2px solid var(--gold); padding-left: 16px; margin-top: 18px; }
-  .about .fact b { color: var(--ink); display: block; font-size: 1.05rem; }
-  .about .fact span { color: var(--muted); font-size: .88rem; }
-
-  .waitlist { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 44px 40px; margin-top: 0; }
-  .waitlist h2 { max-width: 30ch; }
-  .waitlist form { display: flex; gap: 12px; margin-top: 26px; max-width: 480px; flex-wrap: wrap; }
-  .waitlist input[type="email"] {
-    flex: 1; min-width: 220px; background: var(--bg); border: 1px solid var(--line); border-radius: 4px;
-    color: var(--ink); padding: 12px 14px; font: inherit; font-size: .95rem;
-  }
-  .waitlist input[type="email"]:focus { outline: none; border-color: var(--gold); }
-  .waitlist .micro { color: var(--muted); font-size: .82rem; margin-top: 12px; }
-  .waitlist .ok { color: var(--gold); font-weight: 600; margin-top: 18px; display: none; }
-
-  .contact { text-align: center; }
-  .contact h2 { margin: 10px auto 0; }
-  .contact .lede { margin-left: auto; margin-right: auto; }
-  .contact .actions { margin-top: 30px; }
-
-  footer.site {
-    border-top: 1px solid var(--line); padding: 34px 0 44px; color: var(--muted); font-size: .85rem;
-    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
-  }
+:root{--bg:#0D0F12;--panel:#15181d;--line:rgba(255,255,255,.09);--txt:#e8eaee;--dim:#8a8f98;--green:#2FD575;--red:#e05252}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--txt);font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;line-height:1.55;
+background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:48px 48px}
+.wrap{max-width:880px;margin:0 auto;padding:0 24px}
+section{padding:72px 0;border-bottom:1px solid var(--line)}
+h1{font-size:clamp(34px,6vw,58px);font-weight:800;letter-spacing:-.02em;line-height:1.1}
+h2{font-size:clamp(24px,4vw,34px);font-weight:800;letter-spacing:-.01em;margin-bottom:28px}
+p{margin:16px 0;color:var(--txt)}
+.dim{color:var(--dim)}
+.green{color:var(--green)}
+.mono{font-family:"SF Mono",Menlo,Consolas,monospace}
+a{color:var(--green);text-decoration:none}
+a:hover{text-decoration:underline}
+.btn{display:inline-block;padding:14px 26px;border-radius:10px;font-weight:700;margin:10px 12px 0 0}
+.btn-g{background:var(--green);color:#0D0F12}
+.btn-o{border:1px solid var(--green);color:var(--green)}
+.hero{padding:110px 0 80px}
+.hero .sub{font-size:clamp(17px,2.2vw,21px);margin-top:26px;max-width:680px}
+table{width:100%;border-collapse:collapse;margin:24px 0;font-size:15px}
+th,td{text-align:left;padding:12px 14px;border:1px solid var(--line);vertical-align:top}
+th{color:var(--dim);font-weight:600}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:28px;margin:18px 0}
+.card.win{border-color:rgba(47,213,117,.5)}
+ul{margin:14px 0 14px 22px}
+li{margin:9px 0}
+.strike{text-decoration:line-through;color:var(--dim);font-size:clamp(26px,4vw,40px);font-weight:800}
+.free{font-size:clamp(34px,6vw,54px);font-weight:800;color:var(--green)}
+.counter{font-family:"SF Mono",Menlo,monospace;color:var(--dim);margin-top:10px}
+footer{padding:44px 0;color:var(--dim);font-size:14px}
+.kick{font-family:"SF Mono",Menlo,monospace;font-size:14px;letter-spacing:.1em;color:var(--green);text-transform:uppercase;margin-bottom:14px}
+.quote{border-left:3px solid var(--green);padding-left:18px;margin:22px 0;color:var(--dim)}
 </style>
 </head>
 <body>
 
-<div class="wrap">
-  <header class="site">
-    <a class="wordmark" href="#" aria-label="Alpine home">
-      <svg viewBox="0 0 644 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <polyline points="0,100 283,100 312,25 357,195 386,100 644,100" fill="none" stroke="#e0ad52" stroke-width="14" stroke-linejoin="miter" stroke-linecap="butt"/>
-      </svg>
-      alpine
-    </a>
-    <nav class="top">
-      <a href="#work">What we do</a>
-      <a href="#cases">Case studies</a>
-      <a href="rework.html">Price your rework</a>
-      <a href="#early-access">Early access</a>
-      <a href="#about">About</a>
-      <a class="cta" href="mailto:contact@alpine-engineering.eu?subject=Alpine%20%E2%80%94%20delivery%20audit">Contact</a>
-    </nav>
-  </header>
+<section class="hero"><div class="wrap">
+<h1>The same AI is available to everyone.<br>The system built on top of it isn't.</h1>
+<p class="sub">I make general AI work like a trained employee of YOUR company — your workflows, your decisions, your standards. In your repos, on any vendor. And I prove it before you believe it.</p>
+<a class="btn btn-g" href="#offer">See the offer</a>
+<a class="btn btn-o" href="https://github.com/slavpetroff/agent-receipts">See the receipts</a>
+</div></section>
 
-  <div class="hero">
-    <svg class="trace-bg" viewBox="0 0 1440 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <polyline points="0,120 980,120 1030,32 1105,228 1155,120 1440,120" fill="none" stroke="#e0ad52" stroke-width="4" stroke-linejoin="miter" stroke-linecap="butt" opacity="0.85"/>
-    </svg>
-    <h1>Systems where mistakes <em>cost money.</em></h1>
-    <p class="sub">Alpine is a software engineering company. Clients bring the systems they can't afford to have wrong: a sovereign cloud's storage services, a fintech's payment paths, an energy trading tool, an AI product that outgrew what built it. And when there's no technical team at all — they bring the idea, and we build the whole thing.</p>
-    <div class="actions">
-      <a class="btn primary" href="mailto:contact@alpine-engineering.eu?subject=Alpine%20%E2%80%94%20delivery%20audit">Request a delivery audit</a>
-      <a class="btn ghost" href="#cases">Read the case studies</a>
-    </div>
-    <p class="quiet">Based in Bulgaria · Clients across the EU · Engagements under NDA</p>
-  </div>
+<section><div class="wrap">
+<div class="kick">The scene you know</div>
+<h2>Your agents are brilliant. They're just not yours.</h2>
+<p>I'm Stanislav — twelve years of backend engineering, the last two building three businesses with AI agents doing most of the typing, all of it while working full-time as a senior software engineer. I've lived the whole list: hallucinations all over the place. Repeated mistakes, even when prompted not to make them. Workflows followed from time to time. The PR your review rejects because the agent broke a convention that lives only in your team's heads. The pattern it confidently suggests — the one you abandoned two releases ago, because that decision lives in a Slack thread, not in the repo.</p>
+<p>The problem isn't missing intelligence. It's missing context. Your team's knowledge lives in heads and chats — and every agent session starts from zero. So does every new hire.</p>
+</div></section>
 
-  <section id="work">
-    <div class="eyebrow">What we do</div>
-    <h2>Three ways to engage. All end with proof.</h2>
-    <div class="grid2">
-      <div class="card">
-        <div class="tag">Fixed price · two weeks</div>
-        <h3>The delivery audit</h3>
-        <p>Your production system, examined by someone accountable for the conclusions. You receive:</p>
-        <ul>
-          <li><b>Findings with file-and-line evidence</b> — not opinions</li>
-          <li><b>An implementation playbook</b> — the exact library and pattern per gap</li>
-          <li><b>An execution-ready backlog</b> your team can run with on day one</li>
-        </ul>
-        <p>Scope and price fixed before we start. If your team executes it without us, the audit already paid for itself.</p>
-      </div>
-      <div class="card">
-        <div class="tag">Architecture to production</div>
-        <h3>Full delivery</h3>
-        <p>One engineer accountable end to end: architecture, implementation, production, and the monitoring that proves it works — so an incident shows its own cause instead of eating an engineering week.</p>
-        <p>Current focus: AI-assisted delivery a business can bill and defend. Agents produce the work, verification gates prove it, every change traces to a requirement. If nobody can vouch for the code, it isn't an asset — it's inventory.</p>
-      </div>
-      <div class="card">
-        <div class="tag">Idea to launch</div>
-        <h3>We build it for you</h3>
-        <p>No technical team? You don't need one — you need the thing built. You describe what you want in plain words; we handle everything technical: design, build, launch, and keeping it running after.</p>
-        <ul>
-          <li><b>Fixed milestones</b> — at each one you get working software you can click, not a status report</li>
-          <li><b>Progress in plain language</b> — you always know what's done, what's next, and what it costs</li>
-          <li><b>You own everything</b> — the code, the accounts, the product. Walk away any time and keep it all</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+<section><div class="wrap">
+<div class="kick">The alternatives, honestly</div>
+<h2>What you could do instead — with the real pros and cons</h2>
+<table>
+<tr><th>approach</th><th>the good</th><th>where it breaks</th></tr>
+<tr><td>Prompt harder + internal wiki</td><td>starts today, free</td><td>wikis aren't loaded by agents; they rot; per-person, not per-company</td></tr>
+<tr><td>DIY from public materials</td><td>the method is free and good</td><td>stalls after v1: no measurement, no anti-rot discipline — my own layer failed a live probe on exactly this</td></tr>
+<tr><td>Multi-agent framework builds</td><td>demos impress</td><td>orchestration tax, fragile towers, framework lock-in</td></tr>
+<tr><td>The vendor's enterprise tier</td><td>zero effort</td><td>the memory lives with the vendor, in his harness; switch — and you start from zero</td></tr>
+</table>
+</div></section>
 
-  <section id="cases">
-    <div class="eyebrow">Case studies</div>
-    <h2>Some of it is countable.</h2>
-    <p class="lede">Client names stay under NDA; the numbers don't. Each one-pager is a real engagement with its measurable result.</p>
-    <div class="cases">
-      <div class="case">
-        <h3>No event may ever be lost</h3>
-        <div class="client">Cloud division of Europe's largest retail group (€167B revenue)</div>
-        <p>A zero-loss audit-log pipeline designed and built end to end — in production today. Plus a measured 6x capacity rewrite of a crashing storage API, delivered in under three weeks.</p>
-        <a class="pdf" href="files/alpine-case-study-sovereign-cloud.pdf">Read the one-pager →</a>
-      </div>
-      <div class="case">
-        <h3>AI built it. Growth broke it. We rebuilt it.</h3>
-        <div class="client">AI education platform · 420,000+ educators</div>
-        <p>An AI-generated app that found its market and hit the scaling wall. Two backend engineers rebuilt it for the public 2.0 launch — without the business stopping.</p>
-        <a class="pdf" href="files/alpine-case-study-edtech-rescue.pdf">Read the one-pager →</a>
-      </div>
-      <div class="case">
-        <h3>An agent platform that actually worked — in 30 days</h3>
-        <div class="client">A Big Four professional-services firm</div>
-        <p>Internal multi-agent platform taken from skeleton to working system by two engineers: architect/verifier roles, human-in-the-loop, on Vertex AI + Gemini.</p>
-        <a class="pdf" href="files/alpine-case-study-big-four-agents.pdf">Read the one-pager →</a>
-      </div>
-      <div class="case">
-        <h3>13 integrations, zero visibility — fixed as a program</h3>
-        <div class="client">Pan-European parking operator</div>
-        <p>Evidence-based audit, implementation playbook, OpenTelemetry foundation, and designed failure containment for 13 partner integrations. One accountable engineer, three months.</p>
-        <a class="pdf" href="files/alpine-case-study-parking-observability.pdf">Read the one-pager →</a>
-      </div>
-      <div class="case">
-        <h3>Money that can't silently disappear</h3>
-        <div class="client">Swedish consumer fintech</div>
-        <p>Five years on a consumer fintech's money infrastructure — KYC and payment rails (Klarna, Stripe, Swish, Onfido), git-verified. Failure paths engineered so money states can never silently vanish.</p>
-        <a class="pdf" href="files/alpine-case-study-fintech-money.pdf">Read the one-pager →</a>
-      </div>
-      <div class="case">
-        <h3>Live data for people negotiating fuel prices</h3>
-        <div class="client">One of Europe's largest energy companies</div>
-        <p>A trading tool that grew from a small internal build into a large team's daily instrument: live data replacing hardcoded values, answers in seconds instead of warehouse waits. Three-year engagement.</p>
-        <a class="pdf" href="files/alpine-case-study-energy-trading.pdf">Read the one-pager →</a>
-      </div>
-    </div>
-  </section>
+<section><div class="wrap">
+<div class="kick">What I do</div>
+<h2>One team. Thirty days. Your AI, trained.</h2>
+<p>I externalize how one engineering team works — its decisions, standards and workflows — into its own repo as a plain, connected file structure. From the first session, any agent (and any new engineer) knows why the module is built that way, which process runs how, what was decided and why.</p>
+<ul>
+<li><b>Yours forever.</b> Plain files in your repos. Switch models or vendors tomorrow — the memory stays.</li>
+<li><b>Your code untouched.</b> Branch-only, markdown-only. Delivered by recipe, accepted by a gate script — not by heroics.</li>
+<li><b>Screened first.</b> We start with a fit-check: your problems, whether I can solve them. If your setup is one where this doesn't pay, I'll tell you and show you the measurement that says so.</li>
+</ul>
+</div></section>
 
-  <section class="how">
-    <div class="eyebrow">How an audit runs</div>
-    <h2>Two weeks, fixed price, no surprises.</h2>
-    <ol>
-      <li><b>Scope call (30 min).</b> You describe the system and what hurts. We fix the scope and the price on that call.</li>
-      <li><b>Week one: evidence.</b> Read-only access. Every finding is tied to a file and a line — you can check each claim yourself.</li>
-      <li><b>Week two: the plan.</b> The playbook (exact pattern per gap) and a backlog ordered by risk-per-euro. Presented to your team, defended under questions.</li>
-      <li><b>Your choice after.</b> Execute it in-house, or we implement it. Either way the audit deliverables are yours to keep.</li>
-    </ol>
-  </section>
-
-  <section id="early-access">
-    <div class="waitlist">
-      <div class="eyebrow">Early access</div>
-      <h2>The system we deliver with is becoming a product.</h2>
-      <p class="lede">Every Alpine engagement runs on the same in-house platform: AI agents work the backlog, verification gates prove the work before anything merges, and every run shows exactly what it cost. In 2026 we're opening it to a limited number of engineering teams — onboarded personally, on their real backlog, at an early-access rate that stays locked for as long as they stay.</p>
-      <form id="waitlist-form" novalidate>
-        <input type="email" name="email" placeholder="Work email" required aria-label="Work email">
-        <button class="btn primary" type="submit">Join the waitlist</button>
-      </form>
-      <p class="micro">The list is the queue — places are offered in order. One email when doors open, maybe two before. No spam, ever.</p>
-      <p class="ok" id="waitlist-ok">You're on the list. We'll be in touch — in order.</p>
-    </div>
-  </section>
-
-  <section id="about" class="about">
-    <div class="eyebrow">About</div>
-    <h2>One engineer, accountable.</h2>
-    <div class="cols">
-      <div>
-        <p>Every Alpine engagement is led by one accountable senior engineer — and ten-plus years in production is our bar, not the exception. Software and platform engineering for European enterprises: sovereign cloud, Big Four, energy, fintech, mobility. No account managers between you and the person doing the work, and no junior handed your system after the sales call.</p>
-        <p>The pattern across all of it: full-lifecycle ownership. Idea, architecture, implementation, production, and the monitoring to prove it works. A system nobody can observe is a risk nobody has priced.</p>
-        <p>Founded 2024. Based in Bulgaria. Working with teams across the EU.</p>
-      </div>
-      <div>
-        <div class="fact"><b>10+ years</b><span>in production — the bar for every engineer we put on your system</span></div>
-        <div class="fact"><b>6x capacity</b><span>measured under load after rewriting a sovereign cloud's storage API</span></div>
-        <div class="fact"><b>420,000+ users</b><span>served by a platform we rebuilt for scale</span></div>
-        <div class="fact"><b>30 days</b><span>skeleton to working AI-agent platform, Big Four client</span></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="contact" id="contact">
-    <div class="eyebrow">Contact</div>
-    <h2>Tell us what it costs you when it breaks — or what you want built.</h2>
-    <p class="lede">One email, plain language. You'll get a straight answer about whether we're the right fit — and a fixed price if we are.</p>
-    <div class="actions">
-      <a class="btn primary" href="mailto:contact@alpine-engineering.eu?subject=Alpine%20%E2%80%94%20delivery%20audit">contact@alpine-engineering.eu</a>
-    </div>
-  </section>
-
-  <footer class="site">
-    <div>Alpine LTD · Bulgaria · founded 2024</div>
-    <div>
-      <a href="https://www.linkedin.com/company/138193958/">LinkedIn</a>
-    </div>
-  </footer>
+<section><div class="wrap">
+<div class="kick">Proof, not promises</div>
+<h2>Measured. Receipts in public git. Losses included.</h2>
+<p>Every claim I make has a protocol committed BEFORE the run and a mechanical judge — never an opinion. All of it is public:</p>
+<div class="card win">
+<p class="mono">Same codebase, same six tasks, same agent — one context map apart:<br>
+map off: 5/6 correct · 196k tokens<br>
+map on: <span class="green">6/6 correct · 147k tokens (−24.8%)</span></p>
 </div>
+<div class="card">
+<p class="mono">And where it HURTS — published, not hidden:<br>
+small repos: +13% and +20.6% WORSE with a map<br>
+cheap test iteration: +7.5% worse per solved task</p>
+</div>
+<p>The raw run logs, the pre-registered protocols, and the real 98-line map from my production repo: <a href="https://github.com/slavpetroff/agent-receipts">github.com/slavpetroff/agent-receipts</a></p>
+</div></section>
 
-<script>
-document.getElementById('waitlist-form').addEventListener('submit', function (e) {
-  e.preventDefault();
-  var input = this.querySelector('input[name="email"]');
-  var email = input.value.trim();
-  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { input.focus(); return; }
-  var body = new URLSearchParams({ 'entry.600134808': email });
-  fetch('https://docs.google.com/forms/d/e/1FAIpQLSdk4BOwrer39hiXQyoX7TCpcUqDNXhEJghLaiQiQfBXBpr-Zw/formResponse', {
-    method: 'POST', mode: 'no-cors',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: body.toString()
-  }).finally(function () {
-    document.getElementById('waitlist-form').style.display = 'none';
-    document.querySelector('#early-access .micro').style.display = 'none';
-    document.getElementById('waitlist-ok').style.display = 'block';
-  });
-});
-</script>
+<section><div class="wrap">
+<div class="kick">What nobody tells you</div>
+<h2>The three uncomfortable truths</h2>
+<p class="dim">I'd rather you hear them from me, before you buy anything from anyone.</p>
+<ul>
+<li><b>A readable file is a copyable file.</b> File systems have no "read but don't take". Secrets never live in this structure — only references to your secret manager. That's a design boundary, not a footnote.</li>
+<li><b>The structure declares; git and your OS enforce.</b> Anyone who tells you a context method IS your security is selling you a story. The fences live one layer down — and I set them up with you: protected branches, CODEOWNERS, read-only distribution.</li>
+<li><b>Human gates don't scale by themselves.</b> Review gates are the trust feature — and the first bottleneck. Every gate ships with an owner, a queue and an SLA, or it becomes a gate people walk around.</li>
+</ul>
+</div></section>
+
+<section id="offer"><div class="wrap">
+<div class="kick">The offer</div>
+<h2>The Trained-Employee Install — one team, ~30 days</h2>
+<ul>
+<li>Fit-screening first — your problems, honestly, including "this won't pay for you" when the measurement says so</li>
+<li>The full install: your team's decisions, standards and workflows, in your repo, gate-checked</li>
+<li>Two recorded demonstrations on YOUR questions and YOUR workflow: a bare agent vs. yours, side by side</li>
+<li>A measurement report against a protocol registered before we start — yours to keep and show internally</li>
+<li>The security review (the three truths, applied to your setup)</li>
+<li>Your champion trained to maintain it; a 30-day drift report included</li>
+<li>Everything lives in your repo from day one. If I disappear tomorrow, nothing stops working.</li>
+</ul>
+<div class="card win" style="text-align:center">
+<span class="strike">€9,800</span>&nbsp;&nbsp;<span class="free">FREE</span>
+<p class="counter">Cohort 1 — first 5 companies: 5 of 5 spots still open.<br>Every 5 clients, the price steps up. This is the only time it's free.</p>
+<a class="btn btn-g" href="mailto:contact@alpine-engineering.eu?subject=Alpine%20%E2%80%94%20Trained-Employee%20Install%20(Cohort%201)">Talk about your team</a>
+</div>
+</div></section>
+
+<section><div class="wrap">
+<div class="kick">Free, today, no contact needed</div>
+<h2>Steal these first</h2>
+<ul>
+<li><a href="https://github.com/slavpetroff/agent-receipts/blob/main/gift/CLAUDE.md">The real 98-line context map</a> from my production repo — unedited. Steal the structure, write yours.</li>
+<li><a href="https://github.com/slavpetroff/agent-receipts/blob/main/gift/the-real-98-line-map.md">The two checks and three rules</a> that keep a map alive — including when NOT to write one (I measured that the embarrassing way).</li>
+<li><a href="https://www.linkedin.com/in/stanislav-petrov-a72739105/">The daily posts</a> — one story, one hands-on process you can run the same day. Every number with its receipt.</li>
+</ul>
+</div></section>
+
+<footer><div class="wrap">
+Alpine Engineering (Alpine LTD) · Bulgaria · Clients across the EU<br>
+<a href="https://www.linkedin.com/in/stanislav-petrov-a72739105/">LinkedIn — Stanislav Petrov</a> ·
+<a href="https://www.linkedin.com/company/alpine-engineering-/">Alpine on LinkedIn</a> ·
+<a href="https://github.com/slavpetroff/agent-receipts">agent-receipts</a> ·
+<a href="mailto:contact@alpine-engineering.eu">contact@alpine-engineering.eu</a>
+</div></footer>
+
 </body>
 </html>
