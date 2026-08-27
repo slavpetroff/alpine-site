@@ -114,7 +114,7 @@ color:#EAFBF1;border:1px solid rgba(234,251,241,.35);background:rgba(4,26,15,.55
 @media(max-width:560px){.trust .row{grid-template-columns:1fr}}
 
 /* differentiated value (so-what cards) */
-.vals{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:56px}
+.vals{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:56px}
 .vcard{background:#fff;border-radius:16px;box-shadow:var(--shadow);padding:28px 28px 26px}
 .vcard.lead{grid-column:1/-1;display:grid;grid-template-columns:1fr auto 1.2fr;gap:26px;align-items:center;box-shadow:var(--shadow2)}
 .vfeat{font-size:14.5px;color:var(--inkdim);line-height:1.6}
@@ -123,7 +123,7 @@ color:#EAFBF1;border:1px solid rgba(234,251,241,.35);background:rgba(4,26,15,.55
 .vcard.lead .sowhat{margin:0}
 .vroot{font-size:17px;font-weight:700;color:var(--ink);line-height:1.45;letter-spacing:-.01em}
 .vcard.lead .vroot{font-size:19px}
-.scenehead{font-size:13px;font-weight:600;color:var(--inkdim);margin-top:64px}
+.scenehead{font-size:17px;font-weight:700;color:var(--ink);margin-top:72px;letter-spacing:-.01em}
 .vproof{display:inline-block;font-size:12.5px;font-weight:700;margin-top:12px}
 @media(max-width:940px){.vals{grid-template-columns:1fr}.vcard.lead{grid-template-columns:1fr;gap:10px}}
 /* pain grid + light receipt */
@@ -269,6 +269,7 @@ background:linear-gradient(180deg,#2FD575,#12A15B 55%,var(--hair2))}
 .acard h3{font-size:19px;color:var(--ink);letter-spacing:-.015em}
 .acard .price{font-weight:650;font-size:34px;color:#B42318;margin:12px 0 2px;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
 .acard .per{font-size:12.5px;color:#98A2B3;font-weight:600}
+.psrc{display:block;font-size:11.5px;font-weight:700;margin-top:6px}
 .acard p{font-size:14.5px;color:var(--inkdim);margin-top:14px;line-height:1.65}
 .iso-bad{fill:none;stroke:#D96C50;stroke-width:1.4}
 .iso-badf{fill:rgba(217,108,80,.09);stroke:#D96C50;stroke-width:1.4}
@@ -433,9 +434,14 @@ footer a{color:#C7CDD5}
 <p class="subline rv">Every claim below is a feature chased down to its business root: money, speed or control. That's also how we'll talk in the first meeting.</p>
 <div class="vals">
 <div class="vcard lead rv">
+<div class="vfeat">No mid-session amnesia, no silent course changes halfway through. The agent holds the team's full knowledge from the first message to the last.</div>
+<div class="sowhat" aria-hidden="true"></div>
+<div><div class="vroot">Everyone in the company works with what feels like your most senior engineer, every time. Close the agent, open a new one tomorrow, on any vendor: the same team knowledge is there. Not chat history — the company's knowledge, shared by all.</div><a class="vproof" href="https://github.com/slavpetroff/agent-receipts/blob/main/results/case-study-self-icm-migration.md">decision-recall, measured on a fresh agent →</a></div>
+</div>
+<div class="vcard rv">
 <div class="vfeat">We start from a meeting about your problems, your gaps and your target, not from our tool.</div>
 <div class="sowhat" aria-hidden="true"></div>
-<div><div class="vroot">You buy a named outcome with a deadline and a written guarantee, delivered with proof on your own repo. And we stay after delivery: drift handled, upgrades supported, the next team when you're ready.</div><a class="vproof" href="https://github.com/slavpetroff/agent-receipts/tree/main/protocols">the protocols, committed before any result →</a></div>
+<div class="vroot">You buy a named outcome with a deadline and a written guarantee, delivered with proof on your own repo.</div><a class="vproof" href="https://github.com/slavpetroff/agent-receipts/tree/main/protocols">the protocols, committed before any result →</a>
 </div>
 <div class="vcard rv">
 <div class="vfeat">Every new engineer and every agent boots with the full, current context of the team.</div>
@@ -453,13 +459,13 @@ footer a{color:#C7CDD5}
 <div class="vroot">Engineering owns it with the tools it already trusts. No platform team, no lock-in, nothing to migrate off.</div><a class="vproof" href="https://github.com/slavpetroff/agent-receipts/blob/main/gift/CLAUDE.md">the real file from our production repo →</a>
 </div>
 </div>
-<div class="scenehead rv">You've lived the feature version of this:</div>
+<div class="scenehead rv">The scenes behind the numbers — you've lived every one of them:</div>
 <div class="paingrid">
 <div class="rv">
 <p>We lived this list before selling anything about it: twelve years of backend engineering behind Alpine, the last two spent building three businesses with AI agents doing most of the typing. We know the scene: the PR your review rejects because the agent never updated the OpenAPI schema for the microservice you introduced last week, the exact requirement your latest ADR spells out. The pattern it confidently resurrects, the one you buried two releases ago, because that funeral happened in a Slack thread. The new hire who asks why auth is split across two services and collects three different answers.</p>
 <p style="margin-top:14px"><b>Your agents don't lack intelligence. They lack the context only your team has.</b> It lives in heads and chats, so every agent session starts from zero. So does every new hire.</p>
 </div>
-<div class="lreceipt rv">
+<div class="lreceipt rv" id="bleed">
 <div class="lrhead"><span>The monthly bill you already pay</span><span>est. · 30-engineer team</span></div>
 <div class="lrow"><span>Re-explaining &amp; fixing agent output</span><b>2.5 h/eng/week</b></div>
 <div class="lrow"><span>× 30 engineers × €55/h loaded</span><b>€4,125 / week</b></div>
@@ -659,7 +665,7 @@ footer a{color:#C7CDD5}
 <text x="12" y="92" font-size="11" fill="#98A2B3" font-family="Inter">the wiki, unread</text>
 </g>
 </svg></div>
-<div class="acard rv"><h3>Prompt harder + wiki</h3><div class="price">€17,900</div><div class="per">per month, ongoing</div><p>Every engineer re-explains the same conventions, in ever longer prompts. The wiki holds the answers; agents never load it, and it rots quietly. The bleed just continues.</p></div>
+<div class="acard rv"><h3>Prompt harder + wiki</h3><div class="price">€17,900</div><div class="per">per month, ongoing</div><a class="psrc" href="#bleed">derivation: the bleed math →</a><p>Every engineer re-explains the same conventions, in ever longer prompts. The wiki holds the answers; agents never load it, and it rots quietly. The bleed just continues.</p></div>
 </div>
 
 <div class="arow flip">
@@ -682,7 +688,7 @@ footer a{color:#C7CDD5}
 <path d="M174 226 L390 226" stroke="#D96C50" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 7"/>
 <text x="212" y="216" font-size="11" fill="#B42318" font-family="Inter">maintenance nobody owns</text>
 </svg></div>
-<div class="acard rv"><h3>Internal platform project</h3><div class="price">€55,000+</div><div class="per">2 engineers × 3 months</div><p>Ships a v1 with no measurement and no anti-rot discipline. Then the two engineers go back to the roadmap, and the layer starts drifting the day they leave. We've watched it.</p></div>
+<div class="acard rv"><h3>Build your own company harness</h3><div class="price">€55,000+</div><div class="per">2 engineers × 3 months — what most teams try first</div><a class="psrc" href="#bleed">2 × 3 months at the same €55/h loaded rate →</a><p>Ships a v1 with no measurement and no anti-rot discipline. Then the two engineers go back to the roadmap, and the layer starts drifting the day they leave. We've watched it.</p></div>
 </div>
 
 <div class="arow">
@@ -707,7 +713,7 @@ footer a{color:#C7CDD5}
 <text x="292" y="34" font-size="11" fill="#B42318" font-family="Inter">one change</text>
 <text x="120" y="290" font-size="11" fill="#98A2B3" font-family="Inter">impressive, until something moves</text>
 </svg></div>
-<div class="acard rv"><h3>Multi-agent framework build</h3><div class="price">€40–80k</div><div class="per">+ permanent maintenance</div><p>Demos impress. Then you own a fragile orchestration tower where every agent is wired to every agent, and the framework owns you back. Lock-in with extra steps.</p></div>
+<div class="acard rv"><h3>Multi-agent framework build</h3><div class="price">€40–80k</div><div class="per">+ permanent maintenance</div><a class="psrc" href="#bleed">730–1,450 build hours at the same €55/h rate →</a><p>Demos impress. Then you own a fragile orchestration tower where every agent is wired to every agent, and the framework owns you back. Lock-in with extra steps.</p></div>
 </div>
 
 <div class="arow flip">
@@ -719,7 +725,7 @@ footer a{color:#C7CDD5}
 <g class="iso-ghost" transform="translate(280,110)"><path d="M60 0 L120 30 L60 60 L0 30 Z"/></g>
 <text x="292" y="196" font-size="11" fill="#98A2B3" font-family="Inter">your repo, empty</text>
 </svg></div>
-<div class="acard rv"><h3>Vendor enterprise tier</h3><div class="price">€30k+</div><div class="per">per year, forever</div><p>The memory lives in the vendor's harness, not in your repos. Switch vendors and your company's knowledge doesn't come with you. You start from zero, again.</p></div>
+<div class="acard rv"><h3>Vendor enterprise tier</h3><div class="price">€30k+</div><div class="per">per year, forever</div><a class="psrc" href="https://claude.com/pricing">30 premium seats × $100/seat/mo, vendor price list →</a><p>The memory lives in the vendor's harness, not in your repos. Switch vendors and your company's knowledge doesn't come with you. You start from zero, again.</p></div>
 </div>
 
 </div>
@@ -745,7 +751,7 @@ footer a{color:#C7CDD5}
 <div class="slots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
 <div class="slotlab">Five companies per intake. That's the whole capacity; we build each install by hand.</div>
 <span class="strike">€19,580</span><span class="free">FREE</span>
-<div class="anchornote">the crossed price is ≈ 33 days of the €17,900/month bleed <a href="#method">from the math above</a></div>
+<div class="anchornote">the crossed price is ≈ 33 days of the €17,900/month bleed <a href="#bleed">from the math above</a></div>
 <div class="counter">This intake is free. The next one won't be. <b>Once it fills, free is gone for good.</b></div>
 <div class="guar"><b>The guarantee:</b> pass thresholds are registered in writing on Day 0, before we touch anything. If the measurement doesn't hit them, the invoice never exists.</div>
 <a class="cta" href="mailto:contact@alpine-engineering.eu?subject=Alpine%20%E2%80%94%20Trained-Engineer%20Install">Talk about your team →</a>
