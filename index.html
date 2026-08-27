@@ -3,226 +3,804 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Alpine — AI that works like a trained employee of your company</title>
-<meta name="description" content="The same AI is available to everyone. The system built on top of it isn't. Alpine makes general AI work like a trained employee of your company — your workflows, your decisions, your standards. In your repos, on any vendor. Every claim measured, receipts in public git.">
+<title>Alpine — coding agents that work like trained members of your engineering team</title>
+<meta name="description" content="The same AI is available to everyone. The system built on top of it isn't. Alpine makes coding agents work like trained members of your engineering team — your codebase, your architecture decisions, your review standards. For EU SaaS teams of 20–200 engineers. Every claim measured, receipts in public git.">
 <link rel="canonical" href="https://alpine-engineering.eu/">
 <link rel="icon" type="image/png" href="assets/alpine-mark-dark.png">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Alpine — AI that works like a trained employee of your company">
-<meta property="og:description" content="Your workflows, your decisions, your standards — in your repos, on any vendor. Measured, receipts in public git, losses included.">
+<meta property="og:title" content="Alpine — coding agents that work like trained members of your engineering team">
+<meta property="og:description" content="Your codebase, your architecture decisions, your review standards — in your repos, on any vendor. For EU SaaS engineering teams. Measured, receipts in public git, losses included.">
 <meta property="og:image" content="https://alpine-engineering.eu/assets/og-banner-v2.png">
 <meta property="og:url" content="https://alpine-engineering.eu/">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0D0F12;--panel:#14171c;--panel2:#181c22;--line:rgba(255,255,255,.08);--txt:#e8eaee;--dim:#8a8f98;--green:#2FD575;--red:#e07a5f;--mono:"IBM Plex Mono",Menlo,monospace;--disp:"Archivo Black","Helvetica Neue",sans-serif}
+:root{
+--frame:#02100A;               /* outer deep green-black frame */
+--heroA:#03140C;--heroB:#0A5B34;--heroC:#12A15B;
+--ink:#17181C;--inkdim:#667085;--hair:#E4E7EC;--hair2:#D0D5DD;
+--body:#F6F7F9;--card:#FFFFFF;
+--shadow:0 1px 2px rgba(16,24,40,.04),0 4px 12px rgba(16,24,40,.06);
+--shadow2:0 4px 20px rgba(16,24,40,.10);
+--green:#12A15B;--green2:#2FD575;--red:#D96C50;
+--txtl:#F2F6F3;--dimL:#9fb3a8;
+--mono:"JetBrains Mono",Menlo,monospace;
+--disp:"Inter","Helvetica Neue",Arial,sans-serif}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{background:var(--bg);color:var(--txt);font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;line-height:1.55;
-background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:48px 48px}
-.wrap{max-width:960px;margin:0 auto;padding:0 24px}
-section{padding:76px 0;border-bottom:1px solid var(--line)}
-h1{font-family:var(--disp);font-size:clamp(30px,5.4vw,54px);line-height:1.12;letter-spacing:-.01em}
-h2{font-family:var(--disp);font-size:clamp(21px,3.4vw,30px);margin-bottom:26px;line-height:1.2}
-p{margin:14px 0}
-.dim{color:var(--dim)}.green{color:var(--green)}.mono{font-family:var(--mono)}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{background:var(--frame);font-family:var(--disp);font-weight:400;color:var(--ink);padding:14px;font-variant-numeric:tabular-nums}
+.canvas{border-radius:22px;overflow:clip;background:var(--body);position:relative}
+.wrap{max-width:1240px;margin:0 auto;padding:0 40px}
+@media(max-width:700px){body{padding:8px}.wrap{padding:0 22px}}
+h1,h2,h3{letter-spacing:-.025em}
 a{color:var(--green);text-decoration:none}a:hover{text-decoration:underline}
-.kick{font-family:var(--mono);font-size:13px;letter-spacing:.14em;color:var(--green);text-transform:uppercase;margin-bottom:14px}
-.btn{display:inline-block;padding:14px 26px;border-radius:10px;font-weight:700;margin:10px 12px 0 0;font-size:16px}
-.btn-g{background:var(--green);color:#0D0F12}.btn-g:hover{text-decoration:none;filter:brightness(1.1)}
-.btn-o{border:1px solid var(--green);color:var(--green)}.btn-o:hover{text-decoration:none;background:rgba(47,213,117,.08)}
-.hero{padding:104px 0 64px}
-.hero .sub{font-size:clamp(17px,2.1vw,20px);margin-top:24px;max-width:700px;color:var(--txt)}
-/* receipt — the signature */
-.receipt{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:22px 24px 16px;margin:16px 0;font-family:var(--mono);font-size:14.5px;position:relative}
-.receipt::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:10px;
-background:linear-gradient(-45deg,var(--bg) 6px,transparent 0),linear-gradient(45deg,var(--bg) 6px,transparent 0);background-size:14px 12px;background-position:bottom}
-.receipt .rhead{display:flex;justify-content:space-between;gap:10px;color:var(--dim);font-size:12px;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px dashed var(--line);padding-bottom:10px;margin-bottom:12px}
-.receipt .row{display:flex;justify-content:space-between;gap:14px;padding:5px 0}
-.receipt .row b{font-weight:600;text-align:right}
-.receipt .tot{border-top:1px dashed var(--line);margin-top:10px;padding-top:10px;font-weight:600}
-.receipt .rlink{display:block;text-align:right;font-size:12.5px;margin-top:10px}
-.receipt.loss .tot b{color:var(--red)}
-/* stat strip */
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:44px}
-.stat{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px 18px;text-align:center}
-.stat .n{font-family:var(--disp);font-size:clamp(22px,3.4vw,34px);color:var(--green)}
-.stat .l{font-family:var(--mono);font-size:12px;color:var(--dim);margin-top:8px;line-height:1.4}
-.stat.loss .n{color:var(--red)}
-/* alternatives cards */
-.alts{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-top:8px}
-.alt{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:22px}
-.alt .price{font-family:var(--disp);font-size:22px;color:var(--red);margin:8px 0 2px}
-.alt .per{font-family:var(--mono);font-size:12px;color:var(--dim)}
-.alt h3{font-size:16px;font-weight:700}
-.alt p{font-size:14px;color:var(--dim);margin:10px 0 0}
-/* timeline */
-.tl{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:30px 0 6px}
-.tl div{position:relative;padding:0 14px 0 0}
-.tl div::before{content:"";position:absolute;top:7px;left:0;right:8px;height:2px;background:var(--line)}
-.tl div::after{content:"";position:absolute;top:2px;left:0;width:12px;height:12px;border-radius:50%;background:var(--green)}
-.tl b{display:block;margin-top:26px;font-family:var(--mono);font-size:13px;color:var(--green)}
-.tl span{display:block;font-size:13.5px;color:var(--dim);margin-top:6px;line-height:1.45}
-/* badges */
-.badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
-.badge{font-family:var(--mono);font-size:12.5px;border:1px solid var(--line);border-radius:999px;padding:8px 14px;color:var(--txt);background:var(--panel)}
-.badge b{color:var(--green);font-weight:600}
-/* offer */
-.offer-card{background:var(--panel2);border:1px solid rgba(47,213,117,.5);border-radius:16px;padding:36px 30px;text-align:center;margin-top:26px}
-.strike{text-decoration:line-through;color:var(--dim);font-family:var(--disp);font-size:clamp(24px,3.6vw,36px)}
-.free{font-family:var(--disp);font-size:clamp(34px,5.6vw,52px);color:var(--green);margin-left:12px}
-.counter{font-family:var(--mono);color:var(--dim);margin-top:12px;font-size:14px}
-.guar{border:1px dashed rgba(47,213,117,.5);border-radius:12px;padding:18px 20px;margin:22px 0 6px;text-align:left;font-size:15px}
-/* two-col */
-.cols{display:grid;grid-template-columns:1fr 1fr;gap:26px}
-/* newsletter */
-.news input[type=email]{background:var(--bg);border:1px solid var(--line);border-radius:10px;color:var(--txt);padding:14px 16px;font-size:15px;width:min(340px,100%);font-family:var(--mono)}
-.news button{cursor:pointer;border:none}
-ul{margin:14px 0 14px 22px}li{margin:9px 0}
-footer{padding:44px 0;color:var(--dim);font-size:14px}
-@media(max-width:720px){.stats{grid-template-columns:1fr}.tl{grid-template-columns:1fr;gap:18px}.tl div::before{display:none}.cols{grid-template-columns:1fr}}
+.mono{font-family:var(--mono)}
+.arrowlnk{font-weight:700;color:var(--ink);font-size:16px;display:inline-flex;gap:8px;align-items:center}
+.arrowlnk:hover{text-decoration:none;color:var(--green)}
+.arrowlnk::after{content:"→";transition:transform .3s}
+.arrowlnk:hover::after{transform:translateX(4px)}
+/* two-tone section title, template grammar */
+.big{font-weight:700;font-size:clamp(34px,4.6vw,58px);line-height:1.08}
+.big .a{color:#2A2E35}
+.big .b{display:block;background:linear-gradient(92deg,#0F8C4F, #2FD575 70%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.subline{color:var(--inkdim);font-size:17px;margin-top:22px;max-width:620px}
+.pad{padding:150px 0 110px}
+
+/* ================= NAV ================= */
+.nav{position:absolute;top:0;left:0;right:0;z-index:40;display:flex;align-items:center;gap:34px;
+padding:20px 40px;color:var(--txtl)}
+.nav .logo{font-weight:900;font-size:19px;color:#fff}
+.nav .logo i{color:var(--green2);font-style:normal}
+.nav .links{display:flex;gap:26px;margin-left:14px}
+.nav .links a{color:rgba(242,246,243,.75);font-size:14.5px;font-weight:700}
+.nav .links a:hover{color:#fff;text-decoration:none}
+.nav .right{margin-left:auto;display:flex;gap:10px;align-items:center}
+.nav .ghost{color:#fff;font-size:14.5px;font-weight:700;padding:10px 16px}
+.nav .solid{background:#fff;color:#07130C;font-weight:700;font-size:14.5px;padding:11px 18px;border-radius:10px}
+.nav .solid:hover{text-decoration:none;filter:brightness(.92)}
+@media(max-width:820px){.nav .links{display:none}}
+
+/* ================= HERO (dissolves into light) ================= */
+.hero{position:relative;color:var(--txtl);
+background:
+ radial-gradient(1200px 720px at 72% 12%,rgba(47,213,117,.32),transparent 60%),
+ radial-gradient(900px 620px at 30% -10%,rgba(18,161,91,.5),transparent 65%),
+ linear-gradient(178deg,#03140C 0%,#07331E 38%,#12854E 66%,#BFE7D2 90%,var(--body) 100%)}
+.hero-inner{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:center;
+padding:150px 0 250px;min-height:auto}
+.hpill{display:inline-flex;gap:9px;align-items:center;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+color:rgba(242,246,243,.85);border:1px solid rgba(242,246,243,.25);border-radius:6px;padding:6px 11px;margin-right:8px;margin-bottom:26px}
+.hpill .dot{width:6px;height:6px;border-radius:50%;background:var(--green2);box-shadow:0 0 8px var(--green2)}
+.hero h1{font-weight:700;font-size:clamp(40px,4.8vw,68px);line-height:1.05;color:#fff;max-width:640px}
+.hero h1 .soft{color:rgba(242,246,243,.55)}
+.hero .sub{margin:26px 0 32px;font-size:17.5px;max-width:520px;color:rgba(242,246,243,.85)}
+.hero .cta{display:inline-flex;align-items:center;gap:10px;background:#fff;color:#07130C;font-weight:700;font-size:16px;
+padding:15px 26px;border-radius:12px;transition:transform .3s}
+.hero .cta:hover{text-decoration:none;transform:translateY(-2px)}
+.hero .cta2{display:inline-flex;margin-left:14px;color:#fff;font-weight:700;font-size:16px;padding:15px 10px}
+.hero .cta2:hover{text-decoration:none;opacity:.85}
+/* platform graphic */
+.platform{position:relative;height:560px;pointer-events:none}
+.platform svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.chip{position:absolute;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+color:#EAFBF1;border:1px solid rgba(234,251,241,.35);background:rgba(4,26,15,.55);backdrop-filter:blur(4px);border-radius:6px;padding:5px 10px}
+@media(max-width:940px){.hero-inner{grid-template-columns:1fr}.platform{height:380px}}
+/* trust = floating KPI cards over the hero fade */
+.trust{padding:0 0 70px;margin-top:-140px;position:relative;z-index:5}
+.trust .row{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.kpi{background:#fff;border-radius:16px;box-shadow:var(--shadow2);padding:22px 24px 20px}
+.kpi .kl{font-size:13px;font-weight:600;color:var(--inkdim)}
+.kpi .kn{font-weight:650;font-size:34px;letter-spacing:-.015em;color:var(--ink);margin:8px 0 12px;font-variant-numeric:tabular-nums}
+.kpi.red .kn{color:#B42318}
+.kpi .mini{margin:2px 0 10px}
+.kpi .mrow{display:flex;align-items:center;gap:8px;margin:5px 0}
+.kpi .ml{font-size:11px;color:#98A2B3;min-width:44px;font-weight:600}
+.kpi .mt{flex:1;height:7px;border-radius:999px;background:#EDF0F4;overflow:hidden}
+.kpi .mf{height:100%;border-radius:999px;background:#C6CDD6}
+.kpi .mf.g{background:linear-gradient(90deg,#12A15B,#2FD575)}
+.kpi .mf.r{background:linear-gradient(90deg,#E8AC9C,#D96C50)}
+.kpi .dots{display:flex;gap:5px}
+.kpi .dots i{width:13px;height:13px;border-radius:4px;background:#E8F5EE;border:1px solid rgba(18,161,91,.4)}
+.kpi .dots i.on{background:#12A15B;border-color:#12A15B}
+.kpi .dots i.miss{background:#FCEBE8;border-color:rgba(180,35,24,.4)}
+.kpi .kc{font-size:12px;color:var(--inkdim);line-height:1.5}
+.trust .under{display:block;text-align:center;margin-top:22px;font-size:13px;font-weight:600;color:var(--inkdim)}
+.trust .under a{font-weight:700}
+@media(max-width:940px){.trust{margin-top:-90px}.trust .row{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.trust .row{grid-template-columns:1fr}}
+
+/* differentiated value (so-what cards) */
+.vals{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:56px}
+.vcard{background:#fff;border-radius:16px;box-shadow:var(--shadow);padding:28px 28px 26px}
+.vcard.lead{grid-column:1/-1;display:grid;grid-template-columns:1fr auto 1.2fr;gap:26px;align-items:center;box-shadow:var(--shadow2)}
+.vfeat{font-size:14.5px;color:var(--inkdim);line-height:1.6}
+.sowhat{color:#0E7A45;font-size:20px;line-height:1;margin:12px 0 10px;font-weight:700}
+.sowhat::after{content:"↳"}
+.vcard.lead .sowhat{margin:0}
+.vroot{font-size:17px;font-weight:700;color:var(--ink);line-height:1.45;letter-spacing:-.01em}
+.vcard.lead .vroot{font-size:19px}
+.scenehead{font-size:13px;font-weight:600;color:var(--inkdim);margin-top:64px}
+.vproof{display:inline-block;font-size:12.5px;font-weight:700;margin-top:12px}
+@media(max-width:940px){.vals{grid-template-columns:1fr}.vcard.lead{grid-template-columns:1fr;gap:10px}}
+/* pain grid + light receipt */
+.paingrid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:start;margin-top:44px}
+.paingrid p{font-size:16px;color:var(--inkdim);line-height:1.7;max-width:560px}
+.paingrid p b{color:var(--ink)}
+.lreceipt{background:#fff;border-radius:16px;box-shadow:var(--shadow2);padding:26px 28px 20px}
+.lrhead{display:flex;justify-content:space-between;gap:10px;font-size:12px;font-weight:600;color:#98A2B3;border-bottom:1px dashed var(--hair2);padding-bottom:12px;margin-bottom:8px}
+.lrow{display:flex;justify-content:space-between;gap:14px;padding:9px 0;font-size:14.5px;color:var(--inkdim)}
+.lrow b{color:var(--ink);font-weight:650;font-variant-numeric:tabular-nums}
+.ltot{border-top:1px dashed var(--hair2);margin-top:6px;padding-top:13px}
+.ltot b{color:#B42318;font-size:19px}
+.lrlink{display:block;text-align:right;font-size:13px;margin-top:12px;font-weight:700}
+@media(max-width:900px){.paingrid{grid-template-columns:1fr;gap:28px}}
+/* ================= FEATURE BAND (thin dividers) ================= */
+.band{border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);background:linear-gradient(180deg,#F3F5F8,#EDF0F4)}
+.bgrid{display:grid;grid-template-columns:repeat(3,1fr)}
+.bcol{padding:44px 34px 48px;position:relative}
+.bcol+.bcol{border-left:1px solid var(--hair)}
+.bcol .tag{font-size:13px;font-weight:600;color:var(--inkdim)}
+.bcol .tag.tg{color:#0E7A45}
+.bcol .tag.tb{color:#2563EB}
+.iso-hotb{fill:rgba(37,99,235,.1);stroke:#2563EB}
+.iso-dotb{fill:#2563EB}
+.bcol .art{height:230px;display:flex;align-items:center;justify-content:center;margin:8px 0 6px}
+.bcol .art svg{width:200px;height:200px;overflow:visible}
+.bcol h3{font-size:17.5px;font-weight:700;color:var(--ink);margin-bottom:9px}
+.bcol p{font-size:14px;color:var(--inkdim);line-height:1.6}
+@media(max-width:940px){.bgrid{grid-template-columns:1fr 1fr}.bcol:nth-child(3){border-left:none}.bcol:nth-child(n+3){border-top:1px solid var(--hair)}}
+@media(max-width:560px){.bgrid{grid-template-columns:1fr}.bcol+.bcol{border-left:none;border-top:1px solid var(--hair)}}
+.iso-line{fill:none;stroke:#9AA6B4;stroke-width:1.4}
+.iso-hot{fill:rgba(18,161,91,.1);stroke:var(--green)}
+.iso-dot{fill:var(--green)}
+.iso-soft{fill:rgba(255,255,255,.7);stroke:#B9C3CF;stroke-width:1.4}
+
+
+/* vendor marquee */
+.vband{padding:72px 0 10px;text-align:center;overflow:hidden}
+.vband .vt{font-size:13px;font-weight:600;color:var(--inkdim);margin-bottom:26px}
+.marq{overflow:hidden;padding:8px 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.mtrack{display:inline-flex;gap:16px;white-space:nowrap;will-change:transform;animation:marq 36s linear infinite}
+.m2 .mtrack{animation:marq2 42s linear infinite}
+.marq:hover .mtrack{animation-play-state:paused}
+@keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes marq2{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+.vchip{background:#fff;border-radius:999px;box-shadow:var(--shadow);padding:14px 26px;font-weight:700;font-size:16px;color:var(--ink);display:inline-flex;align-items:center;gap:10px}
+.vchip::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green2)}
+.vband .vsub{font-size:13.5px;color:var(--inkdim);max-width:660px;margin:22px auto 0}
+@media(prefers-reduced-motion:reduce){.mtrack{animation:none!important;flex-wrap:wrap;justify-content:center}}
+/* ================= PROOF (UI cards) ================= */
+.proof .cards{display:grid;grid-template-columns:1.05fr .95fr;gap:24px;margin-top:56px;align-items:stretch}
+.proof .cards>*{min-width:0}
+.uicard{background:var(--card);border-radius:16px;box-shadow:var(--shadow);padding:26px 28px}
+.uicard .chead{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.uicard .chead b{font-size:15.5px;color:var(--ink)}
+.uicard .chead .mono{font-size:11px;color:#A6B0BC;letter-spacing:.04em;white-space:nowrap}
+.bignums{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin:6px 0 24px}
+.bignums .bn{font-weight:650;font-size:34px;letter-spacing:-.015em;color:var(--ink);font-variant-numeric:tabular-nums}
+.bignums .bn.g{color:var(--green)}
+.bignums .bn small{display:block;font-size:13px;color:var(--inkdim);font-weight:500;margin-top:6px}
+.bars .brow{display:grid;grid-template-columns:110px 1fr 76px;gap:16px;align-items:center;padding:9px 0}
+.bars .bl{font-size:13px;font-weight:600;color:var(--inkdim)}
+.bars .track{height:12px;border-radius:999px;background:#EDF0F4;overflow:hidden}
+.bars .fill{height:100%;border-radius:999px}
+.bars .off .fill{width:100%;background:#C6CDD6}
+.bars .on .fill{width:75.2%;background:linear-gradient(90deg,#12A15B,#2FD575)}
+.bars .bv{font-size:14px;font-weight:650;color:var(--ink);text-align:right;font-variant-numeric:tabular-nums}
+.digest{padding:0 0 10px}
+.digest .chead{background:#F6F7F9;margin:0;padding:18px 28px;border-bottom:1px solid var(--hair2);border-radius:16px 16px 0 0}
+.digest .drows{padding:4px 28px 8px}
+.digest .drow{padding:16px 0;border-bottom:1px solid var(--hair)}
+.digest .drow:last-child{border-bottom:none}
+.digest .dt{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.digest .dt b{font-size:14.5px;color:var(--ink);font-weight:700}
+.dgrid{display:grid;grid-template-columns:1fr 118px;gap:20px;align-items:center}
+.dviz{text-align:right}
+.dv{font-size:19px;font-weight:650;font-variant-numeric:tabular-nums;display:block}
+.dv.ok{color:#1B7F4B}.dv.bad{color:#B42318}
+.dtrack{height:8px;border-radius:999px;background:#EDF0F4;margin:7px 0 6px;overflow:hidden}
+.dfill{height:100%;border-radius:999px;float:right}
+.dfill.ok{background:linear-gradient(90deg,#12A15B,#2FD575)}
+.dfill.bad{background:linear-gradient(90deg,#E8AC9C,#D96C50)}
+.dvl{font-size:11.5px;color:#98A2B3}
+.digest .dd{font-size:12.5px;color:var(--inkdim);margin-top:5px;line-height:1.5}
+.digest .dm{font-size:12px;color:#98A2B3;margin-top:6px}
+.proof .below{margin-top:34px;max-width:760px;color:var(--inkdim);font-size:15.5px}
+@media(max-width:940px){.proof .cards{grid-template-columns:1fr}}
+
+/* ================= PAPER strip ================= */
+.paperband{background:linear-gradient(180deg,#EDF0F4,#E7EBF0);border-top:1px solid var(--hair)}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;padding:96px 0}
+.pgrid .mono-k{font-size:13px;font-weight:600;color:#0E7A45;margin-bottom:16px}
+.pgrid h3{font-size:clamp(24px,2.6vw,34px);font-weight:700;color:var(--ink);line-height:1.2}
+.pgrid p{color:var(--inkdim);font-size:15.5px;margin-top:14px}
+.pgrid p b{color:var(--ink)}
+.papermock{background:#fff;border-radius:16px;box-shadow:var(--shadow2);padding:34px 36px}
+.papermock .ph{font-size:11px;color:#A6B0BC;letter-spacing:.12em;text-transform:uppercase;display:flex;justify-content:space-between}
+.papermock h4{font-family:var(--disp);font-size:19px;color:var(--ink);margin:14px 0 10px;line-height:1.35;letter-spacing:-.01em}
+.papermock .pl{font-size:12.5px;color:var(--inkdim);line-height:1.7}
+.papermock .pl i{font-style:normal;color:#0E7A45}
+@media(max-width:900px){.pgrid{grid-template-columns:1fr}}
+
+.adopt{margin-top:34px;text-align:center}
+.adt{font-size:13px;font-weight:600;color:var(--inkdim)}
+.adrow{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:16px 0 12px}
+.adchip{background:#fff;border-radius:999px;box-shadow:var(--shadow);padding:10px 18px;font-weight:700;font-size:14px;color:var(--ink)}
+.adchip.dim{box-shadow:none;border:1px dashed var(--hair2);background:transparent;color:var(--inkdim);font-weight:500}
+.adsub{font-size:12.5px;color:#98A2B3;max-width:640px;margin:0 auto}
+/* ================= HOW rows ================= */
+.tline{position:relative;max-width:920px}
+.tline::before{content:"";position:absolute;left:31px;top:34px;bottom:34px;width:2px;
+background:linear-gradient(180deg,#2FD575,#12A15B 55%,var(--hair2))}
+.titem{display:grid;grid-template-columns:64px 1fr;gap:30px;padding:26px 0;position:relative}
+.tnode{width:64px;height:64px;border-radius:50%;background:#fff;box-shadow:var(--shadow2);display:grid;place-items:center;z-index:1}
+.tnode svg{width:28px;height:28px;stroke:#12A15B;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.tbody{background:#fff;border-radius:16px;box-shadow:var(--shadow);padding:24px 28px}
+.tbody .sn{font-size:13px;font-weight:600;color:var(--green)}
+.tbody .st{font-size:20px;font-weight:700;color:var(--ink);margin:6px 0 8px;letter-spacing:-.015em}
+.tbody .sd{font-size:15px;color:var(--inkdim);line-height:1.6}
+@media(max-width:640px){.titem{grid-template-columns:48px 1fr;gap:18px}.tnode{width:48px;height:48px}.tline::before{left:23px}}
+.badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:38px}
+.badge{font-family:var(--mono);font-size:12px;border:1px solid var(--hair);border-radius:999px;padding:8px 15px;color:var(--inkdim);background:#fff}
+.badge b{color:#0E7A45;font-weight:600}
+
+/* ================= TRUTHS ================= */
+.truths .tgrid{display:grid;grid-template-columns:repeat(3,1fr);margin-top:56px;border-top:1px solid var(--hair)}
+.truths .tcol{padding:36px 32px 40px;border-bottom:1px solid var(--hair)}
+.truths .tcol+.tcol{border-left:1px solid var(--hair)}
+.truths .tno{font-size:13px;font-weight:600;color:var(--red)}
+.truths .tcol b{display:block;font-size:17px;color:var(--ink);margin:12px 0 8px;letter-spacing:-.01em}
+.truths .tcol p{font-size:14px;color:var(--inkdim);line-height:1.6}
+@media(max-width:820px){.truths .tgrid{grid-template-columns:1fr}.truths .tcol+.tcol{border-left:none}}
+
+/* ================= ALTS (scroll rows: problem viz + priced card) ================= */
+.aline{margin-top:26px}
+.arow{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center;padding:64px 0;border-bottom:1px solid var(--hair)}
+.arow:last-of-type{border-bottom:none}
+.arow.flip .aviz{order:2}
+.aviz{height:320px;display:flex;align-items:center;justify-content:center}
+.aviz svg{width:min(420px,100%);height:300px;overflow:visible}
+.acard{background:#fff;border-radius:16px;box-shadow:var(--shadow);padding:30px 32px;max-width:460px}
+.arow.flip .acard{justify-self:end}
+.acard h3{font-size:19px;color:var(--ink);letter-spacing:-.015em}
+.acard .price{font-weight:650;font-size:34px;color:#B42318;margin:12px 0 2px;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.acard .per{font-size:12.5px;color:#98A2B3;font-weight:600}
+.acard p{font-size:14.5px;color:var(--inkdim);margin-top:14px;line-height:1.65}
+.iso-bad{fill:none;stroke:#D96C50;stroke-width:1.4}
+.iso-badf{fill:rgba(217,108,80,.09);stroke:#D96C50;stroke-width:1.4}
+.iso-ghost{fill:none;stroke:#C4CCD6;stroke-width:1.3;stroke-dasharray:4 5}
+@media(max-width:900px){.arow{grid-template-columns:1fr;gap:26px;padding:44px 0}.arow.flip .aviz{order:0}.arow.flip .acard{justify-self:start}.aviz{height:240px}}
+
+/* ================= OFFER (dark canvas) ================= */
+.offerwrap{padding:60px 0 120px}
+.offer{border-radius:24px;color:var(--txtl);padding:90px 60px;position:relative;overflow:clip;
+background:
+ radial-gradient(900px 500px at 50% -10%,rgba(47,213,117,.28),transparent 60%),
+ linear-gradient(180deg,#04170E,#062012)}
+.offer .kick{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--green2);margin-bottom:18px}
+.offer h2{font-weight:700;font-size:clamp(30px,3.8vw,48px);color:#fff;line-height:1.1}
+.offer .ogrid{display:grid;grid-template-columns:1.1fr .9fr;gap:70px;margin-top:50px;align-items:start}
+.offer ul{list-style:none}
+.offer li{padding:12px 0 12px 30px;position:relative;font-size:15.5px;color:rgba(242,246,243,.88)}
+.offer li::before{content:"";position:absolute;left:0;top:19px;width:13px;height:13px;border-radius:4px;background:rgba(47,213,117,.18);border:1px solid rgba(47,213,117,.6)}
+.offer li b{color:#fff}
+.pricecard{background:rgba(255,255,255,.045);border:1px solid rgba(242,246,243,.14);border-radius:20px;padding:40px 36px;text-align:center;backdrop-filter:blur(6px)}
+.slots{display:flex;gap:10px;justify-content:center;margin-bottom:14px}
+.slots i{width:44px;height:56px;border-radius:10px;border:1.5px solid rgba(47,213,117,.55);background:linear-gradient(180deg,rgba(47,213,117,.16),rgba(47,213,117,.04));position:relative}
+.slots i::after{content:"";position:absolute;left:10px;right:10px;top:12px;height:2px;background:rgba(47,213,117,.5);border-radius:2px;box-shadow:0 8px 0 rgba(47,213,117,.3),0 16px 0 rgba(47,213,117,.18)}
+.slotlab{font-size:13.5px;color:var(--dimL);max-width:420px;margin:0 auto 22px}
+.strike{text-decoration:line-through;color:var(--dimL);font-weight:900;font-size:clamp(24px,3vw,34px)}
+.free{font-weight:900;font-size:clamp(40px,5vw,58px);color:var(--green2);margin-left:14px;letter-spacing:-.02em}
+.counter{font-family:var(--mono);color:var(--dimL);margin-top:14px;font-size:13.5px}
+.anchornote{font-size:12.5px;color:var(--dimL);margin-top:10px}
+.anchornote a{color:var(--green2)}
+.counter b{color:#fff}
+.guar{border:1px dashed rgba(47,213,117,.45);border-radius:14px;padding:18px 22px;margin:26px 0 22px;text-align:left;font-size:14.5px;color:rgba(242,246,243,.88)}
+.guar b{color:var(--green2)}
+.offer .cta{display:inline-flex;background:#fff;color:#07130C;font-weight:700;font-size:16px;padding:15px 28px;border-radius:12px;transition:transform .3s}
+.offer .cta:hover{text-decoration:none;transform:translateY(-2px)}
+@media(max-width:900px){.offer{padding:60px 28px}.offer .ogrid{grid-template-columns:1fr;gap:40px}}
+
+/* ================= STEAL / FOOTER ================= */
+.steal .list{margin-top:50px;border-top:1px solid var(--hair)}
+.steal .srow{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;padding:22px 4px;border-bottom:1px solid var(--hair)}
+.steal .srow b{font-size:16.5px;color:var(--ink);font-weight:700}
+.steal .srow span{display:block;font-size:13.5px;color:var(--inkdim);margin-top:4px}
+.news{margin-top:56px;background:#fff;border-radius:16px;box-shadow:var(--shadow);padding:32px 32px;display:grid;grid-template-columns:1.2fr 1fr;gap:30px;align-items:center}
+.news p b{color:var(--ink)}
+.news p span{color:var(--inkdim)}
+.news form{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+.news input[type=email]{background:#F3F5F8;border:1px solid var(--hair);border-radius:12px;color:var(--ink);padding:14px 16px;font-size:14.5px;width:min(300px,100%);font-family:var(--mono)}
+.news button{cursor:pointer;border:none;background:var(--ink);color:#fff;font-weight:700;font-size:15px;padding:14px 22px;border-radius:12px;transition:transform .3s}
+.news button:hover{transform:translateY(-2px)}
+@media(max-width:860px){.news{grid-template-columns:1fr}.news form{justify-content:flex-start}}
+footer{background:#0B0F14;color:#8B95A3;font-size:14px;padding:46px 0;margin-top:110px}
+footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+footer a{color:#C7CDD5}
 :focus-visible{outline:2px solid var(--green);outline-offset:2px}
+.rv{opacity:0;transform:translateY(26px)}
 </style>
 </head>
 <body>
+<div class="canvas">
 
-<section class="hero"><div class="wrap">
-<h1>The same AI is available to everyone.<br><span class="green">The system built on top of it isn't.</span></h1>
-<p class="sub">Alpine makes general AI work like a trained employee of YOUR company — your workflows, your decisions, your standards. In your repos, on any vendor. And we prove it before you believe it.</p>
-<a class="btn btn-g" href="#offer">See the offer — Cohort 1 is free</a>
-<a class="btn btn-o" href="https://github.com/slavpetroff/agent-receipts">Verify the receipts</a>
-<div class="stats">
-<div class="stat"><div class="n">6/6</div><div class="l">tasks landed right with the layer<br>(5/6 without) — same repo, same agent</div></div>
-<div class="stat"><div class="n">−24.8%</div><div class="l">cost on the same six tasks<br>mechanical judge, no vibes</div></div>
-<div class="stat loss"><div class="n">+7.5%</div><div class="l">where our layer LOSES — published,<br>because that's the point</div></div>
+<nav class="nav" aria-label="Main">
+<a class="logo" href="#top">Alpine<i>.</i></a>
+<div class="links">
+<a href="#method">Method</a><a href="#proof">Receipts</a><a href="#research">Research</a><a href="#how">The install</a>
+</div>
+<div class="right">
+<a class="ghost" href="https://github.com/slavpetroff/agent-receipts">Receipts repo</a>
+</div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top"><div class="wrap">
+<div class="hero-inner">
+<div>
+<span class="hpill"><span class="dot"></span>Receipts public</span>
+<h1><span class="soft">The same AI is available to everyone.</span><br>The system built on top of it isn't.</h1>
+<p class="sub">Alpine turns the agents your engineers already run into trained members of the team. They stop guessing at your architecture, stop breaking your review conventions, stop re-reading the repo on your money. Plain files in your repos, on any vendor. Proven before you believe it.</p>
+</div>
+<div class="platform" aria-hidden="true">
+<svg viewBox="0 0 560 560">
+<defs>
+<linearGradient id="slabTop" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0" stop-color="#8CF3B0" stop-opacity=".9"/><stop offset="1" stop-color="#12A15B" stop-opacity=".55"/>
+</linearGradient>
+<linearGradient id="slabSide" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#0B4A2B"/><stop offset="1" stop-color="#052314"/>
+</linearGradient>
+<filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+<feGaussianBlur stdDeviation="18" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+</defs>
+<!-- dotted scaffold -->
+<g stroke="#BFE7D2" stroke-opacity=".5" stroke-dasharray="3 5" fill="none">
+<path d="M280 40 L280 150"/><path d="M120 210 L200 250"/><path d="M455 190 L370 245"/><path d="M280 470 L280 520"/>
+</g>
+<!-- wireframe planes above -->
+<g class="wf" fill="none" stroke="#EAFBF1" stroke-opacity=".8" stroke-width="1.3">
+<path d="M280 88 L420 158 L280 228 L140 158 Z"/>
+<path d="M280 138 L400 198 L280 258 L160 198 Z" stroke-opacity=".45"/>
+</g>
+<!-- glowing slab -->
+<g filter="url(#glow)">
+<path d="M280 220 L470 315 L280 410 L90 315 Z" fill="url(#slabTop)"/>
+<path d="M90 315 L280 410 L280 462 L90 367 Z" fill="url(#slabSide)"/>
+<path d="M470 315 L280 410 L280 462 L470 367 Z" fill="url(#slabSide)" opacity=".8"/>
+</g>
+<!-- top face grid -->
+<g stroke="#063D22" stroke-opacity=".35" stroke-width="1" fill="none">
+<path d="M232 244 L422 339"/><path d="M184 268 L374 363"/><path d="M136 292 L326 387"/>
+<path d="M328 244 L138 339"/><path d="M376 268 L186 363"/><path d="M424 292 L234 387"/>
+</g>
+<circle cx="280" cy="315" r="7" fill="#EAFBF1"/>
+<circle cx="280" cy="315" r="16" fill="none" stroke="#EAFBF1" stroke-opacity=".6"/>
+</svg>
+<span class="chip" style="top:6%;left:52%">Your decisions</span>
+<span class="chip" style="top:32%;left:2%">Task routing</span>
+<span class="chip" style="top:28%;right:0">Team memory</span>
+<span class="chip" style="bottom:8%;left:44%">Any agent · any vendor</span>
+</div>
 </div>
 </div></section>
 
-<section><div class="wrap">
-<div class="kick">The scene you know</div>
-<h2>Your agents are brilliant. They're just not yours.</h2>
-<p>Alpine is built by an engineer who lived this list before selling anything about it — twelve years of backend engineering, the last two building three businesses with AI agents doing most of the typing. Hallucinations all over the place. Repeated mistakes, even when prompted not to make them. The PR your review rejects because the agent broke a convention that lives only in your team's heads. The pattern it confidently suggests — the one you abandoned two releases ago, because that decision lives in a Slack thread, not in the repo.</p>
-<p><b>The problem isn't missing intelligence. It's missing context.</b> Your team's knowledge lives in heads and chats — and every agent session starts from zero. So does every new hire.</p>
-<div class="receipt">
-<div class="rhead"><span>the monthly bill you already pay</span><span>est. · 30-engineer team</span></div>
-<div class="row"><span>Re-explaining &amp; fixing agent output</span><b>2.5 h/eng/week</b></div>
-<div class="row"><span>× 30 engineers × €55/h loaded</span><b>€4,125 / week</b></div>
-<div class="row tot"><span>BLEED, EVERY MONTH</span><b>≈ €17,900</b></div>
-<a class="rlink" href="#offer">the fix costs less than 3 weeks of this →</a>
+<!-- trust = floating measured KPI cards -->
+<div class="trust"><div class="wrap">
+<div class="row">
+<div class="kpi rv"><div class="kl">Tasks landed right</div><div class="kn">6/6</div>
+<div class="mini">
+<div class="mrow"><span class="ml">with</span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></div>
+<div class="mrow"><span class="ml">without</span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="miss"></i></span></div>
+</div>
+<div class="kc">Same repo, same six tasks, same agent.</div></div>
+<div class="kpi rv"><div class="kl">Cost, same six tasks</div><div class="kn" style="color:#12A15B">−24.8%</div>
+<div class="mini">
+<div class="mrow"><span class="ml">bare</span><div class="mt"><div class="mf" style="width:100%"></div></div></div>
+<div class="mrow"><span class="ml">layer</span><div class="mt"><div class="mf g" style="width:75.2%"></div></div></div>
+</div>
+<div class="kc">196k → 147k tokens, mechanical judge.</div></div>
+<div class="kpi rv"><div class="kl">Cost per delivered change</div><div class="kn" style="color:#12A15B">−38%</div>
+<div class="mini">
+<div class="mrow"><span class="ml">bare</span><div class="mt"><div class="mf" style="width:100%"></div></div></div>
+<div class="mrow"><span class="ml">layer</span><div class="mt"><div class="mf g" style="width:62%"></div></div></div>
+</div>
+<div class="kc">35-package repo · a failed task became delivered.</div></div>
+<div class="kpi red rv"><div class="kl">Where our layer loses</div><div class="kn">+7.5%</div>
+<div class="mini">
+<div class="mrow"><span class="ml">bare</span><div class="mt"><div class="mf" style="width:93%"></div></div></div>
+<div class="mrow"><span class="ml">layer</span><div class="mt"><div class="mf r" style="width:100%"></div></div></div>
+</div>
+<div class="kc">Cheap test iteration — published, because that's the point.</div></div>
+</div>
+<span class="under">Measured on real codebases — <a href="https://github.com/slavpetroff/agent-receipts">receipts in public git →</a></span>
+</div></div>
+
+<!-- ============ FEATURE BAND ============ -->
+<section class="pad" id="method" style="padding:96px 0 0"><div class="wrap">
+<h2 class="big rv"><span class="a">Your agents are brilliant.</span><span class="b">They're just not yours.</span></h2>
+<p class="subline rv">Why the billing module is built that way. Which pattern you abandoned two releases ago. What your review rejects PRs over. Today it lives in senior heads and Slack threads. We write it down as the three-layer architecture the published method teaches, installed exactly as taught, and measured before you pay.</p>
+</div></section>
+
+<!-- ============ DIFFERENTIATED VALUE (Dunford: the so-what roots) ============ -->
+<section style="padding:110px 0 90px" id="value"><div class="wrap">
+<h2 class="big rv"><span class="a">Features are the how.</span><span class="b">This is what it buys the business.</span></h2>
+<p class="subline rv">Every claim below is a feature chased down to its business root: money, speed or control. That's also how we'll talk in the first meeting.</p>
+<div class="vals">
+<div class="vcard lead rv">
+<div class="vfeat">We start from a meeting about your problems, your gaps and your target, not from our tool.</div>
+<div class="sowhat" aria-hidden="true"></div>
+<div><div class="vroot">You buy a named outcome with a deadline and a written guarantee, delivered with proof on your own repo. And we stay after delivery: drift handled, upgrades supported, the next team when you're ready.</div><a class="vproof" href="https://github.com/slavpetroff/agent-receipts/tree/main/protocols">the protocols, committed before any result →</a></div>
+</div>
+<div class="vcard rv">
+<div class="vfeat">Every new engineer and every agent boots with the full, current context of the team.</div>
+<div class="sowhat" aria-hidden="true"></div>
+<div class="vroot">Onboarding stops costing weeks, and delivery speed stops depending on two seniors being available.</div><a class="vproof" href="https://github.com/slavpetroff/agent-receipts/blob/main/results/case-study-self-icm-migration.md">how we measure time-to-productivity →</a>
+</div>
+<div class="vcard rv">
+<div class="vfeat">Agents stop burning tokens on re-gathering context and redoing rejected work.</div>
+<div class="sowhat" aria-hidden="true"></div>
+<div class="vroot">You pay once to write the knowledge down, instead of every day to rediscover it. Measured: −38% cost per delivered change.</div><a class="vproof" href="https://github.com/slavpetroff/agent-receipts/tree/main/results">the raw results, losses included →</a>
+</div>
+<div class="vcard rv">
+<div class="vfeat">The whole system is plain files in your repos: versioned, diffed, measured like code.</div>
+<div class="sowhat" aria-hidden="true"></div>
+<div class="vroot">Engineering owns it with the tools it already trusts. No platform team, no lock-in, nothing to migrate off.</div><a class="vproof" href="https://github.com/slavpetroff/agent-receipts/blob/main/gift/CLAUDE.md">the real file from our production repo →</a>
+</div>
+</div>
+<div class="scenehead rv">You've lived the feature version of this:</div>
+<div class="paingrid">
+<div class="rv">
+<p>We lived this list before selling anything about it: twelve years of backend engineering behind Alpine, the last two spent building three businesses with AI agents doing most of the typing. We know the scene: the PR your review rejects because the agent never updated the OpenAPI schema for the microservice you introduced last week, the exact requirement your latest ADR spells out. The pattern it confidently resurrects, the one you buried two releases ago, because that funeral happened in a Slack thread. The new hire who asks why auth is split across two services and collects three different answers.</p>
+<p style="margin-top:14px"><b>Your agents don't lack intelligence. They lack the context only your team has.</b> It lives in heads and chats, so every agent session starts from zero. So does every new hire.</p>
+</div>
+<div class="lreceipt rv">
+<div class="lrhead"><span>The monthly bill you already pay</span><span>est. · 30-engineer team</span></div>
+<div class="lrow"><span>Re-explaining &amp; fixing agent output</span><b>2.5 h/eng/week</b></div>
+<div class="lrow"><span>× 30 engineers × €55/h loaded</span><b>€4,125 / week</b></div>
+<div class="lrow ltot"><span>Bleed, every month</span><b>≈ €17,900</b></div>
+<a class="lrlink" href="#offer">the fix costs a fraction of one month of this →</a>
+</div>
 </div>
 </div></section>
 
-<section><div class="wrap">
-<div class="kick">The alternatives, priced honestly</div>
-<h2>What the other roads actually cost</h2>
-<div class="alts">
-<div class="alt"><h3>Prompt harder + wiki</h3><div class="price">€17,900</div><div class="per">per month, ongoing</div><p>The bleed just continues. Wikis aren't loaded by agents, and they rot quietly.</p></div>
-<div class="alt"><h3>Internal platform project</h3><div class="price">€55,000+</div><div class="per">2 engineers × 3 months</div><p>Ships a v1 with no measurement and no anti-rot discipline — then stalls. We've watched it.</p></div>
-<div class="alt"><h3>Multi-agent framework build</h3><div class="price">€40–80k</div><div class="per">+ permanent maintenance</div><p>Demos impress. Then you own a fragile orchestration tower with framework lock-in.</p></div>
-<div class="alt"><h3>Vendor enterprise tier</h3><div class="price">€30k+</div><div class="per">per year, forever</div><p>The memory lives in the vendor's harness. Switch vendors — start from zero.</p></div>
+<!-- ============ CAPABILITIES (how it's built) ============ -->
+<section style="padding:30px 0 0"><div class="wrap">
+<h2 class="big rv" style="font-size:clamp(26px,3vw,38px)"><span class="a">How it's built:</span><span class="b">the published method, installed as taught</span></h2>
 </div>
-<p class="dim" style="margin-top:18px">Each of these is a legitimate road. We'll tell you when one of them is the better fit for you — that's what the screening is for.</p>
+<div class="band" style="margin-top:52px"><div class="wrap">
+<div class="bgrid">
+<div class="bcol rv"><div class="tag tg">Layer 1 · <span class="mono" style="font-size:12px">CLAUDE.md</span></div>
+<div class="art"><svg viewBox="0 0 200 200">
+<g class="iso-soft"><path d="M100 22 L164 54 L100 86 L36 54 Z"/></g>
+<g class="iso-line"><path d="M100 52 L164 84 L100 116 L36 84 Z"/></g>
+<g class="iso-hot"><path d="M100 82 L164 114 L100 146 L36 114 Z"/></g>
+<g class="iso-line"><path d="M100 112 L164 144 L100 176 L36 144 Z"/></g>
+<circle class="iso-dot" cx="100" cy="114" r="4"/>
+<g class="iso-line" stroke-dasharray="2 4"><path d="M100 22 L100 8"/><path d="M100 176 L100 192"/></g>
+</svg></div>
+<h3>The map</h3><p>Always loaded, every session: every folder, every naming rule, every placement rule. The agent's GPS. It ends the grep, grep, ls, grep of a lost agent rediscovering where payments lives.</p></div>
+<div class="bcol rv"><div class="tag tg">Layer 2 · <span class="mono" style="font-size:12px">CONTEXT.md</span></div>
+<div class="art"><svg viewBox="0 0 200 200">
+<g class="iso-soft"><path d="M60 40 L104 62 L60 84 L16 62 Z"/></g>
+<g class="iso-hot"><path d="M140 76 L184 98 L140 120 L96 98 Z"/></g>
+<g class="iso-soft"><path d="M74 122 L118 144 L74 166 L30 144 Z"/></g>
+<g class="iso-line"><path d="M60 84 L60 104 L96 104"/><path d="M140 120 L140 136 L118 136"/></g>
+<circle class="iso-dot" cx="60" cy="104" r="3.4"/><circle class="iso-dot" cx="140" cy="132" r="3.4"/>
+</svg></div>
+<h3>The router</h3><p>What's your task? Go here, and you'll also need X. A migration task loads the migration contract and the ADR that says why Kafka and not a cron, never the whole monorepo.</p></div>
+<div class="bcol rv"><div class="tag tg">Layer 3 · <span class="mono" style="font-size:12px">workspace/CONTEXT.md</span></div>
+<div class="art"><svg viewBox="0 0 200 200">
+<g class="iso-line">
+<path d="M52 34 L72 44 L52 54 L32 44 Z"/><path d="M96 34 L116 44 L96 54 L76 44 Z"/><path d="M140 34 L160 44 L140 54 L120 44 Z"/>
+<path d="M74 58 L94 68 L74 78 L54 68 Z"/><path d="M118 58 L138 68 L118 78 L98 68 Z"/>
+</g>
+<g class="iso-hot"><path d="M100 96 L170 131 L100 166 L30 131 Z"/></g>
+<path class="iso-line" d="M30 131 L100 166 L100 186 L30 151 Z"/>
+<path class="iso-line" d="M170 131 L100 166 L100 186 L170 151 Z"/>
+<circle class="iso-dot" cx="100" cy="131" r="4"/>
+</svg></div>
+<h3>The workspace contracts</h3><p>A self-contained scope per workspace: what to load, inputs, outputs, and the conventions your reviewers repeat in every PR, "we don't mock the payment gateway". An agent drops in, reads its contract, does the work, exits.</p></div>
+</div>
+</div></div>
+
+<!-- vendor marquee -->
+<div class="vband rv">
+<div class="wrap"><div class="vt">One layer, every coding agent your engineering team already runs</div></div>
+<div class="marq m1"><div class="mtrack">
+<span class="vchip">Claude Code</span><span class="vchip">OpenAI Codex</span><span class="vchip">Cursor</span><span class="vchip">GitHub Copilot</span><span class="vchip">Gemini CLI</span><span class="vchip">Windsurf</span><span class="vchip">Cline</span><span class="vchip">Roo Code</span><span class="vchip">Aider</span>
+<span class="vchip">Claude Code</span><span class="vchip">OpenAI Codex</span><span class="vchip">Cursor</span><span class="vchip">GitHub Copilot</span><span class="vchip">Gemini CLI</span><span class="vchip">Windsurf</span><span class="vchip">Cline</span><span class="vchip">Roo Code</span><span class="vchip">Aider</span>
+</div></div>
+<div class="marq m2"><div class="mtrack">
+<span class="vchip">Zed</span><span class="vchip">Continue</span><span class="vchip">Amp</span><span class="vchip">Devin</span><span class="vchip">OpenHands</span><span class="vchip">Goose</span><span class="vchip">Warp</span><span class="vchip">Jules</span><span class="vchip">JetBrains Junie</span>
+<span class="vchip">Zed</span><span class="vchip">Continue</span><span class="vchip">Amp</span><span class="vchip">Devin</span><span class="vchip">OpenHands</span><span class="vchip">Goose</span><span class="vchip">Warp</span><span class="vchip">Jules</span><span class="vchip">JetBrains Junie</span>
+</div></div>
+<div class="wrap"><div class="vsub">Plain markdown in your repos: no SDK, no plugin, no vendor account. Any harness that reads plain files. The same files answered the same questions on two different vendors in our published runs.</div></div>
+</div>
+</section>
+
+<!-- ============ PROOF (UI cards) ============ -->
+<section class="pad proof" id="proof"><div class="wrap">
+<h2 class="big rv"><span class="a">Every number here</span><span class="b">links to its own evidence</span></h2>
+<p class="subline rv">Protocols are committed before the runs, so the git timestamps do the arguing. Judges are mechanical: tests and oracles, never opinions.</p>
+<div class="cards">
+<div class="uicard rv">
+<div class="chead"><b>Navigation A/B — same repo, same agent</b><span class="mono">field-test · 2026-08</span></div>
+<div class="bignums">
+<div class="bn">196k<small>tokens, map OFF · 5/6 correct</small></div>
+<div class="bn" style="color:#12A15B">147k<small>tokens, map ON · 6/6 correct</small></div>
+<div class="bn" style="color:#12A15B">−24.8%<small>delta, mechanical judge</small></div>
+</div>
+<div class="bars">
+<div class="brow off"><span class="bl">Map OFF</span><div class="track"><div class="fill"></div></div><span class="bv">196k</span></div>
+<div class="brow on"><span class="bl">Map ON</span><div class="track"><div class="fill"></div></div><span class="bv">147k</span></div>
+</div>
+<div style="font-size:12px;color:#98A2B3;margin-top:8px">Total tokens, six navigation tasks · bar lengths to scale · 5/6 → 6/6 correct</div>
+<div style="margin-top:16px"><a class="arrowlnk" style="font-size:14px" href="https://github.com/slavpetroff/agent-receipts/tree/main/logs/field-test-v2">raw logs, tokens-used lines</a></div>
+</div>
+<div class="uicard digest rv" style="padding:0">
+<div class="chead"><b>Measurement digest</b><span class="mono">losses first</span></div>
+<div class="drows">
+<div class="drow"><div class="dgrid">
+<div><div class="dt"><b>Small repo, map ON</b></div>
+<div class="dd">One C file, nothing to route. The map cost more than the territory.</div>
+<div class="dm">published · results/</div></div>
+<div class="dviz"><span class="dv bad">+13.0%</span><div class="dtrack"><div class="dfill bad" style="width:34%"></div></div><span class="dvl">worse</span></div>
+</div></div>
+<div class="drow"><div class="dgrid">
+<div><div class="dt"><b>Cheap test iteration</b></div>
+<div class="dd">Red tests navigate better than any map; our own layer loses here. That receipt makes the wins believable.</div>
+<div class="dm">published · v3-failtopass</div></div>
+<div class="dviz"><span class="dv bad">+7.5%</span><div class="dtrack"><div class="dfill bad" style="width:20%"></div></div><span class="dvl">per solved task</span></div>
+</div></div>
+<div class="drow"><div class="dgrid">
+<div><div class="dt"><b>35-package repo</b></div>
+<div class="dd">A bare agent failed 1 of 3 hard tasks outright. With the layer: all delivered.</div>
+<div class="dm">published · field-test</div></div>
+<div class="dviz"><span class="dv ok">−38%</span><div class="dtrack"><div class="dfill ok" style="width:100%"></div></div><span class="dvl">fail → pass</span></div>
+</div></div>
+</div>
+</div>
+</div>
+<p class="below rv"><a href="https://github.com/slavpetroff/agent-receipts/tree/main/protocols">Read the protocols</a>, then check any number we've ever posted against them. If a number isn't in the repo, call it out.</p>
 </div></section>
 
-<section><div class="wrap">
-<div class="kick">What we do</div>
-<h2>One team. Thirty days. Your AI, trained.</h2>
-<p>We externalize how one engineering team works — its decisions, standards and workflows — into its own repo as a plain, connected file structure. From the first session, any agent (and any new engineer) knows why the module is built that way, which process runs how, what was decided and why.</p>
-<div class="tl">
-<div><b>Day 0</b><span>Fit-screening + the measurement protocol, registered in writing before anything starts</span></div>
-<div><b>Week 1</b><span>3 hours of your team's time. Baseline recorded: a bare agent failing your real questions</span></div>
-<div><b>Week 2</b><span>The install passes the gate. Live demo on YOUR questions — recorded, side by side</span></div>
-<div><b>Day 30</b><span>Drift report + the measurement doc. Yours to show internally</span></div>
+<!-- ============ PAPER ============ -->
+<section class="paperband" id="research"><div class="wrap">
+<div class="pgrid">
+<div class="rv">
+<div class="mono-k">Built on published method — measured beyond it</div>
+<h3>The method is public science. The measurement is ours.</h3>
+<p><b>The layering method is peer-published.</b> We credit it openly and build on it. What it doesn't ship with is the discipline: pre-registered protocols, mechanical judges, A/B on real codebases, and the boundaries published, where the layer pays and where it hurts.</p>
+<p>What you buy is the working system: agents that finally hold the full context of your team, extracted by people who know what to ask and what to write down. The numbers on YOUR repo are how you verify it, before you pay for it.</p>
 </div>
-<div class="badges">
-<span class="badge"><b>NDA</b> — signed on request, before we see anything</span>
-<span class="badge"><b>Your code untouched</b> — branch-only, markdown-only, ever</span>
-<span class="badge"><b>Secrets never in the structure</b> — by design</span>
-<span class="badge"><b>Yours forever</b> — plain files in your repos, any vendor</span>
-<span class="badge"><b>EU</b> — Bulgaria-based, EU clients</span>
+<div class="papermock rv">
+<div class="ph"><span>arXiv · 2603.16021</span><span>2026</span></div>
+<h4>"Interpretable Context Methodology: Folder Structure as Agent Architecture"</h4>
+<p class="pl">Van Clief &amp; McDermott · <i>filesystem as agent architecture</i> · layered context loading · plain text as the universal interface · 2–8k focused tokens vs 40k+ monolith</p>
+<p class="pl" style="margin-top:12px"><a href="https://arxiv.org/html/2603.16021v2">Read the paper →</a></p>
+</div>
+</div>
+<div class="adopt rv">
+<div class="adt">Already running the method, independently of us</div>
+<div class="adrow">
+<span class="adchip">University of Edinburgh</span>
+<span class="adchip">ICR Research</span>
+<span class="adchip">Academy of International Affairs, Bonn</span>
+<span class="adchip dim">33 practitioners in the method's community study</span>
+</div>
+<div class="adsub">Deployments and practitioner data reported in the paper itself — third parties, not our clients. Our receipts add the measured boundaries the paper doesn't carry.</div>
 </div>
 </div></section>
 
-<section><div class="wrap">
-<div class="kick">Proof, not promises</div>
-<h2>Every number below links to its own evidence</h2>
-<div class="cols">
-<div class="receipt">
-<div class="rhead"><span>receipt № 001 — navigation A/B</span><span>2026-08</span></div>
-<div class="row"><span>Six tasks, map OFF</span><b>5/6 · 196k tok</b></div>
-<div class="row"><span>Six tasks, map ON</span><b class="green">6/6 · 147k tok</b></div>
-<div class="row tot"><span>DELTA</span><b class="green">−24.8%, +1 correct</b></div>
-<a class="rlink" href="https://github.com/slavpetroff/agent-receipts/tree/main/logs/field-test-v2">raw logs, tokens-used lines →</a>
+<!-- ============ HOW ============ -->
+<section class="pad" id="how"><div class="wrap">
+<h2 class="big rv"><span class="a">One engineering team. Thirty days.</span><span class="b">Your AI, trained.</span></h2>
+<div style="margin-top:60px">
+<div class="tline">
+<div class="titem rv"><div class="tnode"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4"/><path d="M9 12h7M9 16h5"/></svg></div>
+<div class="tbody"><div class="sn">Day 0</div><div class="st">Screening &amp; the frozen protocol</div><div class="sd">One meeting about your problems, your gaps and your target. If your repo is small or your tests iterate cheaply, we tell you it won't pay and show the receipts. Otherwise the target, the deadline and the pass thresholds get registered in writing before anything starts.</div></div></div>
+<div class="titem rv"><div class="tnode"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10l5-3v10l-5-3"/></svg></div>
+<div class="tbody"><div class="sn">Week 1</div><div class="st">Baseline, recorded</div><div class="sd">A few focused interviews with your champion, scheduled around your sprint. Then a bare agent takes your real questions, "why is auth split across two services?", and fails them on camera. That recording is the before of your case.</div></div></div>
+<div class="titem rv"><div class="tnode"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/><rect x="2" y="3" width="20" height="18" rx="3"/></svg></div>
+<div class="tbody"><div class="sn">Week 2</div><div class="st">The install passes the gate</div><div class="sd">Map, routing, contracts, memory, built from interviews and your repo, checked by a mechanical validator. Then the live demo: the same questions, bare agent against yours, side by side.</div></div></div>
+<div class="titem rv"><div class="tnode"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div>
+<div class="tbody"><div class="sn">Day 30</div><div class="st">The drift report</div><div class="sd">What stayed true, what drifted when the code moved, what it costs to keep alive. The measurement doc is yours to show your board.</div></div></div>
 </div>
-<div class="receipt loss">
-<div class="rhead"><span>receipt № 002 — where it hurts</span><span>published</span></div>
-<div class="row"><span>Small repo (1 C file), map ON</span><b>+13.0% worse</b></div>
-<div class="row"><span>Tiny Python tool, map ON</span><b>+20.6% worse</b></div>
-<div class="row tot"><span>CHEAP TEST ITERATION</span><b>+7.5% / solved task</b></div>
-<a class="rlink" href="https://github.com/slavpetroff/agent-receipts/tree/main/results">full results, losses first →</a>
+<div class="badges rv">
+<span class="badge"><b>NDA</b>: signed on request, before we see anything</span>
+<span class="badge"><b>Your code untouched</b>: branch-only, markdown-only, ever</span>
+<span class="badge"><b>Secrets never in the structure</b>: by design</span>
+<span class="badge"><b>Yours forever</b>: plain files, any vendor</span>
+<span class="badge"><b>EU</b>: Bulgaria-based, EU clients</span>
 </div>
 </div>
-<p>Protocols are committed <b>before</b> the runs — the git timestamps are the point. Judges are mechanical: tests and oracles, never opinions. <a href="https://github.com/slavpetroff/agent-receipts/tree/main/protocols">Read the protocols</a>, then check any number we've ever posted against them. <span class="dim">If a number isn't in the repo, call it out.</span></p>
 </div></section>
 
-<section><div class="wrap">
-<div class="kick">What nobody tells you</div>
-<h2>The three uncomfortable truths</h2>
-<p class="dim">You should hear these from us, before you buy anything from anyone.</p>
-<ul>
-<li><b>A readable file is a copyable file.</b> File systems have no "read but don't take". Secrets never live in this structure — only references to your secret manager. Design boundary, not a footnote.</li>
-<li><b>The structure declares; git and your OS enforce.</b> Anyone telling you a context method IS your security is selling a story. The fences live one layer down — we set them up with you: protected branches, CODEOWNERS, read-only distribution.</li>
-<li><b>Human gates don't scale by themselves.</b> Review gates are the trust feature — and the first bottleneck. Every gate ships with an owner, a queue and an SLA, or it becomes a gate people walk around.</li>
-</ul>
+<!-- ============ TRUTHS ============ -->
+<section class="pad" style="padding-top:40px"><div class="wrap">
+<h2 class="big rv"><span class="a">The three truths</span><span class="b">nobody opens with</span></h2>
+<p class="subline rv">You should hear these from us, before you buy anything from anyone.</p>
+<div class="truths"><div class="tgrid">
+<div class="tcol rv"><div class="tno">Truth 01</div><b>A readable file is a copyable file</b><p>File systems have no "read but don't take". Secrets never live in this structure, only references to your secret manager. Design boundary, not a footnote.</p></div>
+<div class="tcol rv"><div class="tno">Truth 02</div><b>The structure declares; git and your OS enforce</b><p>Anyone telling you a context method IS your security is selling a story. The fences live one layer down: protected branches, CODEOWNERS, read-only distribution. We set them up with you.</p></div>
+<div class="tcol rv"><div class="tno">Truth 03</div><b>Human gates don't scale by themselves</b><p>Review gates are the trust feature and the first bottleneck. Every gate ships with an owner, a queue and an SLA, or it becomes a gate people walk around.</p></div>
+</div></div>
 </div></section>
 
-<section id="offer"><div class="wrap">
+<!-- ============ ALTS ============ -->
+<section class="pad" style="padding-top:20px"><div class="wrap">
+<h2 class="big rv"><span class="a">What the other roads</span><span class="b">actually cost</span></h2>
+<div class="aline">
+
+<div class="arow">
+<div class="aviz rv" aria-hidden="true"><svg viewBox="0 0 420 300">
+<g class="iso-line">
+<rect x="20" y="26" width="150" height="16" rx="8"/>
+<rect x="20" y="56" width="196" height="16" rx="8"/>
+<rect x="20" y="86" width="238" height="16" rx="8"/>
+</g>
+<g class="iso-bad">
+<rect x="20" y="116" width="286" height="16" rx="8"/>
+<rect x="20" y="146" width="330" height="16" rx="8"/>
+<rect x="20" y="176" width="368" height="16" rx="8"/>
+</g>
+<text x="20" y="216" font-size="11" fill="#98A2B3" font-family="Inter">the same explanation, longer every time</text>
+<g transform="translate(300,20)">
+<rect class="iso-ghost" x="0" y="0" width="100" height="72" rx="8"/>
+<line x1="14" y1="18" x2="86" y2="18" stroke="#C4CCD6" stroke-width="1.3"/>
+<line x1="14" y1="34" x2="74" y2="34" stroke="#D4DAE1" stroke-width="1.3"/>
+<line x1="14" y1="50" x2="60" y2="50" stroke="#E4E9EE" stroke-width="1.3"/>
+<text x="12" y="92" font-size="11" fill="#98A2B3" font-family="Inter">the wiki, unread</text>
+</g>
+</svg></div>
+<div class="acard rv"><h3>Prompt harder + wiki</h3><div class="price">€17,900</div><div class="per">per month, ongoing</div><p>Every engineer re-explains the same conventions, in ever longer prompts. The wiki holds the answers; agents never load it, and it rots quietly. The bleed just continues.</p></div>
+</div>
+
+<div class="arow flip">
+<div class="aviz rv" aria-hidden="true"><svg viewBox="0 0 420 300">
+<line x1="30" y1="80" x2="390" y2="80" stroke="#C4CCD6" stroke-width="1.4"/>
+<g fill="#9AA6B4"><circle cx="50" cy="80" r="5"/><circle cx="90" cy="80" r="5"/><circle cx="130" cy="80" r="5"/><circle cx="330" cy="80" r="5"/><circle cx="370" cy="80" r="5"/></g>
+<text x="30" y="62" font-size="11" fill="#98A2B3" font-family="Inter">main</text>
+<path d="M130 80 C150 80, 150 150, 175 150" fill="none" stroke="#C4CCD6" stroke-width="1.4"/>
+<line x1="175" y1="150" x2="285" y2="150" stroke="#C4CCD6" stroke-width="1.4"/>
+<line x1="285" y1="150" x2="385" y2="150" stroke="#D0D5DD" stroke-width="1.4" stroke-dasharray="4 6"/>
+<g><circle cx="185" cy="150" r="5" fill="#12A15B"/><circle cx="205" cy="150" r="5" fill="#12A15B"/><circle cx="225" cy="150" r="5" fill="#6FD59B"/><circle cx="253" cy="150" r="5" fill="#BFC9D2"/><circle cx="285" cy="150" r="5" fill="none" stroke="#D96C50" stroke-width="1.6"/></g>
+<circle cx="335" cy="150" r="5" fill="none" stroke="#D0D5DD" stroke-width="1.4" stroke-dasharray="3 3"/>
+<text x="175" y="132" font-size="11" fill="#98A2B3" font-family="Inter">platform-v1 — commits fade</text>
+<text x="262" y="176" font-size="11" fill="#B42318" font-family="Inter">last commit</text>
+<line x1="30" y1="242" x2="390" y2="242" stroke="#C4CCD6" stroke-width="1.3"/>
+<g stroke="#C4CCD6" stroke-width="1.3"><line x1="30" y1="237" x2="30" y2="247"/><line x1="102" y1="237" x2="102" y2="247"/><line x1="174" y1="237" x2="174" y2="247"/><line x1="246" y1="237" x2="246" y2="247"/><line x1="318" y1="237" x2="318" y2="247"/><line x1="390" y1="237" x2="390" y2="247"/></g>
+<g font-size="11" fill="#98A2B3" font-family="Inter"><text x="24" y="264">m1</text><text x="96" y="264">m2</text><text x="168" y="264">m3</text><text x="240" y="264">m4</text><text x="312" y="264">m5</text><text x="384" y="264">m6</text></g>
+<path d="M30 226 L174 226" stroke="#12A15B" stroke-width="3" stroke-linecap="round"/>
+<text x="36" y="216" font-size="11" fill="#0E7A45" font-family="Inter">2 engineers, 3 months</text>
+<path d="M174 226 L390 226" stroke="#D96C50" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 7"/>
+<text x="212" y="216" font-size="11" fill="#B42318" font-family="Inter">maintenance nobody owns</text>
+</svg></div>
+<div class="acard rv"><h3>Internal platform project</h3><div class="price">€55,000+</div><div class="per">2 engineers × 3 months</div><p>Ships a v1 with no measurement and no anti-rot discipline. Then the two engineers go back to the roadmap, and the layer starts drifting the day they leave. We've watched it.</p></div>
+</div>
+
+<div class="arow">
+<div class="aviz rv" aria-hidden="true"><svg viewBox="0 0 420 300">
+<defs><g id="cardL"><rect x="-5" y="-36" width="10" height="72" rx="3" fill="rgba(255,255,255,.8)" stroke="#9AA6B4" stroke-width="1.4"/></g></defs>
+<g>
+<use href="#cardL" transform="translate(88,232) rotate(16)"/><use href="#cardL" transform="translate(132,232) rotate(-16)"/>
+<use href="#cardL" transform="translate(188,232) rotate(16)"/><use href="#cardL" transform="translate(232,232) rotate(-16)"/>
+<use href="#cardL" transform="translate(288,232) rotate(16)"/><use href="#cardL" transform="translate(332,232) rotate(-16)"/>
+</g>
+<g stroke="#9AA6B4" stroke-width="1.4" fill="rgba(255,255,255,.8)">
+<rect x="66" y="188" width="108" height="8" rx="3"/>
+<rect x="166" y="188" width="108" height="8" rx="3"/>
+<rect x="266" y="188" width="108" height="8" rx="3"/>
+</g>
+<use href="#cardL" transform="translate(138,152) rotate(16)"/><use href="#cardL" transform="translate(182,152) rotate(-16)"/>
+<use href="#cardL" transform="translate(238,152) rotate(16)"/><use href="#cardL" transform="translate(282,152) rotate(-16)"/>
+<g stroke="#9AA6B4" stroke-width="1.4" fill="rgba(255,255,255,.8)"><rect x="126" y="108" width="168" height="8" rx="3"/></g>
+<use href="#cardL" transform="translate(192,72) rotate(16)"/>
+<g transform="translate(266,52) rotate(-44)"><rect x="-5" y="-36" width="10" height="72" rx="3" fill="rgba(217,108,80,.12)" stroke="#D96C50" stroke-width="1.5"/></g>
+<path d="M240 34 C252 24, 268 22, 282 30" fill="none" stroke="#D96C50" stroke-width="1.3" stroke-dasharray="3 5"/>
+<text x="292" y="34" font-size="11" fill="#B42318" font-family="Inter">one change</text>
+<text x="120" y="290" font-size="11" fill="#98A2B3" font-family="Inter">impressive, until something moves</text>
+</svg></div>
+<div class="acard rv"><h3>Multi-agent framework build</h3><div class="price">€40–80k</div><div class="per">+ permanent maintenance</div><p>Demos impress. Then you own a fragile orchestration tower where every agent is wired to every agent, and the framework owns you back. Lock-in with extra steps.</p></div>
+</div>
+
+<div class="arow flip">
+<div class="aviz rv" aria-hidden="true"><svg viewBox="0 0 420 300">
+<g class="iso-line"><path d="M110 90 L210 140 L110 190 L10 140 Z M10 140 L10 196 L110 246 L110 190 M210 140 L210 196 L110 246"/></g>
+<g class="iso-badf"><path d="M110 118 L170 148 L110 178 L50 148 Z"/></g>
+<g class="iso-bad"><rect x="96" y="132" width="28" height="22" rx="4"/><path d="M102 132 v-8 a8 8 0 0 1 16 0 v8"/></g>
+<text x="30" y="278" font-size="11" fill="#98A2B3" font-family="Inter">your memory, inside their harness</text>
+<g class="iso-ghost" transform="translate(280,110)"><path d="M60 0 L120 30 L60 60 L0 30 Z"/></g>
+<text x="292" y="196" font-size="11" fill="#98A2B3" font-family="Inter">your repo, empty</text>
+</svg></div>
+<div class="acard rv"><h3>Vendor enterprise tier</h3><div class="price">€30k+</div><div class="per">per year, forever</div><p>The memory lives in the vendor's harness, not in your repos. Switch vendors and your company's knowledge doesn't come with you. You start from zero, again.</p></div>
+</div>
+
+</div>
+<p class="subline" style="margin-top:24px">Each of these is a legitimate road. We'll tell you when one of them is the better fit — that's what the screening is for.</p>
+</div></section>
+
+<!-- ============ OFFER ============ -->
+<div class="offerwrap" id="offer"><div class="wrap">
+<div class="offer rv">
 <div class="kick">The offer</div>
-<h2>The Trained-Employee Install — one team, ~30 days</h2>
+<h2>The Trained-Engineer Install — one engineering team, ~30 days</h2>
+<div class="ogrid">
 <ul>
-<li><b>Screening first.</b> Your problems, honestly — including "this won't pay for you" when the measurement says so. We turn away bad fits; the receipts above show two repos where a layer made things worse.</li>
-<li>The full install: your team's decisions, standards and workflows, in your repo, gate-checked</li>
-<li>Two recorded demonstrations on YOUR questions and YOUR workflow: a bare agent vs. yours, side by side</li>
-<li>The measurement report against a pre-registered protocol — yours to keep and show internally</li>
-<li>The security review (the three truths, applied to your setup) · your champion trained · 30-day drift report</li>
+<li><b>Screening first.</b> Your problems, honestly, including "this won't pay for you" when the measurement says so. The receipts above show two repos where a layer made things worse.</li>
+<li>The full install: your architecture decisions, coding standards and delivery workflows, in your repo, gate-checked</li>
+<li>Two recorded demonstrations on YOUR codebase's questions: bare agent vs. yours, side by side</li>
+<li>The measurement report against a pre-registered protocol, yours to keep</li>
+<li>The security review (the three truths, applied) · your champion trained to run the system</li>
 <li>Everything lives in your repo from day one. If we disappear tomorrow, nothing stops working.</li>
+<li>A 30-day drift report that shows you exactly what moved after we left — and what keeping it true would take.</li>
 </ul>
-<div class="offer-card">
-<span class="strike">€9,800</span><span class="free">FREE</span>
-<div class="counter">Cohort 1 — first 5 companies: <b>5 of 5 spots still open</b><br>Every 5 clients, the price steps up. This is the only time it's free.</div>
-<div class="guar"><b class="green">The guarantee:</b> pass thresholds are registered in writing on Day 0, before we touch anything. If the measurement doesn't hit them, the final invoice never exists — and for Cohort 1, all you risk is three hours of your team's time.</div>
-<a class="btn btn-g" href="mailto:contact@alpine-engineering.eu?subject=Alpine%20%E2%80%94%20Trained-Employee%20Install%20(Cohort%201)">Talk about your team</a>
+<div class="pricecard">
+<div class="slots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+<div class="slotlab">Five companies per intake. That's the whole capacity; we build each install by hand.</div>
+<span class="strike">€19,580</span><span class="free">FREE</span>
+<div class="anchornote">the crossed price is ≈ 33 days of the €17,900/month bleed <a href="#method">from the math above</a></div>
+<div class="counter">This intake is free. The next one won't be. <b>Once it fills, free is gone for good.</b></div>
+<div class="guar"><b>The guarantee:</b> pass thresholds are registered in writing on Day 0, before we touch anything. If the measurement doesn't hit them, the invoice never exists.</div>
+<a class="cta" href="mailto:contact@alpine-engineering.eu?subject=Alpine%20%E2%80%94%20Trained-Engineer%20Install">Talk about your team →</a>
 </div>
-</div></section>
+</div>
+</div>
+</div></div>
 
-<section><div class="wrap">
-<div class="kick">Free, today, no contact needed</div>
-<h2>Steal these first</h2>
-<ul>
-<li><a href="https://github.com/slavpetroff/agent-receipts/blob/main/gift/CLAUDE.md">The real 98-line context map</a> from our production repo — unedited. Steal the structure, write yours.</li>
-<li><a href="https://github.com/slavpetroff/agent-receipts/blob/main/gift/the-real-98-line-map.md">The two checks and three rules</a> that keep a map alive — including when NOT to write one (we measured that the embarrassing way).</li>
-<li><a href="https://www.linkedin.com/in/stanislav-petrov-a72739105/">The founder's daily posts</a> — one story, one hands-on process you can run the same day.</li>
-</ul>
-<div class="news" style="margin-top:30px">
-<p><b>One email when a new measurement, case study or tool drops.</b> <span class="dim">Receipts included. Nothing else — no course funnel, no drip sequence.</span></p>
+<!-- ============ STEAL ============ -->
+<section class="steal" style="padding-bottom:10px"><div class="wrap">
+<h2 class="big rv"><span class="a">Steal these first.</span><span class="b">Free, today, no contact needed.</span></h2>
+<div class="list rv">
+<div class="srow"><div><b>The real 98-line context map</b><span>From our production repo, unedited. Steal the structure, write yours.</span></div><a class="arrowlnk" href="https://github.com/slavpetroff/agent-receipts/blob/main/gift/CLAUDE.md">Open</a></div>
+<div class="srow"><div><b>The two checks and three rules that keep a map alive</b><span>Including when NOT to write one. We measured that the embarrassing way.</span></div><a class="arrowlnk" href="https://github.com/slavpetroff/agent-receipts/blob/main/gift/the-real-98-line-map.md">Open</a></div>
+<div class="srow"><div><b>Seven paste-ready agent prompts</b><span>Audits that run themselves: your agent asks what it needs, works, prints the report.</span></div><a class="arrowlnk" href="https://github.com/slavpetroff/agent-receipts/tree/main/gift">Open</a></div>
+<div class="srow"><div><b>Alpine's daily field notes</b><span>One war story, one hands-on process a day, from our own repos. Run it the same afternoon.</span></div><a class="arrowlnk" href="https://www.linkedin.com/company/alpine-engineering-/">Follow</a></div>
+</div>
+<div class="news rv">
+<p><b>One email when a new measurement, case study or tool drops.</b><br><span>Receipts included. Nothing else: no course funnel, no drip sequence.</span></p>
 <form action="https://docs.google.com/forms/d/1q1LdzFb02sDaaurpRny9pVWQgsXsmOHnMv9qeP5MjcA/formResponse" method="POST" target="nl_sink">
 <input type="email" name="entry.600134808" placeholder="you@company.eu" required aria-label="Email address">
-<button class="btn btn-g" type="submit" style="padding:13px 22px">Get the receipts</button>
+<button type="submit">Get the receipts</button>
 </form>
 <iframe name="nl_sink" style="display:none" title="hidden"></iframe>
 </div>
 </div></section>
 
 <footer><div class="wrap">
-Alpine Engineering (Alpine LTD) · Bulgaria · Clients across the EU<br>
+<div class="frow">
+<div>Alpine Engineering (Alpine LTD) · Bulgaria · Clients across the EU</div>
+<div>
 <a href="https://www.linkedin.com/in/stanislav-petrov-a72739105/">LinkedIn — Stanislav Petrov</a> ·
 <a href="https://www.linkedin.com/company/alpine-engineering-/">Alpine on LinkedIn</a> ·
 <a href="https://github.com/slavpetroff/agent-receipts">agent-receipts</a> ·
 <a href="mailto:contact@alpine-engineering.eu">contact@alpine-engineering.eu</a>
+</div>
+</div>
 </div></footer>
 
+</div><!-- /canvas -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script>
+if (window.gsap && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  gsap.registerPlugin(ScrollTrigger);
+  document.querySelectorAll('.rv').forEach(function (el) {
+    gsap.to(el, {opacity: 1, y: 0, duration: .9, ease: 'power3.out',
+      scrollTrigger: {trigger: el, start: 'top 88%'}});
+  });
+  // hero wireframes float
+  gsap.to('.wf path', {y: -10, duration: 3.2, ease: 'sine.inOut', yoyo: true, repeat: -1, stagger: .4});
+  gsap.to('.chip', {y: -6, duration: 2.8, ease: 'sine.inOut', yoyo: true, repeat: -1, stagger: .3});
+} else {
+  document.querySelectorAll('.rv').forEach(function (el) { el.style.opacity = 1; el.style.transform = 'none'; });
+}
+</script>
 </body>
 </html>
