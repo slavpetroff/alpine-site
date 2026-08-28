@@ -89,6 +89,14 @@ padding:15px 26px;border-radius:12px;transition:transform .3s}
 .chip{position:absolute;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
 color:#EAFBF1;border:1px solid rgba(234,251,241,.35);background:rgba(4,26,15,.55);backdrop-filter:blur(4px);border-radius:6px;padding:5px 10px}
 @media(max-width:940px){.hero-inner{grid-template-columns:1fr}.platform{height:380px}}
+.hterm{background:#0B1220;border-radius:18px;box-shadow:var(--shadow);padding:24px 26px;max-width:540px;margin-left:auto}
+.hterm .htop{display:flex;gap:7px;align-items:center;margin-bottom:14px}
+.hterm .htop span{width:10px;height:10px;border-radius:50%;background:#2A3446}
+.hterm .htop em{margin-left:10px;font-style:normal;font-size:12px;color:#8A94A6;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.hterm pre{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13.5px;line-height:2;color:#C7CDD5;white-space:pre-wrap}
+.hterm pre b{color:#8CF3B0;font-weight:600}
+.hterm pre .red{color:#FF8F73;font-style:normal;font-weight:600}
+.hterm .htlink{display:inline-block;margin-top:12px;font-size:13px;color:#8CF3B0;text-decoration:none;font-weight:600}
 /* trust = floating KPI cards over the hero fade */
 .trust{padding:0 0 70px;margin-top:-140px;position:relative;z-index:5}
 .trust .row{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
@@ -344,79 +352,31 @@ footer a{color:#C7CDD5}
 <h1><span class="soft">Agents, built light.</span><br>Working AI agents for engineering teams — without the machinery.</h1>
 <p class="sub">What a platform team ships in months on a six-figure budget, we deliver in weeks — one agent builds it, in your repos, on any vendor. Phase one of every build installs your team's decisions and standards as the agent's context, so it works like someone you trained, not something you rented. And nothing is bought on faith: the Test Flight runs your agent on your own workflow before any payment.</p>
 </div>
-<div class="platform" aria-hidden="true">
-<svg viewBox="0 0 560 560">
-<defs>
-<linearGradient id="slabTop" x1="0" y1="0" x2="1" y2="1">
-<stop offset="0" stop-color="#8CF3B0" stop-opacity=".9"/><stop offset="1" stop-color="#12A15B" stop-opacity=".55"/>
-</linearGradient>
-<linearGradient id="slabSide" x1="0" y1="0" x2="0" y2="1">
-<stop offset="0" stop-color="#0B4A2B"/><stop offset="1" stop-color="#052314"/>
-</linearGradient>
-<filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
-<feGaussianBlur stdDeviation="18" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-</filter>
-</defs>
-<!-- dotted scaffold -->
-<g stroke="#BFE7D2" stroke-opacity=".5" stroke-dasharray="3 5" fill="none">
-<path d="M280 40 L280 150"/><path d="M120 210 L200 250"/><path d="M455 190 L370 245"/><path d="M280 470 L280 520"/>
-</g>
-<!-- wireframe planes above -->
-<g class="wf" fill="none" stroke="#EAFBF1" stroke-opacity=".8" stroke-width="1.3">
-<path d="M280 88 L420 158 L280 228 L140 158 Z"/>
-<path d="M280 138 L400 198 L280 258 L160 198 Z" stroke-opacity=".45"/>
-</g>
-<!-- glowing slab -->
-<g filter="url(#glow)">
-<path d="M280 220 L470 315 L280 410 L90 315 Z" fill="url(#slabTop)"/>
-<path d="M90 315 L280 410 L280 462 L90 367 Z" fill="url(#slabSide)"/>
-<path d="M470 315 L280 410 L280 462 L470 367 Z" fill="url(#slabSide)" opacity=".8"/>
-</g>
-<!-- top face grid -->
-<g stroke="#063D22" stroke-opacity=".35" stroke-width="1" fill="none">
-<path d="M232 244 L422 339"/><path d="M184 268 L374 363"/><path d="M136 292 L326 387"/>
-<path d="M328 244 L138 339"/><path d="M376 268 L186 363"/><path d="M424 292 L234 387"/>
-</g>
-<circle cx="280" cy="315" r="7" fill="#EAFBF1"/>
-<circle cx="280" cy="315" r="16" fill="none" stroke="#EAFBF1" stroke-opacity=".6"/>
-</svg>
-<span class="chip" style="top:6%;left:52%">Your decisions</span>
-<span class="chip" style="top:32%;left:2%">Your workflows</span>
-<span class="chip" style="top:28%;right:0">Team memory</span>
-<span class="chip" style="bottom:8%;left:44%">Any agent · any vendor</span>
+<div class="platform">
+<div class="hterm rv" role="img" aria-label="Excerpt from a real build log">
+<div class="htop"><span></span><span></span><span></span><em>build.log — the flagship, one agent</em></div>
+<pre>01:50  repo init — one agent on the build
+01:58  gate v0: contract, collector, validator
+02:12  first seeded violation <b>CAUGHT</b>, rule quoted
+09:35  defect: 7.5h hang — <b>logged, fixed, published</b>
+bench  11/11 valid catches · 0 false alarms
+bench  determinism: <i class="red">RED</i> — fix queued, published</pre>
+<a class="htlink" href="https://github.com/slavpetroff/agent-receipts/blob/main/builds/pr-gate/BUILD-LOG.md">the full log, red marks included →</a>
 </div>
 </div>
-</div></section>
 
-<!-- trust = floating measured KPI cards -->
-<div class="trust"><div class="wrap">
-<div class="row">
-<div class="kpi rv"><div class="kl">Tasks landed right</div><div class="kn">6/6</div>
-<div class="mini">
-<div class="mrow"><span class="ml">with</span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></div>
-<div class="mrow"><span class="ml">without</span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="miss"></i></span></div>
+<!-- trust = the four written guarantees -->
+<div class="kpis">
+<div class="kpi rv"><div class="kl">The Test Flight</div><div class="kn" style="font-size:19px;line-height:1.35">Your workflow, live,<br>before any payment</div>
 </div>
-<div class="kc">Same repo, same six tasks, same agent.</div></div>
-<div class="kpi rv"><div class="kl">Cost, same six tasks</div><div class="kn" style="color:#12A15B">−24.8%</div>
-<div class="mini">
-<div class="mrow"><span class="ml">bare</span><div class="mt"><div class="mf" style="width:100%"></div></div></div>
-<div class="mrow"><span class="ml">layer</span><div class="mt"><div class="mf g" style="width:75.2%"></div></div></div>
+<div class="kpi rv"><div class="kl">The date</div><div class="kn" style="font-size:19px;line-height:1.35">Fixed in the contract —<br>or we discount</div>
 </div>
-<div class="kc">196k → 147k tokens, mechanical judge.</div></div>
-<div class="kpi rv"><div class="kl">Cost per delivered change</div><div class="kn" style="color:#12A15B">−38%</div>
-<div class="mini">
-<div class="mrow"><span class="ml">bare</span><div class="mt"><div class="mf" style="width:100%"></div></div></div>
-<div class="mrow"><span class="ml">layer</span><div class="mt"><div class="mf g" style="width:62%"></div></div></div>
+<div class="kpi rv"><div class="kl">Fuel per task</div><div class="kn" style="font-size:19px;line-height:1.35">Capped in writing —<br>over it, we tune free</div>
 </div>
-<div class="kc">35-package repo · a failed task became delivered.</div></div>
-<div class="kpi red rv"><div class="kl">The published loss</div><div class="kn">+7.5%</div>
-<div class="mini">
-<div class="mrow"><span class="ml">bare</span><div class="mt"><div class="mf" style="width:93%"></div></div></div>
-<div class="mrow"><span class="ml">layer</span><div class="mt"><div class="mf r" style="width:100%"></div></div></div>
+<div class="kpi rv"><div class="kl">Vendor swap</div><div class="kn" style="font-size:19px;line-height:1.35">Breaks something?<br>We fix it free</div>
 </div>
-<div class="kc">Cheap test iteration — published, because that's the point.</div></div>
 </div>
-<span class="under">Measured on real codebases — <a href="https://github.com/slavpetroff/agent-receipts">receipts in public git →</a></span>
+<span class="under">All four underwritten on Day 0, in writing — <a href="#offer">the offer →</a></span>
 </div></div>
 
 <!-- ============ FEATURE BAND ============ -->
@@ -426,7 +386,7 @@ footer a{color:#C7CDD5}
 <div class="paingrid">
 <div class="rv">
 <p>We lived this list before selling anything about it: twelve years of backend engineering behind Alpine, the last two spent building three businesses with AI agents doing most of the typing. We know the scene: the PR your review rejects because the agent never updated the OpenAPI schema for the microservice you introduced last week, the exact requirement your latest ADR spells out. The pattern it confidently resurrects, the one you buried two releases ago, because that funeral happened in a Slack thread. The new hire who asks why auth is split across two services and collects three different answers.</p>
-<p style="margin-top:14px"><b>Your agents don't lack intelligence. They lack the context only your team has.</b> It lives in heads and chats, so every agent session starts from zero. So does every new hire.</p>
+<p style="margin-top:14px"><b>None of the six-figure routes fixes this scene.</b> More machinery gives the same generic agent a more expensive seat. What fixes it is what phase one of every build installs — your decisions and standards as the agent's working context — plus a build cycle that gets judged before it ships.</p>
 </div>
 <div class="lreceipt rv" id="bleed">
 <div class="lrhead"><span>The monthly bill you already pay</span><span>est. · 30-engineer team</span></div>
@@ -540,7 +500,7 @@ footer a{color:#C7CDD5}
 <!-- ============ PROOF (UI cards) ============ -->
 <section class="pad proof" id="proof"><div class="wrap">
 <h2 class="big rv"><span class="a">Every number here</span><span class="b">links to its own evidence</span></h2>
-<p class="subline rv">Protocols are committed before the runs, so the git timestamps do the arguing. Judges are mechanical: tests and oracles, never opinions.</p>
+<p class="subline rv">Protocols are committed before the runs, so the git timestamps do the arguing; judges are mechanical. Most receipts below come from PHASE ONE — the context install inside every build — and from our own operations. The flagship's build log, red marks included, is already public; each build adds its own.</p>
 <div class="cards">
 <div class="uicard rv">
 <div class="chead"><b>Navigation A/B — same repo, same agent</b><span class="mono">field-test · 2026-08</span></div>
