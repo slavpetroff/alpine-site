@@ -777,12 +777,7 @@ bench  determinism: <i class="red">RED</i> — fix queued, published</pre>
   }, {rootMargin: '0px 0px -8% 0px'});
   els.forEach(function (el) { io.observe(el); });
   // safety: nothing stays invisible, ever
-  setTimeout(function () {
-    els.forEach(function (el) {
-      var r = el.getBoundingClientRect();
-      if (r.top < innerHeight && r.bottom > 0) el.classList.add('on');
-    });
-  }, 1200);
+  setTimeout(showAll, 2500);
 })();
 </script>
 </body>
