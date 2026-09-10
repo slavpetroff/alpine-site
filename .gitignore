@@ -1,2 +1,12 @@
 automation/
 .claude/
+
+# private during development: the site workflow and its maps (owner, 10.09)
+agents/
+CLAUDE.md
+CONTEXT.md
+# harness state, never public
+.agents/
+.design-specs/
+.worktrees/
+.yolo-telemetry.db
