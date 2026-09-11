@@ -338,7 +338,7 @@
 <div class="cur" id="cur" aria-hidden="true"><i></i></div>
 
 <!-- 1 HERO -->
-<div class="pin" id="top" data-ch="hero" data-len="90" data-idle-hd="assets/scene/1080/hero-2.mp4" data-idle-sd="assets/scene/web/hero-2.mp4">
+<div class="pin" id="top" data-ch="hero" data-len="100" data-idle-hd="assets/scene/1080/hero-2.mp4" data-idle-sd="assets/scene/web/hero-2.mp4">
 <section class="stage live">
   <img class="still" src="assets/scene/hero-still.jpg" alt="">
   <video class="idle on" muted loop playsinline preload="auto"></video>
@@ -356,7 +356,7 @@
 </div>
 
 <!-- 2 THE WORK: chart + flight strips -->
-<div class="pin" id="work" data-ch="work" data-len="170" data-hd="assets/scene/1080/ch1-work.mp4" data-sd="assets/scene/web/ch1-work.mp4">
+<div class="pin" id="work" data-ch="work" data-len="240" data-hd="assets/scene/1080/ch1-work.mp4" data-sd="assets/scene/web/ch1-work.mp4">
 <section class="stage">
   <img class="still" src="assets/scene/posters/ch1-work.jpg" alt="">
   <video class="scrub" muted playsinline preload="none"></video>
@@ -374,7 +374,7 @@
 </div>
 
 <!-- 3 THE CREW: cockpit + placards -->
-<div class="pin" id="crew" data-ch="crew" data-len="180" data-hd="assets/scene/1080/ch2-cockpit.mp4" data-sd="assets/scene/web/ch2-cockpit.mp4">
+<div class="pin" id="crew" data-ch="crew" data-len="260" data-hd="assets/scene/1080/ch2-cockpit.mp4" data-sd="assets/scene/web/ch2-cockpit.mp4">
 <section class="stage">
   <img class="still" src="assets/scene/posters/ch2-cockpit.jpg" alt="">
   <video class="scrub" muted playsinline preload="none"></video>
@@ -396,7 +396,7 @@
 </div>
 
 <!-- 4 THE ROOTS: the flight + the track -->
-<div class="pin" id="roots" data-ch="flight" data-len="200" data-hd="assets/scene/1080/ch3-flight.mp4" data-sd="assets/scene/web/ch3-flight.mp4">
+<div class="pin" id="roots" data-ch="flight" data-len="300" data-hd="assets/scene/1080/ch3-flight.mp4" data-sd="assets/scene/web/ch3-flight.mp4">
 <section class="stage">
   <img class="still" src="assets/scene/posters/ch3-flight.jpg" alt="">
   <video class="scrub" muted playsinline preload="none"></video>
@@ -419,7 +419,7 @@
 </div>
 
 <!-- 5 THE RECORD: the arrival -->
-<div class="pin" id="record" data-ch="arrival" data-len="130" data-hd="assets/scene/1080/ch4-arrival.mp4" data-sd="assets/scene/web/ch4-arrival.mp4">
+<div class="pin" id="record" data-ch="arrival" data-len="190" data-hd="assets/scene/1080/ch4-arrival.mp4" data-sd="assets/scene/web/ch4-arrival.mp4">
 <section class="stage">
   <img class="still" src="assets/scene/posters/ch4-arrival.jpg" alt="">
   <video class="scrub" muted playsinline preload="none"></video>
@@ -439,7 +439,7 @@
 </div>
 
 <!-- 6 HOW IT IS DONE: the hangar -->
-<div class="pin" id="hangar" data-ch="hangar" data-len="130" data-hd="assets/scene/1080/ch5-hangar.mp4" data-sd="assets/scene/web/ch5-hangar.mp4">
+<div class="pin" id="hangar" data-ch="hangar" data-len="180" data-hd="assets/scene/1080/ch5-hangar.mp4" data-sd="assets/scene/web/ch5-hangar.mp4">
 <section class="stage">
   <img class="still" src="assets/scene/posters/ch5-hangar.jpg" alt="">
   <video class="scrub" muted playsinline preload="none"></video>
@@ -457,7 +457,7 @@
 
 <!-- 7 THE DOOR + the stub -->
 <!-- 7 THE LOGBOOK -->
-<div class="pin" id="logbook" data-ch="logbook" data-len="150">
+<div class="pin" id="logbook" data-ch="logbook" data-len="200">
 <section class="stage">
   <img class="still" src="assets/scene/posters/logbook.jpg" alt="">
   <div class="fade"></div>
@@ -482,7 +482,7 @@
 </section>
 </div>
 
-<div class="pin" id="door" data-ch="door" data-len="140" data-hd="assets/scene/1080/ch6-door.mp4" data-sd="assets/scene/web/ch6-door.mp4">
+<div class="pin" id="door" data-ch="door" data-len="180" data-hd="assets/scene/1080/ch6-door.mp4" data-sd="assets/scene/web/ch6-door.mp4">
 <section class="stage">
   <img class="still" src="assets/scene/posters/ch6-door.jpg" alt="">
   <video class="scrub" muted playsinline preload="none"></video>
@@ -660,16 +660,17 @@
         else if (st.track) ride(st.track, 0.55, 0.95);
       }
       const inlineForm = phone && ['door', 'logbook', 'crew'].includes(st.pin.dataset.ch);
-      const outT = i === last ? endT + 0.01 : 0.86;
+      const outT = i === last ? endT + 0.01 : 0.92;
+      if (!phone) { const dy = t < 0.22 ? (0.22 - t) / 0.09 * 28 : (t > 0.8 && i !== last) ? -(t - 0.8) / 0.12 * 90 : 0; st.words.style.transform = dy ? `translateY(${dy.toFixed(1)}px)` : ''; const pl = st.pin.querySelector('.placards'); if (pl) pl.style.marginTop = dy ? `${(dy * 1.4).toFixed(1)}px` : ''; }
       st.words.classList.toggle('in', t > 0.13 && t < (phone && st.objs.length && !inlineForm ? 0.5 : outT));
       st.objs.forEach((o, k) => { let at = st.stagger[k] ?? Number(o.dataset.at || 0.25); if (phone) at = 0.5 + k * 0.04; o.classList.toggle('in', t > at && t < outT); });
       // the track: horizontal drift by scroll
       if (st.track && !phone) {
         // the slider: the page scroll walks the middle card from the first to the last; the others sit scaled beside it
-        const n = cards.length; const p = Math.min(1, Math.max(0, (t - 0.3) / 0.46)); const pos = p * (n - 1);
+        const n = cards.length; const p = Math.min(1, Math.max(0, (t - 0.3) / 0.62)); const pos = p * n;
         const cw = cards[0].getBoundingClientRect().width / (cards[0].classList.contains('mid') ? 1 : .78); const step = cw + 60;
         st.track.style.transform = `translate3d(calc(-50% + ${(n - 1) / 2 * step - pos * step}px), -50%, 0)`;
-        const mid = Math.round(pos); cards.forEach((c, k) => c.classList.toggle('mid', k === mid)); pager.forEach((d, k) => d.classList.toggle('on', k === mid));
+        const mid = Math.min(n - 1, Math.round(pos)); cards.forEach((c, k) => c.classList.toggle('mid', k === mid)); pager.forEach((d, k) => d.classList.toggle('on', k === mid));
       }
     } catch (e) { console.warn('chapter', i, e); } }
   };
