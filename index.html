@@ -191,7 +191,8 @@
   .placard.obj{transform:translate3d(48px,0,0)} .placard.obj.in{transform:none}
 
   /* the slider (the roots): centred, the middle card at full size, the neighbours scaled and quieter, driven by scroll */
-  .track{position:absolute;left:50%;top:56%;display:flex;gap:60px;align-items:center;will-change:transform;transform:translate(-50%,-50%)}
+  .track{position:absolute;left:50%;top:56%;display:flex;gap:60px;align-items:stretch;will-change:transform;transform:translate(-50%,-50%)}
+  .card{display:flex;flex-direction:column;justify-content:flex-start;box-sizing:border-box}
   .stage .fade-top{position:absolute;left:0;right:0;top:0;height:14%;background:linear-gradient(to bottom, var(--mist) 0%, rgba(247,248,245,.6) 45%, rgba(247,248,245,0) 100%);pointer-events:none;z-index:2}
   .words,.placards,.track{transition:none}
   .card{flex:0 0 min(480px,80vw);background:rgba(247,248,245,.92);padding:34px 36px 30px;border-radius:8px;transform-origin:50% 50%}
