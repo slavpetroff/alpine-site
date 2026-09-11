@@ -237,6 +237,8 @@
   @media (max-width:900px){ .log-form{position:absolute;left:clamp(16px,5vw,72px);right:clamp(16px,5vw,72px);top:auto;bottom:3svh;width:auto;max-height:62svh;padding:18px 18px 14px} .log-form.obj,.log-form.obj.in{transform:none} .log-form .two{grid-template-columns:1fr;gap:10px} .log-form .f{margin-bottom:12px} }
 
   .offer{font-size:clamp(16px,1.25vw,18px);line-height:1.56;font-weight:500;max-width:min(30ch,calc(50vw - 200px));margin:0 0 18px}
+  .kicker{font-size:clamp(15px,1.15vw,17px);line-height:1.5;color:var(--slate);margin:0 0 14px;max-width:44ch}
+  .door-link{margin:22px 0 0;font-size:clamp(15px,1.1vw,17px);font-weight:500} .door-link a{color:var(--cobalt);text-decoration:none;border-bottom:1px solid var(--cobalt);padding-bottom:2px}
   .price{display:flex;align-items:baseline;gap:18px;margin:0 0 44px;font-weight:600} .price s{font-size:clamp(18px,1.5vw,22px);color:var(--slate);text-decoration:line-through;text-decoration-color:var(--cobalt);text-decoration-thickness:2px} .price b{font-size:clamp(22px,2vw,30px);letter-spacing:.02em;color:var(--ink)}
   .frame .words .price+h1{font-size:clamp(22px,2.6vw,36px);margin-bottom:16px} .frame .words .price+h1::before{content:"";display:block;width:72px;height:1px;background:var(--hairline);margin-bottom:26px}
   /* the seats: three fixes on a short line, the first flown */
@@ -420,7 +422,9 @@
   <div class="frame" style="align-content:start;padding-top:9vh"><div class="words" style="grid-column:3 / span 5">
     <div class="plate-text"></div><div class="plate-dark"></div>
     <span class="label">The roots</span>
+    <p class="kicker">Everything we build grows from these four roots, and each one is a promise you can hold us to on your own case.</p>
     <h2>Every correction your people make is kept, so nothing is corrected twice.</h2>
+    <p class="door-link"><a href="#door" data-go="7">Talk to us.</a></p>
   </div></div>
 </section>
 </div>
@@ -437,11 +441,13 @@
   <div class="frame" style="align-content:start;padding-top:8vh"><div class="words case" style="grid-column:3 / span 5">
     <div class="plate-text"></div><div class="plate-dark"></div>
     <span class="label">The record</span>
+    <p class="kicker">The record is where we show what we have done, as it happened, for a real client, with the part that went wrong kept in.</p>
     <h2>A PR campaign, thirty days, up to a hundred creators, and every story caught the day it appeared.</h2>
     <p>Before, one person spent part of every day of the campaign walking two feeds for up to a hundred creators, copying what she found into Excel, keeping the formulas straight, and losing every story that expired before she got to it. Stories vanish after a day, so a day missed is gone for good.</p>
     <p>Now she hands over three files, the brief, the list and the product sheet. From there the route runs: the missing platforms found, the followers counted at the start and the end, every story caught the day it appears, the uncertain ones set aside for her eye.</p>
     <p>The catch: a product in frame with no tag still counts, and no keyword can see it. So those cases are not guessed. They are set aside, and she looks at them herself, on purpose.</p>
     <p>Three working days with her, not three months: the build, the test flight on her old campaign, the fixes, the first live run.</p>
+    <p class="door-link"><a href="#door" data-go="7">Talk to us.</a></p>
   </div></div>
 </section>
 </div>
@@ -458,6 +464,7 @@
   <div class="frame"><div class="words" style="grid-column:7 / span 6">
     <div class="plate-text"></div><div class="plate-dark"></div>
     <span class="label">The hangar</span>
+    <p class="kicker">This is built the way the systems a business runs on are built, and it shows in what reaches you: checked before it is yours, and on record after.</p>
     <h2>The same discipline that keeps the software people depend on running, brought to the repetitive work nobody on your team wants and everybody ends up doing.</h2>
     <p>Made for teams who want the recurring work done properly, and want to stay in charge of it.</p>
   </div></div>
@@ -512,6 +519,7 @@
     <div class="plate-text"></div><div class="plate-dark"></div>
         <span class="label">The offer</span>
     <div class="seats" aria-label="Five free seats, the first taken"><i class="taken"></i><i></i><i></i><i></i><i></i></div>
+    <p class="offer">A seat is your company with us for as long as the work takes, whatever you bring into it, one deliverable or several, and there are five at a time so each has our full attention.</p>
     <p class="offer">Five seats are free, and the first is already taken. When they are gone, it is never free again, and never this low again.</p>
     <p class="price"><s>$23,986</s><b>Free</b></p>
     <h1>Talk to us.</h1>
@@ -525,7 +533,7 @@
   <div class="grid">
     <div class="lead"><svg class="fm" viewBox="0 0 1024 1024" aria-hidden="true"><path fill="#2457FF" d="M80 690C275 616 490 560 690 486C785 451 836 415 871 373C904 333 930 280 946 194C909 201 876 220 854 251C827 287 809 332 781 363C739 411 678 440 603 465C418 526 226 595 80 690Z"/></svg><span class="wordmark">Alpine</span></div>
     <div class="col"><b>The flight</b><a href="#work" data-go="1">The work</a><a href="#crew" data-go="2">The crew</a><a href="#roots" data-go="3">The roots</a><a href="#record" data-go="4">The record</a><a href="#hangar" data-go="5">The hangar</a><a href="#logbook" data-go="6">The logbook</a><a href="#door" data-go="7">Talk to us</a></div>
-    <div class="col gift"><b>The gift</b><p class="promise">One email from us, and only when a new agent or tool from a case study is ready for you to use the same day. Sent once. Nothing else lands in your inbox from this address.</p><form id="giftForm" novalidate><label for="giftEmail">Your email</label><div class="row"><input id="giftEmail" name="email" type="email" autocomplete="email" required><button type="submit"><i></i>Send</button></div></form><p class="sent">You are on the list. The next agent comes to this address, and nothing else does.</p></div>
+    <div class="col gift"><b>The gift</b><p class="promise">One email from us, and only when something new from a case study is ready for you to use the same day. Sent once. Nothing else lands in your inbox from this address.</p><form id="giftForm" novalidate><label for="giftEmail">Your email</label><div class="row"><input id="giftEmail" name="email" type="email" autocomplete="email" required><button type="submit"><i></i>Send</button></div></form><p class="sent">You are on the list. The next one comes to this address, and nothing else does.</p></div>
     <div class="col"><b>Reach us</b><a href="mailto:contact@alpine-engineering.eu">contact@alpine-engineering.eu</a><a href="https://www.linkedin.com/company/alpine-engineering-bg">The company page on LinkedIn</a></div>
   </div>
   <div class="end"><span>Alpine LTD</span><span>2024</span><a class="up" href="#top" data-go="0">Back to the top<i></i></a></div>
