@@ -123,7 +123,20 @@
   .hero-words > *{opacity:1;filter:none;transform:none;transition:none}
   .words.in > *{opacity:1;filter:blur(0);transform:none}
   .words.in > :nth-child(2){transition-delay:.08s}.words.in > :nth-child(3){transition-delay:.16s}.words.in > :nth-child(4){transition-delay:.24s}.words.in > :nth-child(5){transition-delay:.32s}.words.in > :nth-child(6){transition-delay:.4s}
-  .plate-text{position:absolute;inset:-180px -260px -160px -240px;background:radial-gradient(ellipse 50% 50% at 50% 50%, rgba(247,248,245,.92) 0%, rgba(247,248,245,.78) 28%, rgba(247,248,245,.45) 52%, rgba(247,248,245,.1) 80%, rgba(247,248,245,0) 100%);z-index:0 !important;opacity:1 !important;transform:none !important}
+  .plate-text{position:absolute;inset:-180px -260px -160px -240px;background:radial-gradient(ellipse 50% 50% at 50% 50%, rgba(247,248,245,.96) 0%, rgba(247,248,245,.86) 28%, rgba(247,248,245,.5) 52%, rgba(247,248,245,.12) 80%, rgba(247,248,245,0) 100%);z-index:0 !important;opacity:1 !important;transform:none !important}
+  /* when the film behind a block is dark, the block reads in mist on a soft dark scrim; the flip is a slow crossfade */
+  .words,.placards,.chapters{--ink-now:var(--ink);--slate-now:var(--slate);--hair-now:var(--hairline)}
+  .words *,.placard b,.placard span,.ch{transition-property:color,opacity,filter,transform,clip-path,border-color;transition-duration:.6s,.9s,.9s,.9s,1s,.6s}
+  .words h1,.words h2,.words p,.words .label,.words .offer,.words .logline,.words a,.words .price b,.words .entries blockquote,.words .entries figcaption{color:var(--ink-now)}
+  .words .label{color:var(--ink-now)} .words .price s{color:var(--slate-now)} .words .label::after{background:var(--hair-now)} .words a{border-bottom-color:var(--hair-now)}
+  .words.dark,.placards.dark,.chapters.dark{--ink-now:#F7F8F5;--slate-now:rgba(247,248,245,.6);--hair-now:rgba(247,248,245,.35)}
+  .words .plate-text{transition:opacity .8s linear} .words .plate-dark{position:absolute;inset:-180px -260px -160px -240px;background:radial-gradient(ellipse 50% 50% at 50% 50%, rgba(19,34,56,.62) 0%, rgba(19,34,56,.5) 30%, rgba(19,34,56,.28) 56%, rgba(19,34,56,.08) 82%, rgba(19,34,56,0) 100%);z-index:0;opacity:0;transition:opacity .8s linear;pointer-events:none}
+  .words.dark .plate-text{opacity:0 !important} .words.dark .plate-dark{opacity:1}
+  .words.dark h1 .rule{background:#F7F8F5} .words.dark .seats i{filter:brightness(0) invert(1) opacity(.85)} .words.dark .seats i.taken{filter:none}
+  .placard b,.placard span{color:var(--ink-now)} .placard b::after{background:var(--hair-now)} .placards .label{color:var(--ink-now)} .placards .label::after{background:var(--hair-now)}
+  .placards::before{transition:opacity .8s linear} .placards.dark::before{background:radial-gradient(ellipse 50% 50% at 50% 50%, rgba(19,34,56,.6) 0%, rgba(19,34,56,.45) 36%, rgba(19,34,56,.22) 62%, rgba(19,34,56,.06) 84%, rgba(19,34,56,0) 100%)}
+  .chapters .ch{color:var(--slate-now)} .chapters .ch.on,.chapters .ch:hover,.chapters .ch.done{color:var(--ink-now)} .chapters.dark .base{stroke:rgba(247,248,245,.35)} .chapters.dark .fx circle.o,.chapters.dark .fx path{stroke:rgba(247,248,245,.5)} .chapters.dark .fx circle.i{fill:rgba(247,248,245,.6)} .chapters.dark::before{background:radial-gradient(ellipse 50% 50% at 50% 50%, rgba(19,34,56,.5) 0%, rgba(19,34,56,.3) 45%, rgba(19,34,56,0) 100%)}
+  .chapters::before{transition:background .8s linear}
   .mark{width:88px;height:88px;border:1px solid rgba(19,34,56,.28);border-radius:50%;display:grid;place-items:center;margin-bottom:36px;background:rgba(247,248,245,.35)}
   .mark svg{width:52px;height:52px;display:block}
   .mark svg path{fill:none;stroke:var(--cobalt);stroke-width:34;stroke-linejoin:round;stroke-linecap:round;stroke-dasharray:3200;stroke-dashoffset:3200}
@@ -343,7 +356,7 @@
   <div class="cue" id="cue" aria-hidden="true"><span>Scroll down</span><div class="ring"><svg viewBox="0 0 14 26"><path d="M2 2l5 5 5-5"/><path d="M2 10l5 5 5-5"/><path d="M2 18l5 5 5-5"/></svg></div></div>
   <div class="curtain"></div>
   <div class="frame"><a class="brand" href="#top" data-go="0" aria-label="Alpine, back to the start" style="grid-column:1 / -1"><svg class="mk" viewBox="0 0 1024 1024"><path d="M80 690C275 616 490 560 690 486C785 451 836 415 871 373C904 333 930 280 946 194C909 201 876 220 854 251C827 287 809 332 781 363C739 411 678 440 603 465C418 526 226 595 80 690Z"/></svg><span class="wm">Alpine</span></a><div class="words in hero-words" style="grid-column:7 / span 6">
-    <div class="plate-text"></div>
+    <div class="plate-text"></div><div class="plate-dark"></div>
     <h1><span class="l1"><span class="w" style="--d:0.50s">Built</span> <span class="w" style="--d:0.59s">to</span> <span class="w" style="--d:0.68s">a</span> <span class="w" style="--d:0.77s">flight</span> <span class="w" style="--d:0.86s">plan.</span></span><span class="rule" aria-hidden="true"></span><span class="l2"><span class="w" style="--d:1.10s">Flown</span> <span class="w" style="--d:1.19s">by</span> <span class="w" style="--d:1.28s">your</span> <span class="w" style="--d:1.37s">own</span> <span class="w" style="--d:1.46s">crew.</span></span></h1>
     <p>Get your week back. Spend it in the room where the deal is decided, or with the client you have not met yet. Then go home in time and be there, with your family and not with the desk: the month done, and no night spent lying awake over what still waits. We build so your week is yours again. For the business first. Then for everything the business is for.</p>
   </div></div>
@@ -359,7 +372,7 @@
   <div class="plates"><img class="plate c" src="assets/scene/plates/mist-c.png" alt=""></div>
     <div class="wash"></div>
   <div class="frame"><div class="words" style="grid-column:7 / span 6">
-    <div class="plate-text"></div>
+    <div class="plate-text"></div><div class="plate-dark"></div>
     <span class="label">The work</span>
     <h2>The work your team rebuilds by hand, again and again, while the important things wait.</h2>
     <p>Put afterburners on your team for the recurring work that drains their focus from the important things. The route is planned. Step by step, your people make the decisions and the adjustments, the heavy work is carried for them, and every step begins from what they corrected in the one before.</p>
@@ -383,7 +396,7 @@
   </div></div>
   <div class="wash"></div>
   <div class="frame"><div class="words">
-    <div class="plate-text"></div>
+    <div class="plate-text"></div><div class="plate-dark"></div>
     <span class="label">The crew</span>
     <h2>We are with you at each step, and whatever comes up is ours to carry with you, so it stays easy on your side.</h2>
   </div></div>
@@ -406,7 +419,7 @@
   </div></div>
   <div class="wash"></div>
   <div class="frame" style="align-content:start;padding-top:9vh"><div class="words" style="grid-column:3 / span 5">
-    <div class="plate-text"></div>
+    <div class="plate-text"></div><div class="plate-dark"></div>
     <span class="label">The roots</span>
     <h2>Every correction your people make is kept, so nothing is corrected twice.</h2>
   </div></div>
@@ -422,7 +435,7 @@
   <div class="plates"><img class="plate a" src="assets/scene/plates/mist-a.png" alt="" style="opacity:.7"></div>
   <div class="wash"></div>
   <div class="frame" style="align-content:start;padding-top:8vh"><div class="words case" style="grid-column:3 / span 5">
-    <div class="plate-text"></div>
+    <div class="plate-text"></div><div class="plate-dark"></div>
     <span class="label">The record</span>
     <h2>A PR campaign, thirty days, up to a hundred creators, and every story caught the day it appeared.</h2>
     <p>Before, one person spent part of every day of the campaign walking two feeds for up to a hundred creators, copying what she found into Excel, keeping the formulas straight, and losing every story that expired before she got to it. Stories vanish after a day, so a day missed is gone for good.</p>
@@ -442,7 +455,7 @@
   <div class="plates"><img class="plate c" src="assets/scene/plates/mist-c.png" alt="" style="opacity:.45"></div>
   <div class="wash"></div>
   <div class="frame"><div class="words" style="grid-column:7 / span 6">
-    <div class="plate-text"></div>
+    <div class="plate-text"></div><div class="plate-dark"></div>
     <span class="label">The hangar</span>
     <h2>The same discipline that keeps the software people depend on running, brought to the repetitive work nobody on your team wants and everybody ends up doing.</h2>
     <p>Made for teams who want the recurring work done properly, and want to stay in charge of it.</p>
@@ -469,7 +482,7 @@
   </div></div>
   <div class="wash"></div>
   <div class="frame"><div class="words">
-    <div class="plate-text"></div>
+    <div class="plate-text"></div><div class="plate-dark"></div>
     <span class="label">The logbook</span>
     <p class="logline">Every crew we fly with writes here, in their own name, once the work holds. We read each entry before it goes on the page. Yours is welcome.</p>
     <div class="entries" id="entries" hidden></div>
@@ -493,7 +506,7 @@
   </div></div>
   <div class="wash"></div>
   <div class="frame"><div class="words">
-    <div class="plate-text"></div>
+    <div class="plate-text"></div><div class="plate-dark"></div>
         <span class="label">The offer</span>
     <div class="seats" aria-label="Five free seats, the first taken"><i class="taken"></i><i></i><i></i><i></i><i></i></div>
     <p class="offer">Five seats are free, and the first is already taken. When they are gone, it is never free again, and never this low again.</p>
@@ -622,6 +635,7 @@
     document.getElementById('cue').classList.toggle('gone', window.scrollY > 40);
     { const pt = rbase.getPointAtLength(flownProgress * rlen); rflown.style.strokeDashoffset = String(rlen * (1 - flownProgress)); rplane.setAttribute('transform', `translate(${pt.x} ${pt.y})`); }
     const y = window.scrollY; let active = 0; for (let i = 0; i < state.length; i++) { if (y >= pins[i].offsetTop) active = i; }
+    window.__active = active;
     if (window.innerWidth < 900) { document.getElementById('cue').classList.toggle('gone', y > 40); return; }
     for (let i = 0; i < state.length; i++) {
       const st = state[i]; const top = pins[i].offsetTop, len = lenOf(i);
@@ -687,6 +701,21 @@
   const ASK_ENTRY = 'entry.1539001210'; // the Google Form's long-answer question «The work you have in mind»
   // the form: the Google Form the old site used, the message travels through the visitor's own mail client
   document.getElementById('askForm').addEventListener('submit', e => { e.preventDefault(); const em = document.getElementById('email').value.trim(); const w = document.getElementById('message').value.trim(); if (!em) { document.getElementById('email').focus(); return; } const fd = new FormData(); fd.append('entry.600134808', em); if (ASK_ENTRY) fd.append(ASK_ENTRY, w); fetch('https://docs.google.com/forms/d/1q1LdzFb02sDaaurpRny9pVWQgsXsmOHnMv9qeP5MjcA/formResponse', { method: 'POST', mode: 'no-cors', body: fd }).catch(() => {}); document.getElementById('doorForm').classList.add('done'); });
+  // the text reads the frame under it: a small canvas holds the visible crop of the live frame; each block's region is averaged; dark means mist text on a dark scrim
+  if (window.innerWidth >= 900 && !reduced) {
+    const cv = document.createElement('canvas'); cv.width = 96; cv.height = 54; const g = cv.getContext('2d', { willReadFrequently: true });
+    const judge = (el, L) => { if (!el) return; const dark = el.classList.contains('dark'); if (!dark && L < 0.56) el.classList.add('dark'); else if (dark && L > 0.64) el.classList.remove('dark'); };
+    const region = (box, frame) => { const x0 = Math.max(0, Math.floor((box.left - frame.left) / frame.width * cv.width)), y0 = Math.max(0, Math.floor((box.top - frame.top) / frame.height * cv.height)); const x1 = Math.min(cv.width, Math.ceil((box.right - frame.left) / frame.width * cv.width)), y1 = Math.min(cv.height, Math.ceil((box.bottom - frame.top) / frame.height * cv.height)); if (x1 <= x0 || y1 <= y0) return null; const d = g.getImageData(x0, y0, x1 - x0, y1 - y0).data; let sum = 0; for (let i = 0; i < d.length; i += 4) sum += 0.2126 * d[i] + 0.7152 * d[i + 1] + 0.0722 * d[i + 2]; return sum / (d.length / 4) / 255; };
+    setInterval(() => {
+      const st = state[window.__active || 0]; if (!st) return;
+      const src = (st.idle && st.idle.readyState >= 2) ? st.idle : (st.v && st.v.readyState >= 2 ? st.v : st.still); if (!src) return;
+      const sw = src.videoWidth || src.naturalWidth, sh = src.videoHeight || src.naturalHeight; if (!sw || !sh) return;
+      const frame = st.stage.getBoundingClientRect(); const scale = Math.max(frame.width / sw, frame.height / sh); const vw = frame.width / scale, vh2 = frame.height / scale; const ox = (sw - vw) * 0.5, oy = (sh - vh2) * 0.45;
+      try { g.drawImage(src, ox, oy, vw, vh2, 0, 0, cv.width, cv.height); } catch (e) { return; }
+      const pad = 24; const grow = b => ({ left: b.left - pad, top: b.top - pad, right: b.right + pad, bottom: b.bottom + pad });
+      [st.words, st.pin.querySelector('.placards'), chapters.classList.contains('show') ? chapters : null].forEach(el => { if (!el) return; const L = region(grow(el.getBoundingClientRect()), frame); if (L !== null) judge(el, L); });
+    }, 250);
+  }
   window.__update = update;
   window.addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(update); }, { passive: true });
   window.addEventListener('resize', update);
