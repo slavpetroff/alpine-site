@@ -515,12 +515,20 @@
   <div class="end"><span>Alpine LTD</span><span>2024</span><a class="up" href="#top" data-go="0">Back to the top<i></i></a></div>
 </footer>
 
+<script src="assets/scene/lenis.min.js"></script>
 <script>
 (() => {
   const q = new URLSearchParams(location.search); if (q.get('layers')) document.body.dataset.layers = q.get('layers');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduced) document.body.classList.add('reduced');
   const phone = window.innerWidth < 900; const hd = window.innerWidth >= 1600; if (phone) document.body.classList.add('flat');
+  // the scroll carries weight: an eased scroll on the wheel, inertia after a touch; the page still scrolls the window, so everything below reads scrollY as before
+  let lenis = null;
+  if (window.Lenis && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const touch = window.innerWidth < 900;
+    lenis = new Lenis(touch ? { syncTouch: true, touchMultiplier: 1.25, touchInertiaExponent: 1.6, lerp: 0.11, autoRaf: true } : { lerp: 0.085, wheelMultiplier: 1, smoothWheel: true, syncTouch: false, autoRaf: true });
+    window.lenis = lenis;
+  }
   if (window.innerWidth < 900) { ['doorForm', 'logForm'].forEach(id => { const f = document.getElementById(id); const w = f && f.closest('.stage').querySelector('.words'); if (f && w) w.appendChild(f); }); const pl = document.querySelector('.placards'); if (pl) pl.closest('.stage').querySelector('.words').appendChild(pl); }
   const pins = [...document.querySelectorAll('.pin')]; const last = pins.length - 1;
   const lens = pins.map(p => Number(p.dataset.len || 100)); pins.forEach((p, k) => { p.style.height = (lens[k] + (k === last ? 100 : 0)) + 'svh'; });
@@ -652,6 +660,7 @@
   // fast travel: one flight from here to there, the chapters between pass quickly
   const travelTo = i => {
     const target = i === 0 ? 0 : (window.innerWidth < 900 ? pins[i].offsetTop : pins[i].offsetTop + lenOf(i) * 0.42);
+    if (lenis) { const d = Math.abs(target - window.scrollY); lenis.scrollTo(target, { duration: Math.min(2.4, Math.max(1.1, d / 1300)), easing: x => 1 - Math.pow(1 - x, 3) }); return; }
     const from = window.scrollY, dist = target - from, dur = Math.min(2200, Math.max(900, Math.abs(dist) / 4.5)); const t0 = performance.now();
     const ease = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
     const step = now => { const k = Math.min(1, (now - t0) / dur); window.scrollTo(0, from + dist * ease(k)); if (k < 1) requestAnimationFrame(step); };
