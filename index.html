@@ -283,6 +283,29 @@
     .track{left:0;top:14vh;transform:none;flex-direction:column;gap:10px;padding:0 clamp(24px,5vw,72px)} .card.obj.in,.card.obj.in.mid{transform:none;opacity:1} .card{flex-basis:auto;padding:16px 18px 14px} .card b{margin-bottom:8px;padding-bottom:6px} .card span{font-size:14px;line-height:1.45} .pager{display:none}
     h2{max-width:100%}
   }
+  /* the phone page: chapters flow with the thumb; nothing is pinned */
+  @media (max-width:900px){
+    .pin{height:auto !important;pointer-events:auto}
+    .stage{position:relative !important;top:auto;left:auto;bottom:auto;height:auto;min-height:100svh;visibility:visible;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;z-index:auto}
+    .stage.parked{position:relative !important}
+    .stage::before{content:"";position:absolute;left:0;right:0;top:0;height:18%;background:linear-gradient(to bottom,var(--mist),rgba(247,248,245,0));z-index:2;pointer-events:none}
+    .stage .fade{height:26%}
+    .stage .wash,.stage .curtain{display:none !important}
+    .frame{position:relative;inset:auto;display:block;padding:22vh clamp(20px,5vw,72px) 8vh;order:1;pointer-events:auto;background:linear-gradient(to bottom,rgba(247,248,245,0) 0%,rgba(247,248,245,.86) 16vh,rgba(247,248,245,.94) 100%);z-index:3}
+    .objects{position:relative;inset:auto;order:2;pointer-events:auto;padding:0 clamp(20px,5vw,72px) 10vh;background:rgba(247,248,245,.94);z-index:3}
+    .plate-text{display:none}
+    .stage{min-height:0} .stage img.still{position:absolute;inset:0;height:100%} .stage .fade{display:none}
+    .frame::before{content:"";display:block;height:34vh;margin-top:-22vh}
+    .objects:empty{display:none}
+    .track{position:static;transform:none !important;padding:0}
+    .words > *,.obj,.card,.card.obj.in,.placard{opacity:1 !important;filter:none !important;transform:none !important;transition:none !important}
+    .words h2{clip-path:none !important} .label::after,.strip::after,.placard b::after{transform:scaleX(1) !important}
+    .hero-words .w{opacity:1 !important;filter:none !important;transform:none !important} .hero-words p{opacity:1 !important;transform:none !important} h1 .rule{transform:scaleX(1) !important}
+    .words .price{margin:8px 0 26px} .frame .words .price+h1{margin:0 0 12px} .offer{margin:0 0 14px}
+    .words .door-form,.words .log-form{margin-top:28px}
+    .cue{display:none}
+    .brand{top:18px}
+  }
   @media (prefers-reduced-motion:reduce){
     .cur{display:none} body{cursor:auto}
     .stage video{display:none !important} .stage img.still{display:block !important} .plate{animation:none}
@@ -583,6 +606,7 @@
     document.getElementById('cue').classList.toggle('gone', window.scrollY > 40);
     { const pt = rbase.getPointAtLength(flownProgress * rlen); rflown.style.strokeDashoffset = String(rlen * (1 - flownProgress)); rplane.setAttribute('transform', `translate(${pt.x} ${pt.y})`); }
     const y = window.scrollY; let active = 0; for (let i = 0; i < state.length; i++) { if (y >= pins[i].offsetTop) active = i; }
+    if (window.innerWidth < 900) { document.getElementById('cue').classList.toggle('gone', y > 40); return; }
     for (let i = 0; i < state.length; i++) {
       const st = state[i]; const top = pins[i].offsetTop, len = lenOf(i);
       const t = Math.min(1, Math.max(0, (y - top) / len));
@@ -627,7 +651,7 @@
   };
   // fast travel: one flight from here to there, the chapters between pass quickly
   const travelTo = i => {
-    const target = i === 0 ? 0 : pins[i].offsetTop + lenOf(i) * 0.42;
+    const target = i === 0 ? 0 : (window.innerWidth < 900 ? pins[i].offsetTop : pins[i].offsetTop + lenOf(i) * 0.42);
     const from = window.scrollY, dist = target - from, dur = Math.min(2200, Math.max(900, Math.abs(dist) / 4.5)); const t0 = performance.now();
     const ease = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
     const step = now => { const k = Math.min(1, (now - t0) / dur); window.scrollTo(0, from + dist * ease(k)); if (k < 1) requestAnimationFrame(step); };
