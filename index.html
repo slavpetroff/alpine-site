@@ -1,760 +1,640 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Alpine — Agents, built light</title>
-<meta name="description" content="We build working AI agents for engineering teams: weeks not months, a fraction of the conventional bill, on any vendor, no lock-in. The Test Flight runs your agent on your own workflow before any payment. Build logs public, losses included.">
+<title>Alpine</title>
+<meta name="description" content="Put afterburners on your team for the recurring work that drains their focus from the important things.">
+<link rel="icon" type="image/svg+xml" href="assets/scene/mark.svg">
 <link rel="canonical" href="https://alpine-engineering.eu/">
-<link rel="icon" type="image/png" href="assets/alpine-mark-dark.png">
+<meta name="theme-color" content="#F7F8F5">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Alpine — Agents, built light">
-<meta property="og:description" content="Your codebase, your architecture decisions, your review standards — in your repos, on any vendor. For EU SaaS engineering teams. Measured, receipts in public git, losses included.">
-<meta property="og:image" content="https://alpine-engineering.eu/assets/og-banner-v2.png">
+<meta property="og:site_name" content="Alpine">
+<meta property="og:title" content="Alpine">
+<meta property="og:description" content="Put afterburners on your team for the recurring work that drains their focus from the important things. The route is planned. Step by step, your people make the decisions and the adjustments, the heavy work is carried for them, and every step begins from what they corrected in the one before.">
 <meta property="og:url" content="https://alpine-engineering.eu/">
+<meta property="og:image" content="https://alpine-engineering.eu/assets/scene/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Alpine">
+<meta name="twitter:description" content="Put afterburners on your team for the recurring work that drains their focus from the important things. The route is planned. Step by step, your people make the decisions and the adjustments, the heavy work is carried for them, and every step begins from what they corrected in the one before.">
+<meta name="twitter:image" content="https://alpine-engineering.eu/assets/scene/og.jpg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"Organization","@id":"https://alpine-engineering.eu/#org","name":"Alpine LTD","alternateName":"Alpine","url":"https://alpine-engineering.eu/","logo":{"@type":"ImageObject","url":"https://alpine-engineering.eu/assets/scene/mark.svg"},"email":"contact@alpine-engineering.eu","foundingDate":"2024","address":{"@type":"PostalAddress","addressCountry":"BG"},"sameAs":["https://www.linkedin.com/company/alpine-engineering-bg"]},
+{"@type":"WebSite","@id":"https://alpine-engineering.eu/#site","url":"https://alpine-engineering.eu/","name":"Alpine","publisher":{"@id":"https://alpine-engineering.eu/#org"},"inLanguage":"en"},
+{"@type":"WebPage","@id":"https://alpine-engineering.eu/#page","url":"https://alpine-engineering.eu/","name":"Alpine","description":"Put afterburners on your team for the recurring work that drains their focus from the important things. The route is planned. Step by step, your people make the decisions and the adjustments, the heavy work is carried for them, and every step begins from what they corrected in the one before.","isPartOf":{"@id":"https://alpine-engineering.eu/#site"},"about":{"@id":"https://alpine-engineering.eu/#org"},"primaryImageOfPage":{"@type":"ImageObject","url":"https://alpine-engineering.eu/assets/scene/og.jpg"},"dateModified":"2026-09-11","inLanguage":"en"},
+{"@type":"VideoObject","name":"Built to a flight plan. Flown by your own crew.","description":"The opening film of the Alpine site: an alpine range in mist.","thumbnailUrl":"https://alpine-engineering.eu/assets/scene/posters/hero-2.jpg","contentUrl":"https://alpine-engineering.eu/assets/scene/1080/hero-2.mp4","uploadDate":"2026-09-11","duration":"PT20S","publisher":{"@id":"https://alpine-engineering.eu/#org"}},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How quickly can we deliver?","acceptedAnswer":{"@type":"Answer","text":"Within days. We need the information, not the access: tell us what the work is and how it should be done, and it comes to you ready to run."}},
+{"@type":"Question","name":"What does your team have to learn?","acceptedAnswer":{"@type":"Answer","text":"Nothing. It runs where your team already works, on your own case from the first day, and the people who know the work do what they already do: look, correct, and move it on. If there is nothing in place yet, we bring the place with us."}},
+{"@type":"Question","name":"How sure can you be?","acceptedAnswer":{"@type":"Answer","text":"You see it run on your own case before anything else. Every run leaves a record your people can read. And it is not finished until it holds on your real work, whatever that takes on our side."}}]}
+]}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap">
 <style>
-:root{
---frame:#02100A;               /* outer deep green-black frame */
---heroA:#03140C;--heroB:#0A5B34;--heroC:#12A15B;
---ink:#17181C;--inkdim:#667085;--hair:#E4E7EC;--hair2:#D0D5DD;
---body:#F6F7F9;--card:#FFFFFF;
---shadow:0 1px 2px rgba(16,24,40,.04),0 4px 12px rgba(16,24,40,.06);
---shadow2:0 4px 20px rgba(16,24,40,.10);
---green:#12A15B;--green2:#2FD575;--red:#D96C50;
---txtl:#F2F6F3;--dimL:#9fb3a8;
---mono:"JetBrains Mono",Menlo,monospace;
---disp:"Inter","Helvetica Neue",Arial,sans-serif}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
-body{background:var(--frame);font-family:var(--disp);font-weight:400;color:var(--ink);padding:14px;font-variant-numeric:tabular-nums}
-.canvas{border-radius:22px;overflow:clip;background:var(--body);position:relative}
-.wrap{max-width:1240px;margin:0 auto;padding:0 40px}
-@media(max-width:700px){body{padding:8px}.wrap{padding:0 22px}}
-h1,h2,h3{letter-spacing:-.025em}
-a{color:var(--green);text-decoration:none}a:hover{text-decoration:underline}
-.mono{font-family:var(--mono)}
-.arrowlnk{font-weight:700;color:var(--ink);font-size:16px;display:inline-flex;gap:8px;align-items:center}
-.arrowlnk:hover{text-decoration:none;color:var(--green)}
-.arrowlnk::after{content:"→";transition:transform .3s}
-.arrowlnk:hover::after{transform:translateX(4px)}
-/* two-tone section title, template grammar */
-.big{font-weight:700;font-size:clamp(34px,4.6vw,58px);line-height:1.08}
-.big .a{color:#2A2E35}
-.big .b{display:block;background:linear-gradient(92deg,#0F8C4F, #2FD575 70%);-webkit-background-clip:text;background-clip:text;color:transparent}
-.subline{color:var(--inkdim);font-size:17px;margin-top:22px;max-width:620px}
-.pad{padding:150px 0 110px}
+  :root{
+    --mist:#F7F8F5; --mist-cool:#E8F0F4; --cobalt:#2457FF; --ink:#132238; --slate:#5B6A7F; --hairline:#E2E8F0; --paper:#FBFBF8;
+    --font:"Figtree","Avenir Next","Helvetica Neue",Helvetica,Arial,sans-serif;
+    --ease:cubic-bezier(.32,.94,.6,1);
+  }
+  html,body{margin:0;background:var(--mist);color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased}
+  body[data-layers="1"] .plates,body[data-layers="1"] .objects,body[data-layers="1"] .rail,body[data-layers="1"] .grain{display:none}
+  body[data-layers="2"] .plates,body[data-layers="2"] .rail,body[data-layers="2"] .grain{display:none}
+  body[data-layers="3"] .rail{display:none}
 
-/* ================= NAV ================= */
-.nav{position:absolute;top:0;left:0;right:0;z-index:40;display:flex;align-items:center;gap:34px;
-padding:20px 40px;color:var(--txtl)}
-.nav .logo{font-weight:900;font-size:19px;color:#fff}
-.nav .logo i{color:var(--green2);font-style:normal}
-.nav .links{display:flex;gap:26px;margin-left:14px}
-.nav .links a{color:rgba(242,246,243,.75);font-size:14.5px;font-weight:700}
-.nav .links a:hover{color:#fff;text-decoration:none}
-.nav .right{margin-left:auto;display:flex;gap:10px;align-items:center}
-.nav .ghost{color:#fff;font-size:14.5px;font-weight:700;padding:10px 16px}
-.nav .solid{background:#fff;color:#07130C;font-weight:700;font-size:14.5px;padding:11px 18px;border-radius:10px}
-.nav .solid:hover{text-decoration:none;filter:brightness(.92)}
-@media(max-width:820px){.nav .links{display:none}}
+  /* layer 1: the film */
+  .pin{position:relative}
+  .stage{position:fixed;top:0;left:0;width:100%;height:100svh;overflow:hidden;background:var(--mist);visibility:hidden}
+  .stage.live{visibility:visible}
+  .stage.parked{position:absolute;top:auto;bottom:0}
+  .stage video,.stage img.still{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 45%;z-index:1}
+  .stage img.still{z-index:0}
+  .stage video{opacity:0}
+  .stage video.on{opacity:1}
+  .stage .fade{position:absolute;left:0;right:0;bottom:0;height:30%;background:linear-gradient(to bottom, rgba(247,248,245,0) 0%, rgba(247,248,245,.85) 70%, var(--mist) 100%);pointer-events:none;z-index:2}
+  .stage .wash{position:absolute;inset:0;background:var(--mist);opacity:1;pointer-events:none;z-index:6}
 
-/* ================= HERO (dissolves into light) ================= */
-.hero{position:relative;color:var(--txtl);
-background:
- radial-gradient(1200px 720px at 72% 12%,rgba(47,213,117,.32),transparent 60%),
- radial-gradient(900px 620px at 30% -10%,rgba(18,161,91,.5),transparent 65%),
- linear-gradient(178deg,#03140C 0%,#07331E 38%,#12854E 66%,#BFE7D2 90%,var(--body) 100%)}
-.hero-inner{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:center;
-padding:150px 0 250px;min-height:auto}
-.hpill{display:inline-flex;gap:9px;align-items:center;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
-color:rgba(242,246,243,.85);border:1px solid rgba(242,246,243,.25);border-radius:6px;padding:6px 11px;margin-right:8px;margin-bottom:26px}
-.hpill .dot{width:6px;height:6px;border-radius:50%;background:var(--green2);box-shadow:0 0 8px var(--green2)}
-.hero h1{font-weight:700;font-size:clamp(40px,4.8vw,68px);line-height:1.05;color:#fff;max-width:640px}
-.hero h1 .soft{color:rgba(242,246,243,.55)}
-.hero .sub{margin:26px 0 32px;font-size:17.5px;max-width:520px;color:rgba(242,246,243,.85)}
-.hero .cta{display:inline-flex;align-items:center;gap:10px;background:#fff;color:#07130C;font-weight:700;font-size:16px;
-padding:15px 26px;border-radius:12px;transition:transform .3s}
-.hero .cta:hover{text-decoration:none;transform:translateY(-2px)}
-.hero .cta2{display:inline-flex;margin-left:14px;color:#fff;font-weight:700;font-size:16px;padding:15px 10px}
-.hero .cta2:hover{text-decoration:none;opacity:.85}
-/* platform graphic */
-.platform{position:relative;height:560px;pointer-events:none}
-.platform svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
-.chip{position:absolute;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
-color:#EAFBF1;border:1px solid rgba(234,251,241,.35);background:rgba(4,26,15,.55);backdrop-filter:blur(4px);border-radius:6px;padding:5px 10px}
-@media(max-width:940px){.hero-inner{grid-template-columns:1fr}.platform{height:380px}}
-.hterm{background:#0B1220;border-radius:18px;box-shadow:var(--shadow);padding:24px 26px;max-width:540px;margin-left:auto}
-.hterm .htop{display:flex;gap:7px;align-items:center;margin-bottom:14px}
-.hterm .htop span{width:10px;height:10px;border-radius:50%;background:#2A3446}
-.hterm .htop em{margin-left:10px;font-style:normal;font-size:12px;color:#8A94A6;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
-.hterm pre{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13.5px;line-height:2;color:#C7CDD5;white-space:pre-wrap}
-.hterm pre b{color:#8CF3B0;font-weight:600}
-.hterm pre .red{color:#FF8F73;font-style:normal;font-weight:600}
-.hterm .htlink{display:inline-block;margin-top:12px;font-size:13px;color:#8CF3B0;text-decoration:none;font-weight:600}
-/* trust = floating KPI cards over the hero fade */
-.trust{padding:0 0 70px;margin-top:-140px;position:relative;z-index:5}
-.trust .row{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.kpi{background:#fff;border-radius:16px;box-shadow:var(--shadow2);padding:22px 24px 20px}
-.kpi .kl{font-size:13px;font-weight:600;color:var(--inkdim)}
-.kpi .kn{font-weight:650;font-size:34px;letter-spacing:-.015em;color:var(--ink);margin:8px 0 12px;font-variant-numeric:tabular-nums}
-.kpi.red .kn{color:#B42318}
-.kpi .mini{margin:2px 0 10px}
-.kpi .mrow{display:flex;align-items:center;gap:8px;margin:5px 0}
-.kpi .ml{font-size:11px;color:#98A2B3;min-width:44px;font-weight:600}
-.kpi .mt{flex:1;height:7px;border-radius:999px;background:#EDF0F4;overflow:hidden}
-.kpi .mf{height:100%;border-radius:999px;background:#C6CDD6}
-.kpi .mf.g{background:linear-gradient(90deg,#12A15B,#2FD575)}
-.kpi .mf.r{background:linear-gradient(90deg,#E8AC9C,#D96C50)}
-.kpi .dots{display:flex;gap:5px}
-.kpi .dots i{width:13px;height:13px;border-radius:4px;background:#E8F5EE;border:1px solid rgba(18,161,91,.4)}
-.kpi .dots i.on{background:#12A15B;border-color:#12A15B}
-.kpi .dots i.miss{background:#FCEBE8;border-color:rgba(180,35,24,.4)}
-.kpi .kc{font-size:12px;color:var(--inkdim);line-height:1.5}
-.trust .under{display:block;text-align:center;margin-top:22px;font-size:13px;font-weight:600;color:var(--inkdim)}
-.trust .under a{font-weight:700}
-@media(max-width:940px){.trust{margin-top:-90px}.trust .row{grid-template-columns:1fr 1fr}}
-@media(max-width:560px){.trust .row{grid-template-columns:1fr}}
+  /* layer 3: the atmosphere (mist plates drift in front of the film, behind the words) */
+  .plates{position:absolute;inset:0;z-index:3;pointer-events:none;overflow:hidden}
+  .stage::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:radial-gradient(ellipse 80% 70% at 50% 45%, rgba(19,34,56,0) 55%, rgba(19,34,56,.10) 100%)}
+  .plate{position:absolute;left:-12%;width:124%;height:auto;opacity:.9}
+  .plate.a{bottom:-6%;animation:driftA 70s linear infinite alternate}
+  .plate.c{bottom:18%;opacity:.55;animation:driftC 95s linear infinite alternate}
+  @keyframes driftA{from{transform:translate3d(-3%,0,0)}to{transform:translate3d(3%,0,0)}}
+  @keyframes driftC{from{transform:translate3d(2%,0,0)}to{transform:translate3d(-2%,0,0)}}
+  @media (pointer:fine){ .cur{position:fixed;left:0;top:0;width:36px;height:36px;margin:-18px 0 0 -18px;border:1px solid rgba(19,34,56,.4);border-radius:50%;z-index:60;pointer-events:none;will-change:transform} .cur::before{content:"";position:absolute;inset:-1px;border:1px solid rgba(36,87,255,.6);border-radius:50%;opacity:0;transform:scale(1);transition:opacity .3s linear,transform .3s var(--ease)} .cur.hot::before{opacity:1;transform:scale(1.56)} .cur.hot{border-color:transparent;transition:border-color .3s linear} .cur i{display:none} a,button,.ch,.strip,.card{cursor:pointer} }
+  @media (pointer:coarse){ .cur{display:none} }
+  .strip:hover::before{transform:scale(1.25)}
+  .grain{position:fixed;inset:0;z-index:40;pointer-events:none;opacity:.035;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>")}
 
-/* differentiated value (so-what cards) */
-.vals{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:56px}
-.vcard{background:#fff;border-radius:16px;box-shadow:var(--shadow);padding:28px 28px 26px}
-.vcard.lead{grid-column:1/-1;display:grid;grid-template-columns:1fr auto 1.2fr;gap:26px;align-items:center;box-shadow:var(--shadow2)}
-.vfeat{font-size:14.5px;color:var(--inkdim);line-height:1.6}
-.sowhat{color:#0E7A45;font-size:20px;line-height:1;margin:12px 0 10px;font-weight:700}
-.sowhat::after{content:"↳"}
-.vcard.lead .sowhat{margin:0}
-.vroot{font-size:17px;font-weight:700;color:var(--ink);line-height:1.45;letter-spacing:-.01em}
-.vcard.lead .vroot{font-size:19px}
-.scenehead{font-size:17px;font-weight:700;color:var(--ink);margin-top:72px;letter-spacing:-.01em}
-.vproof{display:inline-block;font-size:12.5px;font-weight:700;margin-top:12px}
-@media(max-width:940px){.vals{grid-template-columns:1fr}.vcard.lead{grid-template-columns:1fr;gap:10px}}
-/* pain grid + light receipt */
-.paingrid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:start;margin-top:44px}
-.paingrid p{font-size:16px;color:var(--inkdim);line-height:1.7;max-width:560px}
-.paingrid p b{color:var(--ink)}
-.lreceipt{background:#fff;border-radius:16px;box-shadow:var(--shadow2);padding:26px 28px 20px}
-.lrhead{display:flex;justify-content:space-between;gap:10px;font-size:12px;font-weight:600;color:#98A2B3;border-bottom:1px dashed var(--hair2);padding-bottom:12px;margin-bottom:8px}
-.lrow{display:flex;justify-content:space-between;gap:14px;padding:9px 0;font-size:14.5px;color:var(--inkdim)}
-.lrow b{color:var(--ink);font-weight:650;font-variant-numeric:tabular-nums}
-.ltot{border-top:1px dashed var(--hair2);margin-top:6px;padding-top:13px}
-.ltot b{color:#B42318;font-size:19px}
-.lrlink{display:block;text-align:right;font-size:13px;margin-top:12px;font-weight:700}
-@media(max-width:900px){.paingrid{grid-template-columns:1fr;gap:28px}}
-/* ================= FEATURE BAND (thin dividers) ================= */
-.band{border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);background:linear-gradient(180deg,#F3F5F8,#EDF0F4)}
-.bgrid{display:grid;grid-template-columns:repeat(3,1fr)}
-.bcol{padding:44px 34px 48px;position:relative}
-.bcol+.bcol{border-left:1px solid var(--hair)}
-.bcol .tag{font-size:13px;font-weight:600;color:var(--inkdim)}
-.bcol .tag.tg{color:#0E7A45}
-.bcol .art{height:230px;display:flex;align-items:center;justify-content:center;margin:8px 0 6px}
-.bcol .art svg{width:200px;height:200px;overflow:visible}
-.bcol h3{font-size:17.5px;font-weight:700;color:var(--ink);margin-bottom:9px}
-.bcol p{font-size:14px;color:var(--inkdim);line-height:1.6}
-@media(max-width:940px){.bgrid{grid-template-columns:1fr 1fr}.bcol:nth-child(3){border-left:none}.bcol:nth-child(n+3){border-top:1px solid var(--hair)}}
-@media(max-width:560px){.bgrid{grid-template-columns:1fr}.bcol+.bcol{border-left:none;border-top:1px solid var(--hair)}}
-.iso-line{fill:none;stroke:#9AA6B4;stroke-width:1.4}
-.iso-hot{fill:rgba(18,161,91,.1);stroke:var(--green)}
-.iso-dot{fill:var(--green)}
-.iso-soft{fill:rgba(255,255,255,.7);stroke:#B9C3CF;stroke-width:1.4}
+  /* layer 4: the flight route (fixed, left): six fixes on a bending line, drawn in cobalt as far as you have flown */
+  .chapters{position:fixed;left:clamp(16px,3vw,44px);top:50%;transform:translateY(-50%);height:min(72vh,720px);width:220px;z-index:30;pointer-events:none;opacity:0;transition:opacity .6s linear}
+  .chapters.show{opacity:1}
+  .chapters::before{content:"";position:absolute;inset:-80px -40px -80px -60px;background:radial-gradient(ellipse 50% 50% at 50% 50%, rgba(247,248,245,.7) 0%, rgba(247,248,245,.45) 45%, rgba(247,248,245,0) 100%);z-index:-1}
+  .chapters svg{position:absolute;left:0;top:0;width:120px;height:100%;overflow:visible}
+  .chapters .base{fill:none;stroke:rgba(19,34,56,.28);stroke-width:1}
+  .chapters .flown{fill:none;stroke:var(--cobalt);stroke-width:1.5;stroke-linecap:round}
+  .chapters .fx{transition:opacity .4s linear}
+  .chapters .fx circle.o{fill:none;stroke:var(--hairline);stroke-width:1} .chapters .fx circle.i{fill:var(--hairline)} .chapters .fx path{stroke:var(--hairline);stroke-width:1;stroke-linecap:round}
+  .chapters .fx.done circle.o,.chapters .fx.done path{stroke:var(--cobalt);opacity:.7} .chapters .fx.done circle.i{fill:var(--cobalt)}
+  .chapters .plane{fill:var(--cobalt)}
+  .chapters .plane circle.halo{fill:none;stroke:var(--cobalt);stroke-width:1;opacity:.45}
+  .ch{position:absolute;left:0;top:0;transform:translateY(-50%);padding:6px 0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--slate);transition:color .4s linear;white-space:nowrap;height:auto;display:block;pointer-events:auto;cursor:pointer;border:0}
+  .ch.on,.ch:hover{color:var(--ink)} .ch.done{color:var(--ink);opacity:.8}
+  .chapters .fx{pointer-events:all;cursor:pointer}
+  .chapters .fx path.star{fill:var(--hairline);stroke:none} .chapters .fx.done path.star,.chapters .fx.on path.star{fill:var(--cobalt)}
+  .chapters .fx circle.dep{fill:none;stroke:var(--hairline);stroke-width:1} .chapters .fx.done circle.dep{stroke:var(--cobalt);opacity:.7}
+  .label{display:block;position:relative;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);margin-bottom:18px;padding-bottom:12px;width:min(260px,100%);font-weight:600}
+  .label::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;background:var(--hairline);transform:scaleX(0);transform-origin:left;transition:transform .9s var(--ease)}
+  .words.in .label::after{transform:scaleX(1)}
+  .words h2{clip-path:inset(100% 0 0 0)} .words.in h2{clip-path:inset(0 0 0 0);transition:clip-path 1s var(--ease) .15s,opacity .6s linear .15s;filter:none !important;transform:none !important}
 
+  /* the loader */
+  .loader{position:fixed;inset:0;z-index:90;background:var(--mist);display:grid;place-items:center;overflow:hidden;transition:opacity 1s linear}
+  .loader.away{opacity:0;pointer-events:none}
+  .loader .lm{position:absolute;inset:0;overflow:hidden} .loader .lm img{position:absolute;left:-12%;width:124%;height:auto;opacity:.9}
+  .loader .lm img.a{bottom:-6%;animation:driftA 70s linear infinite alternate} .loader .lm img.c{bottom:18%;opacity:.55;animation:driftC 95s linear infinite alternate}
+  .loader .lmark{position:relative;width:72px;height:72px;display:block}
+  .loader .lmark path{fill:none;stroke:var(--cobalt);stroke-width:34;stroke-linejoin:round;stroke-linecap:round;stroke-dasharray:3200;stroke-dashoffset:3200;animation:draw 1.4s var(--ease) .1s forwards, fillin .6s linear 1.5s forwards}
+  .loader .lroute{position:absolute;left:50%;top:calc(50% + 68px);width:160px;height:1px;margin-left:-80px;background:rgba(19,34,56,.18)}
+  .loader .lroute i{position:absolute;inset:0;background:var(--cobalt);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+  .loader .lnum{position:absolute;left:50%;top:calc(50% + 92px);transform:translateX(-50%);font-size:13px;letter-spacing:.18em;color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums;display:flex;gap:2px} .loader .lnum b{font-weight:600;min-width:2.2ch;text-align:right}
+  @media (prefers-reduced-motion:reduce){ .loader .lm img{animation:none} }
 
-/* vendor marquee */
-.vband{padding:72px 0 10px;text-align:center;overflow:hidden}
-.vband .vt{font-size:13px;font-weight:600;color:var(--inkdim);margin-bottom:26px}
-.marq{overflow:hidden;padding:8px 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
-.mtrack{display:inline-flex;gap:16px;white-space:nowrap;will-change:transform;animation:marq 36s linear infinite}
-.m2 .mtrack{animation:marq2 42s linear infinite}
-.marq:hover .mtrack{animation-play-state:paused}
-@keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-@keyframes marq2{from{transform:translateX(-50%)}to{transform:translateX(0)}}
-.vchip{background:#fff;border-radius:999px;box-shadow:var(--shadow);padding:14px 26px;font-weight:700;font-size:16px;color:var(--ink);display:inline-flex;align-items:center;gap:10px}
-.vchip::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green2)}
-.vband .vsub{font-size:13.5px;color:var(--inkdim);max-width:660px;margin:22px auto 0}
-@media(prefers-reduced-motion:reduce){.mtrack{animation:none!important;flex-wrap:wrap;justify-content:center}}
-/* ================= PROOF (UI cards) ================= */
-.proof .cards{display:grid;grid-template-columns:1.05fr .95fr;gap:24px;margin-top:56px;align-items:stretch}
-.proof .cards>*{min-width:0}
-.uicard{background:var(--card);border-radius:16px;box-shadow:var(--shadow);padding:26px 28px}
-.uicard .chead{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
-.uicard .chead b{font-size:15.5px;color:var(--ink)}
-.uicard .chead .mono{font-size:11px;color:#A6B0BC;letter-spacing:.04em;white-space:nowrap}
-.bignums{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin:6px 0 24px}
-.bignums .bn{font-weight:650;font-size:34px;letter-spacing:-.015em;color:var(--ink);font-variant-numeric:tabular-nums}
-.bignums .bn.g{color:var(--green)}
-.bignums .bn small{display:block;font-size:13px;color:var(--inkdim);font-weight:500;margin-top:6px}
-.bars .brow{display:grid;grid-template-columns:110px 1fr 76px;gap:16px;align-items:center;padding:9px 0}
-.bars .bl{font-size:13px;font-weight:600;color:var(--inkdim)}
-.bars .track{height:12px;border-radius:999px;background:#EDF0F4;overflow:hidden}
-.bars .fill{height:100%;border-radius:999px}
-.bars .off .fill{width:100%;background:#C6CDD6}
-.bars .on .fill{width:75.2%;background:linear-gradient(90deg,#12A15B,#2FD575)}
-.bars .bv{font-size:14px;font-weight:650;color:var(--ink);text-align:right;font-variant-numeric:tabular-nums}
-.digest{padding:0 0 10px}
-.digest .chead{background:#F6F7F9;margin:0;padding:18px 28px;border-bottom:1px solid var(--hair2);border-radius:16px 16px 0 0}
-.digest .drows{padding:4px 28px 8px}
-.digest .drow{padding:16px 0;border-bottom:1px solid var(--hair)}
-.digest .drow:last-child{border-bottom:none}
-.digest .dt{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.digest .dt b{font-size:14.5px;color:var(--ink);font-weight:700}
-.dgrid{display:grid;grid-template-columns:1fr 118px;gap:20px;align-items:center}
-.dviz{text-align:right}
-.dv{font-size:19px;font-weight:650;font-variant-numeric:tabular-nums;display:block}
-.dv.ok{color:#1B7F4B}.dv.bad{color:#B42318}
-.dtrack{height:8px;border-radius:999px;background:#EDF0F4;margin:7px 0 6px;overflow:hidden}
-.dfill{height:100%;border-radius:999px;float:right}
-.dfill.ok{background:linear-gradient(90deg,#12A15B,#2FD575)}
-.dfill.bad{background:linear-gradient(90deg,#E8AC9C,#D96C50)}
-.dvl{font-size:11.5px;color:#98A2B3}
-.digest .dd{font-size:12.5px;color:var(--inkdim);margin-top:5px;line-height:1.5}
-.digest .dm{font-size:12px;color:#98A2B3;margin-top:6px}
-.proof .below{margin-top:34px;max-width:760px;color:var(--inkdim);font-size:15.5px}
-@media(max-width:940px){.proof .cards{grid-template-columns:1fr}}
+  /* the scroll cue */
+  .cue{position:absolute;right:clamp(24px,5vw,72px);bottom:clamp(20px,3.5vh,36px);z-index:6;display:flex;align-items:center;gap:16px;opacity:0;transition:opacity .8s linear 3.2s;pointer-events:none}
+  .opened .cue{opacity:1} .cue.gone{opacity:0;transition-delay:0s;transition-duration:.4s}
+  .cue span{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);font-weight:600}
+  .cue .ring{width:56px;height:56px;border:1px solid rgba(19,34,56,.35);border-radius:50%;display:grid;place-items:center}
+  .cue svg{width:14px;height:26px;overflow:visible}
+  .cue svg path{fill:none;stroke:var(--cobalt);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;opacity:.25;animation:chev 1.8s ease-in-out infinite}
+  .cue svg path:nth-child(2){animation-delay:.25s} .cue svg path:nth-child(3){animation-delay:.5s}
+  @keyframes chev{0%,60%,100%{opacity:.25;transform:translateY(0)}30%{opacity:1;transform:translateY(2px)}}
+  .flat .stage video{display:none !important} .flat .stage img.still{display:block !important} .flat .cur{display:none}
+  @media (prefers-reduced-motion:reduce){ .cue svg path{animation:none;opacity:.8} }
 
-/* ================= PAPER strip ================= */
-.paperband{background:linear-gradient(180deg,#EDF0F4,#E7EBF0);border-top:1px solid var(--hair)}
-.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;padding:96px 0}
-.pgrid .mono-k{font-size:13px;font-weight:600;color:#0E7A45;margin-bottom:16px}
-.pgrid h3{font-size:clamp(24px,2.6vw,34px);font-weight:700;color:var(--ink);line-height:1.2}
-.pgrid p{color:var(--inkdim);font-size:15.5px;margin-top:14px}
-.pgrid p b{color:var(--ink)}
-.papermock{background:#fff;border-radius:16px;box-shadow:var(--shadow2);padding:34px 36px}
-.papermock .ph{font-size:11px;color:#A6B0BC;letter-spacing:.12em;text-transform:uppercase;display:flex;justify-content:space-between}
-.papermock h4{font-family:var(--disp);font-size:19px;color:var(--ink);margin:14px 0 10px;line-height:1.35;letter-spacing:-.01em}
-.papermock .pl{font-size:12.5px;color:var(--inkdim);line-height:1.7}
-.papermock .pl i{font-style:normal;color:#0E7A45}
-@media(max-width:900px){.pgrid{grid-template-columns:1fr}}
+  /* the words */
+  .frame{position:absolute;inset:0;z-index:5;pointer-events:none;display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;padding:0 clamp(24px,5vw,72px);align-content:end;padding-bottom:clamp(56px,9vh,112px)}
+  .words{grid-column:3 / span 6;position:relative} .words a{pointer-events:auto}
+  .words > *{position:relative;z-index:1;opacity:0;filter:blur(8px);transform:translateY(14px);transition:opacity .9s linear,filter .9s var(--ease),transform .9s var(--ease)}
+  .hero-words > *{opacity:1;filter:none;transform:none;transition:none}
+  .words.in > *{opacity:1;filter:blur(0);transform:none}
+  .words.in > :nth-child(2){transition-delay:.08s}.words.in > :nth-child(3){transition-delay:.16s}.words.in > :nth-child(4){transition-delay:.24s}.words.in > :nth-child(5){transition-delay:.32s}.words.in > :nth-child(6){transition-delay:.4s}
+  .plate-text{position:absolute;inset:-180px -260px -160px -240px;background:radial-gradient(ellipse 50% 50% at 50% 50%, rgba(247,248,245,.92) 0%, rgba(247,248,245,.78) 28%, rgba(247,248,245,.45) 52%, rgba(247,248,245,.1) 80%, rgba(247,248,245,0) 100%);z-index:0 !important;opacity:1 !important;transform:none !important}
+  .mark{width:88px;height:88px;border:1px solid rgba(19,34,56,.28);border-radius:50%;display:grid;place-items:center;margin-bottom:36px;background:rgba(247,248,245,.35)}
+  .mark svg{width:52px;height:52px;display:block}
+  .mark svg path{fill:none;stroke:var(--cobalt);stroke-width:34;stroke-linejoin:round;stroke-linecap:round;stroke-dasharray:3200;stroke-dashoffset:3200}
+  .opened .mark svg path{animation:draw 1.6s var(--ease) .2s forwards, fillin .6s linear 1.7s forwards}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  @keyframes fillin{to{fill:var(--cobalt);stroke-width:0}}
+  .mark{border-color:transparent;transition:border-color .8s linear 1.4s} .opened .mark{border-color:rgba(19,34,56,.28)}
+  .hero-words .w{display:inline-block;opacity:0;filter:blur(6px);transform:translateY(12px)}
+  .opened .hero-words .w{opacity:1;filter:blur(0);transform:none;transition:opacity .7s linear var(--d),filter .7s var(--ease) var(--d),transform .7s var(--ease) var(--d)}
+  .hero-words p{opacity:0;transform:translateY(10px)} .opened .hero-words p{opacity:1;transform:none;transition:opacity 1s linear 2.6s,transform 1s var(--ease) 2.6s}
+  .curtain{position:absolute;inset:0;background:var(--mist);z-index:7;pointer-events:none;opacity:1} .opened .curtain{opacity:0;transition:opacity 1.6s linear 1.2s}
+  .hero-words .plate-text{opacity:1 !important}
+  /* the brand: the mark draws and fills, the wordmark is wiped in beside it */
+  .brand{position:absolute;top:clamp(40px,7vh,72px);right:0;left:auto;display:flex;align-items:center;gap:22px;border:0;pointer-events:auto;z-index:1}
+  .brand .mk{width:clamp(48px,4.6vw,68px);height:clamp(48px,4.6vw,68px);display:block;flex:none}
+  .brand .mk path{fill:none;stroke:var(--cobalt);stroke-width:34;stroke-linejoin:round;stroke-linecap:round;stroke-dasharray:3200;stroke-dashoffset:3200}
+  .opened .brand .mk path{animation:draw 1.6s var(--ease) .2s forwards, fillin .6s linear 1.7s forwards}
+  .brand .wm{font-weight:700;font-size:clamp(44px,5.4vw,76px);line-height:1;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);clip-path:inset(0 100% 0 0)}
+  .opened .brand .wm{clip-path:inset(0 0 0 0);transition:clip-path 1.1s var(--ease) .9s}
+  @media (max-width:900px){ .brand{top:20px;right:0} .brand .wm{font-size:28px} .brand .mk{width:36px;height:36px} }
+  .marker{width:24px;height:24px;margin-bottom:28px}
+  h1{margin:0 0 24px;font-weight:600;font-size:clamp(26px,3.6vw,52px);line-height:1.18;letter-spacing:.08em;text-transform:uppercase;max-width:16ch;font-feature-settings:'kern' 1,'liga' 1}
+  h1 .l1,h1 .l2{display:block} h1 .l1{max-width:12ch} h1 .l2{max-width:17ch}
+  h1 .rule{display:block;width:72px;height:1px;background:var(--cobalt);margin:18px 0 16px;transform-origin:left;transform:scaleX(0)}
+  .opened h1 .rule{transform:scaleX(1);transition:transform 1s var(--ease) 1.5s}
+  h2{margin:0 0 20px;font-weight:600;font-size:clamp(24px,2.8vw,40px);line-height:1.3;max-width:20ch;letter-spacing:-.01em}
+  p{margin:0 0 14px;font-size:clamp(16px,1.25vw,18px);line-height:1.56;max-width:40ch;font-weight:500}
+  a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--hairline);transition:border-color .2s}
+  a:hover{border-color:var(--cobalt)}
 
-.adopt{margin-top:34px;text-align:center}
-.adt{font-size:13px;font-weight:600;color:var(--inkdim)}
-.adrow{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:16px 0 12px}
-.adchip{background:#fff;border-radius:999px;box-shadow:var(--shadow);padding:10px 18px;font-weight:700;font-size:14px;color:var(--ink)}
-.adchip.dim{box-shadow:none;border:1px dashed var(--hair2);background:transparent;color:var(--inkdim);font-weight:500}
-.adsub{font-size:12.5px;color:#98A2B3;max-width:640px;margin:0 auto}
-/* ================= HOW rows ================= */
-.tline{position:relative;max-width:920px}
-.tline::before{content:"";position:absolute;left:31px;top:34px;bottom:34px;width:2px;
-background:linear-gradient(180deg,#2FD575,#12A15B 55%,var(--hair2))}
-.titem{display:grid;grid-template-columns:64px 1fr;gap:30px;padding:26px 0;position:relative}
-.tnode{width:64px;height:64px;border-radius:50%;background:#fff;box-shadow:var(--shadow2);display:grid;place-items:center;z-index:1}
-.tnode svg{width:28px;height:28px;stroke:#12A15B;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.tbody{background:#fff;border-radius:16px;box-shadow:var(--shadow);padding:24px 28px}
-.tbody .sn{font-size:13px;font-weight:600;color:var(--green)}
-.tbody .st{font-size:20px;font-weight:700;color:var(--ink);margin:6px 0 8px;letter-spacing:-.015em}
-.tbody .sd{font-size:15px;color:var(--inkdim);line-height:1.6}
-@media(max-width:640px){.titem{grid-template-columns:48px 1fr;gap:18px}.tnode{width:48px;height:48px}.tline::before{left:23px}}
-.badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:38px}
-.badge{font-family:var(--mono);font-size:12px;border:1px solid var(--hair);border-radius:999px;padding:8px 15px;color:var(--inkdim);background:#fff}
-.badge b{color:#0E7A45;font-weight:600}
+  /* layer 2: the objects */
+  .objects{position:absolute;inset:0;z-index:4;pointer-events:none}
+  .obj{opacity:0;filter:blur(6px);transform:translate3d(0,18px,0);transition:opacity .8s linear,filter .8s var(--ease),transform .8s var(--ease);will-change:transform}
+  .obj.in{opacity:1;filter:blur(0);transform:none}
 
-/* ================= TRUTHS ================= */
-.truths .tgrid{display:grid;grid-template-columns:repeat(3,1fr);margin-top:56px;border-top:1px solid var(--hair)}
-.truths .tcol{padding:36px 32px 40px;border-bottom:1px solid var(--hair)}
-.truths .tcol+.tcol{border-left:1px solid var(--hair)}
-.truths .tno{font-size:13px;font-weight:600;color:var(--red)}
-.truths .tcol b{display:block;font-size:17px;color:var(--ink);margin:12px 0 8px;letter-spacing:-.01em}
-.truths .tcol p{font-size:14px;color:var(--inkdim);line-height:1.6}
-@media(max-width:820px){.truths .tgrid{grid-template-columns:1fr}.truths .tcol+.tcol{border-left:none}}
+  /* the list (the work): five lines, one hairline each, statement scale, a small square that lights as the line arrives */
+  .rack{position:absolute;right:clamp(24px,6vw,96px);top:50%;transform:translateY(-50%);width:min(460px,38vw);display:flex;flex-direction:column}
+  .rack::before{content:"";position:absolute;inset:-140px -200px -140px -200px;background:radial-gradient(ellipse 50% 50% at 50% 50%, rgba(247,248,245,.94) 0%, rgba(247,248,245,.8) 36%, rgba(247,248,245,.4) 62%, rgba(247,248,245,.08) 84%, rgba(247,248,245,0) 100%);z-index:-1}
+  .strip{position:relative;display:block;padding:24px 0 24px 34px;font-size:clamp(20px,1.7vw,26px);line-height:1.3;font-weight:600;color:var(--ink);letter-spacing:-.01em;transform:translate3d(48px,0,0)}
+  .strip::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;background:var(--hairline);transform:scaleX(0);transform-origin:left;transition:transform .9s var(--ease) .15s}
+  .strip.in{transform:none} .strip.in::after{transform:scaleX(1)}
+  .rack{width:min(500px,40vw)}
+  .strip::before{content:"";position:absolute;left:0;top:50%;width:14px;height:14px;margin-top:-7px;background:url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%227.5%22%20fill%3D%22none%22%20stroke%3D%22%232457FF%22%20stroke-width%3D%221.2%22/%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%222.4%22%20fill%3D%22%232457FF%22/%3E%3Cpath%20d%3D%22M12%201.5v3M12%2019.5v3M1.5%2012h3M19.5%2012h3%22%20stroke%3D%22%232457FF%22%20stroke-width%3D%221.2%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E") center/contain no-repeat;transform:scale(0);transition:transform .5s var(--ease) .25s}
+  .strip.in::before{transform:scale(1)}
+  .strip i,.strip s,.strip svg{display:none}
 
-/* ================= ALTS (scroll rows: problem viz + priced card) ================= */
-.aline{margin-top:26px}
-.arow{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center;padding:64px 0;border-bottom:1px solid var(--hair)}
-.arow:last-of-type{border-bottom:none}
-.arow.flip .aviz{order:2}
-.aviz{height:320px;display:flex;align-items:center;justify-content:center}
-.aviz svg{width:min(420px,100%);height:300px;overflow:visible}
-.acard{background:#fff;border-radius:16px;box-shadow:var(--shadow);padding:30px 32px;max-width:460px}
-.arow.flip .acard{justify-self:end}
-.acard h3{font-size:19px;color:var(--ink);letter-spacing:-.015em}
-.acard .price{font-weight:650;font-size:34px;color:#B42318;margin:12px 0 2px;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
-.acard .per{font-size:12.5px;color:#98A2B3;font-weight:600}
-.psrc{display:block;font-size:11.5px;font-weight:700;margin-top:6px}
-.acard p{font-size:14.5px;color:var(--inkdim);margin-top:14px;line-height:1.65}
-.iso-bad{fill:none;stroke:#D96C50;stroke-width:1.4}
-.iso-badf{fill:rgba(217,108,80,.09);stroke:#D96C50;stroke-width:1.4}
-.iso-ghost{fill:none;stroke:#C4CCD6;stroke-width:1.3;stroke-dasharray:4 5}
-@media(max-width:900px){.arow{grid-template-columns:1fr;gap:26px;padding:44px 0}.arow.flip .aviz{order:0}.arow.flip .acard{justify-self:start}.aviz{height:240px}}
+  /* the questions (the crew): a right column in the caption style, label over a hairline, then the answer; no box */
+  .placards{position:absolute;right:clamp(24px,6vw,96px);top:20vh;width:min(440px,38vw);display:flex;flex-direction:column;gap:28px}
+  .placards .label{margin-bottom:0;font-size:12px;width:100%;opacity:0;transition:opacity .6s linear} .placards .label::after{transition-delay:.1s} .stage.live .placards .label{opacity:1} .stage.live .placards .label::after{transform:scaleX(1)}
+  .placards::before{content:"";position:absolute;inset:-160px -220px -200px -220px;background:radial-gradient(ellipse 50% 50% at 50% 50%, rgba(247,248,245,.94) 0%, rgba(247,248,245,.8) 36%, rgba(247,248,245,.4) 62%, rgba(247,248,245,.08) 84%, rgba(247,248,245,0) 100%);z-index:-1}
+  .placard{position:relative;color:var(--ink);pointer-events:auto;cursor:pointer;outline:0}
+  .placard .pm{position:absolute;right:0;top:.55em;width:12px;height:12px;transition:transform .5s var(--ease)} .placard .pm::before,.placard .pm::after{content:"";position:absolute;left:0;top:50%;width:12px;height:1.2px;background:var(--cobalt);margin-top:-.6px} .placard .pm::after{transform:rotate(90deg)} .placard.open .pm{transform:rotate(45deg)}
+  .placard .ans{display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s var(--ease)} .placard.open .ans{grid-template-rows:1fr} .placard .ans > span{overflow:hidden;min-height:0;opacity:0;transform:translateY(-6px);transition:opacity .45s linear,transform .6s var(--ease)} .placard.open .ans > span{opacity:1;transform:none;transition-delay:.12s}
+  @media (pointer:fine){ .placard:hover b{color:var(--cobalt)} } .placard:focus-visible b{color:var(--cobalt)}
+  .placard b{display:block;position:relative;font-weight:600;font-size:clamp(18px,1.4vw,21px);letter-spacing:-.005em;color:var(--ink);margin-bottom:0;padding:0 28px 14px 0;transition:color .3s linear}
+  .placard.open b{margin-bottom:14px}
+  .placard b::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;background:var(--hairline);transform:scaleX(0);transform-origin:left;transition:transform .9s var(--ease) .2s}
+  .placard.in b::after{transform:scaleX(1)}
+  .placard span{display:block;font-size:clamp(15px,1.15vw,17px);line-height:1.55;font-weight:500;color:var(--ink)}
+  .placard.obj{transform:translate3d(48px,0,0)} .placard.obj.in{transform:none}
 
-/* ================= OFFER (dark canvas) ================= */
-.offerwrap{padding:60px 0 120px}
-.offer{border-radius:24px;color:var(--txtl);padding:90px 60px;position:relative;overflow:clip;
-background:
- radial-gradient(900px 500px at 50% -10%,rgba(47,213,117,.28),transparent 60%),
- linear-gradient(180deg,#04170E,#062012)}
-.offer .kick{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--green2);margin-bottom:18px}
-.offer h2{font-weight:700;font-size:clamp(30px,3.8vw,48px);color:#fff;line-height:1.1}
-.offer .ogrid{display:grid;grid-template-columns:1.1fr .9fr;gap:70px;margin-top:50px;align-items:start}
-.offer ul{list-style:none}
-.offer li{padding:12px 0 12px 30px;position:relative;font-size:15.5px;color:rgba(242,246,243,.88)}
-.offer li::before{content:"";position:absolute;left:0;top:19px;width:13px;height:13px;border-radius:4px;background:rgba(47,213,117,.18);border:1px solid rgba(47,213,117,.6)}
-.offer li b{color:#fff}
-.pricecard{background:rgba(255,255,255,.045);border:1px solid rgba(242,246,243,.14);border-radius:20px;padding:40px 36px;text-align:center;backdrop-filter:blur(6px)}
-.slots{display:flex;gap:10px;justify-content:center;margin-bottom:14px}
-.slots i{width:44px;height:56px;border-radius:10px;border:1.5px solid rgba(47,213,117,.55);background:linear-gradient(180deg,rgba(47,213,117,.16),rgba(47,213,117,.04));position:relative}
-.slots i::after{content:"";position:absolute;left:10px;right:10px;top:12px;height:2px;background:rgba(47,213,117,.5);border-radius:2px;box-shadow:0 8px 0 rgba(47,213,117,.3),0 16px 0 rgba(47,213,117,.18)}
-.slotlab{font-size:13.5px;color:var(--dimL);max-width:420px;margin:0 auto 22px}
-.strike{text-decoration:line-through;color:var(--dimL);font-weight:900;font-size:clamp(24px,3vw,34px)}
-.free{font-weight:900;font-size:clamp(40px,5vw,58px);color:var(--green2);margin-left:14px;letter-spacing:-.02em}
-.counter{font-family:var(--mono);color:var(--dimL);margin-top:14px;font-size:13.5px}
-.anchornote{font-size:12.5px;color:var(--dimL);margin-top:10px}
-.anchornote a{color:var(--green2)}
-.counter b{color:#fff}
-.guar{border:1px dashed rgba(47,213,117,.45);border-radius:14px;padding:18px 22px;margin:26px 0 22px;text-align:left;font-size:14.5px;color:rgba(242,246,243,.88)}
-.guar b{color:var(--green2)}
-.offer .cta{display:inline-flex;background:#fff;color:#07130C;font-weight:700;font-size:16px;padding:15px 28px;border-radius:12px;transition:transform .3s}
-.offer .cta:hover{text-decoration:none;transform:translateY(-2px)}
-@media(max-width:900px){.offer{padding:60px 28px}.offer .ogrid{grid-template-columns:1fr;gap:40px}}
+  /* the slider (the roots): centred, the middle card at full size, the neighbours scaled and quieter, driven by scroll */
+  .track{position:absolute;left:50%;top:56%;display:flex;gap:60px;align-items:center;will-change:transform;transform:translate(-50%,-50%)}
+  .card{flex:0 0 min(420px,78vw);background:rgba(247,248,245,.9);padding:34px 36px 30px;border-radius:8px;transition:transform .6s var(--ease),opacity .6s linear,filter .6s var(--ease)}
+  .card.obj.in{transform:scale(.78);opacity:.55}
+  .card.obj.in.mid{transform:scale(1);opacity:1}
+  .card b{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--slate);margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--hairline);font-weight:600}
+  .card span{display:block;font-size:clamp(15px,1.15vw,17px);line-height:1.55;font-weight:500}
+  .card svg{display:none}
+  .pager{position:absolute;left:50%;transform:translateX(-50%);bottom:clamp(48px,9vh,100px);display:flex;gap:14px;z-index:5}
+  .pager i{width:12px;height:12px;background:url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%227.5%22%20fill%3D%22none%22%20stroke%3D%22%23C9D2DC%22%20stroke-width%3D%221.2%22/%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%222.4%22%20fill%3D%22%23C9D2DC%22/%3E%3Cpath%20d%3D%22M12%201.5v3M12%2019.5v3M1.5%2012h3M19.5%2012h3%22%20stroke%3D%22%23C9D2DC%22%20stroke-width%3D%221.2%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E") center/contain no-repeat;transition:opacity .4s linear}
+  .pager i.on{background-image:url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%227.5%22%20fill%3D%22none%22%20stroke%3D%22%232457FF%22%20stroke-width%3D%221.2%22/%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%222.4%22%20fill%3D%22%232457FF%22/%3E%3Cpath%20d%3D%22M12%201.5v3M12%2019.5v3M1.5%2012h3M19.5%2012h3%22%20stroke%3D%22%232457FF%22%20stroke-width%3D%221.2%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E")}
 
-/* ================= STEAL / FOOTER ================= */
-.steal .list{margin-top:50px;border-top:1px solid var(--hair)}
-.steal .srow{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;padding:22px 4px;border-bottom:1px solid var(--hair)}
-.steal .srow b{font-size:16.5px;color:var(--ink);font-weight:700}
-.steal .srow span{display:block;font-size:13.5px;color:var(--inkdim);margin-top:4px}
-.news{margin-top:56px;background:#fff;border-radius:16px;box-shadow:var(--shadow);padding:32px 32px;display:grid;grid-template-columns:1.2fr 1fr;gap:30px;align-items:center}
-.news p b{color:var(--ink)}
-.news p span{color:var(--inkdim)}
-.news form{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
-.news input[type=email]{background:#F3F5F8;border:1px solid var(--hair);border-radius:12px;color:var(--ink);padding:14px 16px;font-size:14.5px;width:min(300px,100%);font-family:var(--mono)}
-.news button{cursor:pointer;border:none;background:var(--ink);color:#fff;font-weight:700;font-size:15px;padding:14px 22px;border-radius:12px;transition:transform .3s}
-.news button:hover{transform:translateY(-2px)}
-@media(max-width:860px){.news{grid-template-columns:1fr}.news form{justify-content:flex-start}}
-footer{background:#0B0F14;color:#8B95A3;font-size:14px;padding:46px 0;margin-top:110px}
-footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
-footer a{color:#C7CDD5}
-:focus-visible{outline:2px solid var(--green);outline-offset:2px}
-.rv{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease}
-.rv.on{opacity:1;transform:none}
+  /* the door: the form beside the words, a mist panel, hairline fields */
+  .door-form{position:absolute;right:clamp(24px,5vw,72px);top:50%;transform:translateY(-50%);width:min(600px,44vw);max-height:calc(100svh - 120px);overflow:auto;pointer-events:auto;background:rgba(247,248,245,.92);border:1px solid var(--hairline);padding:32px 40px 28px;border-radius:2px}
+  .door-form.obj{transform:translate3d(0,calc(-50% + 18px),0)} .door-form.obj.in{transform:translate3d(0,-50%,0)}
+  .door-form label{display:block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);font-weight:600;margin:0 0 10px}
+  .door-form .f{margin-bottom:24px}
+  .door-form input,.door-form textarea{width:100%;box-sizing:border-box;background:transparent;border:0;border-bottom:1px solid rgba(19,34,56,.5);padding:10px 0 12px;font:600 clamp(18px,1.4vw,22px)/1.35 var(--font);color:var(--ink);outline:none;border-radius:0;resize:none;transition:border-color .3s linear}
+  .door-form input:focus,.door-form textarea:focus{border-bottom-color:var(--cobalt)}
+  .door-form textarea{min-height:88px}
+  .door-form button{font:600 12px/1 var(--font);letter-spacing:.18em;text-transform:uppercase;color:var(--ink);background:none;border:0;padding:16px 0;display:inline-flex;align-items:center;gap:16px;cursor:pointer}
+  .door-form button i{width:88px;height:2px;background:var(--cobalt);transform:scaleX(.64);transform-origin:left;transition:transform .4s var(--ease)} .door-form button:hover i{transform:scaleX(1)}
+  .door-form .sent{display:none;font-size:17px;color:var(--ink)} .door-form.done form{display:none} .door-form.done .sent{display:block}
+  @media (max-width:900px){ .door-form{position:absolute;left:clamp(16px,5vw,72px);right:clamp(16px,5vw,72px);top:auto;bottom:3svh;width:auto;max-height:56svh;margin:0;padding:22px 20px 18px} .door-form.obj,.door-form.obj.in{transform:none} .door-form .f{margin-bottom:16px} .door-form textarea{min-height:64px} .door-form input,.door-form textarea{font-size:17px} }
+
+  /* the logbook: the entry form beside the words; five chart fixes are the rating */
+  .log-form{position:absolute;right:clamp(24px,5vw,72px);top:50%;width:min(600px,44vw);max-height:calc(100svh - 120px);overflow:auto;pointer-events:auto;background:rgba(247,248,245,.92);border:1px solid var(--hairline);padding:28px 40px 26px;border-radius:2px}
+  .log-form.obj{transform:translate3d(0,calc(-50% + 18px),0)} .log-form.obj.in{transform:translate3d(0,-50%,0)}
+  .log-form label,.log-form .lab{display:block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);font-weight:600;margin:0 0 8px}
+  .log-form .f{margin-bottom:18px} .log-form .two{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .log-form input[type=text],.log-form textarea{width:100%;box-sizing:border-box;background:transparent;border:0;border-bottom:1px solid rgba(19,34,56,.5);padding:8px 0 10px;font:600 clamp(17px,1.3vw,20px)/1.35 var(--font);color:var(--ink);outline:none;border-radius:0;resize:none;transition:border-color .3s linear}
+  .log-form input:focus,.log-form textarea:focus{border-bottom-color:var(--cobalt)} .log-form textarea{min-height:72px}
+  .stars{display:flex;gap:10px} .stars button{width:26px;height:26px;border:0;background:url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%227.5%22%20fill%3D%22none%22%20stroke%3D%22%23C9D2DC%22%20stroke-width%3D%221.2%22/%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%222.4%22%20fill%3D%22%23C9D2DC%22/%3E%3Cpath%20d%3D%22M12%201.5v3M12%2019.5v3M1.5%2012h3M19.5%2012h3%22%20stroke%3D%22%23C9D2DC%22%20stroke-width%3D%221.2%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E") center/contain no-repeat;cursor:pointer;padding:0;transition:transform .3s var(--ease)} .stars button:hover{transform:scale(1.15)}
+  .stars button.on{background-image:url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%227.5%22%20fill%3D%22none%22%20stroke%3D%22%232457FF%22%20stroke-width%3D%221.2%22/%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%222.4%22%20fill%3D%22%232457FF%22/%3E%3Cpath%20d%3D%22M12%201.5v3M12%2019.5v3M1.5%2012h3M19.5%2012h3%22%20stroke%3D%22%232457FF%22%20stroke-width%3D%221.2%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E")}
+  .log-form .consent{display:flex;gap:12px;align-items:flex-start;margin:4px 0 16px;font-size:14px;line-height:1.45;color:var(--ink);text-transform:none;letter-spacing:0;font-weight:500;cursor:pointer} .log-form .consent input{margin:3px 0 0;accent-color:var(--cobalt)}
+  .log-form button[type=submit]{font:600 12px/1 var(--font);letter-spacing:.18em;text-transform:uppercase;color:var(--ink);background:none;border:0;padding:12px 0;display:inline-flex;align-items:center;gap:16px;cursor:pointer}
+  .log-form button[type=submit] i{width:88px;height:2px;background:var(--cobalt);transform:scaleX(.64);transform-origin:left;transition:transform .4s var(--ease)} .log-form button[type=submit]:hover i{transform:scaleX(1)}
+  .log-form .sent{display:none;font-size:17px;color:var(--ink)} .log-form.done form{display:none} .log-form.done .sent{display:block}
+  .words.case h2{font-size:clamp(22px,2.2vw,32px);max-width:24ch;margin-bottom:16px} .words.case p{font-size:clamp(15px,1.1vw,17px);line-height:1.5;margin-bottom:10px;max-width:44ch}
+  .logline{font-size:clamp(17px,1.35vw,20px);line-height:1.5;font-weight:500;max-width:min(34ch,calc(50vw - 200px));margin:0 0 24px}
+  .entries{display:flex;flex-direction:column;gap:28px} .entries figure{margin:0} .entries blockquote{margin:0 0 10px;font-size:clamp(18px,1.5vw,22px);line-height:1.45;font-weight:500;color:var(--ink)} .entries figcaption{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);font-weight:600} .entries .r{display:inline-flex;gap:4px;margin-left:12px;vertical-align:middle} .entries .r i{width:12px;height:12px;background:url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%227.5%22%20fill%3D%22none%22%20stroke%3D%22%232457FF%22%20stroke-width%3D%221.2%22/%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%222.4%22%20fill%3D%22%232457FF%22/%3E%3C/svg%3E") center/contain no-repeat}
+  @media (max-width:900px){ .log-form{position:absolute;left:clamp(16px,5vw,72px);right:clamp(16px,5vw,72px);top:auto;bottom:3svh;width:auto;max-height:62svh;padding:18px 18px 14px} .log-form.obj,.log-form.obj.in{transform:none} .log-form .two{grid-template-columns:1fr;gap:10px} .log-form .f{margin-bottom:12px} }
+
+  .offer{font-size:clamp(16px,1.25vw,18px);line-height:1.56;font-weight:500;max-width:min(30ch,calc(50vw - 200px));margin:0 0 18px}
+  .price{display:flex;align-items:baseline;gap:18px;margin:0 0 28px;font-weight:600} .price s{font-size:clamp(18px,1.5vw,22px);color:var(--slate);text-decoration:line-through;text-decoration-color:var(--cobalt);text-decoration-thickness:2px} .price b{font-size:clamp(22px,2vw,30px);letter-spacing:.02em;color:var(--ink)}
+  .frame .words .price+h1{font-size:clamp(22px,2.6vw,36px);margin-bottom:16px}
+  /* the seats: three fixes on a short line, the first flown */
+  .seats{display:flex;align-items:center;gap:18px;margin:0 0 22px} .seats i{width:22px;height:22px;background:url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%227.5%22%20fill%3D%22none%22%20stroke%3D%22%23132238%22%20stroke-width%3D%221.2%22/%3E%3Cpath%20d%3D%22M12%201.5v3M12%2019.5v3M1.5%2012h3M19.5%2012h3%22%20stroke%3D%22%23132238%22%20stroke-width%3D%221.2%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E") center/contain no-repeat;position:relative}
+  .seats i.taken{background-image:url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%227.5%22%20fill%3D%22%232457FF%22%20stroke%3D%22%232457FF%22%20stroke-width%3D%221.2%22/%3E%3Cpath%20d%3D%22M12%201.5v3M12%2019.5v3M1.5%2012h3M19.5%2012h3%22%20stroke%3D%22%232457FF%22%20stroke-width%3D%221.2%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E")}
+  .seats i+i::before{content:"";position:absolute;right:100%;top:50%;width:18px;height:1px;background:var(--hairline);margin-right:0}
+
+  /* the gift in the footer */
+  .foot .gift .promise{margin:0 0 6px;font-size:15px;line-height:1.5;color:var(--ink);font-weight:500;max-width:36ch}
+  .foot .gift form{display:flex;flex-direction:column;gap:8px} .foot .gift label{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);font-weight:600}
+  .foot .gift .row{display:flex;gap:18px;align-items:flex-end} .foot .gift input{flex:1;min-width:0;background:transparent;border:0;border-bottom:1px solid rgba(19,34,56,.5);padding:8px 0 10px;font:600 17px/1.3 var(--font);color:var(--ink);outline:none;border-radius:0} .foot .gift input:focus{border-bottom-color:var(--cobalt)}
+  .foot .gift button{font:600 12px/1 var(--font);letter-spacing:.18em;text-transform:uppercase;color:var(--ink);background:none;border:0;padding:10px 0;display:inline-flex;align-items:center;gap:12px;cursor:pointer} .foot .gift button i{width:56px;height:2px;background:var(--cobalt);transform:scaleX(.64);transform-origin:left;transition:transform .4s var(--ease)} .foot .gift button:hover i{transform:scaleX(1)}
+  .foot .gift .sent{display:none;font-size:15px;color:var(--ink);margin:0} .foot .gift.done form{display:none} .foot .gift.done .sent{display:block}
+  @media (max-width:900px){ .foot .col.gift{grid-column:1 / -1} }
+
+  /* the stub (the door) */
+  .stub{position:absolute;right:clamp(24px,6vw,96px);bottom:clamp(56px,9vh,112px);width:min(360px,80vw);background:var(--paper);border:1px solid var(--hairline);padding:18px 22px;pointer-events:auto}
+  .stub::before{content:"";position:absolute;left:-1px;top:8px;bottom:8px;border-left:1px dashed var(--hairline)}
+  .stub b{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--slate);margin-bottom:8px;font-weight:600}
+  .stub p{margin:0 0 6px;font-size:16px}
+
+  .foot{position:relative;padding:clamp(96px,14vh,160px) clamp(24px,5vw,72px) 40px;border-top:1px solid var(--hairline);color:var(--slate);font-size:14px;background:var(--mist);display:flex;flex-direction:column;gap:clamp(72px,10vh,120px)}
+  .foot .grid{display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;row-gap:48px;align-items:start}
+  .foot .lead{grid-column:1 / span 6} .foot .fm{width:56px;height:56px;display:block;margin-bottom:32px}
+  .foot .wordmark{display:block;font-size:clamp(56px,8vw,128px);line-height:.95;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);margin:0 0 36px -0.04em}
+  .foot .facts{margin:0;display:flex;flex-wrap:wrap;gap:10px 28px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);font-weight:600;max-width:none} .foot .facts span{position:relative} .foot .facts span+span::before{content:"";position:absolute;left:-16px;top:50%;width:4px;height:4px;margin-top:-2px;background:var(--cobalt);border-radius:50%}
+  .foot .col{display:flex;flex-direction:column;gap:12px} .foot .col:nth-child(2){grid-column:7 / span 2} .foot .col.gift{grid-column:9 / span 4} .foot .col:nth-child(4){grid-column:1 / span 6;margin-top:-8px}
+  .foot .col b{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--slate);font-weight:600;margin-bottom:8px;padding-bottom:10px;border-bottom:1px solid var(--hairline)}
+  .foot .col a,.foot .col span{font-size:16px;color:var(--ink);border:0;width:fit-content;border-bottom:1px solid transparent;line-height:1.4} .foot .col a:hover{border-bottom-color:var(--cobalt)}
+  .foot .end{display:flex;flex-wrap:wrap;gap:12px 40px;padding-top:28px;border-top:1px solid var(--hairline);font-size:12px;letter-spacing:.08em;text-transform:uppercase} .foot .end .up{margin-left:auto;color:var(--ink);border:0;display:inline-flex;align-items:center;gap:10px} .foot .end .up i{width:56px;height:1px;background:var(--cobalt);display:block;transform:scaleX(.64);transform-origin:right;transition:transform .4s var(--ease)} .foot .end .up:hover i{transform:scaleX(1)}
+  @media (max-width:900px){ .foot .lead,.foot .col:nth-child(2),.foot .col:nth-child(3){grid-column:1 / -1} .foot .wordmark{letter-spacing:.12em} }
+  .next{padding:clamp(120px,18vh,200px) clamp(24px,5vw,72px);max-width:40ch;font-size:18px;line-height:1.56;color:var(--slate)}
+
+  @media (max-width:900px){
+    .placards .label{opacity:0 !important} .placards:has(.obj.in) .label{opacity:1 !important}
+    .words:not(.in) .plate-text{opacity:0 !important}
+    .chapters{display:none}
+    .frame{grid-template-columns:1fr;align-content:start;padding-top:18vh}
+    .words{grid-column:1 !important}
+    .rack,.placards{position:absolute;left:clamp(24px,5vw,72px);right:clamp(24px,5vw,72px);top:16vh;bottom:auto;transform:none;width:auto;gap:8px}
+    .strip{padding:12px 0 12px 22px;font-size:17px}
+    .card{flex-basis:auto}
+    .stub{left:clamp(24px,5vw,72px);right:auto;bottom:4vh}
+    .chapters{display:none}
+    .track{left:0;top:14vh;transform:none !important;flex-direction:column;gap:10px;padding:0 clamp(24px,5vw,72px)} .card.obj.in,.card.obj.in.mid{transform:none;opacity:1} .card{flex-basis:auto;padding:16px 18px 14px} .card b{margin-bottom:8px;padding-bottom:6px} .card span{font-size:14px;line-height:1.45} .pager{display:none}
+    h2{max-width:100%}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .cur{display:none} body{cursor:auto}
+    .stage video{display:none !important} .stage img.still{display:block !important} .plate{animation:none}
+    .words > *,.obj,.card,.ch,.ch .sq,.pager i{transition:none !important}
+  }
 </style>
 </head>
-<body>
-<div class="canvas">
+<body data-layers="4">
 
-<nav class="nav" aria-label="Main">
-<a class="logo" href="#top">Alpine<i>.</i></a>
-<div class="links">
-<a href="#method">Why</a><a href="#proof">Receipts</a><a href="#how">The build</a>
-</div>
-<div class="right">
-<a class="ghost" href="https://github.com/slavpetroff/agent-receipts">Receipts repo</a>
-</div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="fix" viewBox="0 0 24 24"><circle cx="12" cy="12" r="7.5" fill="none" stroke="currentColor" stroke-width="1"/><circle cx="12" cy="12" r="2.2" fill="currentColor"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></symbol>
+</defs></svg>
+<nav class="chapters" id="chapters" aria-label="The flight">
+  <svg viewBox="0 0 120 720" preserveAspectRatio="none" id="rnav">
+    <path id="rbase" class="base" d="M 34 10 C 96 90, 4 190, 46 280 S 112 420, 40 500 S 6 640, 60 710"/>
+    <path id="rflown" class="flown" d="M 34 10 C 96 90, 4 190, 46 280 S 112 420, 40 500 S 6 640, 60 710"/>
+    <g id="rfixes"></g>
+    <g class="plane" id="rplane"><circle class="halo" r="9"/><circle r="3"/></g>
+  </svg>
+  <a class="ch" href="#top" data-i="0" data-go="0">Departure</a><a class="ch" href="#work" data-i="1" data-go="1">The work</a><a class="ch" href="#crew" data-i="2" data-go="2">The crew</a><a class="ch" href="#roots" data-i="3" data-go="3">The roots</a><a class="ch" href="#record" data-i="4" data-go="4">The record</a><a class="ch" href="#hangar" data-i="5" data-go="5">The hangar</a><a class="ch" href="#logbook" data-i="6" data-go="6">The logbook</a><a class="ch" href="#door" data-i="7" data-go="7">The door</a>
 </nav>
 
-<!-- ============ HERO ============ -->
-<section class="hero" id="top"><div class="wrap">
-<div class="hero-inner">
-<div>
-<span class="hpill"><span class="dot"></span>Build logs public</span>
-<h1><span class="soft">Agents, built light.</span><br>Working AI agents for engineering teams — without the machinery.</h1>
-<p class="sub">What a platform team ships in months on a six-figure budget, we deliver in weeks — one agent builds it, in your repos, on any vendor. Phase one of every build installs your team's decisions and standards as the agent's context, so it works like someone you trained, not something you rented. And nothing is bought on faith: the Test Flight runs your agent on your own workflow before any payment.</p>
-</div>
-<div class="platform">
-<div class="hterm rv" role="img" aria-label="Excerpt from a real build log">
-<div class="htop"><span></span><span></span><span></span><em>build.log — the flagship, one agent</em></div>
-<pre>01:50  repo init — one agent on the build
-01:58  gate v0: contract, collector, validator
-02:12  first seeded violation <b>CAUGHT</b>, rule quoted
-09:35  defect: 7.5h hang — <b>logged, fixed, published</b>
-bench  11/11 valid catches · 0 false alarms
-bench  determinism: <i class="red">RED</i> — fix queued, published</pre>
-<a class="htlink" href="https://github.com/slavpetroff/agent-receipts/blob/main/builds/pr-gate/BUILD-LOG.md">the full log, red marks included →</a>
-</div>
-</div></section>
+<div class="loader" id="loader" aria-hidden="true"><div class="lm"><img class="a" src="assets/scene/plates/mist-a.png" alt=""><img class="c" src="assets/scene/plates/mist-c.png" alt=""></div><svg class="lmark" viewBox="0 0 1024 1024"><path d="M80 690C275 616 490 560 690 486C785 451 836 415 871 373C904 333 930 280 946 194C909 201 876 220 854 251C827 287 809 332 781 363C739 411 678 440 603 465C418 526 226 595 80 690Z"/></svg><div class="lroute"><i id="lbar"></i></div><div class="lnum"><b id="lpct">0</b><span>%</span></div></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="cur" id="cur" aria-hidden="true"><i></i></div>
 
-<!-- trust = the four written guarantees -->
-<div class="trust"><div class="wrap">
-<div class="row">
-<div class="kpi rv"><div class="kl">The Test Flight</div><div class="kn" style="font-size:19px;line-height:1.35">Your workflow, live,<br>before any payment</div>
-</div>
-<div class="kpi rv"><div class="kl">The date</div><div class="kn" style="font-size:19px;line-height:1.35">Fixed in the contract —<br>or we discount</div>
-</div>
-<div class="kpi rv"><div class="kl">Fuel per task</div><div class="kn" style="font-size:19px;line-height:1.35">Capped in writing —<br>over it, we tune free</div>
-</div>
-<div class="kpi rv"><div class="kl">Vendor swap</div><div class="kn" style="font-size:19px;line-height:1.35">Breaks something?<br>We fix it free</div>
-</div>
-</div>
-<span class="under">All four underwritten on Day 0, in writing — <a href="#offer">the offer →</a></span>
-</div></div>
-
-<!-- ============ FEATURE BAND ============ -->
-<section class="pad" id="method" style="padding:96px 0 0"><div class="wrap">
-<h2 class="big rv"><span class="a">The capability you're budgeting six figures for</span><span class="b">doesn't need them.</span></h2>
-<p class="subline rv">A platform initiative, an AI-platform hire, an agency's framework build: engineering orgs are approving six-figure routes to working agents, and every one of those routes has real upsides — they're priced honestly, with sources, further down. The scene below is why teams reach for them. Our read on it, after two years of building this way: <b>agents fail from missing context and missing discipline, not missing infrastructure</b> — so the capability those budgets chase can be built by one agent with the right context and an engineer's cycle. That's why we can deliver it light, and prove it before you pay.</p>
-<div class="paingrid">
-<div class="rv">
-<p>The routes fail in shapes every engineering leader has seen. The platform initiative eats a quarter before the first workflow runs, and lands on every other team as unplanned scope. The framework build demos beautifully, then becomes an orchestration tower whose maintenance nobody owns. The enterprise tier works until the renewal, when the price moves and the exit doesn't exist. Twelve years of backend engineering and three businesses built on agents instead of headcount taught us where each of these bleeds.</p>
-<p style="margin-top:14px"><b>The job never needed the machinery.</b> One agent, built for your workflow through an engineer's cycle and judged before it ships, does the work those budgets chase — in weeks, at a fraction of the bill, and it stays yours. The receipts on the right are those bills — priced, sourced, and the meter that runs while you decide.</p>
-</div>
-<div>
-<div class="lreceipt rv">
-<div class="lrhead"><span>The routes, priced</span><span>year one · sources below</span></div>
-<div class="lrow"><span>Internal platform initiative (2 eng × 3 mo)</span><b>€55,000+</b></div>
-<div class="lrow"><span>Framework agency build (730–1,450 h)</span><b>€40–80k</b></div>
-<div class="lrow"><span>Dedicated AI-platform hire, per year</span><b>€70–90k</b></div>
-<div class="lrow"><span>Vendor enterprise tier, per year</span><b>€30k+</b></div>
-<div class="lrow ltot"><span>Whichever route, year one</span><b>€40–150k</b></div>
-<a class="lrlink" href="#alts">every number derived below, with sources →</a>
-</div>
-<div class="lreceipt rv" id="bleed" style="margin-top:18px">
-<div class="lrhead"><span>And while you wait: generic agents bleed</span><span>est. · 30-engineer team</span></div>
-<div class="lrow"><span>Re-explaining &amp; fixing output · 2.5 h/eng/wk × 30 × €55/h</span><b>€4,125 / week</b></div>
-<div class="lrow ltot"><span>Every month, meanwhile</span><b>≈ €17,900</b></div>
-<a class="lrlink" href="#offer">the fix costs a fraction of one month of this →</a>
-</div>
-</div>
-</div>
-
-</div></section>
-
-<!-- ============ PERFECT WORLD (the buyer's own criteria) ============ -->
-<section style="padding:70px 0 0"><div class="wrap">
-<p class="subline rv" style="max-width:860px"><b>Spec the ideal route yourself</b> and it reads: working in weeks, not quarters · a bill you can defend to a CFO · running costs that stay capped · provable on your own workflow before money moves · yours whole, on any vendor, forever. Obvious list. Now hold every route — including ours — against it.</p>
-</div></section>
-
-<!-- ============ DIFFERENTIATED VALUE (Dunford: the so-what roots) ============ -->
-<section style="padding:60px 0 90px" id="value"><div class="wrap">
-<h2 class="big rv"><span class="a">Features are the how.</span><span class="b">This is what it buys the business.</span></h2>
-<p class="subline rv">Every claim below is a feature chased down to its business root: money, speed or control. That's also how we'll talk in the first meeting.</p>
-<div class="vals">
-<div class="vcard lead rv">
-<div class="vfeat">One agent runs the whole build, through the engineer's cycle: spec, test the spec, implement, integration checks, live runs.</div>
-<div class="sowhat" aria-hidden="true"></div>
-<div><div class="vroot">What a platform initiative delivers in quarters, you get in weeks — the capability starts paying this month, not after two more planning cycles. Every build ships with a public log: dates, hours, cost.</div><a class="vproof" href="https://github.com/slavpetroff/agent-receipts">build logs, public as each piece ships →</a></div>
-</div>
-<div class="vcard rv">
-<div class="vfeat">No framework, no infrastructure project, no new hires — the build needs nothing your repos don't already hold.</div>
-<div class="sowhat" aria-hidden="true"></div>
-<div class="vroot">Five figures instead of six. The conventional routes are priced with sources below: a platform team's quarter, an agency build, an enterprise tier — or the dedicated AI-platform hire whose listings you can watch on any EU job board today. Our price is a fraction of the bill you were about to approve.</div><a class="vproof" href="#alts">the alternatives, priced with sources →</a>
-</div>
-<div class="vcard rv">
-<div class="vfeat">Your agents load the few thousand tokens a task needs, never a forty-thousand-token monolith.</div>
-<div class="sowhat" aria-hidden="true"></div>
-<div class="vroot">The running cost stays a small, CAPPED line item: cost per task is guaranteed under a written ceiling, and above it we tune for free. Applying this to ourselves cut our own boot cost 8.6×.</div><a class="vproof" href="https://github.com/slavpetroff/agent-receipts/blob/main/results/case-study-self-icm-migration.md">the boot-cost receipt →</a>
-</div>
-<div class="vcard rv">
-<div class="vfeat">The Test Flight: a working slice of YOUR agent, on YOUR workflow, demonstrated live before any payment.</div>
-<div class="sowhat" aria-hidden="true"></div>
-<div class="vroot">The six-figure-demo regret becomes structurally impossible. Thresholds are registered in writing before results exist; if the numbers don't land, the invoice never exists. Losses sit published next to wins — check either.</div><a class="vproof" href="https://github.com/slavpetroff/agent-receipts/tree/main/protocols">the protocols, committed before any result →</a>
-</div>
-<div class="vcard rv">
-<div class="vfeat">The workspace is handed over whole: files in your repos, versioned and diffed like code, on any vendor.</div>
-<div class="sowhat" aria-hidden="true"></div>
-<div class="vroot">Swapping vendors is a day, not a quarter — you hold the cards at every renewal, because you always have an exit. Nobody rents your own capability back to you.</div><a class="vproof" href="https://github.com/slavpetroff/agent-receipts/blob/main/gift/CLAUDE.md">the real file from our production repo →</a>
-</div>
-<div class="vcard rv">
-<div class="vfeat">Phase one of every build writes your decisions, standards and workflows into the agent's context.</div>
-<div class="sowhat" aria-hidden="true"></div>
-<div class="vroot">The agent acts like someone your senior engineers trained, not a generic bot — and that knowledge survives resignations, reorgs and model swaps. Ask it why billing is built that way: it cites the decision, with the file.</div><a class="vproof" href="https://github.com/slavpetroff/agent-receipts/blob/main/results/case-study-self-icm-migration.md">decision-recall, measured on a fresh agent →</a>
-</div>
-</div></section>
-
-<!-- ============ CAPABILITIES (how it's built) ============ -->
-<section style="padding:30px 0 0"><div class="wrap">
-<h2 class="big rv" style="font-size:clamp(26px,3vw,38px)"><span class="a">The showcase:</span><span class="b">agents we built for ourselves</span></h2>
-<p class="subline rv">Demoable, with public build logs — proof, not merchandise. Each piece runs in our own operations and was built with the same cycle we sell. If one matches your need, we adapt it; if not, it shows the craft.</p>
-</div>
-<div class="band" style="margin-top:52px"><div class="wrap">
-<div class="bgrid">
-<div class="bcol rv"><div class="tag tg">Flagship · in build</div>
-<div class="art"><svg viewBox="0 0 200 200">
-<g class="iso-soft"><path d="M100 22 L164 54 L100 86 L36 54 Z"/></g>
-<g class="iso-line"><path d="M100 52 L164 84 L100 116 L36 84 Z"/></g>
-<g class="iso-hot"><path d="M100 82 L164 114 L100 146 L36 114 Z"/></g>
-<g class="iso-line"><path d="M100 112 L164 144 L100 176 L36 144 Z"/></g>
-<circle class="iso-dot" cx="100" cy="114" r="4"/>
-<g class="iso-line" stroke-dasharray="2 4"><path d="M100 22 L100 8"/><path d="M100 176 L100 192"/></g>
-</svg></div>
-<h3>The PR gate</h3><p>Reviews a pull request against YOUR written rules before a human sees it: architecture decisions, conventions, laws. Every finding quotes the written rule it breaks — no quote, no finding. Built by one agent; its bench, red marks included, ships with the public log.</p></div>
-<div class="bcol rv"><div class="tag tg">Next up</div>
-<div class="art"><svg viewBox="0 0 200 200">
-<g class="iso-soft"><path d="M60 40 L104 62 L60 84 L16 62 Z"/></g>
-<g class="iso-hot"><path d="M140 76 L184 98 L140 120 L96 98 Z"/></g>
-<g class="iso-soft"><path d="M74 122 L118 144 L74 166 L30 144 Z"/></g>
-<g class="iso-line"><path d="M60 84 L60 104 L96 104"/><path d="M140 120 L140 136 L118 136"/></g>
-<circle class="iso-dot" cx="60" cy="104" r="3.4"/><circle class="iso-dot" cx="140" cy="132" r="3.4"/>
-</svg></div>
-<h3>The onboarding agent</h3><p>A new engineer's first day, answered: where things live, why they are built that way, what the first correct action is — from the team's own recorded decisions, not tribal memory. The metric it moves is time-to-first-correct-action.</p></div>
-<div class="bcol rv"><div class="tag tg">Queued</div>
-<div class="art"><svg viewBox="0 0 200 200">
-<g class="iso-line">
-<path d="M52 34 L72 44 L52 54 L32 44 Z"/><path d="M96 34 L116 44 L96 54 L76 44 Z"/><path d="M140 34 L160 44 L140 54 L120 44 Z"/>
-<path d="M74 58 L94 68 L74 78 L54 68 Z"/><path d="M118 58 L138 68 L118 78 L98 68 Z"/>
-</g>
-<g class="iso-hot"><path d="M100 96 L170 131 L100 166 L30 131 Z"/></g>
-<path class="iso-line" d="M30 131 L100 166 L100 186 L30 151 Z"/>
-<path class="iso-line" d="M170 131 L100 166 L100 186 L170 151 Z"/>
-<circle class="iso-dot" cx="100" cy="131" r="4"/>
-</svg></div>
-<h3>Agent-native training</h3><p>No courses, no links, no LMS seats: the agent teaches your team from the same files your agents run on, quizzes where it finds gaps, and tracks what stuck. The curriculum cannot rot apart from the code — it IS the working context.</p></div>
-</div>
-</div></div>
-
-<!-- vendor marquee -->
-<div class="vband rv">
-<div class="wrap"><div class="vt">One layer, every coding agent your engineering team already runs</div></div>
-<div class="marq m1"><div class="mtrack">
-<span class="vchip">Claude Code</span><span class="vchip">OpenAI Codex</span><span class="vchip">Cursor</span><span class="vchip">GitHub Copilot</span><span class="vchip">Gemini CLI</span><span class="vchip">Windsurf</span><span class="vchip">Cline</span><span class="vchip">Roo Code</span><span class="vchip">Aider</span>
-<span class="vchip">Claude Code</span><span class="vchip">OpenAI Codex</span><span class="vchip">Cursor</span><span class="vchip">GitHub Copilot</span><span class="vchip">Gemini CLI</span><span class="vchip">Windsurf</span><span class="vchip">Cline</span><span class="vchip">Roo Code</span><span class="vchip">Aider</span>
-</div></div>
-<div class="marq m2"><div class="mtrack">
-<span class="vchip">Zed</span><span class="vchip">Continue</span><span class="vchip">Amp</span><span class="vchip">Devin</span><span class="vchip">OpenHands</span><span class="vchip">Goose</span><span class="vchip">Warp</span><span class="vchip">Jules</span><span class="vchip">JetBrains Junie</span>
-<span class="vchip">Zed</span><span class="vchip">Continue</span><span class="vchip">Amp</span><span class="vchip">Devin</span><span class="vchip">OpenHands</span><span class="vchip">Goose</span><span class="vchip">Warp</span><span class="vchip">Jules</span><span class="vchip">JetBrains Junie</span>
-</div></div>
-<div class="wrap"><div class="vsub">Plain markdown in your repos: no SDK, no plugin, no vendor account. Any harness that reads plain files. The same files answered the same questions on two different vendors in our published runs.</div></div>
-</div>
+<!-- 1 HERO -->
+<div class="pin" id="top" data-ch="hero" data-len="70" data-idle-hd="assets/scene/1080/hero-2.mp4" data-idle-sd="assets/scene/web/hero-2.mp4">
+<section class="stage live">
+  <img class="still" src="assets/scene/hero-still.jpg" alt="">
+  <video class="idle on" muted loop playsinline preload="auto"></video>
+  <div class="fade"></div>
+  <div class="plates"><img class="plate a" src="assets/scene/plates/mist-a.png" alt=""></div>
+  <div class="wash" style="opacity:0"></div>
+  <div class="cue" id="cue" aria-hidden="true"><span>Scroll down</span><div class="ring"><svg viewBox="0 0 14 26"><path d="M2 2l5 5 5-5"/><path d="M2 10l5 5 5-5"/><path d="M2 18l5 5 5-5"/></svg></div></div>
+  <div class="curtain"></div>
+  <div class="frame"><a class="brand" href="#top" data-go="0" aria-label="Alpine, back to the start" style="grid-column:1 / -1"><svg class="mk" viewBox="0 0 1024 1024"><path d="M80 690C275 616 490 560 690 486C785 451 836 415 871 373C904 333 930 280 946 194C909 201 876 220 854 251C827 287 809 332 781 363C739 411 678 440 603 465C418 526 226 595 80 690Z"/></svg><span class="wm">Alpine</span></a><div class="words in hero-words" style="grid-column:7 / span 6">
+    <div class="plate-text"></div>
+    <h1><span class="l1"><span class="w" style="--d:1.40s">Built</span> <span class="w" style="--d:1.49s">to</span> <span class="w" style="--d:1.58s">a</span> <span class="w" style="--d:1.67s">flight</span> <span class="w" style="--d:1.76s">plan.</span></span><span class="rule" aria-hidden="true"></span><span class="l2"><span class="w" style="--d:2.00s">Flown</span> <span class="w" style="--d:2.09s">by</span> <span class="w" style="--d:2.18s">your</span> <span class="w" style="--d:2.27s">own</span> <span class="w" style="--d:2.36s">crew.</span></span></h1>
+    <p>Get your week back. Spend it in the room where the deal is decided, or with the client you have not met yet. Then go home in time and be there, with your family and not with the desk: the month done, and no night spent lying awake over what still waits. We build so your week is yours again. For the business first. Then for everything the business is for.</p>
+  </div></div>
 </section>
-
-<!-- ============ PROOF (UI cards) ============ -->
-<section class="pad proof" id="proof"><div class="wrap">
-<h2 class="big rv"><span class="a">Every number here</span><span class="b">links to its own evidence</span></h2>
-<p class="subline rv">Protocols are committed before the runs, so the git timestamps do the arguing; judges are mechanical and red is possible. The flagship build below is the first shelf of a public library — every client build ships with a log like it.</p>
-<div class="cards">
-<div class="uicard rv">
-<div class="chead"><b>The flagship build — one agent, on the record</b><span class="mono">builds/pr-gate · 2026-08</span></div>
-<div class="bignums">
-<div class="bn" style="color:#12A15B">11/11<small>valid seeded violations caught, rule quoted</small></div>
-<div class="bn" style="color:#12A15B">0<small>false alarms on clean PRs</small></div>
-<div class="bn" style="color:#B42318">RED<small>determinism threshold — published, fix queued</small></div>
-</div>
-<div style="font-size:13px;color:#667085;margin-top:14px;line-height:1.6">Judged against a seeded test set authored blind by a second agent. One seed we disputed — with grep evidence, in the log. The 7.5-hour hang defect is in there too. That's what "on the record" means.</div>
-<div style="margin-top:16px"><a class="arrowlnk" style="font-size:14px" href="https://github.com/slavpetroff/agent-receipts/blob/main/builds/pr-gate/BUILD-LOG.md">the full build log</a></div>
-</div>
-<div class="uicard digest rv" style="padding:0">
-<div class="chead"><b>Phase-one receipts</b><span class="mono">losses first</span></div>
-<div class="drows">
-<div class="drow"><div class="dgrid">
-<div><div class="dt"><b>Cheap iteration — the install LOSES</b></div>
-<div class="dd">Where retrying is cheap, phase one costs more than it saves. We publish it and we refuse those builds at screening.</div>
-<div class="dm">published · v3-failtopass</div></div>
-<div class="dviz"><span class="dv bad">+7.5%</span><div class="dtrack"><div class="dfill bad" style="width:20%"></div></div><span class="dvl">per solved task</span></div>
-</div></div>
-<div class="drow"><div class="dgrid">
-<div><div class="dt"><b>35-package repo — where it pays</b></div>
-<div class="dd">A bare agent failed 1 of 3 hard tasks outright. With phase one installed: all delivered, at −38% cost per delivered change.</div>
-<div class="dm">published · field-test</div></div>
-<div class="dviz"><span class="dv ok">−38%</span><div class="dtrack"><div class="dfill ok" style="width:100%"></div></div><span class="dvl">fail → pass</span></div>
-</div></div>
-<div class="drow"><div class="dgrid">
-<div><div class="dt"><b>Our own boot cost</b></div>
-<div class="dd">Applying the same phase one to our own operations cut what our agents load at start 8.6×. We run on this daily.</div>
-<div class="dm">published · results/</div></div>
-<div class="dviz"><span class="dv ok">8.6×</span><div class="dtrack"><div class="dfill ok" style="width:88%"></div></div><span class="dvl">lighter boot</span></div>
-</div></div>
-</div>
-</div>
-</div>
-<p class="below rv"><a href="https://github.com/slavpetroff/agent-receipts/tree/main/protocols">Read the protocols</a>, then check any number we've ever posted against them. If a number isn't in the repo, call it out.</p>
-</div></section>
-
-<!-- ============ HOW ============ -->
-<section class="pad" id="how"><div class="wrap">
-<h2 class="big rv"><span class="a">One team. One agent.</span><span class="b">Weeks, on the record.</span></h2>
-<div style="margin-top:60px">
-<div class="tline">
-<div class="titem rv"><div class="tnode"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4"/><path d="M9 12h7M9 16h5"/></svg></div>
-<div class="tbody"><div class="sn">Day 0</div><div class="st">Screening &amp; the frozen protocol</div><div class="sd">One meeting about the workflow that hurts. If the job isn't a fit — real-time swarms, heavy concurrency — we say so and tell you what to hire instead; refusing is part of the craft. Otherwise the target, the deadline and the pass thresholds get registered in writing before anything starts.</div></div></div>
-<div class="titem rv"><div class="tnode"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10l5-3v10l-5-3"/></svg></div>
-<div class="tbody"><div class="sn">Next</div><div class="st">The Test Flight</div><div class="sd">A one-page spec and a working slice of YOUR agent, demonstrated live on your workflow with the running cost on screen — before any payment. The spec stays with you either way, and its price comes off the build if you order.</div></div></div>
-<div class="titem rv"><div class="tnode"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/><rect x="2" y="3" width="20" height="18" rx="3"/></svg></div>
-<div class="tbody"><div class="sn">The build</div><div class="st">Through the cycle, judged blind</div><div class="sd">Spec, test the spec, implement, integration checks, live runs. The finished agent is judged against a seeded test set it has never seen — thresholds from Day 0, mechanical judge, red possible. The build log writes itself from minute zero and ships public.</div></div></div>
-<div class="titem rv"><div class="tnode"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div>
-<div class="tbody"><div class="sn">Handover · Day 30</div><div class="st">Yours whole, then the check-up</div><div class="sd">The workspace lands in your repo, complete — if we disappear tomorrow, nothing stops working. Thirty days later you get the drift report: what stayed true, what moved, what keeping it true would take. Your call from there.</div></div></div>
-</div>
-<div class="badges rv">
-<span class="badge"><b>NDA</b>: signed on request, before we see anything</span>
-<span class="badge"><b>Your code untouched</b>: we add, never rewrite — on a branch, ever</span>
-<span class="badge"><b>Secrets never in the structure</b>: by design</span>
-<span class="badge"><b>Yours forever</b>: plain files, any vendor</span>
-<span class="badge"><b>EU</b>: Bulgaria-based, EU clients</span>
-</div>
-</div>
-</div></section>
-
-<!-- ============ TRUTHS ============ -->
-<section class="pad" style="padding-top:40px"><div class="wrap">
-<h2 class="big rv"><span class="a">The six truths</span><span class="b">nobody opens with</span></h2>
-<p class="subline rv">You should hear these from us, before you buy anything from anyone.</p>
-<div class="truths"><div class="tgrid">
-<div class="tcol rv"><div class="tno">Truth 01</div><b>A readable file is a copyable file</b><p>File systems have no "read but don't take". Secrets never live in this structure, only references to your secret manager. Design boundary, not a footnote.</p></div>
-<div class="tcol rv"><div class="tno">Truth 02</div><b>An agent's permissions are infrastructure, not promises</b><p>Anyone telling you their agent "is safe" by design is selling a story. The fences live in your platform: protected branches, CODEOWNERS, read-only scopes. We configure them with you; your infrastructure enforces them.</p></div>
-<div class="tcol rv"><div class="tno">Truth 03</div><b>Human gates don't scale by themselves</b><p>Review gates are the trust feature and the first bottleneck. Every gate ships with an owner, a queue and an SLA, or it becomes a gate people walk around.</p></div>
-<div class="tcol rv"><div class="tno">Truth 04</div><b>It only knows what got written down</b><p>The context install doesn't make the model smarter — it hands it your recorded answers. What nobody recorded, the agent still fills with a confident guess. Getting the right knowledge out of the right heads is most of the work; that craft is what you're actually buying.</p></div>
-<div class="tcol rv"><div class="tno">Truth 05</div><b>The bench measures what the bench measures</b><p>A build is judged on what its protocol registered: catches, recall, cost. Anything beyond the judge — "the output is just better" — is a claim we refuse to make, and anyone making it without a mechanical judge is guessing. Jobs where the numbers say don't build, we refuse; those receipts are published.</p></div>
-<div class="tcol rv"><div class="tno">Truth 06</div><b>A delivered agent ages</b><p>Your code moves; the context it was built on ages, and an outdated answer lies with confidence. Keeping an agent true is an ongoing discipline, not built-in magic — the Day-30 drift report shows exactly what moved, and you decide if it's worth maintaining.</p></div>
-</div></div>
-</div></section>
-
-<!-- ============ ALTS ============ -->
-<section class="pad" style="padding-top:20px"><div class="wrap">
-<h2 class="big rv"><span class="a">What the other roads</span><span class="b">actually cost</span></h2>
-<div class="aline">
-
-<div class="arow">
-<div class="aviz rv" aria-hidden="true"><svg viewBox="0 0 420 300">
-<g class="iso-line">
-<rect x="20" y="26" width="150" height="16" rx="8"/>
-<rect x="20" y="56" width="196" height="16" rx="8"/>
-<rect x="20" y="86" width="238" height="16" rx="8"/>
-</g>
-<g class="iso-bad">
-<rect x="20" y="116" width="286" height="16" rx="8"/>
-<rect x="20" y="146" width="330" height="16" rx="8"/>
-<rect x="20" y="176" width="368" height="16" rx="8"/>
-</g>
-<text x="20" y="216" font-size="11" fill="#98A2B3" font-family="Inter">the same explanation, longer every time</text>
-<g transform="translate(300,20)">
-<rect class="iso-ghost" x="0" y="0" width="100" height="72" rx="8"/>
-<line x1="14" y1="18" x2="86" y2="18" stroke="#C4CCD6" stroke-width="1.3"/>
-<line x1="14" y1="34" x2="74" y2="34" stroke="#D4DAE1" stroke-width="1.3"/>
-<line x1="14" y1="50" x2="60" y2="50" stroke="#E4E9EE" stroke-width="1.3"/>
-<text x="12" y="92" font-size="11" fill="#98A2B3" font-family="Inter">the roadmap, queued</text>
-</g>
-</svg></div>
-<div class="acard rv"><h3>The dedicated AI-platform hire</h3><div class="price">€70–90k</div><div class="per">per year, plus three months to find them</div><a class="psrc" href="https://www.linkedin.com/jobs/search/?keywords=AI%20Platform%20Engineer&location=European%20Union">the live listings, any EU job board →</a><p>A real route, and the market proof is public: the listings are everywhere. You get one person's roadmap at a salaried pace — the first working workflow lands a quarter away, and everything queues behind one calendar. Meanwhile the bleed on the right keeps running.</p></div>
 </div>
 
-<div class="arow flip">
-<div class="aviz rv" aria-hidden="true"><svg viewBox="0 0 420 300">
-<line x1="30" y1="80" x2="390" y2="80" stroke="#C4CCD6" stroke-width="1.4"/>
-<g fill="#9AA6B4"><circle cx="50" cy="80" r="5"/><circle cx="90" cy="80" r="5"/><circle cx="130" cy="80" r="5"/><circle cx="330" cy="80" r="5"/><circle cx="370" cy="80" r="5"/></g>
-<text x="30" y="62" font-size="11" fill="#98A2B3" font-family="Inter">main</text>
-<path d="M130 80 C150 80, 150 150, 175 150" fill="none" stroke="#C4CCD6" stroke-width="1.4"/>
-<line x1="175" y1="150" x2="285" y2="150" stroke="#C4CCD6" stroke-width="1.4"/>
-<line x1="285" y1="150" x2="385" y2="150" stroke="#D0D5DD" stroke-width="1.4" stroke-dasharray="4 6"/>
-<g><circle cx="185" cy="150" r="5" fill="#12A15B"/><circle cx="205" cy="150" r="5" fill="#12A15B"/><circle cx="225" cy="150" r="5" fill="#6FD59B"/><circle cx="253" cy="150" r="5" fill="#BFC9D2"/><circle cx="285" cy="150" r="5" fill="none" stroke="#D96C50" stroke-width="1.6"/></g>
-<circle cx="335" cy="150" r="5" fill="none" stroke="#D0D5DD" stroke-width="1.4" stroke-dasharray="3 3"/>
-<text x="175" y="132" font-size="11" fill="#98A2B3" font-family="Inter">platform-v1 — commits fade</text>
-<text x="262" y="176" font-size="11" fill="#B42318" font-family="Inter">last commit</text>
-<line x1="30" y1="242" x2="390" y2="242" stroke="#C4CCD6" stroke-width="1.3"/>
-<g stroke="#C4CCD6" stroke-width="1.3"><line x1="30" y1="237" x2="30" y2="247"/><line x1="102" y1="237" x2="102" y2="247"/><line x1="174" y1="237" x2="174" y2="247"/><line x1="246" y1="237" x2="246" y2="247"/><line x1="318" y1="237" x2="318" y2="247"/><line x1="390" y1="237" x2="390" y2="247"/></g>
-<g font-size="11" fill="#98A2B3" font-family="Inter"><text x="24" y="264">m1</text><text x="96" y="264">m2</text><text x="168" y="264">m3</text><text x="240" y="264">m4</text><text x="312" y="264">m5</text><text x="384" y="264">m6</text></g>
-<path d="M30 226 L174 226" stroke="#12A15B" stroke-width="3" stroke-linecap="round"/>
-<text x="36" y="216" font-size="11" fill="#0E7A45" font-family="Inter">2 engineers, 3 months</text>
-<path d="M174 226 L390 226" stroke="#D96C50" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 7"/>
-<text x="212" y="216" font-size="11" fill="#B42318" font-family="Inter">maintenance nobody owns</text>
-</svg></div>
-<div class="acard rv"><h3>The internal platform initiative</h3><div class="price">€55,000+</div><div class="per">2 engineers × 3 months — what most teams try first</div><a class="psrc" href="#bleed">2 × 3 months at the same €55/h loaded rate →</a><p>Full control, and your team levels up building it. But one team builds it; the rollout lands on every other team as unplanned scope, with deadlines attached. An owner drops his roadmap to carry it, every squad slows down to adopt it, and the cross-team slowdown isn't even in the number above. Then the owner goes back to his roadmap, and it drifts from that day. We've watched it.</p></div>
+<!-- 2 THE WORK: chart + flight strips -->
+<div class="pin" id="work" data-ch="work" data-len="130" data-hd="assets/scene/1080/ch1-work.mp4" data-sd="assets/scene/web/ch1-work.mp4">
+<section class="stage">
+  <img class="still" src="assets/scene/posters/ch1-work.jpg" alt="">
+  <video class="scrub" muted playsinline preload="none"></video>
+  <div class="fade"></div>
+  <div class="plates"><img class="plate c" src="assets/scene/plates/mist-c.png" alt=""></div>
+    <div class="wash"></div>
+  <div class="frame"><div class="words" style="grid-column:7 / span 6">
+    <div class="plate-text"></div>
+    <span class="label">The work</span>
+    <h2>The work your team rebuilds by hand, again and again, while the important things wait.</h2>
+    <p>Put afterburners on your team for the recurring work that drains their focus from the important things. The route is planned. Step by step, your people make the decisions and the adjustments, the heavy work is carried for them, and every step begins from what they corrected in the one before.</p>
+    <p>A team whose focus goes where the business grows, because the recurring work no longer takes it.</p>
+  </div></div>
+</section>
 </div>
 
-<div class="arow">
-<div class="aviz rv" aria-hidden="true"><svg viewBox="0 0 420 300">
-<defs><g id="cardL"><rect x="-5" y="-36" width="10" height="72" rx="3" fill="rgba(255,255,255,.8)" stroke="#9AA6B4" stroke-width="1.4"/></g></defs>
-<g>
-<use href="#cardL" transform="translate(88,232) rotate(16)"/><use href="#cardL" transform="translate(132,232) rotate(-16)"/>
-<use href="#cardL" transform="translate(188,232) rotate(16)"/><use href="#cardL" transform="translate(232,232) rotate(-16)"/>
-<use href="#cardL" transform="translate(288,232) rotate(16)"/><use href="#cardL" transform="translate(332,232) rotate(-16)"/>
-</g>
-<g stroke="#9AA6B4" stroke-width="1.4" fill="rgba(255,255,255,.8)">
-<rect x="66" y="188" width="108" height="8" rx="3"/>
-<rect x="166" y="188" width="108" height="8" rx="3"/>
-<rect x="266" y="188" width="108" height="8" rx="3"/>
-</g>
-<use href="#cardL" transform="translate(138,152) rotate(16)"/><use href="#cardL" transform="translate(182,152) rotate(-16)"/>
-<use href="#cardL" transform="translate(238,152) rotate(16)"/><use href="#cardL" transform="translate(282,152) rotate(-16)"/>
-<g stroke="#9AA6B4" stroke-width="1.4" fill="rgba(255,255,255,.8)"><rect x="126" y="108" width="168" height="8" rx="3"/></g>
-<use href="#cardL" transform="translate(192,72) rotate(16)"/>
-<g transform="translate(266,52) rotate(-44)"><rect x="-5" y="-36" width="10" height="72" rx="3" fill="rgba(217,108,80,.12)" stroke="#D96C50" stroke-width="1.5"/></g>
-<path d="M240 34 C252 24, 268 22, 282 30" fill="none" stroke="#D96C50" stroke-width="1.3" stroke-dasharray="3 5"/>
-<text x="292" y="34" font-size="11" fill="#B42318" font-family="Inter">one change</text>
-<text x="120" y="290" font-size="11" fill="#98A2B3" font-family="Inter">impressive, until something moves</text>
-</svg></div>
-<div class="acard rv"><h3>Multi-agent framework build</h3><div class="price">€40–80k</div><div class="per">+ permanent maintenance</div><a class="psrc" href="#bleed">730–1,450 build hours at the same €55/h rate →</a><p>The demos are genuinely impressive, and it starts fast. Then you own a fragile orchestration tower where every agent is wired to every agent, and the framework owns you back. Lock-in with extra steps.</p></div>
+<!-- 3 THE CREW: cockpit + placards -->
+<div class="pin" id="crew" data-ch="crew" data-len="130" data-hd="assets/scene/1080/ch2-cockpit.mp4" data-sd="assets/scene/web/ch2-cockpit.mp4">
+<section class="stage">
+  <img class="still" src="assets/scene/posters/ch2-cockpit.jpg" alt="">
+  <video class="scrub" muted playsinline preload="none"></video>
+  <div class="fade"></div>
+  <div class="plates"><img class="plate a" src="assets/scene/plates/mist-a.png" alt="" style="opacity:.5"></div>
+  <div class="objects"><div class="placards" data-stagger="0.06,0.17,0.28">
+    <span class="label">FAQ</span>
+    <div class="placard obj" role="button" tabindex="0" aria-expanded="false"><b>How quickly can we deliver?<i class="pm"></i></b><div class="ans"><span>Within days. We need the information, not the access: tell us what the work is and how it should be done, and it comes to you ready to run.</span></div></div>
+    <div class="placard obj" role="button" tabindex="0" aria-expanded="false"><b>What does your team have to learn?<i class="pm"></i></b><div class="ans"><span>Nothing. It runs where your team already works, on your own case from the first day, and the people who know the work do what they already do: look, correct, and move it on. If there is nothing in place yet, we bring the place with us.</span></div></div>
+    <div class="placard obj" role="button" tabindex="0" aria-expanded="false"><b>How sure can you be?<i class="pm"></i></b><div class="ans"><span>You see it run on your own case before anything else. Every run leaves a record your people can read. And it is not finished until it holds on your real work, whatever that takes on our side.</span></div></div>
+  </div></div>
+  <div class="wash"></div>
+  <div class="frame"><div class="words">
+    <div class="plate-text"></div>
+    <span class="label">The crew</span>
+    <h2>We are with you at each step, and whatever comes up is ours to carry with you, so it stays easy on your side.</h2>
+  </div></div>
+</section>
 </div>
 
-<div class="arow flip">
-<div class="aviz rv" aria-hidden="true"><svg viewBox="0 0 420 300">
-<g class="iso-line"><path d="M110 90 L210 140 L110 190 L10 140 Z M10 140 L10 196 L110 246 L110 190 M210 140 L210 196 L110 246"/></g>
-<g class="iso-badf"><path d="M110 118 L170 148 L110 178 L50 148 Z"/></g>
-<g class="iso-bad"><rect x="96" y="132" width="28" height="22" rx="4"/><path d="M102 132 v-8 a8 8 0 0 1 16 0 v8"/></g>
-<text x="30" y="278" font-size="11" fill="#98A2B3" font-family="Inter">your memory, inside their harness</text>
-<g class="iso-ghost" transform="translate(280,110)"><path d="M60 0 L120 30 L60 60 L0 30 Z"/></g>
-<text x="292" y="196" font-size="11" fill="#98A2B3" font-family="Inter">your repo, empty</text>
-</svg></div>
-<div class="acard rv"><h3>Vendor enterprise tier</h3><div class="price">€30k+</div><div class="per">per year, forever</div><a class="psrc" href="https://claude.com/pricing">30 premium seats × $100/seat/mo, vendor price list →</a><p>Zero effort: one invoice, and it works tomorrow. But the memory lives in the vendor's harness, not in your repos. Switch vendors and your company's knowledge doesn't come with you. You start from zero, again.</p></div>
+<!-- 4 THE ROOTS: the flight + the track -->
+<div class="pin" id="roots" data-ch="flight" data-len="140" data-hd="assets/scene/1080/ch3-flight.mp4" data-sd="assets/scene/web/ch3-flight.mp4">
+<section class="stage">
+  <img class="still" src="assets/scene/posters/ch3-flight.jpg" alt="">
+  <video class="scrub" muted playsinline preload="none"></video>
+  <div class="fade"></div>
+  <div class="plates"><img class="plate c" src="assets/scene/plates/mist-c.png" alt="" style="opacity:.6"></div>
+  <div class="pager" id="pager"><i class="on"></i><i></i><i></i><i></i></div>
+  <div class="objects"><div class="track" id="track">
+    <div class="card obj"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19C8 13 13 8 19 5L15 3" stroke="#2457FF" stroke-width="2" stroke-linecap="round"/></svg><b>Money</b><span>Stop babysitting the people doing the recurring work, the questions and the interruptions, and put your focus where it belongs for an owner: on what brings money in and grows the business.</span></div>
+    <div class="card obj"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19C8 13 13 8 19 5L15 3" stroke="#2457FF" stroke-width="2" stroke-linecap="round"/></svg><b>Risk</b><span>Your people already know how it should be done. They were just buried. Now they are in every stage, looking and correcting, so the result is right by construction, and what stays with them is the part that needs a person, not the part that needs a computer.</span></div>
+    <div class="card obj"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19C8 13 13 8 19 5L15 3" stroke="#2457FF" stroke-width="2" stroke-linecap="round"/></svg><b>Control</b><span>Anyone on your team can change any step to fit how you work, without knowing anything about what is underneath. It is as easy as changing your mind, and the next run already does it.</span></div>
+    <div class="card obj"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19C8 13 13 8 19 5L15 3" stroke="#2457FF" stroke-width="2" stroke-linecap="round"/></svg><b>Speed</b><span>You describe the work, and within days it is running on your own case. From then on every correction takes effect the moment it is made, and nobody has to rebuild anything to get there.</span></div>
+  </div></div>
+  <div class="wash"></div>
+  <div class="frame" style="align-content:start;padding-top:9vh"><div class="words" style="grid-column:3 / span 5">
+    <div class="plate-text"></div>
+    <span class="label">The roots</span>
+    <h2>Every correction your people make is kept, so nothing is corrected twice.</h2>
+  </div></div>
+</section>
 </div>
 
+<!-- 5 THE RECORD: the arrival -->
+<div class="pin" id="record" data-ch="arrival" data-len="85" data-hd="assets/scene/1080/ch4-arrival.mp4" data-sd="assets/scene/web/ch4-arrival.mp4">
+<section class="stage">
+  <img class="still" src="assets/scene/posters/ch4-arrival.jpg" alt="">
+  <video class="scrub" muted playsinline preload="none"></video>
+  <div class="fade"></div>
+  <div class="plates"><img class="plate a" src="assets/scene/plates/mist-a.png" alt="" style="opacity:.7"></div>
+  <div class="wash"></div>
+  <div class="frame" style="align-content:start;padding-top:8vh"><div class="words case" style="grid-column:3 / span 5">
+    <div class="plate-text"></div>
+    <span class="label">The record</span>
+    <h2>A PR campaign, thirty days, up to a hundred creators, and every story caught the day it appeared.</h2>
+    <p>Before, one person spent part of every day of the campaign walking two feeds for up to a hundred creators, copying what she found into Excel, keeping the formulas straight, and losing every story that expired before she got to it. Stories vanish after a day, so a day missed is gone for good.</p>
+    <p>Now she hands over three files, the brief, the list and the product sheet. From there the route runs: the missing platforms found, the followers counted at the start and the end, every story caught the day it appears, the uncertain ones set aside for her eye.</p>
+    <p>The catch: a product in frame with no tag still counts, and no keyword can see it. So those cases are not guessed. They are set aside, and she looks at them herself, on purpose.</p>
+    <p>Three working days with her, not three months: the build, the test flight on her old campaign, the fixes, the first live run.</p>
+  </div></div>
+</section>
 </div>
-<p class="subline" style="margin-top:24px">Each of these is a legitimate road. We'll tell you when one of them is the better fit — that's what the screening is for.</p>
-</div></section>
 
-<!-- ============ OFFER ============ -->
-<div class="offerwrap" id="offer"><div class="wrap">
-<div class="offer rv">
-<div class="kick">The offer</div>
-<h2>We build your team a working agent — weeks, not months</h2>
-<div class="ogrid">
-<ul>
-<li><b>Screening first.</b> Your problems, honestly, including "this doesn't fit the shape — here's what to hire instead." The receipts above show two repos where we made things worse and published it.</li>
-<li><b>The Test Flight:</b> your agent runs on YOUR workflow, live, before any payment. A spec and a working slice, demonstrated with the running cost on screen.</li>
-<li>The full build runs the engineer's cycle: spec, test the spec, implement, integration checks, live runs — the same discipline production software gets</li>
-<li>Phase one of every build: your architecture decisions, standards and workflows written where the agent actually loads them</li>
-<li>The measurement report against a pre-registered protocol, yours to keep · the security review (the six truths, applied)</li>
-<li>The workspace is YOURS: plain files in your repo, handed over whole. If we disappear tomorrow, nothing stops working.</li>
-<li>A 30-day drift report that shows you exactly what moved after we left — and what keeping it true would take.</li>
-</ul>
-<div class="pricecard">
-<div class="slots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
-<div class="slotlab">Five companies per intake. That's the whole capacity; we build each install by hand.</div>
-<span class="strike">€19,580</span><span class="free">FREE</span>
-<div class="anchornote">the crossed price is ≈ 33 days of the €17,900/month bleed <a href="#bleed">from the math above</a></div>
-<div class="counter">This intake is free. The next one won't be. <b>Once it fills, free is gone for good.</b></div>
-<div class="guar"><b>The guarantee:</b> pass thresholds are registered in writing on Day 0, before we touch anything. If the measurement doesn't hit them, the invoice never exists.</div>
-<a class="cta" href="mailto:contact@alpine-engineering.eu?subject=Alpine%20%E2%80%94%20The%20Test%20Flight">Book a Test Flight →</a>
+<!-- 6 HOW IT IS DONE: the hangar -->
+<div class="pin" id="hangar" data-ch="hangar" data-len="85" data-hd="assets/scene/1080/ch5-hangar.mp4" data-sd="assets/scene/web/ch5-hangar.mp4">
+<section class="stage">
+  <img class="still" src="assets/scene/posters/ch5-hangar.jpg" alt="">
+  <video class="scrub" muted playsinline preload="none"></video>
+  <div class="fade"></div>
+  <div class="plates"><img class="plate c" src="assets/scene/plates/mist-c.png" alt="" style="opacity:.45"></div>
+  <div class="wash"></div>
+  <div class="frame"><div class="words" style="grid-column:7 / span 6">
+    <div class="plate-text"></div>
+    <span class="label">The hangar</span>
+    <h2>The same discipline that keeps the software people depend on running, brought to the repetitive work nobody on your team wants and everybody ends up doing.</h2>
+    <p>Made for teams who want the recurring work done properly, and want to stay in charge of it.</p>
+  </div></div>
+</section>
 </div>
-</div>
-</div>
-</div></div>
 
-<!-- ============ STEAL ============ -->
-<section class="steal" style="padding-bottom:10px"><div class="wrap">
-<h2 class="big rv"><span class="a">Steal these first.</span><span class="b">Free, today, no contact needed.</span></h2>
-<div class="list rv">
-<div class="srow"><div><b>The flagship's full build log</b><span>One agent, one day, defects and red thresholds included. This is what every client build ships with.</span></div><a class="arrowlnk" href="https://github.com/slavpetroff/agent-receipts/blob/main/builds/pr-gate/BUILD-LOG.md">Open</a></div>
-<div class="srow"><div><b>Seven paste-ready agent prompts</b><span>Audits that run themselves: your agent asks what it needs, works, prints the report.</span></div><a class="arrowlnk" href="https://github.com/slavpetroff/agent-receipts/tree/main/gift">Open</a></div>
-<div class="srow"><div><b>Alpine's daily field notes</b><span>One war story, one hands-on process a day, from our own repos. Run it the same afternoon.</span></div><a class="arrowlnk" href="https://www.linkedin.com/company/alpine-engineering-/">Follow</a></div>
+<!-- 7 THE DOOR + the stub -->
+<!-- 7 THE LOGBOOK -->
+<div class="pin" id="logbook" data-ch="logbook" data-len="110">
+<section class="stage">
+  <img class="still" src="assets/scene/posters/logbook.jpg" alt="">
+  <div class="fade"></div>
+  <div class="plates"><img class="plate c" src="assets/scene/plates/mist-c.png" alt="" style="opacity:.5"></div>
+  <div class="objects"><div class="log-form obj" data-at="0.2" id="logForm">
+    <form id="logbookForm" novalidate>
+      <div class="f"><span class="lab">Your rating</span><div class="stars" id="stars" role="radiogroup" aria-label="Your rating"><button type="button" role="radio" aria-checked="false" aria-label="1 of 5"></button><button type="button" role="radio" aria-checked="false" aria-label="2 of 5"></button><button type="button" role="radio" aria-checked="false" aria-label="3 of 5"></button><button type="button" role="radio" aria-checked="false" aria-label="4 of 5"></button><button type="button" role="radio" aria-checked="false" aria-label="5 of 5"></button></div><input type="hidden" id="rating" name="rating" value=""></div>
+      <div class="f"><label for="entry">Your words</label><textarea id="entry" name="entry" rows="3"></textarea></div>
+      <div class="f two"><div><label for="who">Your name</label><input id="who" name="who" type="text" autocomplete="name"></div><div><label for="company">Company</label><input id="company" name="company" type="text" autocomplete="organization"></div></div>
+      <label class="consent"><input type="checkbox" id="consent" name="consent"><span>You may show this entry on the site with my name and company.</span></label>
+      <button type="submit"><i></i>Send</button>
+    </form>
+    <p class="sent">Your entry is in the logbook. We read every one before it goes on the page.</p>
+  </div></div>
+  <div class="wash"></div>
+  <div class="frame"><div class="words">
+    <div class="plate-text"></div>
+    <span class="label">The logbook</span>
+    <p class="logline">Every crew we fly with writes here, in their own name, once the work holds. We read each entry before it goes on the page. Yours is welcome.</p>
+    <div class="entries" id="entries" hidden></div>
+  </div></div>
+</section>
 </div>
-<div class="news rv">
-<p><b>One email when a new measurement, case study or tool drops.</b><br><span>Receipts included. Nothing else: no course funnel, no drip sequence.</span></p>
-<form action="https://docs.google.com/forms/d/1q1LdzFb02sDaaurpRny9pVWQgsXsmOHnMv9qeP5MjcA/formResponse" method="POST" target="nl_sink">
-<input type="email" name="entry.600134808" placeholder="you@company.eu" required aria-label="Email address">
-<button type="submit">Get the receipts</button>
-</form>
-<iframe name="nl_sink" style="display:none" title="hidden"></iframe>
-</div>
-</div></section>
 
-<footer><div class="wrap">
-<div class="frow">
-<div>Alpine Engineering (Alpine LTD) · Bulgaria · Clients across the EU</div>
-<div>
-<a href="https://www.linkedin.com/in/stanislav-petrov-a72739105/">LinkedIn — Stanislav Petrov</a> ·
-<a href="https://www.linkedin.com/company/alpine-engineering-/">Alpine on LinkedIn</a> ·
-<a href="https://github.com/slavpetroff/agent-receipts">agent-receipts</a> ·
-<a href="mailto:contact@alpine-engineering.eu">contact@alpine-engineering.eu</a>
+<div class="pin" id="door" data-ch="door" data-len="90" data-hd="assets/scene/1080/ch6-door.mp4" data-sd="assets/scene/web/ch6-door.mp4">
+<section class="stage">
+  <img class="still" src="assets/scene/posters/ch6-door.jpg" alt="">
+  <video class="scrub" muted playsinline preload="none"></video>
+  <div class="fade"></div>
+  <div class="plates"><img class="plate a" src="assets/scene/plates/mist-a.png" alt="" style="opacity:.8"></div>
+  <div class="objects"><div class="door-form obj" data-at="0.22" id="doorForm">
+    <form id="askForm" novalidate>
+      <div class="f"><label for="email">Your email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+      <div class="f"><label for="message">The work you have in mind</label><textarea id="message" name="message" rows="4"></textarea></div>
+      <button type="submit"><i></i>Send</button>
+    </form>
+    <p class="sent">Your message is on its way. We write back from contact@alpine-engineering.eu.</p>
+  </div></div>
+  <div class="wash"></div>
+  <div class="frame"><div class="words">
+    <div class="plate-text"></div>
+        <span class="label">The offer</span>
+    <div class="seats" aria-label="Five free seats, the first taken"><i class="taken"></i><i></i><i></i><i></i><i></i></div>
+    <p class="offer">Five seats are free, and the first is already taken. When they are gone, it is never free again, and never this low again.</p>
+    <p class="price"><s>$23,986</s><b>Free</b></p>
+    <h1>Talk to us.</h1>
+    <p><a href="mailto:contact@alpine-engineering.eu">contact@alpine-engineering.eu</a></p>
+    <p><a href="https://www.linkedin.com/company/alpine-engineering-bg">The company page on LinkedIn</a></p>
+  </div></div>
+</section>
 </div>
-</div>
-</div></footer>
 
-</div><!-- /canvas -->
+<footer class="foot" id="foot">
+  <div class="grid">
+    <div class="lead"><svg class="fm" viewBox="0 0 1024 1024" aria-hidden="true"><path fill="#2457FF" d="M80 690C275 616 490 560 690 486C785 451 836 415 871 373C904 333 930 280 946 194C909 201 876 220 854 251C827 287 809 332 781 363C739 411 678 440 603 465C418 526 226 595 80 690Z"/></svg><span class="wordmark">Alpine</span></div>
+    <div class="col"><b>The flight</b><a href="#work" data-go="1">The work</a><a href="#crew" data-go="2">The crew</a><a href="#roots" data-go="3">The roots</a><a href="#record" data-go="4">The record</a><a href="#hangar" data-go="5">The hangar</a><a href="#logbook" data-go="6">The logbook</a><a href="#door" data-go="7">Talk to us</a></div>
+    <div class="col gift"><b>The gift</b><p class="promise">One email from us, and only when a new agent or tool from a case study is ready for you to use the same day. Sent once. Nothing else lands in your inbox from this address.</p><form id="giftForm" novalidate><label for="giftEmail">Your email</label><div class="row"><input id="giftEmail" name="email" type="email" autocomplete="email" required><button type="submit"><i></i>Send</button></div></form><p class="sent">You are on the list. The next agent comes to this address, and nothing else does.</p></div>
+    <div class="col"><b>Reach us</b><a href="mailto:contact@alpine-engineering.eu">contact@alpine-engineering.eu</a><a href="https://www.linkedin.com/company/alpine-engineering-bg">The company page on LinkedIn</a></div>
+  </div>
+  <div class="end"><span>Alpine LTD</span><span>2024</span><a class="up" href="#top" data-go="0">Back to the top<i></i></a></div>
+</footer>
+
 <script>
-(function () {
-  var els = document.querySelectorAll('.rv');
-  function showAll() { els.forEach(function (el) { el.classList.add('on'); }); }
-  if (!('IntersectionObserver' in window) ||
-      matchMedia('(prefers-reduced-motion: reduce)').matches) { showAll(); return; }
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
-      if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
+(() => {
+  const q = new URLSearchParams(location.search); if (q.get('layers')) document.body.dataset.layers = q.get('layers');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced) document.body.classList.add('reduced');
+  const phone = window.innerWidth < 900; const hd = window.innerWidth >= 1600; if (phone) document.body.classList.add('flat');
+  const pins = [...document.querySelectorAll('.pin')]; const last = pins.length - 1;
+  const lens = pins.map(p => Number(p.dataset.len || 100)); pins.forEach((p, k) => { p.style.height = (lens[k] + (k === last ? 100 : 0)) + 'svh'; });
+  const lenOf = k => pins[k].offsetHeight - (k === last ? window.innerHeight : 0);
+  const state = pins.map(pin => {
+    const idle = pin.querySelector('video.idle'), v = pin.querySelector('video.scrub') || idle;
+    const st = { pin, v, idle, stage: pin.querySelector('.stage'), wash: pin.querySelector('.wash'), words: pin.querySelector('.words'), still: pin.querySelector('img.still'), plates: [...pin.querySelectorAll('.plate')],
+      objs: [...pin.querySelectorAll('.obj')], stagger: (pin.querySelector('[data-stagger]')?.dataset.stagger || '').split(',').filter(Boolean).map(Number), track: pin.querySelector('.track'), ready: false, loaded: false };
+    if (v) v.addEventListener('loadedmetadata', () => { st.ready = true; if (!reduced && !idle) { v.currentTime = 0.7; } if (window.__update) window.__update(); });
+    if (v) v.addEventListener('seeked', () => { if (!reduced && !v.classList.contains('on')) { v.classList.add('on'); } }, { once: true });
+    if (idle) v.addEventListener('loadeddata', () => { if (!reduced) v.classList.add('on'); });
+    if (idle && !phone && !reduced) { idle.preload = 'auto'; setTimeout(() => fetchClip(hd ? pin.dataset.idleHd : pin.dataset.idleSd, idle, () => idle.play().catch(() => {})), 0); }
+    return st;
+  });
+  // every clip is fetched with byte progress so the loader can count for real; the bytes then feed the video as a blob
+  const clips = []; let bytesDone = 0, bytesTotal = 0; window.__clipProgress = () => bytesTotal ? bytesDone / bytesTotal : 0;
+  const fetchClip = (url, v, then) => { const rec = { got: 0, total: 0 }; clips.push(rec);
+    fetch(url).then(async res => { if (!res.ok || !res.body) throw new Error(res.status); rec.total = Number(res.headers.get('content-length')) || 0; bytesTotal = clips.reduce((a, c) => a + c.total, 0);
+      const reader = res.body.getReader(); const parts = []; for (;;) { const { done, value } = await reader.read(); if (done) break; parts.push(value); rec.got += value.length; bytesDone = clips.reduce((a, c) => a + c.got, 0); if (window.__loaderTick) window.__loaderTick(); }
+      v.src = URL.createObjectURL(new Blob(parts, { type: 'video/mp4' })); v.load(); if (then) then(); })
+    .catch(() => { v.src = url; v.load(); if (then) then(); }); };
+  const load = st => { if (st.loaded || reduced || phone || st.idle || !st.v) return; st.loaded = true; st.v.preload = 'auto'; fetchClip(hd ? st.pin.dataset.hd : st.pin.dataset.sd, st.v); };
+  state.forEach(load);
+  let opened = false; const open = () => { if (opened) return; opened = true; document.body.classList.add('opened'); if (window.__update) window.__update(); };
+  // the loader waits for every clip, every still and the fonts (25 s cap), holds at least 1.8 s, then dissolves and the hero opens
+  {
+    const loader = document.getElementById('loader'), lbar = document.getElementById('lbar'); const waits = [];
+    const once = (el, evs, ready) => new Promise(res => { if (ready()) return res(); evs.forEach(ev => el.addEventListener(ev, () => res(), { once: true })); });
+    state.forEach(st => {
+      if (!phone && !reduced) [...new Set([st.v, st.idle].filter(Boolean))].forEach(v => waits.push(once(v, ['canplaythrough', 'error'], () => v.readyState >= 4)));
+      if (st.still) waits.push(once(st.still, ['load', 'error'], () => st.still.complete));
     });
-  }, {rootMargin: '0px 0px -8% 0px'});
-  els.forEach(function (el) { io.observe(el); });
-  // safety: nothing stays invisible, ever
-  setTimeout(showAll, 2500);
+    if (document.fonts && document.fonts.ready) waits.push(document.fonts.ready);
+    let done = 0; const total = waits.length || 1; const lpct = document.getElementById('lpct');
+    const paint = () => { const clipPart = phone || reduced ? 1 : window.__clipProgress(); const p = Math.min(0.99, 0.15 * (done / total) + 0.85 * clipPart); lbar.style.transform = `scaleX(${p.toFixed(3)})`; lpct.textContent = String(Math.round(p * 100)); };
+    window.__loaderTick = paint; waits.forEach(w => w.then(() => { done++; paint(); }));
+    const t0 = performance.now();
+    Promise.race([Promise.all(waits), new Promise(r => setTimeout(r, 25000))]).then(() => {
+      const hold = Math.max(0, 1800 - (performance.now() - t0));
+      setTimeout(() => { lbar.style.transform = 'scaleX(1)'; lpct.textContent = '100'; loader.classList.add('away'); setTimeout(() => loader.remove(), 1100); open(); }, hold);
+    });
+  }
+
+  // the chapter list: one row per chapter after the hero; the bar fills with the chapter's progress
+  const chapters = document.getElementById('chapters');
+  const chRows = [...chapters.querySelectorAll('.ch')];
+  const rbase = document.getElementById('rbase'), rflown = document.getElementById('rflown'), rplane = document.getElementById('rplane'), rfixes = document.getElementById('rfixes');
+  const rlen = rbase.getTotalLength(); rflown.style.strokeDasharray = rlen; rflown.style.strokeDashoffset = rlen;
+  const fixFrac = [0.02, 0.16, 0.30, 0.44, 0.58, 0.72, 0.86, 0.98]; const fixEls = [];
+  const navBox = () => chapters.getBoundingClientRect();
+  const placeFixes = () => {
+    const box = navBox(); const sx = 120 / 120, sy = box.height / 720;
+    rfixes.innerHTML = '';
+    fixFrac.forEach((f, k) => {
+      const pt = rbase.getPointAtLength(f * rlen);
+      const g = document.createElementNS('http://www.w3.org/2000/svg', 'g'); g.setAttribute('class', 'fx'); g.setAttribute('transform', `translate(${pt.x} ${pt.y})`);
+      g.innerHTML = k === 0 ? `<circle class="dep" r="10"/><circle class="o" r="6"/><circle class="i" r="2.6"/>`
+        : k === 7 ? `<path class="star" d="M0 -11 L2.8 -2.8 L11 0 L2.8 2.8 L0 11 L-2.8 2.8 L-11 0 L-2.8 -2.8 Z"/>`
+        : `<circle class="o" r="6"/><circle class="i" r="1.8"/><path d="M0 -9v2.4M0 6.6v2.4M-9 0h2.4M6.6 0h2.4"/>`;
+      g.dataset.go = String(k); g.addEventListener('click', () => travelTo(k));
+      rfixes.appendChild(g); fixEls[k] = g;
+      chRows[k].style.left = (pt.x * sx + 18) + 'px'; chRows[k].style.top = (pt.y * sy) + 'px';
+    });
+  };
+  placeFixes(); window.addEventListener('resize', placeFixes);
+  let flownProgress = 0;
+  const cards = [...document.querySelectorAll('#track .card')]; const pager = [...document.querySelectorAll('#pager i')];
+
+  const cur = document.getElementById('cur');
+  let cx = innerWidth / 2, cy = innerHeight / 2, tx = cx, ty = cy;
+  document.addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; }, { passive: true });
+  (function follow() { cx += (tx - cx) * 0.14; cy += (ty - cy) * 0.14; cur.style.transform = `translate3d(${cx.toFixed(1)}px, ${cy.toFixed(1)}px, 0)`; requestAnimationFrame(follow); })();
+  document.addEventListener('mouseover', e => cur.classList.toggle('hot', !!e.target.closest('a, button, .strip, .card, .ch, .fx, .placard, input, textarea, label')));
+  let mx = 0, my = 0;
+  let mraf = 0; window.addEventListener('mousemove', e => { mx = (e.clientX / window.innerWidth - .5); my = (e.clientY / window.innerHeight - .5); if (!mraf) mraf = setTimeout(() => { mraf = 0; if (!raf) raf = requestAnimationFrame(update); }, 80); }, { passive: true });
+
+  let raf = 0;
+  const update = () => {
+    raf = 0;
+    const vh = window.innerHeight, doc = document.documentElement;
+    const total = window.scrollY / (doc.scrollHeight - vh);
+    chapters.classList.toggle('show', opened && window.scrollY < pins[last].offsetTop + lenOf(last) - vh * 0.1);
+    document.getElementById('cue').classList.toggle('gone', window.scrollY > 40);
+    { const pt = rbase.getPointAtLength(flownProgress * rlen); rflown.style.strokeDashoffset = String(rlen * (1 - flownProgress)); rplane.setAttribute('transform', `translate(${pt.x} ${pt.y})`); }
+    const y = window.scrollY; let active = 0; for (let i = 0; i < state.length; i++) { if (y >= pins[i].offsetTop) active = i; }
+    for (let i = 0; i < state.length; i++) {
+      const st = state[i]; const top = pins[i].offsetTop, len = lenOf(i);
+      const t = Math.min(1, Math.max(0, (y - top) / len));
+      const visible = i === active;
+      st.stage.classList.toggle('live', visible);
+      if (i === last) st.stage.classList.toggle('parked', y >= top + len);
+      { const row = chRows[i]; const on = visible; row.classList.toggle('on', on); fixEls[i] && fixEls[i].classList.toggle('on', on); if (on) { flownProgress = fixFrac[i] + (fixFrac[Math.min(7, i + 1)] - fixFrac[i]) * t; } fixEls[i] && fixEls[i].classList.toggle('done', i < active || t > 0.5); row.classList.toggle('done', i < active); }
+      if (!visible) continue;
+      // atmosphere: parallax by scroll and mouse
+      st.plates.forEach((pl, k) => { pl.style.translate = `${(mx * (18 + k * 10)).toFixed(0)}px ${((-t * 40) + my * 8).toFixed(0)}px`; });
+      if (st.idle) {
+        // one film: the loop holds, the scroll pushes in, the mist rises over it and the words go first
+        st.idle.style.transform = `scale(${(1 + t * 0.08).toFixed(3)})`;
+        st.wash.style.opacity = String(t < 0.5 ? 0 : (t - 0.5) / 0.5);
+        st.words.style.opacity = String(Math.max(0, 1 - Math.max(0, t - 0.15) / 0.3));
+        continue;
+      }
+      const J = 0.05, endT = i === last ? 1.01 : 1 - J;
+      if (!st.v && st.still) st.still.style.transform = `scale(${(1 + t * 0.06).toFixed(3)})`;
+      st.wash.style.opacity = t < J ? 1 - t / J : t > endT ? (t - endT) / J : 0;
+      if (st.v && st.ready && !reduced) { const d = st.v.duration || 10; const hold = st.objs.length ? 0.34 : 0.06; const ft = Math.min(1, Math.max(0, (t - hold) / (Math.min(1, endT) - hold))); st.v.currentTime = Math.min(d - 0.05, 0.7 + ft * (d - 0.75)); }
+      // on a phone the words speak first, then the objects take the stage; on a wide screen they share it
+      const phone = window.innerWidth < 900;
+      st.words.classList.toggle('in', t > 0.03 && t < (phone && st.objs.length ? 0.5 : endT + 0.01));
+      st.objs.forEach((o, k) => { let at = st.stagger[k] ?? Number(o.dataset.at || 0.25); if (phone) at = 0.5 + k * 0.04; o.classList.toggle('in', t > at && t < endT + 0.01); });
+      // the track: horizontal drift by scroll
+      if (st.track) {
+        // the slider: the page scroll walks the middle card from the first to the last; the others sit scaled beside it
+        const n = cards.length; const p = Math.min(1, Math.max(0, (t - 0.34) / 0.58)); const pos = p * (n - 1);
+        const cw = cards[0].getBoundingClientRect().width / (cards[0].classList.contains('mid') ? 1 : .78); const step = cw + 60;
+        st.track.style.transform = `translate3d(calc(-50% + ${(n - 1) / 2 * step - pos * step}px), -50%, 0)`;
+        const mid = Math.round(pos); cards.forEach((c, k) => c.classList.toggle('mid', k === mid)); pager.forEach((d, k) => d.classList.toggle('on', k === mid));
+      }
+    }
+  };
+  // fast travel: one flight from here to there, the chapters between pass quickly
+  const travelTo = i => {
+    const target = i === 0 ? 0 : pins[i].offsetTop + lenOf(i) * 0.42;
+    const from = window.scrollY, dist = target - from, dur = Math.min(2200, Math.max(900, Math.abs(dist) / 4.5)); const t0 = performance.now();
+    const ease = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+    const step = now => { const k = Math.min(1, (now - t0) / dur); window.scrollTo(0, from + dist * ease(k)); if (k < 1) requestAnimationFrame(step); };
+    requestAnimationFrame(step);
+  };
+  document.querySelectorAll('[data-go]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); travelTo(Number(a.dataset.go)); }));
+  // the FAQ: one answer open at a time
+  const placards = [...document.querySelectorAll('.placard')];
+  const openPlacard = el => { const was = el.classList.contains('open'); placards.forEach(q => { q.classList.remove('open'); q.setAttribute('aria-expanded', 'false'); }); if (!was) { el.classList.add('open'); el.setAttribute('aria-expanded', 'true'); } };
+  placards.forEach(q => { q.addEventListener('click', () => openPlacard(q)); q.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openPlacard(q); } }); });
+  // the logbook: five fixes as the rating; the entry travels to the logbook form once it exists, the gift email to the list
+  const LOG_FORM = { url: 'https://docs.google.com/forms/d/e/1FAIpQLSffVJS2B9KC-hHVvZIU8epnlcSyiySWTzjlvhCYpr0FHtuWnw/formResponse', rating: 'entry.2137296667', entry: 'entry.107499663', who: 'entry.1799450915', company: 'entry.228900715', consent: 'entry.961804718' }; // the logbook Google Form (Alpine logbook, the owner's account, 11.09)
+  const starBtns = [...document.querySelectorAll('#stars button')]; starBtns.forEach((b, k) => b.addEventListener('click', () => { document.getElementById('rating').value = String(k + 1); starBtns.forEach((x, j) => { x.classList.toggle('on', j <= k); x.setAttribute('aria-checked', j === k ? 'true' : 'false'); }); }));
+  document.getElementById('logbookForm').addEventListener('submit', e => { e.preventDefault(); const r = document.getElementById('rating').value, w = document.getElementById('entry').value.trim(), who = document.getElementById('who').value.trim(), co = document.getElementById('company').value.trim(); if (!r) { starBtns[4].focus(); return; } if (!w) { document.getElementById('entry').focus(); return; } if (LOG_FORM) { const fd = new FormData(); fd.append(LOG_FORM.rating, r); fd.append(LOG_FORM.entry, w); fd.append(LOG_FORM.who, who); fd.append(LOG_FORM.company, co); fd.append(LOG_FORM.consent, document.getElementById('consent').checked ? 'yes' : 'no'); fetch(LOG_FORM.url, { method: 'POST', mode: 'no-cors', body: fd }).catch(() => {}); } document.getElementById('logForm').classList.add('done'); });
+  document.getElementById('giftForm').addEventListener('submit', e => { e.preventDefault(); const em = document.getElementById('giftEmail').value.trim(); if (!em) { document.getElementById('giftEmail').focus(); return; } const fd = new FormData(); fd.append('entry.600134808', em); fetch('https://docs.google.com/forms/d/1q1LdzFb02sDaaurpRny9pVWQgsXsmOHnMv9qeP5MjcA/formResponse', { method: 'POST', mode: 'no-cors', body: fd }).catch(() => {}); document.querySelector('.foot .gift').classList.add('done'); });
+  const ASK_ENTRY = 'entry.1539001210'; // the Google Form's long-answer question «The work you have in mind»
+  // the form: the Google Form the old site used, the message travels through the visitor's own mail client
+  document.getElementById('askForm').addEventListener('submit', e => { e.preventDefault(); const em = document.getElementById('email').value.trim(); const w = document.getElementById('message').value.trim(); if (!em) { document.getElementById('email').focus(); return; } const fd = new FormData(); fd.append('entry.600134808', em); if (ASK_ENTRY) fd.append(ASK_ENTRY, w); fetch('https://docs.google.com/forms/d/1q1LdzFb02sDaaurpRny9pVWQgsXsmOHnMv9qeP5MjcA/formResponse', { method: 'POST', mode: 'no-cors', body: fd }).catch(() => {}); document.getElementById('doorForm').classList.add('done'); });
+  window.__update = update;
+  window.addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(update); }, { passive: true });
+  window.addEventListener('resize', update);
+  update();
 })();
 </script>
 </body>

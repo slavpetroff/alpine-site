@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   <url>
     <loc>https://alpine-engineering.eu/</loc>
-    <lastmod>2026-07-29</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-09-11</lastmod>
+    <image:image><image:loc>https://alpine-engineering.eu/assets/scene/og.jpg</image:loc></image:image>
+    <image:image><image:loc>https://alpine-engineering.eu/assets/scene/posters/hero-2.jpg</image:loc></image:image>
+    <image:image><image:loc>https://alpine-engineering.eu/assets/scene/posters/ch1-work.jpg</image:loc></image:image>
+    <image:image><image:loc>https://alpine-engineering.eu/assets/scene/posters/ch2-cockpit.jpg</image:loc></image:image>
+    <image:image><image:loc>https://alpine-engineering.eu/assets/scene/posters/ch3-flight.jpg</image:loc></image:image>
+    <image:image><image:loc>https://alpine-engineering.eu/assets/scene/posters/ch4-arrival.jpg</image:loc></image:image>
+    <image:image><image:loc>https://alpine-engineering.eu/assets/scene/posters/ch5-hangar.jpg</image:loc></image:image>
+    <image:image><image:loc>https://alpine-engineering.eu/assets/scene/posters/ch6-door.jpg</image:loc></image:image>
+    <video:video>
+      <video:thumbnail_loc>https://alpine-engineering.eu/assets/scene/posters/hero-2.jpg</video:thumbnail_loc>
+      <video:title>Built to a flight plan. Flown by your own crew.</video:title>
+      <video:description>The opening film of the Alpine site: an alpine range in mist.</video:description>
+      <video:content_loc>https://alpine-engineering.eu/assets/scene/1080/hero-2.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+    </video:video>
   </url>
-  
 </urlset>

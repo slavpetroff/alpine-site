@@ -1,3 +1,21 @@
+# Search crawlers (Google Search, AI Overviews and AI Mode use Googlebot)
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# AI search crawlers: these decide whether an answer can cite this site
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+# Everyone else, the training crawlers included
 User-agent: *
 Allow: /
 
