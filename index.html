@@ -605,7 +605,7 @@
   document.addEventListener('mousemove', () => { if (!seen) { seen = true; cx = tx; cy = ty; cur.style.transition += ',opacity .4s linear'; cur.style.opacity = '1'; } }, { passive: true, once: true });
   (function follow(now) {
     const dt = Math.min(2.5, (now - lastT) / 16.667) || 1; lastT = now;
-    const k = 0.09, damp = Math.pow(0.62, dt);
+    const k = 0.05, damp = Math.pow(0.76, dt);
     vx = (vx + (tx - cx) * k * dt) * damp; vy = (vy + (ty - cy) * k * dt) * damp; cx += vx; cy += vy;
     cur.style.transform = `translate3d(${cx.toFixed(2)}px, ${cy.toFixed(2)}px, 0)`; requestAnimationFrame(follow);
   })(performance.now());
