@@ -105,7 +105,7 @@
   @media (prefers-reduced-motion:reduce){ .loader .lm img{animation:none} }
 
   /* the scroll cue */
-  .cue{position:absolute;right:clamp(24px,5vw,72px);bottom:clamp(20px,3.5vh,36px);z-index:6;display:flex;align-items:center;gap:16px;opacity:0;transition:opacity .8s linear 3.2s;pointer-events:none}
+  .cue{position:absolute;right:clamp(24px,5vw,72px);bottom:clamp(20px,3.5vh,36px);z-index:6;display:flex;align-items:center;gap:16px;opacity:0;transition:opacity .8s linear 2.2s;pointer-events:none}
   .opened .cue{opacity:1} .cue.gone{opacity:0;transition-delay:0s;transition-duration:.4s}
   .cue span{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);font-weight:600}
   .cue .ring{width:56px;height:56px;border:1px solid rgba(19,34,56,.35);border-radius:50%;display:grid;place-items:center}
@@ -133,8 +133,8 @@
   .mark{border-color:transparent;transition:border-color .8s linear 1.4s} .opened .mark{border-color:rgba(19,34,56,.28)}
   .hero-words .w{display:inline-block;opacity:0;filter:blur(6px);transform:translateY(12px)}
   .opened .hero-words .w{opacity:1;filter:blur(0);transform:none;transition:opacity .7s linear var(--d),filter .7s var(--ease) var(--d),transform .7s var(--ease) var(--d)}
-  .hero-words p{opacity:0;transform:translateY(10px)} .opened .hero-words p{opacity:1;transform:none;transition:opacity 1s linear 2.6s,transform 1s var(--ease) 2.6s}
-  .curtain{position:absolute;inset:0;background:var(--mist);z-index:7;pointer-events:none;opacity:1} .opened .curtain{opacity:0;transition:opacity 1.6s linear 1.2s}
+  .hero-words p{opacity:0;transform:translateY(10px)} .opened .hero-words p{opacity:1;transform:none;transition:opacity 1s linear 1.5s,transform 1s var(--ease) 1.5s}
+  .curtain{position:absolute;inset:0;background:var(--mist);z-index:7;pointer-events:none;opacity:1} .opened .curtain{opacity:0;transition:opacity 1s linear .1s}
   .hero-words .plate-text{opacity:1 !important}
   /* the brand: the mark draws and fills, the wordmark is wiped in beside it */
   .brand{position:absolute;top:clamp(40px,7vh,72px);right:0;left:auto;display:flex;align-items:center;gap:22px;border:0;pointer-events:auto;z-index:1}
@@ -148,7 +148,7 @@
   h1{margin:0 0 24px;font-weight:600;font-size:clamp(26px,3.6vw,52px);line-height:1.18;letter-spacing:.08em;text-transform:uppercase;max-width:16ch;font-feature-settings:'kern' 1,'liga' 1}
   h1 .l1,h1 .l2{display:block} h1 .l1{max-width:12ch} h1 .l2{max-width:17ch}
   h1 .rule{display:block;width:72px;height:1px;background:var(--cobalt);margin:18px 0 16px;transform-origin:left;transform:scaleX(0)}
-  .opened h1 .rule{transform:scaleX(1);transition:transform 1s var(--ease) 1.5s}
+  .opened h1 .rule{transform:scaleX(1);transition:transform 1s var(--ease) .9s}
   h2{margin:0 0 20px;font-weight:600;font-size:clamp(24px,2.8vw,40px);line-height:1.3;max-width:20ch;letter-spacing:-.01em}
   p{margin:0 0 14px;font-size:clamp(16px,1.25vw,18px);line-height:1.56;max-width:40ch;font-weight:500}
   a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--hairline);transition:border-color .2s}
@@ -263,6 +263,10 @@
   .next{padding:clamp(120px,18vh,200px) clamp(24px,5vw,72px);max-width:40ch;font-size:18px;line-height:1.56;color:var(--slate)}
 
   @media (max-width:900px){
+    .offer,.logline,.words.case p,.words.case h2{max-width:100%}
+    .words .door-form,.words .log-form{position:static;transform:none !important;width:100%;max-width:none;max-height:none;overflow:visible;margin:18px 0 0;padding:18px 16px 14px;opacity:1 !important;filter:none !important;pointer-events:auto}
+    .logline{font-size:15px;margin-bottom:0}
+    .words .price{margin-bottom:16px} .frame .words .price+h1{font-size:20px;margin-bottom:8px}
     .placards .label{opacity:0 !important} .placards:has(.obj.in) .label{opacity:1 !important}
     .words:not(.in) .plate-text{opacity:0 !important}
     .chapters{display:none}
@@ -273,7 +277,7 @@
     .card{flex-basis:auto}
     .stub{left:clamp(24px,5vw,72px);right:auto;bottom:4vh}
     .chapters{display:none}
-    .track{left:0;top:14vh;transform:none !important;flex-direction:column;gap:10px;padding:0 clamp(24px,5vw,72px)} .card.obj.in,.card.obj.in.mid{transform:none;opacity:1} .card{flex-basis:auto;padding:16px 18px 14px} .card b{margin-bottom:8px;padding-bottom:6px} .card span{font-size:14px;line-height:1.45} .pager{display:none}
+    .track{left:0;top:14vh;transform:none;flex-direction:column;gap:10px;padding:0 clamp(24px,5vw,72px)} .card.obj.in,.card.obj.in.mid{transform:none;opacity:1} .card{flex-basis:auto;padding:16px 18px 14px} .card b{margin-bottom:8px;padding-bottom:6px} .card span{font-size:14px;line-height:1.45} .pager{display:none}
     h2{max-width:100%}
   }
   @media (prefers-reduced-motion:reduce){
@@ -314,7 +318,7 @@
   <div class="curtain"></div>
   <div class="frame"><a class="brand" href="#top" data-go="0" aria-label="Alpine, back to the start" style="grid-column:1 / -1"><svg class="mk" viewBox="0 0 1024 1024"><path d="M80 690C275 616 490 560 690 486C785 451 836 415 871 373C904 333 930 280 946 194C909 201 876 220 854 251C827 287 809 332 781 363C739 411 678 440 603 465C418 526 226 595 80 690Z"/></svg><span class="wm">Alpine</span></a><div class="words in hero-words" style="grid-column:7 / span 6">
     <div class="plate-text"></div>
-    <h1><span class="l1"><span class="w" style="--d:1.40s">Built</span> <span class="w" style="--d:1.49s">to</span> <span class="w" style="--d:1.58s">a</span> <span class="w" style="--d:1.67s">flight</span> <span class="w" style="--d:1.76s">plan.</span></span><span class="rule" aria-hidden="true"></span><span class="l2"><span class="w" style="--d:2.00s">Flown</span> <span class="w" style="--d:2.09s">by</span> <span class="w" style="--d:2.18s">your</span> <span class="w" style="--d:2.27s">own</span> <span class="w" style="--d:2.36s">crew.</span></span></h1>
+    <h1><span class="l1"><span class="w" style="--d:0.50s">Built</span> <span class="w" style="--d:0.59s">to</span> <span class="w" style="--d:0.68s">a</span> <span class="w" style="--d:0.77s">flight</span> <span class="w" style="--d:0.86s">plan.</span></span><span class="rule" aria-hidden="true"></span><span class="l2"><span class="w" style="--d:1.10s">Flown</span> <span class="w" style="--d:1.19s">by</span> <span class="w" style="--d:1.28s">your</span> <span class="w" style="--d:1.37s">own</span> <span class="w" style="--d:1.46s">crew.</span></span></h1>
     <p>Get your week back. Spend it in the room where the deal is decided, or with the client you have not met yet. Then go home in time and be there, with your family and not with the desk: the month done, and no night spent lying awake over what still waits. We build so your week is yours again. For the business first. Then for everything the business is for.</p>
   </div></div>
 </section>
@@ -491,6 +495,7 @@
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduced) document.body.classList.add('reduced');
   const phone = window.innerWidth < 900; const hd = window.innerWidth >= 1600; if (phone) document.body.classList.add('flat');
+  if (window.innerWidth < 900) ['doorForm', 'logForm'].forEach(id => { const f = document.getElementById(id); const w = f && f.closest('.stage').querySelector('.words'); if (f && w) w.appendChild(f); });
   const pins = [...document.querySelectorAll('.pin')]; const last = pins.length - 1;
   const lens = pins.map(p => Number(p.dataset.len || 100)); pins.forEach((p, k) => { p.style.height = (lens[k] + (k === last ? 100 : 0)) + 'svh'; });
   const lenOf = k => pins[k].offsetHeight - (k === last ? window.innerHeight : 0);
@@ -598,10 +603,17 @@
       if (st.v && st.ready && !reduced) { const d = st.v.duration || 10; const hold = st.objs.length ? 0.34 : 0.06; const ft = Math.min(1, Math.max(0, (t - hold) / (Math.min(1, endT) - hold))); st.v.currentTime = Math.min(d - 0.05, 0.7 + ft * (d - 0.75)); }
       // on a phone the words speak first, then the objects take the stage; on a wide screen they share it
       const phone = window.innerWidth < 900;
+      if (phone) {
+        // whatever is taller than the screen rides up with the scroll, so the end of it is reachable
+        const ride = (el, from, to) => { if (!el) return; const box = el.getBoundingClientRect(); const room = vh - 24; const excess = el.scrollHeight + (el.offsetTop || 0) * 0 - room + Math.max(0, box.top + (el.dataset.ry ? Number(el.dataset.ry) : 0)); const k = Math.min(1, Math.max(0, (t - from) / (to - from))); const y = excess > 0 ? -excess * k : 0; el.dataset.ry = String(y); el.style.transform = `translateY(${y.toFixed(0)}px)`; };
+        const ch = st.pin.dataset.ch; if (!st.objs.length || ch === 'door' || ch === 'logbook') ride(st.words, 0.12, 0.9);
+        else if (st.track) ride(st.track, 0.55, 0.95);
+        else if (st.pin.querySelector('.placards')) ride(st.pin.querySelector('.placards'), 0.6, 0.95);
+      }
       st.words.classList.toggle('in', t > 0.03 && t < (phone && st.objs.length ? 0.5 : endT + 0.01));
       st.objs.forEach((o, k) => { let at = st.stagger[k] ?? Number(o.dataset.at || 0.25); if (phone) at = 0.5 + k * 0.04; o.classList.toggle('in', t > at && t < endT + 0.01); });
       // the track: horizontal drift by scroll
-      if (st.track) {
+      if (st.track && !phone) {
         // the slider: the page scroll walks the middle card from the first to the last; the others sit scaled beside it
         const n = cards.length; const p = Math.min(1, Math.max(0, (t - 0.34) / 0.58)); const pos = p * (n - 1);
         const cw = cards[0].getBoundingClientRect().width / (cards[0].classList.contains('mid') ? 1 : .78); const step = cw + 60;
