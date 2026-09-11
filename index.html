@@ -194,9 +194,9 @@
   .track{position:absolute;left:50%;top:56%;display:flex;gap:60px;align-items:center;will-change:transform;transform:translate(-50%,-50%)}
   .stage .fade-top{position:absolute;left:0;right:0;top:0;height:14%;background:linear-gradient(to bottom, var(--mist) 0%, rgba(247,248,245,.6) 45%, rgba(247,248,245,0) 100%);pointer-events:none;z-index:2}
   .words,.placards,.track{transition:none}
-  .card{flex:0 0 min(480px,80vw);background:rgba(247,248,245,.92);padding:34px 36px 30px;border-radius:8px;transition:transform .6s var(--ease),opacity .6s linear,filter .6s var(--ease)}
-  .card.obj.in{transform:scale(.78);opacity:.55}
-  .card.obj.in.mid{transform:scale(1);opacity:1}
+  .card{flex:0 0 min(480px,80vw);background:rgba(247,248,245,.92);padding:34px 36px 30px;border-radius:8px;transform-origin:50% 50%}
+  .card.obj.in{transform:none;opacity:1}
+  .card{transition:filter .6s var(--ease)}
   .card b{display:block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--slate);margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--hairline);font-weight:600}
   .card span{display:block;font-size:clamp(18px,1.35vw,21px);line-height:1.5;font-weight:600;color:var(--ink)}
   .card svg{display:none}
@@ -533,6 +533,7 @@
 <script src="assets/scene/lenis.min.js"></script>
 <script>
 (() => {
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; window.scrollTo(0, 0); window.addEventListener('pageshow', () => window.scrollTo(0, 0));
   const q = new URLSearchParams(location.search); if (q.get('layers')) document.body.dataset.layers = q.get('layers');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduced) document.body.classList.add('reduced');
@@ -682,10 +683,10 @@
       if (st.track && !phone) {
         // the slider: the page scroll walks the middle card from the first to the last and on out of the frame; the middle card changes only when the walk has clearly passed the midpoint
         const n = cards.length; const p = Math.min(1, Math.max(0, (t - 0.34) / 0.56)); const pos = p * n;
-        const cw = cards[0].getBoundingClientRect().width / (cards[0].classList.contains('mid') ? 1 : .78); const step = cw + 60;
+        const cw = cards[0].offsetWidth; const step = cw + 60;
         st.track.style.transform = `translate3d(calc(-50% + ${(n - 1) / 2 * step - pos * step}px), -50%, 0)`;
-        const prev = Number(st.track.dataset.mid || 0); let mid = prev; if (pos > prev + 0.62) mid = Math.min(n - 1, prev + 1); else if (pos < prev - 0.62) mid = Math.max(0, prev - 1); if (Math.abs(pos - mid) > 1.2) mid = Math.min(n - 1, Math.max(0, Math.round(pos)));
-        st.track.dataset.mid = String(mid); cards.forEach((c, k) => c.classList.toggle('mid', k === mid)); pager.forEach((d, k) => d.classList.toggle('on', k === mid));
+        cards.forEach((c, k) => { if (!c.classList.contains('in')) { c.style.transform = ''; c.style.opacity = ''; return; } const dd = Math.min(1, Math.abs(pos - k)); const e = dd * dd * (3 - 2 * dd); c.style.transform = `scale(${(1 - 0.22 * e).toFixed(4)})`; c.style.opacity = (1 - 0.45 * e).toFixed(3); });
+        const mid = Math.min(n - 1, Math.max(0, Math.round(pos))); pager.forEach((d, k) => d.classList.toggle('on', k === mid));
       }
       st.words.classList.toggle('in', (st.pin.dataset.roll ? t > 0.1 : t > 0.2) && t < (phone && st.objs.length && !inlineForm ? 0.5 : outT));
       st.objs.forEach((o, k) => { let at = st.stagger[k] ?? Number(o.dataset.at || 0.25); if (phone) at = 0.5 + k * 0.04; o.classList.toggle('in', (phone ? t > at : (st.pin.dataset.roll ? t > 0.1 : t > at)) && t < outT); });
