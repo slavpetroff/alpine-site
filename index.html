@@ -135,8 +135,8 @@
   .words.dark h1 .rule{background:#F7F8F5} .words.dark .seats i{filter:brightness(0) invert(1) opacity(.85)} .words.dark .seats i.taken{filter:none}
   .placard b,.placard span{color:var(--ink-now)} .placard b::after{background:var(--hair-now)} .placards .label{color:var(--ink-now)} .placards .label::after{background:var(--hair-now)}
   .placards::before{transition:opacity .8s linear} .placards.dark::before{background:radial-gradient(ellipse 50% 50% at 50% 50%, rgba(19,34,56,.6) 0%, rgba(19,34,56,.45) 36%, rgba(19,34,56,.22) 62%, rgba(19,34,56,.06) 84%, rgba(19,34,56,0) 100%)}
-  .chapters .ch{color:var(--slate-now)} .chapters .ch.on,.chapters .ch:hover,.chapters .ch.done{color:var(--ink-now)} .chapters.dark .base{stroke:rgba(247,248,245,.35)} .chapters.dark .fx circle.o,.chapters.dark .fx path{stroke:rgba(247,248,245,.5)} .chapters.dark .fx circle.i{fill:rgba(247,248,245,.6)} .chapters.dark::before{background:radial-gradient(ellipse 50% 50% at 50% 50%, rgba(19,34,56,.5) 0%, rgba(19,34,56,.3) 45%, rgba(19,34,56,0) 100%)}
-  .chapters::before{transition:background .8s linear}
+  .chapters .ch{color:var(--slate-now)} .chapters .ch.on,.chapters .ch:hover,.chapters .ch.done{color:var(--ink-now)} .chapters.dark .base{stroke:rgba(247,248,245,.35)} .chapters.dark .fx circle.o,.chapters.dark .fx path{stroke:rgba(247,248,245,.5)} .chapters.dark .fx circle.i{fill:rgba(247,248,245,.6)}
+  .brand .wm{transition:color .6s linear} .brand.dark .wm{color:#F7F8F5}
   .mark{width:88px;height:88px;border:1px solid rgba(19,34,56,.28);border-radius:50%;display:grid;place-items:center;margin-bottom:36px;background:rgba(247,248,245,.35)}
   .mark svg{width:52px;height:52px;display:block}
   .mark svg path{fill:none;stroke:var(--cobalt);stroke-width:34;stroke-linejoin:round;stroke-linecap:round;stroke-dasharray:3200;stroke-dashoffset:3200}
@@ -704,7 +704,7 @@
   // the text reads the frame under it: a small canvas holds the visible crop of the live frame; each block's region is averaged; dark means mist text on a dark scrim
   if (window.innerWidth >= 900 && !reduced) {
     const cv = document.createElement('canvas'); cv.width = 96; cv.height = 54; const g = cv.getContext('2d', { willReadFrequently: true });
-    const judge = (el, L) => { if (!el) return; const dark = el.classList.contains('dark'); if (!dark && L < 0.56) el.classList.add('dark'); else if (dark && L > 0.64) el.classList.remove('dark'); };
+    const judge = (el, L, lo = 0.56, hi = 0.64) => { if (!el) return; const dark = el.classList.contains('dark'); if (!dark && L < lo) el.classList.add('dark'); else if (dark && L > hi) el.classList.remove('dark'); };
     const region = (box, frame) => { const x0 = Math.max(0, Math.floor((box.left - frame.left) / frame.width * cv.width)), y0 = Math.max(0, Math.floor((box.top - frame.top) / frame.height * cv.height)); const x1 = Math.min(cv.width, Math.ceil((box.right - frame.left) / frame.width * cv.width)), y1 = Math.min(cv.height, Math.ceil((box.bottom - frame.top) / frame.height * cv.height)); if (x1 <= x0 || y1 <= y0) return null; const d = g.getImageData(x0, y0, x1 - x0, y1 - y0).data; let sum = 0; for (let i = 0; i < d.length; i += 4) sum += 0.2126 * d[i] + 0.7152 * d[i + 1] + 0.0722 * d[i + 2]; return sum / (d.length / 4) / 255; };
     setInterval(() => {
       const st = state[window.__active || 0]; if (!st) return;
@@ -713,7 +713,8 @@
       const frame = st.stage.getBoundingClientRect(); const scale = Math.max(frame.width / sw, frame.height / sh); const vw = frame.width / scale, vh2 = frame.height / scale; const ox = (sw - vw) * 0.5, oy = (sh - vh2) * 0.45;
       try { g.drawImage(src, ox, oy, vw, vh2, 0, 0, cv.width, cv.height); } catch (e) { return; }
       const pad = 24; const grow = b => ({ left: b.left - pad, top: b.top - pad, right: b.right + pad, bottom: b.bottom + pad });
-      [st.words, st.pin.querySelector('.placards'), chapters.classList.contains('show') ? chapters : null].forEach(el => { if (!el) return; const L = region(grow(el.getBoundingClientRect()), frame); if (L !== null) judge(el, L); });
+      [st.words, st.pin.querySelector('.placards'), st.pin.querySelector('.brand')].forEach(el => { if (!el) return; const L = region(grow(el.getBoundingClientRect()), frame); if (L !== null) judge(el, L); });
+      if (chapters.classList.contains('show')) { const L = region(grow(chapters.getBoundingClientRect()), frame); if (L !== null) judge(chapters, L, 0.42, 0.52); }
     }, 250);
   }
   window.__update = update;
