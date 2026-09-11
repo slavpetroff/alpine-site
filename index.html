@@ -600,7 +600,15 @@
   const cur = document.getElementById('cur');
   let cx = innerWidth / 2, cy = innerHeight / 2, tx = cx, ty = cy;
   document.addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; }, { passive: true });
-  (function follow() { cx += (tx - cx) * 0.14; cy += (ty - cy) * 0.14; cur.style.transform = `translate3d(${cx.toFixed(1)}px, ${cy.toFixed(1)}px, 0)`; requestAnimationFrame(follow); })();
+  // the ring follows the pointer on a damped spring: it carries weight, never snaps, settles without a wobble; the same at 60 or 120 Hz
+  let vx = 0, vy = 0, lastT = performance.now(), seen = false; cur.style.opacity = '0';
+  document.addEventListener('mousemove', () => { if (!seen) { seen = true; cx = tx; cy = ty; cur.style.transition += ',opacity .4s linear'; cur.style.opacity = '1'; } }, { passive: true, once: true });
+  (function follow(now) {
+    const dt = Math.min(2.5, (now - lastT) / 16.667) || 1; lastT = now;
+    const k = 0.09, damp = Math.pow(0.62, dt);
+    vx = (vx + (tx - cx) * k * dt) * damp; vy = (vy + (ty - cy) * k * dt) * damp; cx += vx; cy += vy;
+    cur.style.transform = `translate3d(${cx.toFixed(2)}px, ${cy.toFixed(2)}px, 0)`; requestAnimationFrame(follow);
+  })(performance.now());
   document.addEventListener('mouseover', e => cur.classList.toggle('hot', !!e.target.closest('a, button, .strip, .card, .ch, .fx, .placard, input, textarea, label')));
   let mx = 0, my = 0;
   let mraf = 0; window.addEventListener('mousemove', e => { mx = (e.clientX / window.innerWidth - .5); my = (e.clientY / window.innerHeight - .5); if (!mraf) mraf = setTimeout(() => { mraf = 0; if (!raf) raf = requestAnimationFrame(update); }, 80); }, { passive: true });
