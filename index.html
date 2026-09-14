@@ -363,7 +363,7 @@
   :root{--night:#0B1120;--night-alt:#111A2E;--black:#05070C;--mist-t:#F7F8F5;--mist-2:rgba(247,248,245,.64);--mist-3:rgba(247,248,245,.42);--sky:#6B8CFF;--gut:clamp(24px,5vw,72px)}
   .flow{position:relative;z-index:2;background:var(--mist);padding:0 var(--gut)}
   @media (min-width:901px){ .flow{--left:260px;padding-left:var(--left);padding-right:var(--gut)} }
-  .wrap{max-width:1600px;margin-inline:0}
+  .wrap{max-width:none;margin-inline:0}
   .chap{padding:clamp(72px,11vh,140px) 0 clamp(64px,9vh,120px)}
   .chap.light,.chap.dark{margin:0 calc(-1 * var(--gut));padding-left:var(--gut);padding-right:var(--gut)}
   .chap.light{background:var(--paper)}
@@ -388,8 +388,8 @@
   /* the pinned story: the media holds on the left while the steps pass on the right; the step at the middle of the frame is the bright one */
   .story{display:grid;grid-template-columns:minmax(0,70fr) minmax(0,30fr);gap:clamp(24px,4vw,56px);align-items:start}
   .pinned{position:sticky;top:5vh;height:90vh} .pinned .panel{height:100%;aspect-ratio:auto;border-radius:28px} .pinned .panel img.still,.pinned .panel video{object-position:50% 50%}
-  .steps{list-style:none;margin:0;padding:6vh 0 10vh}
-  .step{min-height:46vh;display:flex;flex-direction:column;justify-content:center;opacity:.28;transition:opacity .4s linear;border-top:1px solid rgba(19,34,56,.1);padding:8px 0}
+  .steps{list-style:none;margin:0;padding:6vh 0 10vh;display:flex;flex-direction:column;align-items:center}
+  .step{min-height:46vh;width:100%;max-width:38ch;display:flex;flex-direction:column;justify-content:center;opacity:.28;transition:opacity .4s linear;border-top:1px solid rgba(19,34,56,.1);padding:8px 0}
   .step:first-child{border-top:0} .step.focus{opacity:1}
   .step b{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--slate);font-weight:600;margin-bottom:10px} .step.focus b{color:var(--cobalt)}
   .step span{display:block;font-size:clamp(17px,1.35vw,21px);line-height:1.5;font-weight:500;color:var(--ink);max-width:none}
@@ -424,7 +424,7 @@
   .band-steps .step b{color:var(--mist-3)} .band-steps .step span{color:var(--mist-t);font-size:clamp(15px,1.15vw,17px)}
   .band-story .steps-run{position:absolute;inset:0;pointer-events:none}
   .panel.wide{aspect-ratio:21/9;margin-bottom:28px}
-  .form-panel.narrow{max-width:760px !important}
+  .form-panel.narrow{max-width:760px !important;margin-inline:auto}
   /* the light sections: the logbook and the door */
   .two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:start}
   .form-panel{position:static !important;width:auto !important;max-width:none !important;max-height:none !important;transform:none !important;opacity:1 !important;filter:none !important;background:#fff;border:1px solid rgba(19,34,56,.08);border-radius:28px;padding:clamp(24px,3vw,40px);box-shadow:0 22px 44px -26px rgba(19,34,56,.18);overflow:visible}
