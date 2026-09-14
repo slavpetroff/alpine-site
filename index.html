@@ -441,8 +441,9 @@
   .chip.open button{background:rgba(36,87,255,.08);color:var(--cobalt);border-radius:20px 20px 0 0} .chip.open .a{background:rgba(36,87,255,.08);border-radius:0 0 20px 20px}
   .roots-grid{display:grid;grid-template-columns:minmax(0,34fr) minmax(0,66fr);gap:clamp(24px,4vw,56px);align-items:start} .roots-head{position:sticky;top:12vh} .roots-head .head{margin:0} .roots-head .door-link{margin-top:22px}
   /* the gallery: four cards on the content width, the next one peeking, dots under */
-  .gcards{list-style:none;margin:0;padding:0 0 8px;display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch} .gcards::-webkit-scrollbar{display:none}
-  .gcard{flex:0 0 min(82%,640px);scroll-snap-align:start;background:var(--paper);border-radius:28px;padding:clamp(28px,3vw,44px);box-shadow:0 22px 44px -26px rgba(19,34,56,.22);min-height:280px;display:flex;flex-direction:column;justify-content:flex-end}
+  .gcards{position:relative;list-style:none;margin:0;padding:12px calc((100% - min(64%,720px)) / 2) 16px;display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch} .gcards::-webkit-scrollbar{display:none}
+  .gcard{flex:0 0 min(64%,720px);scroll-snap-align:center;transform:scale(.9);opacity:.55;transition:transform .5s var(--ease),opacity .4s linear} .gcard.on{transform:none;opacity:1}
+  .gcard{background:var(--paper);border-radius:28px;padding:clamp(28px,3vw,44px);box-shadow:0 22px 44px -26px rgba(19,34,56,.22);min-height:280px;display:flex;flex-direction:column;justify-content:flex-end}
   .gcard b{display:block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--slate);font-weight:600;margin-bottom:auto;padding-bottom:20px}
   .gcard span{display:block;font-size:clamp(18px,1.55vw,24px);line-height:1.4;font-weight:600;color:var(--ink);max-width:30ch}
   .dots{display:flex;gap:8px;justify-content:center;margin:18px 0 22px} .dots button{width:8px;height:8px;border-radius:50%;border:0;padding:0;background:rgba(19,34,56,.22);cursor:pointer;transition:background .25s linear,transform .25s var(--ease)} .dots button.on{background:var(--cobalt);transform:scale(1.25)}
@@ -464,13 +465,18 @@
   .offer-col .seats{margin-top:18px} .offer-col .offer{max-width:44ch} .offer-col .talk{font-size:clamp(28px,3vw,44px);letter-spacing:.06em;text-transform:uppercase;font-weight:600;margin:28px 0 12px;color:var(--ink)}
   .offer-col p a{color:var(--ink);text-decoration:underline;text-decoration-color:rgba(36,87,255,.45);text-underline-offset:5px;text-decoration-thickness:1px} .offer-col p a:hover{color:var(--cobalt)}
   .entries{margin-top:32px}
+  .foot{background:var(--mist-cool)}
+  .foot .up{display:inline-flex;align-items:center;gap:12px;color:var(--ink);text-decoration:none;font-weight:600} .foot .up i{display:none}
+  .foot .up .chev{width:14px;height:26px;display:inline-block} .foot .up .chev svg{width:14px;height:26px;overflow:visible} .foot .up .chev path{fill:none;stroke:var(--cobalt);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;opacity:.25;animation:chev 1.8s ease-in-out infinite} .foot .up .chev path:nth-child(2){animation-delay:.2s} .foot .up .chev path:nth-child(3){animation-delay:.4s}
   .door-link a.pill{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border:1px solid rgba(19,34,56,.22);border-radius:8px;color:var(--ink);font-weight:600;font-size:14px;letter-spacing:.01em;text-decoration:none;background:transparent;transition:border-color .3s linear,color .3s linear}
   .door-link a.pill svg{width:16px;height:16px;transition:transform .4s var(--ease)} .door-link a.pill:hover{border-color:var(--cobalt);color:var(--cobalt)} .door-link a.pill:hover svg{transform:translateX(3px)}
   /* reveal on scroll: heads and panels rise in once */
   .rv{opacity:0;transform:translateY(16px);transition:opacity .7s linear,transform .7s var(--ease)} .rv.in{opacity:1;transform:none}
   .reduced .rv{opacity:1;transform:none}
   /* the hero keeps its film; the route sits on the flow's ground */
-  .chapters::before{display:none}
+  .chapters::before{content:"";display:block;position:absolute;inset:-18px -12px -18px -22px;background:rgba(11,17,32,.62);-webkit-backdrop-filter:blur(14px) saturate(1.1);backdrop-filter:blur(14px) saturate(1.1);border-radius:26px;border:1px solid rgba(247,248,245,.1);z-index:-1;opacity:1 !important}
+  .on-dark .chapters::before{background:rgba(247,248,245,.05)}
+  .chapters .ch{color:rgba(247,248,245,.55)} .chapters .ch.on,.chapters .ch.done{color:var(--mist-t)} .chapters .base{stroke:rgba(247,248,245,.42)} .chapters .fx circle.o,.chapters .fx path,.chapters .fx circle.dep{stroke:rgba(247,248,245,.5)} .chapters .fx circle.i,.chapters .fx path.star{fill:rgba(247,248,245,.5)} .chapters .flown,.chapters .fx.done circle.o,.chapters .fx.done path{stroke:var(--sky)} .chapters .fx.done circle.i,.chapters .plane,.chapters .fx.done path.star,.chapters .fx.on path.star{fill:var(--sky)} .chapters .plane circle.halo{stroke:var(--sky)}
   .chapters{width:190px} .chapters .base{stroke-dasharray:1.6 7;stroke-linecap:round;stroke:rgba(19,34,56,.4);stroke-width:1.6} .chapters .flown{stroke-width:1.6} .on-dark .chapters .base{stroke:rgba(247,248,245,.42)}
   .chapters .ch{font-size:10.5px;letter-spacing:.16em}
   .on-dark .chapters .ch{color:var(--mist-3)} .on-dark .chapters .ch.on,.on-dark .chapters .ch.done{color:var(--mist-t)} .on-dark .chapters .base{stroke:rgba(247,248,245,.3)} .on-dark .chapters .fx circle.o,.on-dark .chapters .fx path,.on-dark .chapters .fx circle.dep{stroke:rgba(247,248,245,.45)} .on-dark .chapters .fx circle.i,.on-dark .chapters .fx path.star{fill:rgba(247,248,245,.45)} .on-dark .chapters .flown,.on-dark .chapters .fx.done circle.o,.on-dark .chapters .fx.done path{stroke:var(--sky)} .on-dark .chapters .fx.done circle.i,.on-dark .chapters .plane,.on-dark .chapters .fx.done path.star,.on-dark .chapters .fx.on path.star{fill:var(--sky)} .on-dark .chapters .plane circle.halo{stroke:var(--sky)}
@@ -627,8 +633,7 @@
     <div class="offer-col"><span class="eyebrow">The offer</span><div class="seats" aria-label="Five seats, the first taken"><i class="taken"></i><i></i><i></i><i></i><i></i></div>
     <p class="offer">A seat is your company with us for as long as the work takes, whatever you bring into it, one deliverable or several, and there are five at a time so each has our full attention.</p>
     <p class="offer">Five seats, and the first is already taken. The price is the one struck out; these five pay what stands beside it, and when they are gone it is never free again, and never this low again.</p>
-    <p class="price"><s>$35,916</s><b>Free</b></p><h2 class="talk">Talk to us.</h2><p><a href="mailto:contact@alpine-engineering.eu">contact@alpine-engineering.eu</a></p>
-    <p><a href="https://www.linkedin.com/company/alpine-engineering-bg">The company page on LinkedIn</a></p></div>
+    <p class="price"><s>$35,916</s><b>Free</b></p><h2 class="talk">Talk to us.</h2><p><a href="mailto:contact@alpine-engineering.eu">contact@alpine-engineering.eu</a></p></div>
     <div class="form-panel door-form" id="doorForm"><form id="askForm" novalidate>
       <div class="f"><label for="email">Your email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
       <div class="f"><label for="message">The work you have in mind</label><textarea id="message" name="message" rows="4"></textarea></div>
@@ -643,10 +648,10 @@
   <div class="grid">
     <div class="lead"><svg class="fm" viewBox="0 0 1024 1024" aria-hidden="true"><path fill="#2457FF" d="M80 690C275 616 490 560 690 486C785 451 836 415 871 373C904 333 930 280 946 194C909 201 876 220 854 251C827 287 809 332 781 363C739 411 678 440 603 465C418 526 226 595 80 690Z"/></svg><span class="wordmark">Alpine</span></div>
     <div class="col"><b>The flight</b><a href="#work" data-go="1">The work</a><a href="#crew" data-go="2">The crew</a><a href="#roots" data-go="3">The roots</a><a href="#record" data-go="4">The record</a><a href="#hangar" data-go="5">The hangar</a><a href="#logbook" data-go="6">The logbook</a><a href="#door" data-go="7">Talk to us</a></div>
-    <div class="col gift"><b>The gift</b><p class="promise">One email from us, and only when something new from a case study is ready for you to use the same day. Sent once. Nothing else lands in your inbox from this address.</p><form id="giftForm" novalidate><label for="giftEmail">Your email</label><div class="row"><input id="giftEmail" name="email" type="email" autocomplete="email" required><button type="submit"><i></i>Send</button></div></form><p class="sent">You are on the list. The next one comes to this address, and nothing else does.</p></div>
-    <div class="col"><b>Reach us</b><a href="mailto:contact@alpine-engineering.eu">contact@alpine-engineering.eu</a><a href="https://www.linkedin.com/company/alpine-engineering-bg">The company page on LinkedIn</a></div>
+    <div class="col gift"><b>The newsletter</b><p class="promise">Subscribe to the newsletter: what we learn on real work, written up when it is worth your time.</p><form id="giftForm" novalidate><label for="giftEmail">Your email</label><div class="row"><input id="giftEmail" name="email" type="email" autocomplete="email" required><button type="submit"><i></i>Send</button></div></form><p class="sent">You are subscribed. The next letter comes to this address.</p></div>
+    <div class="col"><b>Reach us</b><a href="mailto:contact@alpine-engineering.eu">contact@alpine-engineering.eu</a></div>
   </div>
-  <div class="end"><span>Alpine LTD</span><span>2024</span><a class="up" href="#top" data-go="0">Back to the top<i></i></a></div>
+  <div class="end"><span>Alpine LTD</span><span>2024</span><a class="up" href="#top" data-go="0"><span>Back to the top</span><span class="chev" aria-hidden="true"><svg viewBox="0 0 14 26"><path d="M2 24l5-5 5 5"/><path d="M2 16l5-5 5 5"/><path d="M2 8l5-5 5 5"/></svg></span></a></div>
 </footer>
 
 <script src="assets/scene/lenis.min.js"></script>
@@ -719,7 +724,7 @@
     // the route
     const absTop = el => el.getBoundingClientRect().top + y; let active = 0; anchors.forEach((a, i) => { if (y + vh * 0.4 >= absTop(a)) active = i; });
     chapters.classList.toggle('show', opened && y < absTop(document.getElementById('foot')) - vh * 0.6);
-    anchors.forEach((a, i) => { const on = i === active; chRows[i].classList.toggle('on', on); chRows[i].classList.toggle('done', i < active); if (fixEls[i]) { fixEls[i].classList.toggle('on', on); fixEls[i].classList.toggle('done', i < active); } if (on) { const top = absTop(a), h = a.offsetHeight; const tt = Math.min(1, Math.max(0, (y + vh * 0.4 - top) / Math.max(1, h))); flownProgress = fixFrac[i] + (fixFrac[Math.min(7, i + 1)] - fixFrac[i]) * tt; } });
+    anchors.forEach((a, i) => { const on = i === active; chRows[i].classList.toggle('on', on); chRows[i].classList.toggle('done', i < active); if (fixEls[i]) { fixEls[i].classList.toggle('on', on); fixEls[i].classList.toggle('done', i < active); } if (on) { const top = absTop(a), h = a.offsetHeight; const tt = i === 0 ? Math.min(1, Math.max(0, y / Math.max(1, heroLen()))) : Math.min(1, Math.max(0, (y + vh * 0.4 - top) / Math.max(1, h))); flownProgress = fixFrac[i] + (fixFrac[Math.min(7, i + 1)] - fixFrac[i]) * tt; } });
     { const pt = rbase.getPointAtLength(flownProgress * rlen); rflown.style.strokeDashoffset = String(rlen * (1 - flownProgress)); rplane.setAttribute('transform', `translate(${pt.x} ${pt.y})`); }
     // the stories
     stories.forEach(s => { const r = s.el.getBoundingClientRect(); const band = s.el.hasAttribute('data-band'); const range = Math.max(1, r.height - vh * (band ? 1 : 0.8)); const p = Math.min(1, Math.max(0, ((band ? 0 : vh * 0.06) - r.top) / range)); if (s.v && !phone && !reduced) scrubTo(s.v, p);
@@ -731,12 +736,12 @@
   document.querySelectorAll('[data-go]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); travelTo(Number(a.dataset.go)); }));
   // the viewer: one chip open at a time; the cockpit clip moves a beat per question
   const chipEls = [...document.querySelectorAll('#chips .chip')]; const viewerV = document.querySelector('#crew video.scrub');
-  const tween = (v, to) => { if (!v || reduced || phone) return; const from = v.currentTime, t0 = performance.now(); const step = now => { const k = Math.min(1, (now - t0) / 700); const e = 1 - Math.pow(1 - k, 3); try { v.currentTime = from + (to - from) * e; } catch (err) {} if (k < 1) requestAnimationFrame(step); }; requestAnimationFrame(step); };
+  const tween = (v, to) => { if (!v || reduced || phone) return; const from = v.currentTime, t0 = performance.now(); const step = now => { const k = Math.min(1, (now - t0) / 1800); const e = k < .5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2; try { v.currentTime = from + (to - from) * e; } catch (err) {} if (k < 1) requestAnimationFrame(step); }; requestAnimationFrame(step); };
   chipEls.forEach((c, k) => { const b = c.querySelector('button'); b.addEventListener('click', () => { const was = c.classList.contains('open'); chipEls.forEach(x => { x.classList.remove('open'); x.querySelector('button').setAttribute('aria-expanded', 'false'); }); if (!was) { c.classList.add('open'); b.setAttribute('aria-expanded', 'true'); const rec = vids.find(r => r.v === viewerV); if (rec && rec.ready) { const d = viewerV.duration || 10; tween(viewerV, Math.min(d - 0.05, 0.7 + (k / Math.max(1, chipEls.length - 1)) * (d - 0.75))); } } }); });
   if (chipEls[0]) { chipEls[0].classList.add('open'); chipEls[0].querySelector('button').setAttribute('aria-expanded', 'true'); }
   // the gallery dots follow the scroll of the row
   const gc = document.getElementById('gcards'), dots = [...document.querySelectorAll('#dots button')], gcards = [...document.querySelectorAll('#gcards .gcard')];
-  if (gc) { const sync = () => { const x = gc.scrollLeft + gc.clientWidth * 0.3; let k = 0; gcards.forEach((c, i) => { if (c.offsetLeft <= x) k = i; }); dots.forEach((d, i) => d.classList.toggle('on', i === k)); }; gc.addEventListener('scroll', sync, { passive: true }); dots.forEach((d, i) => d.addEventListener('click', () => gc.scrollTo({ left: gcards[i].offsetLeft - 0, behavior: 'smooth' }))); }
+  if (gc) { const centre = i => gcards[i].offsetLeft + gcards[i].offsetWidth / 2 - gc.clientWidth / 2; const sync = () => { const mid = gc.scrollLeft + gc.clientWidth / 2; let k = 0, bd = 1e9; gcards.forEach((c, i) => { const d = Math.abs(c.offsetLeft + c.offsetWidth / 2 - mid); if (d < bd) { bd = d; k = i; } }); gcards.forEach((c, i) => c.classList.toggle('on', i === k)); dots.forEach((d, i) => d.classList.toggle('on', i === k)); }; gc.addEventListener('scroll', sync, { passive: true }); window.addEventListener('resize', sync); sync(); dots.forEach((d, i) => d.addEventListener('click', () => gc.scrollTo({ left: centre(i), behavior: 'smooth' }))); gcards.forEach((c, i) => c.addEventListener('click', () => gc.scrollTo({ left: centre(i), behavior: 'smooth' }))); }
   // the forms
   const LOG_FORM = { url: 'https://docs.google.com/forms/d/e/1FAIpQLSffVJS2B9KC-hHVvZIU8epnlcSyiySWTzjlvhCYpr0FHtuWnw/formResponse', rating: 'entry.2137296667', entry: 'entry.107499663', who: 'entry.1799450915', company: 'entry.228900715', consent: 'entry.961804718' }; // the logbook Google Form (Alpine logbook, the owner's account, 11.09)
   const starBtns = [...document.querySelectorAll('#stars button')]; starBtns.forEach((b, k) => b.addEventListener('click', () => { document.getElementById('rating').value = String(k + 1); starBtns.forEach((x, j) => { x.classList.toggle('on', j <= k); x.setAttribute('aria-checked', j === k ? 'true' : 'false'); }); }));
