@@ -360,21 +360,21 @@
 </style>
 <style>
   /* THE FLOW (14.09): after the hero the page is a normal flow on solid mist; the media pins inside its section, the words scroll past it; nothing is written over a picture */
-  :root{--night:#0B1120;--night-alt:#111A2E;--mist-t:#F7F8F5;--mist-2:rgba(247,248,245,.64);--mist-3:rgba(247,248,245,.42);--sky:#6B8CFF;--gut:clamp(24px,5vw,72px)}
+  :root{--night:#0B1120;--night-alt:#111A2E;--black:#05070C;--mist-t:#F7F8F5;--mist-2:rgba(247,248,245,.64);--mist-3:rgba(247,248,245,.42);--sky:#6B8CFF;--gut:clamp(24px,5vw,72px)}
   .flow{position:relative;z-index:2;background:var(--mist);padding:0 var(--gut)}
-  @media (min-width:901px){ .flow{--left:max(250px,calc((100vw - 1320px) / 2));padding-left:var(--left);padding-right:var(--gut)} }
-  .wrap{max-width:1320px;margin-inline:auto}
+  @media (min-width:901px){ .flow{--left:260px;padding-left:var(--left);padding-right:var(--gut)} }
+  .wrap{max-width:1600px;margin-inline:0}
   .chap{padding:clamp(72px,11vh,140px) 0 clamp(64px,9vh,120px)}
   .chap.light,.chap.dark{margin:0 calc(-1 * var(--gut));padding-left:var(--gut);padding-right:var(--gut)}
   .chap.light{background:var(--paper)}
-  .chap.dark{background:var(--night);color:var(--mist-t)} .chap.dark.alt{background:var(--night-alt)}
+  .chap.dark{background:var(--night);color:var(--mist-t)} .chap.dark.alt{background:var(--night-alt)} .chap.dark.black{background:var(--black)}
   @media (min-width:901px){ .chap.light,.chap.dark{margin-left:calc(-1 * var(--left));padding-left:var(--left)} }
   .chap.dark .eyebrow,.chap.dark .step b,.chap.dark .gcard b{color:var(--mist-3)} .chap.dark .head h2,.chap.dark .step span,.chap.dark .gcard span,.chap.dark .chip button,.chap.dark .chip .a > p{color:var(--mist-t)} .chap.dark .lede{color:var(--mist-2)}
   .chap.dark .step.focus b{color:var(--sky)} .chap.dark .step{border-top-color:rgba(247,248,245,.12)}
   .chap.dark .panel{box-shadow:0 40px 90px -30px rgba(0,0,0,.8)}
   .chap.dark .chip button{background:rgba(247,248,245,.08)} .chap.dark .chip button:hover{background:rgba(247,248,245,.13)} .chap.dark .chip .pm{border-color:rgba(247,248,245,.4)} .chap.dark .chip .pm::before,.chap.dark .chip .pm::after{background:var(--mist-t)}
   .chap.dark .chip.open button{background:rgba(107,140,255,.18);color:var(--sky)} .chap.dark .chip.open .a{background:rgba(107,140,255,.18)}
-  .chap.dark .viewer{background:#0E1628;box-shadow:0 40px 90px -30px rgba(0,0,0,.8)}
+  .chap.dark .viewer{background:#0E1628;} .chap.black .viewer{background:#0C1220;box-shadow:0 40px 90px -30px rgba(0,0,0,.8)}
   .chap.dark .gcard{background:#151F36;box-shadow:0 30px 60px -30px rgba(0,0,0,.7)} .chap.dark .dots button{background:rgba(247,248,245,.25)} .chap.dark .dots button.on{background:var(--sky)}
   .chap.dark .door-link a.pill{border-color:rgba(247,248,245,.32);color:var(--mist-t)} .chap.dark .door-link a.pill:hover{border-color:var(--sky);color:var(--sky)}
   .head{margin-bottom:clamp(28px,4vh,44px)}
@@ -386,8 +386,8 @@
   .panel video{opacity:0;transition:opacity .6s linear} .panel video.on{opacity:1}
   .panel.tall{aspect-ratio:4/3}
   /* the pinned story: the media holds on the left while the steps pass on the right; the step at the middle of the frame is the bright one */
-  .story{display:grid;grid-template-columns:minmax(0,64fr) minmax(0,36fr);gap:clamp(24px,4vw,56px);align-items:start}
-  .pinned{position:sticky;top:6vh;height:94vh} .pinned .panel{height:100%;aspect-ratio:auto;border-radius:28px 28px 0 0} .pinned .panel img.still,.pinned .panel video{object-position:50% 50%}
+  .story{display:grid;grid-template-columns:minmax(0,70fr) minmax(0,30fr);gap:clamp(24px,4vw,56px);align-items:start}
+  .pinned{position:sticky;top:5vh;height:90vh} .pinned .panel{height:100%;aspect-ratio:auto;border-radius:28px} .pinned .panel img.still,.pinned .panel video{object-position:50% 50%}
   .steps{list-style:none;margin:0;padding:6vh 0 10vh}
   .step{min-height:46vh;display:flex;flex-direction:column;justify-content:center;opacity:.28;transition:opacity .4s linear;border-top:1px solid rgba(19,34,56,.1);padding:8px 0}
   .step:first-child{border-top:0} .step.focus{opacity:1}
@@ -514,7 +514,7 @@
   </div>
 </section>
 
-<section class="chap dark alt" id="crew" data-ch="crew">
+<section class="chap dark black" id="crew" data-ch="crew">
   <header class="head wrap"><span class="eyebrow">The crew</span><h2>We are with you at each step, and whatever comes up is ours to carry with you, so it stays easy on your side.</h2><p class="lede">Before you ask</p></header>
 
   <div class="viewer wrap">
@@ -532,7 +532,7 @@
   </div>
 </section>
 
-<section class="chap dark" id="roots" data-ch="roots">
+<section class="chap dark alt" id="roots" data-ch="roots">
   <div class="roots-grid wrap">
     <div class="roots-head"><header class="head"><span class="eyebrow">The roots</span><h2>Every correction you make is kept, so nothing is corrected twice.</h2><p class="lede">Everything we build grows from these four roots, and each one is a promise you can hold us to on your own case.</p><p class="door-link"><a class="pill" href="#door" data-go="7"><span>Talk to us.</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p></header></div>
     <div class="gallery"><ul class="gcards" id="gcards">
@@ -544,7 +544,7 @@
   </div>
 </section>
 
-<section class="chap dark alt" id="record" data-ch="arrival">
+<section class="chap dark black" id="record" data-ch="arrival">
   <header class="head wrap"><span class="eyebrow">The record</span><h2>A PR campaign, thirty days, up to a hundred creators, and every story caught the day it appeared.</h2><p class="lede">The record is where we show what we have done, as it happened, for a real client, with the part that went wrong kept in.</p></header>
 
   <div class="story wrap" data-story>
