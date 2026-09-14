@@ -412,8 +412,11 @@
   .notch.side{right:0;top:calc(var(--k,0) * 100% / var(--n,4));height:calc(100% / var(--n,4));transition:top .7s var(--ease);width:min(480px,36%);padding:0;border-radius:28px 0 0 28px;display:flex;align-items:center}
   .notch.side .inner{padding:22px 0 22px 34px;width:100%} .notch.side .more{margin-top:14px} .notch.side .more .door-link{margin:0}
   .notch.side{right:-2px}
-  .notch.side[data-k="0"]{top:-2px;height:calc(100% / var(--n,4) + 2px);border-top-left-radius:28px} .notch.side[data-k="0"]::before{display:none}
-  .notch.side.last{height:calc(100% / var(--n,4) + 3px);border-bottom-left-radius:28px} .notch.side.last::after{display:none}
+  .notch.side[data-k="0"]{top:-2px;height:calc(100% / var(--n,4) + 2px);border-top-left-radius:0}
+  .notch.side[data-k="0"]::before{right:100%;left:auto;top:0;bottom:auto;-webkit-mask:radial-gradient(circle at 0 100%,transparent 27.5px,#000 28px);mask:radial-gradient(circle at 0 100%,transparent 27.5px,#000 28px)}
+  .notch.side.last{height:calc(100% / var(--n,4) + 3px);border-bottom-left-radius:0}
+  .notch.side.last::after{right:100%;left:auto;top:auto;bottom:0;-webkit-mask:radial-gradient(circle at 0 0,transparent 27.5px,#000 28px);mask:radial-gradient(circle at 0 0,transparent 27.5px,#000 28px)}
+  #record .head,#record .stats{margin-inline:auto;text-align:center} #record .head .lede{margin-inline:auto} #record .stats{justify-items:center} #record .stats li{width:100%}
   .notch.top{top:-2px;padding-top:2px} .notch.top.left{left:-2px;padding-left:2px}
   .notch.side::before{right:0;bottom:100%;-webkit-mask:radial-gradient(circle at 0 0,transparent 27.5px,#000 28px);mask:radial-gradient(circle at 0 0,transparent 27.5px,#000 28px)}
   .notch.side::after{right:0;top:100%;-webkit-mask:radial-gradient(circle at 0 100%,transparent 27.5px,#000 28px);mask:radial-gradient(circle at 0 100%,transparent 27.5px,#000 28px)}
