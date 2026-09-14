@@ -744,15 +744,22 @@
   document.getElementById('giftForm').addEventListener('submit', e => { e.preventDefault(); const em = document.getElementById('giftEmail').value.trim(); if (!em) { document.getElementById('giftEmail').focus(); return; } const fd = new FormData(); fd.append('entry.600134808', em); fetch('https://docs.google.com/forms/d/1q1LdzFb02sDaaurpRny9pVWQgsXsmOHnMv9qeP5MjcA/formResponse', { method: 'POST', mode: 'no-cors', body: fd }).catch(() => {}); document.querySelector('.foot .gift').classList.add('done'); });
   const ASK_ENTRY = 'entry.1539001210'; // the Google Form's long-answer question «The work you have in mind»
   document.getElementById('askForm').addEventListener('submit', e => { e.preventDefault(); const em = document.getElementById('email').value.trim(); const w = document.getElementById('message').value.trim(); if (!em) { document.getElementById('email').focus(); return; } const fd = new FormData(); fd.append('entry.600134808', em); if (ASK_ENTRY) fd.append(ASK_ENTRY, w); fetch('https://docs.google.com/forms/d/1q1LdzFb02sDaaurpRny9pVWQgsXsmOHnMv9qeP5MjcA/formResponse', { method: 'POST', mode: 'no-cors', body: fd }).catch(() => {}); document.getElementById('doorForm').classList.add('done'); });
-  // the click: when the scroll comes to rest near a step or a chapter head, it settles onto it
-  let settleT = 0, settling = false;
-  const settle = () => { if (phone || reduced || settling) return; const vh = window.innerHeight, y = window.scrollY; const targets = [];
-    sections.forEach(a => targets.push(a.getBoundingClientRect().top + y - 12));
-    stories.forEach(s => s.steps.forEach(st => { const b = st.getBoundingClientRect(); const c = (b.top + b.bottom) / 2 + y; if (b.height < vh) targets.push(c - vh * 0.5); }));
-    let best = null, bd = 1e9; targets.forEach(t => { const d = Math.abs(t - y); if (d < bd) { bd = d; best = t; } });
-    if (best === null || bd < 2 || bd > vh * 0.22) return; settling = true; const done = () => { settling = false; };
-    if (lenis) { lenis.scrollTo(best, { duration: 0.55, easing: x => 1 - Math.pow(1 - x, 3), onComplete: done }); setTimeout(done, 700); } else { window.scrollTo({ top: best, behavior: 'smooth' }); setTimeout(done, 600); } };
-  window.addEventListener('scroll', () => { clearTimeout(settleT); settleT = setTimeout(settle, 140); }, { passive: true });
+  // the magnet: every chapter start and every list item is a magnet; as the scroll slows within reach of one, it is pulled in and clicks into place
+  const magnets = () => { const vh = window.innerHeight, y = window.scrollY; const t = [];
+    sections.forEach(a => t.push(a.getBoundingClientRect().top + y - 12));
+    const heads = t.slice();
+    stories.forEach(s => s.steps.forEach(st => { const b = st.getBoundingClientRect(); if (b.height >= vh) return; const c = (b.top + b.bottom) / 2 + y - vh * 0.5; if (heads.every(h => Math.abs(h - c) > vh * 0.3)) t.push(c); }));
+    return t; };
+  const nearest = (y) => { let best = null, bd = 1e9; magnets().forEach(t => { const d = Math.abs(t - y); if (d < bd) { bd = d; best = t; } }); return { best, bd }; };
+  const click = x => 1 + 1.9 * Math.pow(x - 1, 3) + 0.9 * Math.pow(x - 1, 2);
+  let pulling = false, cool = 0;
+  if (lenis && !phone && !reduced) {
+    lenis.on('scroll', () => { const now = performance.now(); if (pulling || now < cool) return; const v = Math.abs(lenis.velocity || 0); if (v > 16) return; const vh = window.innerHeight; const { best, bd } = nearest(lenis.scroll);
+      if (best === null || bd < 2 || bd > vh * 0.26) return; pulling = true; cool = now + 800;
+      lenis.scrollTo(best, { duration: 0.5, easing: click, lock: true, onComplete: () => { pulling = false; } }); setTimeout(() => { pulling = false; }, 800); });
+  } else if (!phone && !reduced) {
+    let settleT = 0; window.addEventListener('scroll', () => { clearTimeout(settleT); settleT = setTimeout(() => { const vh = window.innerHeight; const { best, bd } = nearest(window.scrollY); if (best !== null && bd > 2 && bd < vh * 0.26) window.scrollTo({ top: best, behavior: 'smooth' }); }, 120); }, { passive: true });
+  }
   window.__update = update;
   window.addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(update); }, { passive: true });
   window.addEventListener('resize', update); update();
