@@ -367,7 +367,7 @@
   .chap{padding:clamp(72px,11vh,140px) 0 clamp(64px,9vh,120px)}
   .chap.light,.chap.dark{margin:0 calc(-1 * var(--gut));padding-left:var(--gut);padding-right:var(--gut)}
   .chap.light{background:var(--paper)}
-  .chap.dark{background:var(--night);color:var(--mist-t)} .chap.dark.alt{background:var(--night-alt)} .chap.dark.black{background:var(--black)}
+  .chap.dark{--ground:var(--night);background:var(--ground);color:var(--mist-t)} .chap.dark.alt{--ground:var(--night-alt)} .chap.dark.black{--ground:var(--black)}
   @media (min-width:901px){ .chap.light,.chap.dark{margin-left:calc(-1 * var(--left));padding-left:var(--left)} }
   .chap.dark .eyebrow,.chap.dark .step b,.chap.dark .gcard b{color:var(--mist-3)} .chap.dark .head h2,.chap.dark .step span,.chap.dark .gcard span,.chap.dark .chip button,.chap.dark .chip .a > p{color:var(--mist-t)} .chap.dark .lede{color:var(--mist-2)}
   .chap.dark .step.focus b{color:var(--sky)} .chap.dark .step{border-top-color:rgba(247,248,245,.12)}
@@ -395,6 +395,18 @@
   .step span{display:block;font-size:clamp(17px,1.35vw,21px);line-height:1.5;font-weight:500;color:var(--ink);max-width:none}
   .step .close{font-weight:600} .step .door-link{margin-top:18px}
   .story.mirror{grid-template-columns:minmax(0,30fr) minmax(0,70fr)} .story.mirror .pinned{order:2} .story.mirror .steps{order:1}
+  /* the notched story: the frame full width; the title and the current entry live in notches cut into its edge, fillets and all */
+  .story.notched{grid-template-columns:1fr;gap:0} .story.notched .steps.driver{visibility:hidden;pointer-events:none;padding-top:0}
+  .story.notched .pinned{top:5vh;height:90vh} .story.notched .panel{overflow:visible} .story.notched .panel img.still,.story.notched .panel video{border-radius:28px}
+  .notch{position:absolute;background:var(--ground);z-index:3}
+  .notch::before,.notch::after{content:"";position:absolute;width:28px;height:28px;background:var(--ground)}
+  .notch.top{left:0;top:0;padding:0 40px 26px 0;border-radius:0 0 28px 0;max-width:min(720px,58%)} .notch.top h2{font-size:clamp(24px,2.2vw,34px);line-height:1.12;font-weight:600;color:var(--mist-t);margin:0;max-width:26ch} .notch.top .eyebrow{margin-bottom:10px}
+  .notch.top::before{left:100%;top:0;-webkit-mask:radial-gradient(circle at 100% 100%,transparent 27.5px,#000 28px);mask:radial-gradient(circle at 100% 100%,transparent 27.5px,#000 28px)}
+  .notch.top::after{left:0;top:100%;-webkit-mask:radial-gradient(circle at 100% 100%,transparent 27.5px,#000 28px);mask:radial-gradient(circle at 100% 100%,transparent 27.5px,#000 28px)}
+  .notch.side{right:0;top:50%;transform:translateY(-50%);width:min(460px,36%);padding:30px 0 30px 34px;border-radius:28px 0 0 28px}
+  .notch.side::before{right:0;bottom:100%;-webkit-mask:radial-gradient(circle at 0 0,transparent 27.5px,#000 28px);mask:radial-gradient(circle at 0 0,transparent 27.5px,#000 28px)}
+  .notch.side::after{right:0;top:100%;-webkit-mask:radial-gradient(circle at 0 100%,transparent 27.5px,#000 28px);mask:radial-gradient(circle at 0 100%,transparent 27.5px,#000 28px)}
+  .notch.side b{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--sky);font-weight:600;margin-bottom:10px} .notch.side span{display:block;font-size:clamp(16px,1.25vw,19px);line-height:1.5;font-weight:500;color:var(--mist-t);max-width:none;opacity:1;transition:opacity .35s linear} .notch.side.swap span,.notch.side.swap b{opacity:0}
   .stats{list-style:none;margin:0 0 clamp(28px,4vh,44px);padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,48px);max-width:960px}
   .stats li{border-top:1px solid rgba(247,248,245,.22);padding-top:14px} .stats b{display:block;font-size:clamp(22px,2.2vw,32px);line-height:1.1;font-weight:600;letter-spacing:-.01em;color:var(--mist-t)} .stats span{display:block;margin-top:6px;font-size:14px;line-height:1.4;color:var(--mist-3)}
   .logbook-band{position:relative} .logbook-band .panel.wide{margin:0;aspect-ratio:2/1;min-height:560px}
@@ -455,6 +467,7 @@
     .story,.viewer,.two,.roots-grid{grid-template-columns:1fr}
     .pinned{position:relative;top:auto;height:auto;margin-bottom:8px} .pinned .panel{height:auto;aspect-ratio:16/9;border-radius:18px} .roots-head{position:static}
     .story.mirror .pinned{order:1} .story.mirror .steps{order:2} .stats{grid-template-columns:1fr;gap:14px}
+    .story.notched .steps.driver{visibility:visible;pointer-events:auto} .notch.side{display:none} .notch.top{position:static;transform:none;padding:0 0 14px;max-width:none;border-radius:0} .notch::before,.notch::after{display:none} .story.notched .pinned{height:auto}
     .logbook-band .panel.wide{aspect-ratio:16/10;margin-bottom:16px} .form-panel.float{position:static !important;transform:none !important;width:auto !important;max-height:none !important}
     .band-story{min-height:0} .band-pin{position:relative;height:auto;aspect-ratio:9/12;overflow:hidden;border-radius:0} .band-words{left:20px;right:20px;bottom:24px} .band-steps{position:static;width:auto;padding:22px 20px 0} .band-steps .step{position:static;opacity:1;padding:12px 0}
     .chap.light,.chap.dark{margin:0 -20px;padding-left:20px;padding-right:20px}
@@ -553,12 +566,11 @@
 </section>
 
 <section class="chap dark black" id="record" data-ch="arrival">
-  <header class="head wrap"><span class="eyebrow">The record</span><h2>A PR campaign, thirty days, up to a hundred creators, and every story caught the day it appeared.</h2><p class="lede">The record is where we show what we have done, as it happened, for a real client, with the part that went wrong kept in.</p></header>
-
+  <header class="head wrap"><span class="eyebrow">The record</span><p class="lede">The record is where we show what we have done, as it happened, for a real client, with the part that went wrong kept in.</p></header>
   <ul class="stats wrap"><li><b>Thirty days</b><span>a PR campaign</span></li><li><b>Up to a hundred</b><span>creators</span></li><li><b>Three working days</b><span>with her, not three months</span></li></ul>
-  <div class="story wrap mirror" data-story>
-    <div class="pinned"><div class="panel"><img class="still" src="assets/scene/posters/ch4-arrival.jpg" alt=""><video class="scrub" muted playsinline preload="none" data-hd="assets/scene/1080/ch4-arrival.mp4" data-sd="assets/scene/web/ch4-arrival.mp4"></video></div></div>
-    <ol class="steps">
+  <div class="story wrap notched" data-story data-notched>
+    <div class="pinned"><div class="panel"><img class="still" src="assets/scene/posters/ch4-arrival.jpg" alt=""><video class="scrub" muted playsinline preload="none" data-hd="assets/scene/1080/ch4-arrival.mp4" data-sd="assets/scene/web/ch4-arrival.mp4"></video></div><div class="notch top"><h2>A PR campaign, thirty days, up to a hundred creators, and every story caught the day it appeared.</h2></div><div class="notch side" aria-live="polite"><b></b><span></span></div></div>
+    <ol class="steps driver">
       <li class="step"><b>By hand</b><span>Before, one person spent part of every day of the campaign walking two feeds for up to a hundred creators, copying what she found into Excel, keeping the formulas straight, and losing every story that expired before she got to it. Stories vanish after a day, so a day missed is gone for good.</span></li>
       <li class="step"><b>Now</b><span>Now she hands over three files, the brief, the list and the product sheet. From there the route runs: the missing platforms found, the followers counted at the start and the end, every story caught the day it appears, the uncertain ones set aside for her eye.</span></li>
       <li class="step"><b>The catch</b><span>The catch: a product in frame with no tag still counts, and no keyword can see it. So those cases are not guessed. They are set aside, and she looks at them herself, on purpose.</span></li>
@@ -677,7 +689,7 @@
   (function follow(now) { const dt = Math.min(2.5, (now - lastT) / 16.667) || 1; lastT = now; const k = 0.05, damp = Math.pow(0.76, dt); vx = (vx + (tx - cx) * k * dt) * damp; vy = (vy + (ty - cy) * k * dt) * damp; cx += vx; cy += vy; cur.style.transform = `translate3d(${cx.toFixed(2)}px, ${cy.toFixed(2)}px, 0)`; requestAnimationFrame(follow); })(performance.now());
   document.addEventListener('mouseover', e => cur.classList.toggle('hot', !!e.target.closest('a, button, .gcard, .ch, .fx, .chip, input, textarea, label')));
   // the stories: the media pins, the clip scrubs with the section, the step at mid-frame is bright
-  const stories = [...document.querySelectorAll('[data-story]')].map(el => ({ el, v: el.querySelector('video.scrub'), steps: [...el.querySelectorAll('.step')] }));
+  const stories = [...document.querySelectorAll('[data-story]')].map(el => ({ el, v: el.querySelector('video.scrub'), steps: [...el.querySelectorAll('.step')], side: el.querySelector('.notch.side'), shown: -1 }));
   const scrubTo = (v, f) => { const rec = vids.find(r => r.v === v); if (!rec || !rec.ready) return; const d = v.duration || 10; v.currentTime = Math.min(d - 0.05, 0.7 + f * (d - 0.75)); };
   // reveal on scroll, one element at a time
   const rv = [...document.querySelectorAll('.head, .panel, .viewer, .gallery, .form-panel')]; rv.forEach(e => e.classList.add('rv'));
@@ -696,7 +708,8 @@
     { const pt = rbase.getPointAtLength(flownProgress * rlen); rflown.style.strokeDashoffset = String(rlen * (1 - flownProgress)); rplane.setAttribute('transform', `translate(${pt.x} ${pt.y})`); }
     // the stories
     stories.forEach(s => { const r = s.el.getBoundingClientRect(); const band = s.el.hasAttribute('data-band'); const range = Math.max(1, r.height - vh * (band ? 1 : 0.8)); const p = Math.min(1, Math.max(0, ((band ? 0 : vh * 0.06) - r.top) / range)); if (s.v && !phone && !reduced) scrubTo(s.v, p);
-      let best = 0; if (band) { best = Math.min(s.steps.length - 1, Math.floor(p * s.steps.length)); } else { let bd = 1e9; s.steps.forEach((st, k) => { const b = st.getBoundingClientRect(); const d = Math.abs((b.top + b.bottom) / 2 - vh * 0.5); if (d < bd) { bd = d; best = k; } }); } s.steps.forEach((st, k) => st.classList.toggle('focus', k === best)); });
+      let best = 0; if (band) { best = Math.min(s.steps.length - 1, Math.floor(p * s.steps.length)); } else { let bd = 1e9; s.steps.forEach((st, k) => { const b = st.getBoundingClientRect(); const d = Math.abs((b.top + b.bottom) / 2 - vh * 0.5); if (d < bd) { bd = d; best = k; } }); } s.steps.forEach((st, k) => st.classList.toggle('focus', k === best));
+      if (s.side && s.shown !== best) { s.shown = best; const st = s.steps[best]; const b = st.querySelector('b'), sp = st.querySelector('span'); s.side.classList.add('swap'); clearTimeout(s.tm); s.tm = setTimeout(() => { s.side.querySelector('b').textContent = b ? b.textContent : ''; s.side.querySelector('span').innerHTML = sp ? sp.innerHTML : ''; s.side.classList.remove('swap'); }, 220); } });
     { let mid = 0; anchors.forEach((a, i) => { if (y + vh * 0.5 >= absTop(a)) mid = i; }); document.body.classList.toggle('on-dark', mid > 0 && anchors[mid].classList.contains('dark')); }
   };
   const travelTo = i => { const a = anchors[i]; const target = i === 0 ? 0 : a.getBoundingClientRect().top + window.scrollY - 12; if (lenis) { const d = Math.abs(target - window.scrollY); lenis.scrollTo(target, { duration: Math.min(2.4, Math.max(1.1, d / 1300)), easing: x => 1 - Math.pow(1 - x, 3) }); return; } window.scrollTo({ top: target, behavior: 'smooth' }); };
