@@ -358,7 +358,82 @@
     .walk{position:static;transform:none !important;width:auto;height:auto;overflow:visible;-webkit-mask-image:none;mask-image:none;margin-top:8px} .walk::before{display:none} .walk .rows{position:static;padding:0;transform:none !important} .walk .row{opacity:1 !important;transform:none !important} .walk .row b{color:var(--cobalt)}
   }
 </style>
-</head>
+<style>
+  /* THE FLOW (14.09): after the hero the page is a normal flow on solid mist; the media pins inside its section, the words scroll past it; nothing is written over a picture */
+  .flow{position:relative;z-index:2;background:var(--mist);padding:0 clamp(24px,5vw,72px) 0 clamp(24px,5vw,72px)}
+  @media (min-width:901px){ .flow{padding-left:max(280px,calc((100vw - 1180px) / 2));padding-right:clamp(24px,5vw,72px)} }
+  .wrap{max-width:1180px;margin-inline:auto}
+  .chap{padding:clamp(72px,11vh,140px) 0 clamp(64px,9vh,120px)}
+  .chap.light{background:var(--paper);margin:0 calc(-1 * clamp(24px,5vw,72px));padding-left:clamp(24px,5vw,72px);padding-right:clamp(24px,5vw,72px)}
+  @media (min-width:901px){ .chap.light{margin-left:calc(-1 * max(280px,calc((100vw - 1180px) / 2)));padding-left:max(280px,calc((100vw - 1180px) / 2))} }
+  .head{margin-bottom:clamp(28px,4vh,44px)}
+  .eyebrow{display:block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--slate);font-weight:600;margin-bottom:14px}
+  .head h2{font-size:clamp(28px,2.8vw,42px);line-height:1.12;letter-spacing:-.012em;font-weight:600;color:var(--ink);max-width:30ch;margin:0 0 16px;clip-path:none;opacity:1;transform:none}
+  .lede{font-size:clamp(16px,1.25vw,19px);line-height:1.5;color:var(--slate);max-width:56ch;margin:0}
+  .panel{position:relative;width:100%;aspect-ratio:16/9;border-radius:28px;overflow:hidden;background:#dfe5ea;box-shadow:0 34px 80px -36px rgba(19,34,56,.42)}
+  .panel img.still,.panel video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 45%}
+  .panel video{opacity:0;transition:opacity .6s linear} .panel video.on{opacity:1}
+  .panel.tall{aspect-ratio:4/3}
+  /* the pinned story: the media holds on the left while the steps pass on the right; the step at the middle of the frame is the bright one */
+  .story{display:grid;grid-template-columns:minmax(0,58fr) minmax(0,42fr);gap:clamp(24px,4vw,56px);align-items:start}
+  .pinned{position:sticky;top:12vh}
+  .steps{list-style:none;margin:0;padding:6vh 0 10vh}
+  .step{min-height:46vh;display:flex;flex-direction:column;justify-content:center;opacity:.28;transition:opacity .4s linear;border-top:1px solid rgba(19,34,56,.1);padding:8px 0}
+  .step:first-child{border-top:0} .step.focus{opacity:1}
+  .step b{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--slate);font-weight:600;margin-bottom:10px} .step.focus b{color:var(--cobalt)}
+  .step span{display:block;font-size:clamp(17px,1.35vw,21px);line-height:1.5;font-weight:500;color:var(--ink);max-width:none}
+  .step .close{font-weight:600} .step .door-link{margin-top:18px}
+  /* the viewer: one panel, the film on the right, the questions as chips on the left, one open at a time */
+  .viewer{display:grid;grid-template-columns:minmax(0,38fr) minmax(0,62fr);gap:0;border-radius:28px;overflow:hidden;background:var(--paper);box-shadow:0 34px 80px -36px rgba(19,34,56,.42)}
+  .viewer-media{order:2;min-height:100%} .viewer-media .panel{border-radius:0;height:100%;aspect-ratio:auto;box-shadow:none;min-height:560px}
+  .viewer-side{order:1;padding:clamp(24px,3vw,44px)}
+  .chips{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+  .chip button{display:flex;align-items:center;justify-content:space-between;gap:14px;width:100%;text-align:left;border:0;cursor:pointer;font:inherit;font-size:clamp(14px,1.05vw,16px);font-weight:600;color:var(--ink);background:rgba(19,34,56,.05);border-radius:26px;padding:14px 18px 14px 20px;min-height:52px;transition:background .25s linear,color .25s linear}
+  .chip button:hover{background:rgba(19,34,56,.09)} .chip button:focus-visible{outline:2px solid var(--cobalt);outline-offset:2px}
+  .chip .pm{position:relative;width:22px;height:22px;flex:0 0 22px;border-radius:50%;border:1px solid rgba(19,34,56,.28)} .chip .pm::before,.chip .pm::after{content:"";position:absolute;left:50%;top:50%;width:10px;height:1.5px;background:var(--ink);transform:translate(-50%,-50%)} .chip .pm::after{transform:translate(-50%,-50%) rotate(90deg);transition:transform .35s var(--ease)}
+  .chip.open .pm::after{transform:translate(-50%,-50%) rotate(0deg)}
+  .chip .a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s var(--ease)} .chip.open .a{grid-template-rows:1fr}
+  .chip .a > p{overflow:hidden;min-height:0;margin:0;font-size:clamp(14px,1.05vw,15.5px);line-height:1.55;color:var(--ink);font-weight:500;max-width:none;opacity:0;transition:opacity .4s linear .1s;padding:0 20px}
+  .chip.open .a > p{opacity:1;padding:14px 20px 18px} .chip .a b{font-weight:700}
+  .chip.open button{background:rgba(36,87,255,.08);color:var(--cobalt);border-radius:20px 20px 0 0} .chip.open .a{background:rgba(36,87,255,.08);border-radius:0 0 20px 20px}
+  /* the gallery: four cards on the content width, the next one peeking, dots under */
+  .gcards{list-style:none;margin:0;padding:0 0 8px;display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch} .gcards::-webkit-scrollbar{display:none}
+  .gcard{flex:0 0 min(78%,720px);scroll-snap-align:start;background:var(--paper);border-radius:28px;padding:clamp(28px,3vw,44px);box-shadow:0 22px 44px -26px rgba(19,34,56,.22);min-height:280px;display:flex;flex-direction:column;justify-content:flex-end}
+  .gcard b{display:block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--slate);font-weight:600;margin-bottom:auto;padding-bottom:20px}
+  .gcard span{display:block;font-size:clamp(18px,1.55vw,24px);line-height:1.4;font-weight:600;color:var(--ink);max-width:30ch}
+  .dots{display:flex;gap:8px;justify-content:center;margin:18px 0 22px} .dots button{width:8px;height:8px;border-radius:50%;border:0;padding:0;background:rgba(19,34,56,.22);cursor:pointer;transition:background .25s linear,transform .25s var(--ease)} .dots button.on{background:var(--cobalt);transform:scale(1.25)}
+  .gallery .door-link{text-align:center}
+  /* the light sections: the logbook and the door */
+  .two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:start}
+  .form-panel{position:static !important;width:auto !important;max-width:none !important;max-height:none !important;transform:none !important;opacity:1 !important;filter:none !important;background:#fff;border:1px solid rgba(19,34,56,.08);border-radius:28px;padding:clamp(24px,3vw,40px);box-shadow:0 22px 44px -26px rgba(19,34,56,.18);overflow:visible}
+  .door-grid{align-items:center}
+  .offer-col .seats{margin-top:18px} .offer-col .offer{max-width:44ch} .offer-col .talk{font-size:clamp(28px,3vw,44px);letter-spacing:.06em;text-transform:uppercase;font-weight:600;margin:28px 0 12px;color:var(--ink)}
+  .offer-col p a{color:var(--ink);text-decoration:underline;text-decoration-color:rgba(36,87,255,.45);text-underline-offset:5px;text-decoration-thickness:1px} .offer-col p a:hover{color:var(--cobalt)}
+  .entries{margin-top:32px}
+  .door-link a.pill{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border:1px solid rgba(19,34,56,.22);border-radius:8px;color:var(--ink);font-weight:600;font-size:14px;letter-spacing:.01em;text-decoration:none;background:transparent;transition:border-color .3s linear,color .3s linear}
+  .door-link a.pill svg{width:16px;height:16px;transition:transform .4s var(--ease)} .door-link a.pill:hover{border-color:var(--cobalt);color:var(--cobalt)} .door-link a.pill:hover svg{transform:translateX(3px)}
+  /* reveal on scroll: heads and panels rise in once */
+  .rv{opacity:0;transform:translateY(16px);transition:opacity .7s linear,transform .7s var(--ease)} .rv.in{opacity:1;transform:none}
+  .reduced .rv{opacity:1;transform:none}
+  /* the hero keeps its film; the route sits on the flow's ground */
+  .chapters::before{display:none}
+  .hero-words .plate-text{inset:22% -300px -200px -280px;opacity:1 !important;background:radial-gradient(ellipse 50% 50% at 50% 52%, rgba(247,248,245,.98) 0%, rgba(247,248,245,.95) 44%, rgba(247,248,245,.72) 64%, rgba(247,248,245,.22) 84%, rgba(247,248,245,0) 100%)}
+  .stage.parked{position:absolute;top:auto;bottom:0}
+  @media (max-width:900px){
+    .flow{padding:0 20px}
+    .chap{padding:56px 0 48px}
+    .chap.light{margin:0 -20px;padding-left:20px;padding-right:20px}
+    .story,.viewer,.two{grid-template-columns:1fr}
+    .pinned{position:relative;top:auto;margin-bottom:8px}
+    .step{min-height:0;opacity:1 !important;padding:18px 0}
+    .viewer-media{order:1} .viewer-media .panel{min-height:0;aspect-ratio:16/9} .viewer-side{order:2;padding:18px}
+    .panel{border-radius:18px} .viewer{border-radius:18px}
+    .gcard{flex-basis:86%;padding:22px;min-height:220px}
+    .flat .panel video{display:none} .flat .panel img.still{display:block}
+    .head h2{max-width:none}
+  }
+</style>
+
 <body data-layers="4">
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
@@ -378,7 +453,6 @@
 <div class="grain" aria-hidden="true"></div>
 <div class="cur" id="cur" aria-hidden="true"><i></i></div>
 
-<!-- 1 HERO -->
 <div class="pin" id="top" data-ch="hero" data-len="120" data-idle-hd="assets/scene/1080/hero-2.mp4" data-idle-sd="assets/scene/web/hero-2.mp4">
 <section class="stage live">
   <img class="still" src="assets/scene/hero-still.jpg" alt="">
@@ -397,190 +471,112 @@
 </section>
 </div>
 
-<!-- 2 THE WORK: chart + flight strips -->
-<div class="pin" id="work" data-ch="work" data-len="320" data-hd="assets/scene/1080/ch1-work.mp4" data-sd="assets/scene/web/ch1-work.mp4">
-<section class="stage">
-  <img class="still" src="assets/scene/posters/ch1-work.jpg" alt="">
-  <video class="scrub" muted playsinline preload="none"></video>
-  <div class="fade"></div>
-  <div class="fade-top"></div>
-  <div class="plates"><img class="plate c" src="assets/scene/plates/mist-c.png" alt=""></div>
-    <div class="objects"><div class="walk obj" data-at="0.12"><div class="rows">
-    <div class="row"><b>Finding the next client</b><span>You say who the next client should be, and the work runs as a route of steps: the list comes to you, you strike the wrong names, the research takes your list, the first message comes drafted, and nothing is sent that you did not read and change first.</span></div>
-    <div class="row"><b>The campaign and the report</b><span>Marketing is many routes, the posts, the campaign, the report, and each one runs step by step, with you or your person reading every step, correcting it, and the next step starting from what you corrected.</span></div>
-    <div class="row"><b>The client work</b><span>Delivery is the work you get paid for, and it runs step by step, each step leaving a result your person checks and fixes before the next begins, with the status report and the handover coming out of the same record.</span></div>
-    <div class="row"><b>Quotes, invoices, reminders</b><span>Money runs step by step, the quote drafted from the work, the invoice from the quote, the reminder from the unpaid one, and each step waits for your correction, so nothing leaves and nothing is paid without you.</span></div>
-    <div class="row"><b>Hiring and the first weeks</b><span>Hiring starts with your rule for the role, where to search and who counts, and runs from there as a route: the search done to your rule, the shortlist yours to cut, the onboarding in your own way, nothing moving without your word.</span></div>
-    <div class="row"><b>The weekly numbers</b><span>Management is the route that reads the others: the week's numbers pulled from every department, laid out the way you read them, the questions marked, and the decision yours, kept on record so the next week starts from it.</span></div>
-  </div></div></div>
-  <div class="wash"></div>
-  <div class="frame"><div class="words" style="grid-column:3 / span 4">
-    <div class="plate-text"></div><div class="plate-dark"></div>
-    <span class="label">The work</span>
-    <h2>Sales first, because that is where the money comes from, and then every other department, one at a time, until the whole company moves and only the decisions reach you.</h2>
-    
-  </div></div>
-</section>
-</div>
 
-<!-- 3 THE CREW: cockpit + placards -->
-<div class="pin" id="crew" data-ch="crew" data-len="340" data-hd="assets/scene/1080/ch2-cockpit.mp4" data-sd="assets/scene/web/ch2-cockpit.mp4">
-<section class="stage">
-  <img class="still" src="assets/scene/posters/ch2-cockpit.jpg" alt="">
-  <video class="scrub" muted playsinline preload="none"></video>
-  <div class="fade"></div>
-  <div class="fade-top"></div>
-  <div class="plates"><img class="plate a" src="assets/scene/plates/mist-a.png" alt="" style="opacity:.5"></div>
-  <div class="objects"><div class="placards" data-stagger="0.280,0.305,0.330,0.355,0.380,0.405,0.430,0.455">
-    <span class="label">Before you ask</span>
-    <div class="placard obj" role="button" tabindex="0" aria-expanded="false"><b>Which parts of my company can run this way?<i class="pm"></i></b><div class="ans"><span>That is yours to say. Every company is cut differently, and we work with the parts you name, one at a time, starting with the one that brings the money in. Finding the next client, the client work, the money, the people, the numbers you run the company by: those are examples, not a list you have to fit.</span></div></div>
-    <div class="placard obj" role="button" tabindex="0" aria-expanded="false"><b>Do I stay in charge?<i class="pm"></i></b><div class="ans"><span>Yes, at every step. The work comes to you or your person as a result you can open and change, the next step starts from your version, and nothing is sent, paid or published unless one of you does it. The run does not have a hand of its own.</span></div></div>
-    <div class="placard obj" role="button" tabindex="0" aria-expanded="false"><b>What do my people and I have to learn?<i class="pm"></i></b><div class="ans"><span>Nothing. You keep working the way you work today. What changes is that each step of the work comes to you done to your rule, you correct it where it is wrong, and the next step starts from your correction, so your part is the judgment at every step and none of the grind.</span></div></div>
-    <div class="placard obj" role="button" tabindex="0" aria-expanded="false"><b>How fast is the first one running?<i class="pm"></i></b><div class="ans"><span>The first run, within days of the first conversation. The slower part is gathering the material the work lives in and what each piece of it means, and that part we do together: we ask the questions, we find the quick way to get each piece out of where it sits, and each one runs before the next is asked for.</span></div></div>
-    <div class="placard obj" role="button" tabindex="0" aria-expanded="false"><b>What if I want it to work differently later?<i class="pm"></i></b><div class="ans"><span>It changes with you, and the size of the change is the size of the work. A rule is one place, done on the spot. A step turned around is changed the same way, by you alone or on a call with us, whichever you prefer, and everything that follows from it is brought in line. In both cases the next run does the new thing, and nobody had to build anything.</span></div></div>
-    <div class="placard obj" role="button" tabindex="0" aria-expanded="false"><b>What if something is wrong and nobody notices?<i class="pm"></i></b><div class="ans"><span>Every step ends as a result your person can open and change, and the next step starts from what they left there. Sending, paying and publishing are theirs alone. We do not promise a lock that catches what nobody looked at; we promise the stop before the effect and the record after it.</span></div></div>
-    <div class="placard obj" role="button" tabindex="0" aria-expanded="false"><b>Who is there after it is built?<i class="pm"></i></b><div class="ans"><span>We are. The first month after the handover we are in the run with you, watching every step land, and after that it is your choice: keep us on for the upkeep, or run it with your own people, who by then have done every step with us.</span></div></div>
-    <div class="placard obj" role="button" tabindex="0" aria-expanded="false"><b>Where does my data live?<i class="pm"></i></b><div class="ans"><span>It stays yours and it stays where it is, on your machines, in your company. Everything we build is handed over to you whole and runs there, so there is nothing on our end to store, to lose or to ask for back.</span></div></div>
-  </div></div>
-  <div class="wash"></div>
-  <div class="frame"><div class="words">
-    <div class="plate-text"></div><div class="plate-dark"></div>
-    <span class="label">The crew</span>
-    <h2>We are with you at each step, and whatever comes up is ours to carry with you, so it stays easy on your side.</h2>
-  </div></div>
-</section>
-</div>
+<main class="flow" id="flow">
+<section class="chap" id="work" data-ch="work">
+  <header class="head wrap"><span class="eyebrow">The work</span><h2>Sales first, because that is where the money comes from, and then every other department, one at a time, until the whole company moves and only the decisions reach you.</h2></header>
 
-<!-- 4 THE ROOTS: the flight + the track -->
-<div class="pin" id="roots" data-ch="flight" data-len="400" data-hd="assets/scene/1080/ch3-flight.mp4" data-sd="assets/scene/web/ch3-flight.mp4">
-<section class="stage">
-  <img class="still" src="assets/scene/posters/ch3-flight.jpg" alt="">
-  <video class="scrub" muted playsinline preload="none"></video>
-  <div class="fade"></div>
-  <div class="fade-top"></div>
-  <div class="plates"><img class="plate c" src="assets/scene/plates/mist-c.png" alt="" style="opacity:.6"></div>
-  <div class="pager" id="pager"><i class="on"></i><i></i><i></i><i></i></div>
-  <div class="objects"><div class="track" data-stagger="0.18,0.18,0.18,0.18" id="track">
-    <div class="card obj"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19C8 13 13 8 19 5L15 3" stroke="#2457FF" stroke-width="2" stroke-linecap="round"/></svg><b>Money</b><span>Stop spending your day on the questions and the interruptions that the recurring work throws at you, and put your focus where it belongs for an owner: on what brings money in and grows the business.</span></div>
-    <div class="card obj"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19C8 13 13 8 19 5L15 3" stroke="#2457FF" stroke-width="2" stroke-linecap="round"/></svg><b>Risk</b><span>You already know how it should be done. You were just buried. Now you are in every stage, looking and correcting, so the result is right by construction, and the only part left with you is the one where you have to decide.</span></div>
-    <div class="card obj"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19C8 13 13 8 19 5L15 3" stroke="#2457FF" stroke-width="2" stroke-linecap="round"/></svg><b>Control</b><span>You can change any step to fit how you work, without knowing anything about what is underneath. It is as easy as changing your mind, and the next run already does it.</span></div>
-    <div class="card obj"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19C8 13 13 8 19 5L15 3" stroke="#2457FF" stroke-width="2" stroke-linecap="round"/></svg><b>Speed</b><span>You describe the work, and within days it is running on your own case. From then on every correction takes effect the moment it is made, and nobody has to rebuild anything to get there.</span></div>
-  </div></div>
-  <div class="wash"></div>
-  <div class="frame" style="align-content:start;padding-top:9vh"><div class="words" style="grid-column:3 / span 5">
-    <div class="plate-text"></div><div class="plate-dark"></div>
-    <span class="label">The roots</span>
-    <p class="kicker">Everything we build grows from these four roots, and each one is a promise you can hold us to on your own case.</p>
-    <h2>Every correction you make is kept, so nothing is corrected twice.</h2>
-    <p class="door-link"><a class="pill" href="#door" data-go="7"><span>Talk to us.</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p>
-  </div></div>
+  <div class="story wrap" data-story>
+    <div class="pinned"><div class="panel"><img class="still" src="assets/scene/posters/ch1-work.jpg" alt=""><video class="scrub" muted playsinline preload="none" data-hd="assets/scene/1080/ch1-work.mp4" data-sd="assets/scene/web/ch1-work.mp4"></video></div></div>
+    <ol class="steps">
+      <li class="step"><b>Finding the next client</b><span>You say who the next client should be, and the work runs as a route of steps: the list comes to you, you strike the wrong names, the research takes your list, the first message comes drafted, and nothing is sent that you did not read and change first.</span></li>
+      <li class="step"><b>The campaign and the report</b><span>Marketing is many routes, the posts, the campaign, the report, and each one runs step by step, with you or your person reading every step, correcting it, and the next step starting from what you corrected.</span></li>
+      <li class="step"><b>The client work</b><span>Delivery is the work you get paid for, and it runs step by step, each step leaving a result your person checks and fixes before the next begins, with the status report and the handover coming out of the same record.</span></li>
+      <li class="step"><b>Quotes, invoices, reminders</b><span>Money runs step by step, the quote drafted from the work, the invoice from the quote, the reminder from the unpaid one, and each step waits for your correction, so nothing leaves and nothing is paid without you.</span></li>
+      <li class="step"><b>Hiring and the first weeks</b><span>Hiring starts with your rule for the role, where to search and who counts, and runs from there as a route: the search done to your rule, the shortlist yours to cut, the onboarding in your own way, nothing moving without your word.</span></li>
+      <li class="step"><b>The weekly numbers</b><span>Management is the route that reads the others: the week's numbers pulled from every department, laid out the way you read them, the questions marked, and the decision yours, kept on record so the next week starts from it.</span></li>
+    </ol>
+  </div>
 </section>
-</div>
 
-<!-- 5 THE RECORD: the arrival -->
-<div class="pin" id="record" data-ch="arrival" data-len="260" data-hd="assets/scene/1080/ch4-arrival.mp4" data-sd="assets/scene/web/ch4-arrival.mp4">
-<section class="stage">
-  <img class="still" src="assets/scene/posters/ch4-arrival.jpg" alt="">
-  <video class="scrub" muted playsinline preload="none"></video>
-  <div class="fade"></div>
-  <div class="fade-top"></div>
-  <div class="plates"><img class="plate a" src="assets/scene/plates/mist-a.png" alt="" style="opacity:.7"></div>
-  <div class="objects"><div class="walk obj" data-at="0.12"><div class="rows">
-    <div class="row"><b>By hand</b><span>Before, one person spent part of every day of the campaign walking two feeds for up to a hundred creators, copying what she found into Excel, keeping the formulas straight, and losing every story that expired before she got to it. Stories vanish after a day, so a day missed is gone for good.</span></div>
-    <div class="row"><b>Now</b><span>Now she hands over three files, the brief, the list and the product sheet. From there the route runs: the missing platforms found, the followers counted at the start and the end, every story caught the day it appears, the uncertain ones set aside for her eye.</span></div>
-    <div class="row"><b>The catch</b><span>The catch: a product in frame with no tag still counts, and no keyword can see it. So those cases are not guessed. They are set aside, and she looks at them herself, on purpose.</span></div>
-  </div></div></div>
-  <div class="wash"></div>
-  <div class="frame" style="align-content:start;padding-top:8vh"><div class="words case" style="grid-column:3 / span 4">
-    <div class="plate-text"></div><div class="plate-dark"></div>
-    <span class="label">The record</span>
-    <p class="kicker">The record is where we show what we have done, as it happened, for a real client, with the part that went wrong kept in.</p>
-    <h2>A PR campaign, thirty days, up to a hundred creators, and every story caught the day it appeared.</h2>
-    
-    
-    
-    <p>Three working days with her, not three months: the build, the test flight on her old campaign, the fixes, the first live run.</p>
-    <p class="door-link"><a class="pill" href="#door" data-go="7"><span>Talk to us.</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p>
-  </div></div>
+<section class="chap" id="crew" data-ch="crew">
+  <header class="head wrap"><span class="eyebrow">The crew</span><h2>We are with you at each step, and whatever comes up is ours to carry with you, so it stays easy on your side.</h2><p class="lede">Before you ask</p></header>
+
+  <div class="viewer wrap">
+    <div class="viewer-media"><div class="panel"><img class="still" src="assets/scene/posters/ch2-cockpit.jpg" alt=""><video class="scrub" muted playsinline preload="none" data-hd="assets/scene/1080/ch2-cockpit.mp4" data-sd="assets/scene/web/ch2-cockpit.mp4"></video></div></div>
+    <div class="viewer-side"><ul class="chips" id="chips">
+        <li class="chip"><button type="button" aria-expanded="false"><span class="q">Which parts of my company can run this way?</span><i class="pm" aria-hidden="true"></i></button><div class="a"><p>That is yours to say. Every company is cut differently, and we work with the parts you name, one at a time, starting with the one that brings the money in. Finding the next client, the client work, the money, the people, the numbers you run the company by: those are examples, not a list you have to fit.</p></div></li>
+        <li class="chip"><button type="button" aria-expanded="false"><span class="q">Do I stay in charge?</span><i class="pm" aria-hidden="true"></i></button><div class="a"><p>Yes, at every step. The work comes to you or your person as a result you can open and change, the next step starts from your version, and nothing is sent, paid or published unless one of you does it. The run does not have a hand of its own.</p></div></li>
+        <li class="chip"><button type="button" aria-expanded="false"><span class="q">What do my people and I have to learn?</span><i class="pm" aria-hidden="true"></i></button><div class="a"><p>Nothing. You keep working the way you work today. What changes is that each step of the work comes to you done to your rule, you correct it where it is wrong, and the next step starts from your correction, so your part is the judgment at every step and none of the grind.</p></div></li>
+        <li class="chip"><button type="button" aria-expanded="false"><span class="q">How fast is the first one running?</span><i class="pm" aria-hidden="true"></i></button><div class="a"><p>The first run, within days of the first conversation. The slower part is gathering the material the work lives in and what each piece of it means, and that part we do together: we ask the questions, we find the quick way to get each piece out of where it sits, and each one runs before the next is asked for.</p></div></li>
+        <li class="chip"><button type="button" aria-expanded="false"><span class="q">What if I want it to work differently later?</span><i class="pm" aria-hidden="true"></i></button><div class="a"><p>It changes with you, and the size of the change is the size of the work. A rule is one place, done on the spot. A step turned around is changed the same way, by you alone or on a call with us, whichever you prefer, and everything that follows from it is brought in line. In both cases the next run does the new thing, and nobody had to build anything.</p></div></li>
+        <li class="chip"><button type="button" aria-expanded="false"><span class="q">What if something is wrong and nobody notices?</span><i class="pm" aria-hidden="true"></i></button><div class="a"><p>Every step ends as a result your person can open and change, and the next step starts from what they left there. Sending, paying and publishing are theirs alone. We do not promise a lock that catches what nobody looked at; we promise the stop before the effect and the record after it.</p></div></li>
+        <li class="chip"><button type="button" aria-expanded="false"><span class="q">Who is there after it is built?</span><i class="pm" aria-hidden="true"></i></button><div class="a"><p>We are. The first month after the handover we are in the run with you, watching every step land, and after that it is your choice: keep us on for the upkeep, or run it with your own people, who by then have done every step with us.</p></div></li>
+        <li class="chip"><button type="button" aria-expanded="false"><span class="q">Where does my data live?</span><i class="pm" aria-hidden="true"></i></button><div class="a"><p>It stays yours and it stays where it is, on your machines, in your company. Everything we build is handed over to you whole and runs there, so there is nothing on our end to store, to lose or to ask for back.</p></div></li>
+    </ul></div>
+  </div>
 </section>
-</div>
 
-<!-- 6 HOW IT IS DONE: the hangar -->
-<div class="pin" id="hangar" data-ch="hangar" data-roll="1" data-len="240" data-hd="assets/scene/1080/ch5-hangar.mp4" data-sd="assets/scene/web/ch5-hangar.mp4">
-<section class="stage">
-  <img class="still" src="assets/scene/posters/ch5-hangar.jpg" alt="">
-  <video class="scrub" muted playsinline preload="none"></video>
-  <div class="fade"></div>
-  <div class="fade-top"></div>
-  <div class="plates"><img class="plate c" src="assets/scene/plates/mist-c.png" alt="" style="opacity:.45"></div>
-  <div class="wash"></div>
-  <div class="frame"><div class="words" style="grid-column:7 / span 6">
-    <div class="plate-text"></div><div class="plate-dark"></div>
-    <span class="label">The hangar</span>
-    <p class="kicker">This is built the way the systems a business runs on are built, and it shows in what reaches you: checked before it is yours, and on record after.</p>
-    <h2>The same discipline that keeps the software people depend on running, brought to the work that waits until the day lets you.</h2>
-    <p>Made for owners who want the recurring work done properly, and want to stay in charge of it.</p>
-  </div></div>
+<section class="chap" id="roots" data-ch="roots">
+  <header class="head wrap"><span class="eyebrow">The roots</span><h2>Every correction you make is kept, so nothing is corrected twice.</h2><p class="lede">Everything we build grows from these four roots, and each one is a promise you can hold us to on your own case.</p></header>
+
+  <div class="gallery wrap"><ul class="gcards" id="gcards">
+      <li class="gcard"><b>Money</b><span>Stop spending your day on the questions and the interruptions that the recurring work throws at you, and put your focus where it belongs for an owner: on what brings money in and grows the business.</span></li>
+      <li class="gcard"><b>Risk</b><span>You already know how it should be done. You were just buried. Now you are in every stage, looking and correcting, so the result is right by construction, and the only part left with you is the one where you have to decide.</span></li>
+      <li class="gcard"><b>Control</b><span>You can change any step to fit how you work, without knowing anything about what is underneath. It is as easy as changing your mind, and the next run already does it.</span></li>
+      <li class="gcard"><b>Speed</b><span>You describe the work, and within days it is running on your own case. From then on every correction takes effect the moment it is made, and nobody has to rebuild anything to get there.</span></li>
+  </ul><div class="dots" id="dots"><button type="button" aria-label="Root 1" class="on"></button><button type="button" aria-label="Root 2"></button><button type="button" aria-label="Root 3"></button><button type="button" aria-label="Root 4"></button></div><p class="door-link"><a class="pill" href="#door" data-go="7"><span>Talk to us.</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p></div>
 </section>
-</div>
 
-<!-- 7 THE DOOR + the stub -->
-<!-- 7 THE LOGBOOK -->
-<div class="pin" id="logbook" data-ch="logbook" data-len="260">
-<section class="stage">
-  <img class="still" src="assets/scene/posters/logbook.jpg" alt="">
-  <div class="fade"></div>
-  <div class="fade-top"></div>
-  <div class="plates"><img class="plate c" src="assets/scene/plates/mist-c.png" alt="" style="opacity:.5"></div>
-  <div class="objects"><div class="log-form obj" data-at="0.3" id="logForm">
-    <form id="logbookForm" novalidate>
+<section class="chap" id="record" data-ch="arrival">
+  <header class="head wrap"><span class="eyebrow">The record</span><h2>A PR campaign, thirty days, up to a hundred creators, and every story caught the day it appeared.</h2><p class="lede">The record is where we show what we have done, as it happened, for a real client, with the part that went wrong kept in.</p></header>
+
+  <div class="story wrap" data-story>
+    <div class="pinned"><div class="panel"><img class="still" src="assets/scene/posters/ch4-arrival.jpg" alt=""><video class="scrub" muted playsinline preload="none" data-hd="assets/scene/1080/ch4-arrival.mp4" data-sd="assets/scene/web/ch4-arrival.mp4"></video></div></div>
+    <ol class="steps">
+      <li class="step"><b>By hand</b><span>Before, one person spent part of every day of the campaign walking two feeds for up to a hundred creators, copying what she found into Excel, keeping the formulas straight, and losing every story that expired before she got to it. Stories vanish after a day, so a day missed is gone for good.</span></li>
+      <li class="step"><b>Now</b><span>Now she hands over three files, the brief, the list and the product sheet. From there the route runs: the missing platforms found, the followers counted at the start and the end, every story caught the day it appears, the uncertain ones set aside for her eye.</span></li>
+      <li class="step"><b>The catch</b><span>The catch: a product in frame with no tag still counts, and no keyword can see it. So those cases are not guessed. They are set aside, and she looks at them herself, on purpose.</span></li>
+      <li class="step last"><span class="close">Three working days with her, not three months: the build, the test flight on her old campaign, the fixes, the first live run.</span><p class="door-link"><a class="pill" href="#door" data-go="7"><span>Talk to us.</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="chap" id="hangar" data-ch="hangar">
+  <header class="head wrap"><span class="eyebrow">The hangar</span><h2>The same discipline that keeps the software people depend on running, brought to the work that waits until the day lets you.</h2></header>
+
+  <div class="story wrap" data-story>
+    <div class="pinned"><div class="panel"><img class="still" src="assets/scene/posters/ch5-hangar.jpg" alt=""><video class="scrub" muted playsinline preload="none" data-hd="assets/scene/1080/ch5-hangar.mp4" data-sd="assets/scene/web/ch5-hangar.mp4"></video></div></div>
+    <ol class="steps">
+      <li class="step"><b>How it is built</b><span>This is built the way the systems a business runs on are built, and it shows in what reaches you: checked before it is yours, and on record after.</span></li>
+      <li class="step"><b>Who it is for</b><span>Made for owners who want the recurring work done properly, and want to stay in charge of it.</span></li>
+    </ol>
+  </div>
+</section>
+
+<section class="chap light" id="logbook" data-ch="logbook">
+  <header class="head wrap"><span class="eyebrow">The logbook</span><h2>Every crew we fly with writes here, in their own name, once the work holds. We read each entry before it goes on the page. Yours is welcome.</h2></header>
+
+  <div class="two wrap">
+    <div class="panel tall"><img class="still" src="assets/scene/posters/logbook.jpg" alt=""></div>
+    <div class="form-panel log-form" id="logForm"><form id="logbookForm" novalidate>
       <div class="f"><span class="lab">Your rating</span><div class="stars" id="stars" role="radiogroup" aria-label="Your rating"><button type="button" role="radio" aria-checked="false" aria-label="1 of 5"></button><button type="button" role="radio" aria-checked="false" aria-label="2 of 5"></button><button type="button" role="radio" aria-checked="false" aria-label="3 of 5"></button><button type="button" role="radio" aria-checked="false" aria-label="4 of 5"></button><button type="button" role="radio" aria-checked="false" aria-label="5 of 5"></button></div><input type="hidden" id="rating" name="rating" value=""></div>
       <div class="f"><label for="entry">Your words</label><textarea id="entry" name="entry" rows="3"></textarea></div>
       <div class="f two"><div><label for="who">Your name</label><input id="who" name="who" type="text" autocomplete="name"></div><div><label for="company">Company</label><input id="company" name="company" type="text" autocomplete="organization"></div></div>
       <label class="consent"><input type="checkbox" id="consent" name="consent"><span>You may show this entry on the site with my name and company.</span></label>
       <button type="submit"><i></i>Send</button>
     </form>
-    <p class="sent">Your entry is in the logbook. We read every one before it goes on the page.</p>
-  </div></div>
-  <div class="wash"></div>
-  <div class="frame"><div class="words">
-    <div class="plate-text"></div><div class="plate-dark"></div>
-    <span class="label">The logbook</span>
-    <p class="logline">Every crew we fly with writes here, in their own name, once the work holds. We read each entry before it goes on the page. Yours is welcome.</p>
-    <div class="entries" id="entries" hidden></div>
-  </div></div>
+    <p class="sent">Your entry is in the logbook. We read every one before it goes on the page.</p></div>
+  </div>
+  <div class="entries wrap" id="entries" hidden></div>
 </section>
-</div>
 
-<div class="pin" id="door" data-ch="door" data-len="220" data-hd="assets/scene/1080/ch6-door.mp4" data-sd="assets/scene/web/ch6-door.mp4">
-<section class="stage">
-  <img class="still" src="assets/scene/posters/ch6-door.jpg" alt="">
-  <video class="scrub" muted playsinline preload="none"></video>
-  <div class="fade"></div>
-  <div class="fade-top"></div>
-  <div class="plates"><img class="plate a" src="assets/scene/plates/mist-a.png" alt="" style="opacity:.8"></div>
-  <div class="objects"><div class="door-form obj" data-at="0.3" id="doorForm">
-    <form id="askForm" novalidate>
+<section class="chap light" id="door" data-ch="door">
+  <div class="two wrap door-grid">
+    <div class="offer-col"><span class="eyebrow">The offer</span><div class="seats" aria-label="Five seats, the first taken"><i class="taken"></i><i></i><i></i><i></i><i></i></div>
+    <p class="offer">A seat is your company with us for as long as the work takes, whatever you bring into it, one deliverable or several, and there are five at a time so each has our full attention.</p>
+    <p class="offer">Five seats, and the first is already taken. The price is the one struck out; these five pay what stands beside it, and when they are gone it is never free again, and never this low again.</p>
+    <p class="price"><s>$35,916</s><b>Free</b></p><h2 class="talk">Talk to us.</h2><p><a href="mailto:contact@alpine-engineering.eu">contact@alpine-engineering.eu</a></p>
+    <p><a href="https://www.linkedin.com/company/alpine-engineering-bg">The company page on LinkedIn</a></p></div>
+    <div class="form-panel door-form" id="doorForm"><form id="askForm" novalidate>
       <div class="f"><label for="email">Your email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
       <div class="f"><label for="message">The work you have in mind</label><textarea id="message" name="message" rows="4"></textarea></div>
       <button type="submit"><i></i>Send it to us</button>
     </form>
-    <p class="sent">Your message is on its way. We write back from contact@alpine-engineering.eu.</p>
-  </div></div>
-  <div class="wash"></div>
-  <div class="frame"><div class="words">
-    <div class="plate-text"></div><div class="plate-dark"></div>
-        <span class="label">The offer</span>
-    <div class="seats" aria-label="Five seats, the first taken"><i class="taken"></i><i></i><i></i><i></i><i></i></div>
-    <p class="offer">A seat is your company with us for as long as the work takes, whatever you bring into it, one deliverable or several, and there are five at a time so each has our full attention.</p>
-    <p class="offer">Five seats, and the first is already taken. The price is the one struck out; these five pay what stands beside it, and when they are gone it is never free again, and never this low again.</p>
-    <p class="price"><s>$35,916</s><b>Free</b></p>
-    <h1>Talk to us.</h1>
-    <p><a href="mailto:contact@alpine-engineering.eu">contact@alpine-engineering.eu</a></p>
-    <p><a href="https://www.linkedin.com/company/alpine-engineering-bg">The company page on LinkedIn</a></p>
-  </div></div>
+    <p class="sent">Your message is on its way. We write back from contact@alpine-engineering.eu.</p></div>
+  </div>
 </section>
-</div>
+</main>
 
 <footer class="foot" id="foot">
   <div class="grid">
@@ -596,215 +592,98 @@
 <script>
 (() => {
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; window.scrollTo(0, 0); window.addEventListener('pageshow', () => window.scrollTo(0, 0));
-  const q = new URLSearchParams(location.search); if (q.get('layers')) document.body.dataset.layers = q.get('layers');
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduced) document.body.classList.add('reduced');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches; if (reduced) document.body.classList.add('reduced');
   const phone = window.innerWidth < 900; const hd = window.innerWidth >= 1600; if (phone) document.body.classList.add('flat');
-  // the scroll carries weight: an eased scroll on the wheel, inertia after a touch; the page still scrolls the window, so everything below reads scrollY as before
   let lenis = null;
-  if (window.Lenis && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    const touch = window.innerWidth < 900;
-    lenis = new Lenis(touch ? { syncTouch: true, touchMultiplier: 1.25, touchInertiaExponent: 1.6, lerp: 0.11, autoRaf: true } : { lerp: 0.085, wheelMultiplier: 1, smoothWheel: true, syncTouch: false, autoRaf: true });
-    window.lenis = lenis;
-  }
-  if (window.innerWidth < 900) { ['doorForm', 'logForm'].forEach(id => { const f = document.getElementById(id); const w = f && f.closest('.stage').querySelector('.words'); if (f && w) w.appendChild(f); }); const pl = document.querySelector('.placards'); if (pl) pl.closest('.stage').querySelector('.words').appendChild(pl); }
-  const pins = [...document.querySelectorAll('.pin')]; const last = pins.length - 1;
-  const lens = pins.map(p => Number(p.dataset.len || 100)); pins.forEach((p, k) => { p.style.height = (lens[k] + (k === last ? 100 : 0)) + 'svh'; });
-  const lenOf = k => pins[k].offsetHeight - (k === last ? window.innerHeight : 0);
-  const state = pins.map(pin => {
-    const idle = pin.querySelector('video.idle'), v = pin.querySelector('video.scrub') || idle;
-    const st = { pin, v, idle, stage: pin.querySelector('.stage'), wash: pin.querySelector('.wash'), words: pin.querySelector('.words'), still: pin.querySelector('img.still'), plates: [...pin.querySelectorAll('.plate')],
-      objs: [...pin.querySelectorAll('.obj')], stagger: (pin.querySelector('[data-stagger]')?.dataset.stagger || '').split(',').filter(Boolean).map(Number), track: pin.querySelector('.track'), walk: pin.querySelector('.walk'), ready: false, loaded: false };
-    if (st.walk) { st.walkRowsEl = st.walk.querySelector('.rows'); st.walkRows = [...st.walk.querySelectorAll('.row')]; }
-    if (v) v.addEventListener('loadedmetadata', () => { st.ready = true; if (!reduced && !idle) { v.currentTime = 0.7; } if (window.__update) window.__update(); });
-    if (v) v.addEventListener('seeked', () => { if (!reduced && !v.classList.contains('on')) { v.classList.add('on'); } }, { once: true });
-    if (idle) v.addEventListener('loadeddata', () => { if (!reduced) v.classList.add('on'); });
-    if (idle && !phone && !reduced) { idle.preload = 'auto'; setTimeout(() => fetchClip(hd ? pin.dataset.idleHd : pin.dataset.idleSd, idle, () => idle.play().catch(() => {})), 0); }
-    return st;
-  });
+  if (window.Lenis && !reduced) { lenis = new Lenis(phone ? { syncTouch: true, touchMultiplier: 1.25, touchInertiaExponent: 1.6, lerp: 0.11, autoRaf: true } : { lerp: 0.085, wheelMultiplier: 1, smoothWheel: true, syncTouch: false, autoRaf: true }); window.lenis = lenis; }
+  // the hero: the one film chapter, fixed while its spacer scrolls, then parked
+  const heroPin = document.getElementById('top'); heroPin.style.height = '150svh';
+  const hero = { pin: heroPin, stage: heroPin.querySelector('.stage'), idle: heroPin.querySelector('video.idle'), wash: heroPin.querySelector('.wash'), words: heroPin.querySelector('.words'), still: heroPin.querySelector('img.still') };
+  const heroLen = () => heroPin.offsetHeight - window.innerHeight;
   // every clip is fetched with byte progress so the loader can count for real; the bytes then feed the video as a blob
-  const clips = []; let bytesDone = 0, bytesTotal = 0; window.__clipProgress = () => bytesTotal ? bytesDone / bytesTotal : 0;
+  const clips = []; let bytesDone = 0, bytesTotal = 0; const clipProgress = () => bytesTotal ? bytesDone / bytesTotal : 0;
   const fetchClip = (url, v, then) => { const rec = { got: 0, total: 0 }; clips.push(rec);
     fetch(url).then(async res => { if (!res.ok || !res.body) throw new Error(res.status); rec.total = Number(res.headers.get('content-length')) || 0; bytesTotal = clips.reduce((a, c) => a + c.total, 0);
       const reader = res.body.getReader(); const parts = []; for (;;) { const { done, value } = await reader.read(); if (done) break; parts.push(value); rec.got += value.length; bytesDone = clips.reduce((a, c) => a + c.got, 0); if (window.__loaderTick) window.__loaderTick(); }
       v.src = URL.createObjectURL(new Blob(parts, { type: 'video/mp4' })); v.load(); if (then) then(); })
     .catch(() => { v.src = url; v.load(); if (then) then(); }); };
-  const load = st => { if (st.loaded || reduced || phone || st.idle || !st.v) return; st.loaded = true; st.v.preload = 'auto'; fetchClip(hd ? st.pin.dataset.hd : st.pin.dataset.sd, st.v); };
-  state.forEach(load);
+  const scrubs = [...document.querySelectorAll('video.scrub')];
+  const vids = []; // { v, ready }
+  if (!phone && !reduced) {
+    hero.idle.preload = 'auto'; hero.idle.addEventListener('loadeddata', () => hero.idle.classList.add('on')); fetchClip(hd ? heroPin.dataset.idleHd : heroPin.dataset.idleSd, hero.idle, () => hero.idle.play().catch(() => {}));
+    scrubs.forEach(v => { const rec = { v, ready: false }; vids.push(rec); v.addEventListener('loadedmetadata', () => { rec.ready = true; v.currentTime = 0.7; if (window.__update) window.__update(); }); v.addEventListener('seeked', () => v.classList.add('on'), { once: true }); v.preload = 'auto'; fetchClip(hd ? v.dataset.hd : v.dataset.sd, v); });
+  }
   let opened = false; const open = () => { if (opened) return; opened = true; document.body.classList.add('opened'); if (window.__update) window.__update(); };
-  // the loader waits for every clip, every still and the fonts (25 s cap), holds at least 1.8 s, then dissolves and the hero opens
   {
-    const loader = document.getElementById('loader'), lbar = document.getElementById('lbar'); const waits = [];
+    const loader = document.getElementById('loader'), lbar = document.getElementById('lbar'), lpct = document.getElementById('lpct'); const waits = [];
     const once = (el, evs, ready) => new Promise(res => { if (ready()) return res(); evs.forEach(ev => el.addEventListener(ev, () => res(), { once: true })); });
-    state.forEach(st => {
-      if (!phone && !reduced) [...new Set([st.v, st.idle].filter(Boolean))].forEach(v => waits.push(once(v, ['canplaythrough', 'error'], () => v.readyState >= 4)));
-      if (st.still) waits.push(once(st.still, ['load', 'error'], () => st.still.complete));
-    });
+    if (!phone && !reduced) [hero.idle, ...scrubs].forEach(v => waits.push(once(v, ['canplaythrough', 'error'], () => v.readyState >= 4)));
+    [...document.querySelectorAll('img.still')].forEach(im => waits.push(once(im, ['load', 'error'], () => im.complete)));
     if (document.fonts && document.fonts.ready) waits.push(document.fonts.ready);
-    let done = 0; const total = waits.length || 1; const lpct = document.getElementById('lpct');
-    const paint = () => { const clipPart = phone || reduced ? 1 : window.__clipProgress(); const p = Math.min(0.99, 0.15 * (done / total) + 0.85 * clipPart); lbar.style.transform = `scaleX(${p.toFixed(3)})`; lpct.textContent = String(Math.round(p * 100)); };
+    let done = 0; const total = waits.length || 1;
+    const paint = () => { const clipPart = phone || reduced ? 1 : clipProgress(); const p = Math.min(0.99, 0.15 * (done / total) + 0.85 * clipPart); lbar.style.transform = `scaleX(${p.toFixed(3)})`; lpct.textContent = String(Math.round(p * 100)); };
     window.__loaderTick = paint; waits.forEach(w => w.then(() => { done++; paint(); }));
     const t0 = performance.now();
-    Promise.race([Promise.all(waits), new Promise(r => setTimeout(r, 25000))]).then(() => {
-      const hold = Math.max(0, 1800 - (performance.now() - t0));
-      setTimeout(() => { lbar.style.transform = 'scaleX(1)'; lpct.textContent = '100'; loader.classList.add('away'); setTimeout(() => loader.remove(), 1100); open(); }, hold);
-    });
+    Promise.race([Promise.all(waits), new Promise(r => setTimeout(r, 25000))]).then(() => { const hold = Math.max(0, 1800 - (performance.now() - t0)); setTimeout(() => { lbar.style.transform = 'scaleX(1)'; lpct.textContent = '100'; loader.classList.add('away'); setTimeout(() => loader.remove(), 1100); open(); }, hold); });
   }
-
-  // the chapter list: one row per chapter after the hero; the bar fills with the chapter's progress
-  const chapters = document.getElementById('chapters');
-  const chRows = [...chapters.querySelectorAll('.ch')];
+  // the route: the hero and the seven sections
+  const sections = [...document.querySelectorAll('main.flow > section.chap')]; const anchors = [heroPin, ...sections];
+  const chapters = document.getElementById('chapters'); const chRows = [...chapters.querySelectorAll('.ch')];
   const rbase = document.getElementById('rbase'), rflown = document.getElementById('rflown'), rplane = document.getElementById('rplane'), rfixes = document.getElementById('rfixes');
   const rlen = rbase.getTotalLength(); rflown.style.strokeDasharray = rlen; rflown.style.strokeDashoffset = rlen;
   const fixFrac = [0.02, 0.16, 0.30, 0.44, 0.58, 0.72, 0.86, 0.98]; const fixEls = [];
-  const navBox = () => chapters.getBoundingClientRect();
-  const placeFixes = () => {
-    const box = navBox(); const sx = 120 / 120, sy = box.height / 720;
-    rfixes.innerHTML = '';
-    fixFrac.forEach((f, k) => {
-      const pt = rbase.getPointAtLength(f * rlen);
-      const g = document.createElementNS('http://www.w3.org/2000/svg', 'g'); g.setAttribute('class', 'fx'); g.setAttribute('transform', `translate(${pt.x} ${pt.y})`);
-      g.innerHTML = k === 0 ? `<circle class="dep" r="10"/><circle class="o" r="6"/><circle class="i" r="2.6"/>`
-        : k === 7 ? `<path class="star" d="M0 -11 L2.8 -2.8 L11 0 L2.8 2.8 L0 11 L-2.8 2.8 L-11 0 L-2.8 -2.8 Z"/>`
-        : `<circle class="o" r="6"/><circle class="i" r="1.8"/><path d="M0 -9v2.4M0 6.6v2.4M-9 0h2.4M6.6 0h2.4"/>`;
-      g.dataset.go = String(k); g.addEventListener('click', () => travelTo(k));
-      rfixes.appendChild(g); fixEls[k] = g;
-      chRows[k].style.left = (pt.x * sx + 18) + 'px'; chRows[k].style.top = (pt.y * sy) + 'px';
-    });
-  };
+  const placeFixes = () => { const box = chapters.getBoundingClientRect(); const sy = box.height / 720; rfixes.innerHTML = '';
+    fixFrac.forEach((f, k) => { const pt = rbase.getPointAtLength(f * rlen); const g = document.createElementNS('http://www.w3.org/2000/svg', 'g'); g.setAttribute('class', 'fx'); g.setAttribute('transform', `translate(${pt.x} ${pt.y})`);
+      g.innerHTML = k === 0 ? `<circle class="dep" r="10"/><circle class="o" r="6"/><circle class="i" r="2.6"/>` : k === 7 ? `<path class="star" d="M0 -11 L2.8 -2.8 L11 0 L2.8 2.8 L0 11 L-2.8 2.8 L-11 0 L-2.8 -2.8 Z"/>` : `<circle class="o" r="6"/><circle class="i" r="1.8"/><path d="M0 -9v2.4M0 6.6v2.4M-9 0h2.4M6.6 0h2.4"/>`;
+      g.dataset.go = String(k); g.addEventListener('click', () => travelTo(k)); rfixes.appendChild(g); fixEls[k] = g; chRows[k].style.left = (pt.x + 18) + 'px'; chRows[k].style.top = (pt.y * sy) + 'px'; }); };
   placeFixes(); window.addEventListener('resize', placeFixes);
-  let flownProgress = 0;
-  const cards = [...document.querySelectorAll('#track .card')]; const pager = [...document.querySelectorAll('#pager i')];
-
-  const cur = document.getElementById('cur');
-  let cx = innerWidth / 2, cy = innerHeight / 2, tx = cx, ty = cy;
-  document.addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; }, { passive: true });
-  // the ring follows the pointer on a damped spring: it carries weight, never snaps, settles without a wobble; the same at 60 or 120 Hz
-  let vx = 0, vy = 0, lastT = performance.now(), seen = false; cur.style.opacity = '0';
-  document.addEventListener('mousemove', () => { if (!seen) { seen = true; cx = tx; cy = ty; cur.style.transition += ',opacity .4s linear'; cur.style.opacity = '1'; } }, { passive: true, once: true });
-  (function follow(now) {
-    const dt = Math.min(2.5, (now - lastT) / 16.667) || 1; lastT = now;
-    const k = 0.05, damp = Math.pow(0.76, dt);
-    vx = (vx + (tx - cx) * k * dt) * damp; vy = (vy + (ty - cy) * k * dt) * damp; cx += vx; cy += vy;
-    cur.style.transform = `translate3d(${cx.toFixed(2)}px, ${cy.toFixed(2)}px, 0)`; requestAnimationFrame(follow);
-  })(performance.now());
-  document.addEventListener('mouseover', e => cur.classList.toggle('hot', !!e.target.closest('a, button, .strip, .card, .ch, .fx, .placard, input, textarea, label')));
-  let mx = 0, my = 0;
-  let mraf = 0; window.addEventListener('mousemove', e => { mx = (e.clientX / window.innerWidth - .5); my = (e.clientY / window.innerHeight - .5); if (!mraf) mraf = setTimeout(() => { mraf = 0; if (!raf) raf = requestAnimationFrame(update); }, 80); }, { passive: true });
-
-  let raf = 0;
+  // the pointer ring on a damped spring
+  const cur = document.getElementById('cur'); let cx = innerWidth / 2, cy = innerHeight / 2, tx = cx, ty = cy, vx = 0, vy = 0, lastT = performance.now(), seen = false; cur.style.opacity = '0';
+  document.addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; if (!seen) { seen = true; cx = tx; cy = ty; cur.style.transition += ',opacity .4s linear'; cur.style.opacity = '1'; } }, { passive: true });
+  (function follow(now) { const dt = Math.min(2.5, (now - lastT) / 16.667) || 1; lastT = now; const k = 0.05, damp = Math.pow(0.76, dt); vx = (vx + (tx - cx) * k * dt) * damp; vy = (vy + (ty - cy) * k * dt) * damp; cx += vx; cy += vy; cur.style.transform = `translate3d(${cx.toFixed(2)}px, ${cy.toFixed(2)}px, 0)`; requestAnimationFrame(follow); })(performance.now());
+  document.addEventListener('mouseover', e => cur.classList.toggle('hot', !!e.target.closest('a, button, .gcard, .ch, .fx, .chip, input, textarea, label')));
+  // the stories: the media pins, the clip scrubs with the section, the step at mid-frame is bright
+  const stories = [...document.querySelectorAll('[data-story]')].map(el => ({ el, v: el.querySelector('video.scrub'), steps: [...el.querySelectorAll('.step')] }));
+  const scrubTo = (v, f) => { const rec = vids.find(r => r.v === v); if (!rec || !rec.ready) return; const d = v.duration || 10; v.currentTime = Math.min(d - 0.05, 0.7 + f * (d - 0.75)); };
+  // reveal on scroll, one element at a time
+  const rv = [...document.querySelectorAll('.head, .panel, .viewer, .gallery, .form-panel')]; rv.forEach(e => e.classList.add('rv'));
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -12% 0px', threshold: 0.08 }); rv.forEach(e => io.observe(e));
+  let flownProgress = 0, raf = 0;
   const update = () => {
-    raf = 0;
-    const vh = window.innerHeight, doc = document.documentElement;
-    const total = window.scrollY / (doc.scrollHeight - vh);
-    chapters.classList.toggle('show', opened && window.scrollY < pins[last].offsetTop + lenOf(last) - vh * 0.1);
-    document.getElementById('cue').classList.toggle('gone', window.scrollY > 40);
+    raf = 0; const vh = window.innerHeight, y = window.scrollY;
+    document.getElementById('cue').classList.toggle('gone', y > 40);
+    // the hero film
+    const t = Math.min(1, Math.max(0, y / Math.max(1, heroLen())));
+    hero.stage.classList.toggle('parked', y >= heroLen()); hero.idle.style.transform = `scale(${(1 + t * 0.08).toFixed(3)})`; hero.wash.style.opacity = String(t < 0.5 ? 0 : (t - 0.5) / 0.5); hero.words.style.opacity = String(Math.max(0, 1 - Math.max(0, t - 0.15) / 0.3));
+    // the route
+    const absTop = el => el.getBoundingClientRect().top + y; let active = 0; anchors.forEach((a, i) => { if (y + vh * 0.4 >= absTop(a)) active = i; });
+    chapters.classList.toggle('show', opened && y < absTop(document.getElementById('foot')) - vh * 0.6);
+    anchors.forEach((a, i) => { const on = i === active; chRows[i].classList.toggle('on', on); chRows[i].classList.toggle('done', i < active); if (fixEls[i]) { fixEls[i].classList.toggle('on', on); fixEls[i].classList.toggle('done', i < active); } if (on) { const top = absTop(a), h = a.offsetHeight; const tt = Math.min(1, Math.max(0, (y + vh * 0.4 - top) / Math.max(1, h))); flownProgress = fixFrac[i] + (fixFrac[Math.min(7, i + 1)] - fixFrac[i]) * tt; } });
     { const pt = rbase.getPointAtLength(flownProgress * rlen); rflown.style.strokeDashoffset = String(rlen * (1 - flownProgress)); rplane.setAttribute('transform', `translate(${pt.x} ${pt.y})`); }
-    const y = window.scrollY; let active = 0; for (let i = 0; i < state.length; i++) { if (y >= pins[i].offsetTop) active = i; }
-    window.__active = active;
-    if (window.innerWidth < 900) { document.getElementById('cue').classList.toggle('gone', y > 40); return; }
-    for (let i = 0; i < state.length; i++) { try {
-      const st = state[i]; const top = pins[i].offsetTop, len = lenOf(i);
-      const t = Math.min(1, Math.max(0, (y - top) / len));
-      const visible = i === active;
-      const wasLive = st.stage.classList.contains('live'); st.stage.classList.toggle('live', visible);
-      if (visible && !wasLive && st.v && !reduced) { if (!st.v.src && !st.idle) { try { st.v.src = hd ? st.pin.dataset.hd : st.pin.dataset.sd; st.v.load(); } catch (e) {} } else if (st.v.readyState < 2 && st.v.src) { try { st.v.load(); } catch (e) {} } else if (st.v.readyState >= 2) { st.v.currentTime = st.v.currentTime + 0.001; } }
-      if (i === last) st.stage.classList.toggle('parked', y >= top + len);
-      { const row = chRows[i]; const on = visible; row.classList.toggle('on', on); fixEls[i] && fixEls[i].classList.toggle('on', on); if (on) { flownProgress = fixFrac[i] + (fixFrac[Math.min(7, i + 1)] - fixFrac[i]) * t; } fixEls[i] && fixEls[i].classList.toggle('done', i < active || t > 0.5); row.classList.toggle('done', i < active); }
-      if (!visible) continue;
-      // atmosphere: parallax by scroll and mouse
-      st.plates.forEach((pl, k) => { pl.style.translate = `${(mx * (18 + k * 10)).toFixed(0)}px ${((-t * 40) + my * 8).toFixed(0)}px`; });
-      if (st.idle) {
-        // one film: the loop holds, the scroll pushes in, the mist rises over it and the words go first
-        st.idle.style.transform = `scale(${(1 + t * 0.08).toFixed(3)})`;
-        st.wash.style.opacity = String(t < 0.5 ? 0 : (t - 0.5) / 0.5);
-        st.words.style.opacity = String(Math.max(0, 1 - Math.max(0, t - 0.15) / 0.3));
-        continue;
-      }
-      const J = 0.05, endT = i === last ? 1.01 : 1 - J;
-      if (!st.v && st.still) st.still.style.transform = `scale(${(1 + t * 0.06).toFixed(3)})`;
-      st.wash.style.opacity = t < J ? 1 - t / J : t > endT ? (t - endT) / J : 0;
-      if (st.v && st.ready && !reduced) { const d = st.v.duration || 10; const hold = 0.05; const ft = Math.min(1, Math.max(0, (t - hold) / (Math.min(1, endT) - hold))); st.v.currentTime = Math.min(d - 0.05, 0.7 + ft * (d - 0.75)); }
-      // on a phone the words speak first, then the objects take the stage; on a wide screen they share it
-      const phone = window.innerWidth < 900;
-      if (phone) {
-        // whatever is taller than the screen rides up with the scroll, so the end of it is reachable
-        const ride = (el, from, to) => { if (!el) return; const cur = Number(el.dataset.ry || 0); const top0 = el.getBoundingClientRect().top - cur - st.stage.getBoundingClientRect().top; const excess = top0 + el.offsetHeight - (vh - 24); const k = Math.min(1, Math.max(0, (t - from) / (to - from))); const y = excess > 0 ? -Math.round(excess * k) : 0; if (y !== cur) { el.dataset.ry = String(y); el.style.transform = y ? `translateY(${y}px)` : ''; } };
-        const ch = st.pin.dataset.ch; if (!st.objs.length || ['door', 'logbook', 'crew'].includes(ch)) ride(st.words, 0.12, 0.92);
-        else if (st.track) ride(st.track, 0.55, 0.95);
-      }
-      const inlineForm = phone && ['door', 'logbook', 'crew'].includes(st.pin.dataset.ch);
-      const outT = i === last ? endT + 0.01 : 0.9;
-      if (!phone && st.pin.dataset.roll) {
-        // the credits roll: the chapter's content enters below the frame at 0.18 and has left above it by 0.9, at a steady pace tied to the scroll; the film scrubs behind
-        const roll = Math.min(1, Math.max(0, (t - 0.18) / 0.72));
-        const place = (el, centred) => { if (!el) return; const cur = Number(el.dataset.roll || 0); const r = el.getBoundingClientRect(); const natTop = r.top - cur; const h = r.height; const want = vh + 24 - roll * (vh + h + 48); const dy = want - natTop; el.dataset.roll = String(dy); el.style.transform = centred ? `translate3d(0, calc(-50% + ${dy.toFixed(1)}px), 0)` : `translate3d(0, ${dy.toFixed(1)}px, 0)`; };
-        place(st.words, false); place(st.pin.querySelector('.placards'), true);
-      } else if (!phone && i !== 0 && i !== last) {
-        const dy = t < 0.3 ? (0.3 - t) / 0.1 * 36 : t > 0.74 ? -(t - 0.74) / 0.16 * 120 : 0; st.words.style.transform = dy ? `translateY(${dy.toFixed(1)}px)` : ''; const pl = st.pin.querySelector('.placards'); if (pl) pl.style.marginTop = dy ? `${(dy * 1.4).toFixed(1)}px` : '';
-      }
-      if (st.walk && !phone) {
-        // the walk: the rows pass through the focal point at mid-frame between t 0.15 and 0.85; the current row is bright, the others recede
-        const rows = st.walkRows; const n = rows.length; const p = Math.min(1, Math.max(0, (t - 0.15) / 0.7)); const pos = p * (n - 1);
-        const cs = rows.map(r => r.offsetTop + r.offsetHeight / 2); const k0 = Math.min(n - 1, Math.floor(pos)), k1 = Math.min(n - 1, k0 + 1); const c = cs[k0] + (cs[k1] - cs[k0]) * (pos - k0);
-        st.walkRowsEl.style.transform = `translate3d(0, ${(st.walk.clientHeight / 2 - c).toFixed(1)}px, 0)`;
-        rows.forEach((r, k) => { const dd = Math.min(1, Math.abs(pos - k)); const e = dd * dd * (3 - 2 * dd); r.style.opacity = (1 - 0.68 * e).toFixed(3); r.style.transform = `scale(${(1 - 0.03 * e).toFixed(4)})`; r.classList.toggle('focus', Math.round(pos) === k); });
-      }
-      if (st.track && !phone) {
-        // the slider: the page scroll walks the middle card from the first to the last and on out of the frame; the middle card changes only when the walk has clearly passed the midpoint
-        // the carousel crosses the frame: the first card starts beyond the right edge, the row travels left through the centre, the last card leaves on the left
-        const n = cards.length; const cw = cards[0].offsetWidth; const step = cw + 60; const off = (vw0 => (vw0 / 2 + cw / 2 + 40) / step)(window.innerWidth);
-        const p = Math.min(1, Math.max(0, (t - 0.2) / 0.7)); const pos = -off + p * (n - 1 + 2 * off);
-        st.track.style.transform = `translate3d(${(window.innerWidth / 2 - cw / 2 - pos * step).toFixed(1)}px, -50%, 0)`;
-        cards.forEach((c, k) => { const at = st.stagger[k] ?? Number(c.dataset.at || 0.25); if (!(t > at && t < outT)) { c.style.transform = ''; c.style.opacity = ''; return; } const dd = Math.min(1, Math.abs(pos - k)); const e = dd * dd * (3 - 2 * dd); c.style.transform = `scale(${(1 - 0.22 * e).toFixed(4)})`; c.style.opacity = (1 - 0.45 * e).toFixed(3); });
-        const mid = Math.min(n - 1, Math.max(0, Math.round(pos))); pager.forEach((d, k) => d.classList.toggle('on', k === mid));
-      }
-      st.words.classList.toggle('in', (st.pin.dataset.roll ? t > 0.1 : t > 0.2) && t < (phone && st.objs.length && !inlineForm ? 0.5 : outT));
-      st.objs.forEach((o, k) => { let at = st.stagger[k] ?? Number(o.dataset.at || 0.25); if (phone) at = 0.5 + k * 0.04; o.classList.toggle('in', (phone ? t > at : (st.pin.dataset.roll ? t > 0.1 : t > at)) && t < outT); });
-    } catch (e) { console.warn('chapter', i, e); } }
+    // the stories
+    stories.forEach(s => { const r = s.el.getBoundingClientRect(); const range = Math.max(1, r.height - vh * 0.8); const p = Math.min(1, Math.max(0, (vh * 0.12 - r.top) / range)); if (s.v && !phone && !reduced) scrubTo(s.v, p);
+      let best = 0, bd = 1e9; s.steps.forEach((st, k) => { const b = st.getBoundingClientRect(); const d = Math.abs((b.top + b.bottom) / 2 - vh * 0.5); if (d < bd) { bd = d; best = k; } }); s.steps.forEach((st, k) => st.classList.toggle('focus', k === best)); });
   };
-  // fast travel: one flight from here to there, the chapters between pass quickly
-  const travelTo = i => {
-    const target = i === 0 ? 0 : (window.innerWidth < 900 ? pins[i].offsetTop : pins[i].offsetTop + lenOf(i) * 0.42);
-    if (lenis) { const d = Math.abs(target - window.scrollY); lenis.scrollTo(target, { duration: Math.min(2.4, Math.max(1.1, d / 1300)), easing: x => 1 - Math.pow(1 - x, 3) }); return; }
-    const from = window.scrollY, dist = target - from, dur = Math.min(2200, Math.max(900, Math.abs(dist) / 4.5)); const t0 = performance.now();
-    const ease = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
-    const step = now => { const k = Math.min(1, (now - t0) / dur); window.scrollTo(0, from + dist * ease(k)); if (k < 1) requestAnimationFrame(step); };
-    requestAnimationFrame(step);
-  };
+  const travelTo = i => { const a = anchors[i]; const target = i === 0 ? 0 : a.getBoundingClientRect().top + window.scrollY - 12; if (lenis) { const d = Math.abs(target - window.scrollY); lenis.scrollTo(target, { duration: Math.min(2.4, Math.max(1.1, d / 1300)), easing: x => 1 - Math.pow(1 - x, 3) }); return; } window.scrollTo({ top: target, behavior: 'smooth' }); };
   document.querySelectorAll('[data-go]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); travelTo(Number(a.dataset.go)); }));
-  // the FAQ: one answer open at a time
-  const placards = [...document.querySelectorAll('.placard')];
-  const openPlacard = el => { const was = el.classList.contains('open'); placards.forEach(q => { q.classList.remove('open'); q.setAttribute('aria-expanded', 'false'); }); if (!was) { el.classList.add('open'); el.setAttribute('aria-expanded', 'true'); } };
-  placards.forEach(q => { q.addEventListener('click', () => openPlacard(q)); q.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openPlacard(q); } }); });
-  // the logbook: five fixes as the rating; the entry travels to the logbook form once it exists, the gift email to the list
+  // the viewer: one chip open at a time; the cockpit clip moves a beat per question
+  const chipEls = [...document.querySelectorAll('#chips .chip')]; const viewerV = document.querySelector('#crew video.scrub');
+  const tween = (v, to) => { if (!v || reduced || phone) return; const from = v.currentTime, t0 = performance.now(); const step = now => { const k = Math.min(1, (now - t0) / 700); const e = 1 - Math.pow(1 - k, 3); try { v.currentTime = from + (to - from) * e; } catch (err) {} if (k < 1) requestAnimationFrame(step); }; requestAnimationFrame(step); };
+  chipEls.forEach((c, k) => { const b = c.querySelector('button'); b.addEventListener('click', () => { const was = c.classList.contains('open'); chipEls.forEach(x => { x.classList.remove('open'); x.querySelector('button').setAttribute('aria-expanded', 'false'); }); if (!was) { c.classList.add('open'); b.setAttribute('aria-expanded', 'true'); const rec = vids.find(r => r.v === viewerV); if (rec && rec.ready) { const d = viewerV.duration || 10; tween(viewerV, Math.min(d - 0.05, 0.7 + (k / Math.max(1, chipEls.length - 1)) * (d - 0.75))); } } }); });
+  if (chipEls[0]) { chipEls[0].classList.add('open'); chipEls[0].querySelector('button').setAttribute('aria-expanded', 'true'); }
+  // the gallery dots follow the scroll of the row
+  const gc = document.getElementById('gcards'), dots = [...document.querySelectorAll('#dots button')], gcards = [...document.querySelectorAll('#gcards .gcard')];
+  if (gc) { const sync = () => { const x = gc.scrollLeft + gc.clientWidth * 0.3; let k = 0; gcards.forEach((c, i) => { if (c.offsetLeft <= x) k = i; }); dots.forEach((d, i) => d.classList.toggle('on', i === k)); }; gc.addEventListener('scroll', sync, { passive: true }); dots.forEach((d, i) => d.addEventListener('click', () => gc.scrollTo({ left: gcards[i].offsetLeft - 0, behavior: 'smooth' }))); }
+  // the forms
   const LOG_FORM = { url: 'https://docs.google.com/forms/d/e/1FAIpQLSffVJS2B9KC-hHVvZIU8epnlcSyiySWTzjlvhCYpr0FHtuWnw/formResponse', rating: 'entry.2137296667', entry: 'entry.107499663', who: 'entry.1799450915', company: 'entry.228900715', consent: 'entry.961804718' }; // the logbook Google Form (Alpine logbook, the owner's account, 11.09)
   const starBtns = [...document.querySelectorAll('#stars button')]; starBtns.forEach((b, k) => b.addEventListener('click', () => { document.getElementById('rating').value = String(k + 1); starBtns.forEach((x, j) => { x.classList.toggle('on', j <= k); x.setAttribute('aria-checked', j === k ? 'true' : 'false'); }); }));
   document.getElementById('logbookForm').addEventListener('submit', e => { e.preventDefault(); const r = document.getElementById('rating').value, w = document.getElementById('entry').value.trim(), who = document.getElementById('who').value.trim(), co = document.getElementById('company').value.trim(); if (!r) { starBtns[4].focus(); return; } if (!w) { document.getElementById('entry').focus(); return; } if (LOG_FORM) { const fd = new FormData(); fd.append(LOG_FORM.rating, r); fd.append(LOG_FORM.entry, w); fd.append(LOG_FORM.who, who); fd.append(LOG_FORM.company, co); fd.append(LOG_FORM.consent, document.getElementById('consent').checked ? 'yes' : 'no'); fetch(LOG_FORM.url, { method: 'POST', mode: 'no-cors', body: fd }).catch(() => {}); } document.getElementById('logForm').classList.add('done'); });
   document.getElementById('giftForm').addEventListener('submit', e => { e.preventDefault(); const em = document.getElementById('giftEmail').value.trim(); if (!em) { document.getElementById('giftEmail').focus(); return; } const fd = new FormData(); fd.append('entry.600134808', em); fetch('https://docs.google.com/forms/d/1q1LdzFb02sDaaurpRny9pVWQgsXsmOHnMv9qeP5MjcA/formResponse', { method: 'POST', mode: 'no-cors', body: fd }).catch(() => {}); document.querySelector('.foot .gift').classList.add('done'); });
   const ASK_ENTRY = 'entry.1539001210'; // the Google Form's long-answer question «The work you have in mind»
-  // the form: the Google Form the old site used, the message travels through the visitor's own mail client
   document.getElementById('askForm').addEventListener('submit', e => { e.preventDefault(); const em = document.getElementById('email').value.trim(); const w = document.getElementById('message').value.trim(); if (!em) { document.getElementById('email').focus(); return; } const fd = new FormData(); fd.append('entry.600134808', em); if (ASK_ENTRY) fd.append(ASK_ENTRY, w); fetch('https://docs.google.com/forms/d/1q1LdzFb02sDaaurpRny9pVWQgsXsmOHnMv9qeP5MjcA/formResponse', { method: 'POST', mode: 'no-cors', body: fd }).catch(() => {}); document.getElementById('doorForm').classList.add('done'); });
-  // the text reads the frame under it: a small canvas holds the visible crop of the live frame; each block's region is averaged; dark means mist text on a dark scrim
-  if (window.innerWidth >= 900 && !reduced) {
-    const cv = document.createElement('canvas'); cv.width = 96; cv.height = 54; const g = cv.getContext('2d', { willReadFrequently: true });
-    const judge = (el, L, floor = 0.18, span = 0.42, top = 0.8) => { if (!el) return; const a = Math.min(1, Math.max(floor, (top - L) / span)); el.style.setProperty('--plate', a.toFixed(2)); };
-    const region = (box, frame) => { const x0 = Math.max(0, Math.floor((box.left - frame.left) / frame.width * cv.width)), y0 = Math.max(0, Math.floor((box.top - frame.top) / frame.height * cv.height)); const x1 = Math.min(cv.width, Math.ceil((box.right - frame.left) / frame.width * cv.width)), y1 = Math.min(cv.height, Math.ceil((box.bottom - frame.top) / frame.height * cv.height)); if (x1 <= x0 || y1 <= y0) return null; const w = x1 - x0, h = y1 - y0; const d = g.getImageData(x0, y0, w, h).data; let sum = 0; for (let i = 0; i < d.length; i += 4) { const row = Math.floor(i / 4 / w) + y0; const fy = row / cv.height; const fog = fy < 0.7 ? 0 : Math.min(1, ((fy - 0.7) / 0.3) * 1.1); const L = (0.2126 * d[i] + 0.7152 * d[i + 1] + 0.0722 * d[i + 2]) / 255; sum += L * (1 - fog) + 0.97 * fog; } return sum / (d.length / 4); };
-    setInterval(() => {
-      const st = state[window.__active || 0]; if (!st) return;
-      const src = (st.idle && st.idle.readyState >= 2) ? st.idle : (st.v && st.v.readyState >= 2 ? st.v : st.still); if (!src) return;
-      const sw = src.videoWidth || src.naturalWidth, sh = src.videoHeight || src.naturalHeight; if (!sw || !sh) return;
-      const frame = st.stage.getBoundingClientRect(); const scale = Math.max(frame.width / sw, frame.height / sh); const vw = frame.width / scale, vh2 = frame.height / scale; const ox = (sw - vw) * 0.5, oy = (sh - vh2) * 0.45;
-      try { g.drawImage(src, ox, oy, vw, vh2, 0, 0, cv.width, cv.height); } catch (e) { return; }
-      const pad = 24; const grow = b => ({ left: b.left - pad, top: b.top - pad, right: b.right + pad, bottom: b.bottom + pad });
-      [st.words, st.pin.querySelector('.placards'), null].forEach(el => { if (!el) return; const L = region(grow(el.getBoundingClientRect()), frame); if (L !== null) judge(el, L); });
-      if (chapters.classList.contains('show')) { const L = region(grow(chapters.getBoundingClientRect()), frame); if (L !== null) judge(chapters, L, 0, 0.35, 0.62); }
-    }, 250);
-  }
   window.__update = update;
   window.addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(update); }, { passive: true });
-  window.addEventListener('resize', update);
-  update();
+  window.addEventListener('resize', update); update();
 })();
 </script>
 </body>
