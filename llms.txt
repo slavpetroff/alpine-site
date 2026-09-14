@@ -1,16 +1,17 @@
 # Alpine
 
-> Put afterburners on your team for the recurring work that drains their focus from the important things. The route is planned. Step by step, your people make the decisions and the adjustments, the heavy work is carried for them, and every step begins from what they corrected in the one before.
+> The company runs through you, every spreadsheet checked by hand and every list of names gone through one by one, and growing it, the job you actually own, waits for a week that never comes. Every department keeps moving without your hands in it and stops only where your judgment is needed, so the whole of you goes where the money is made: the next client and the bigger deal. We build for the business first, and then for everything the business is for.
 
-Alpine LTD, founded 2024, built in Bulgaria, clients worldwide, EU data residency on request. One page, seven chapters, English.
+Alpine LTD, founded 2024, built in Bulgaria, clients worldwide. One page, eight chapters, English. Everything Alpine builds is handed over whole and runs on the client's own machines; nothing is hosted or stored by Alpine.
 
 ## The page
 
-- [The work](https://alpine-engineering.eu/#work): the recurring work a team rebuilds by hand, and what changes when the route is planned.
-- [The crew](https://alpine-engineering.eu/#crew): we are with you at each step; the three questions (how quickly we deliver, what your team has to learn, how sure you can be) with their answers.
+- [The work](https://alpine-engineering.eu/#work): Sales first, because that is where the money comes from, and then every other department, one at a time, until the whole company moves and only the decisions reach you. The chapter shows examples of what a department's work looks like when it runs this way: finding the next client, marketing, delivery, money, people, management; the departments are the owner's to name.
+- [The crew](https://alpine-engineering.eu/#crew): we are with you at each step. Eight questions an owner asks before writing, with their answers: which parts of the company can run this way; do I stay in charge; what do my people and I have to learn; how fast is the first one running; what if I want it to work differently later; what if something is wrong and nobody notices; who is there after it is built; where does my data live.
 - [The roots](https://alpine-engineering.eu/#roots): money, risk, control, speed.
-- [The record](https://alpine-engineering.eu/#record): every correction your people make is kept, so nothing is corrected twice.
-- [The hangar](https://alpine-engineering.eu/#hangar): the same discipline that keeps the software people depend on running, brought to the repetitive work nobody on your team wants and everybody ends up doing.
+- [The record](https://alpine-engineering.eu/#record): a PR campaign, thirty days, up to a hundred creators, every story caught the day it appeared; every correction you make is kept, so nothing is corrected twice.
+- [The hangar](https://alpine-engineering.eu/#hangar): the same discipline that keeps the software people depend on running, brought to the work that waits until the day lets you.
+- [The logbook](https://alpine-engineering.eu/#logbook): what the crews we fly with write, in their own name, once the work holds.
 - [Talk to us](https://alpine-engineering.eu/#door): contact@alpine-engineering.eu
 
 ## Reach
