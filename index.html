@@ -360,7 +360,7 @@
 </style>
 <style>
   /* THE FLOW (14.09): after the hero the page is a normal flow on solid mist; the media pins inside its section, the words scroll past it; nothing is written over a picture */
-  :root{--night:#0B1120;--night-alt:#111A2E;--black:#05070C;--mist-t:#F7F8F5;--mist-2:rgba(247,248,245,.64);--mist-3:rgba(247,248,245,.42);--sky:#6B8CFF;--gut:clamp(24px,5vw,72px)}
+  :root{--night:#0B1120;--night-alt:#111A2E;--black:#05070C;--c1:#6B8CFF;--c2:#5CC8FF;--c3:#6BE0C8;--c4:#F2C36B;--c5:#FF8A7A;--c6:#B39CFF;--mist-t:#F7F8F5;--mist-2:rgba(247,248,245,.64);--mist-3:rgba(247,248,245,.42);--sky:#6B8CFF;--gut:clamp(24px,5vw,72px)}
   .flow{position:relative;z-index:2;background:var(--mist);padding:0 var(--gut)}
   @media (min-width:901px){ .flow{--left:260px;padding-left:var(--left);padding-right:var(--gut)} }
   .wrap{max-width:none;margin-inline:0}
@@ -370,7 +370,10 @@
   .chap.dark{--ground:var(--night);background:var(--ground);color:var(--mist-t)} .chap.dark.alt{--ground:var(--night-alt)} .chap.dark.black{--ground:var(--black)}
   @media (min-width:901px){ .chap.light,.chap.dark{margin-left:calc(-1 * var(--left));padding-left:var(--left)} }
   .chap.dark .eyebrow,.chap.dark .step b,.chap.dark .gcard b{color:var(--mist-3)} .chap.dark .head h2,.chap.dark .step span,.chap.dark .gcard span,.chap.dark .chip button,.chap.dark .chip .a > p{color:var(--mist-t)} .chap.dark .lede{color:var(--mist-2)}
-  .chap.dark .step.focus b{color:var(--sky)} .chap.dark .step{border-top-color:rgba(247,248,245,.12)}
+  .chap.dark .step.focus b{color:var(--sky)}
+  #work .step:nth-child(1).focus b{color:var(--c1)} #work .step:nth-child(2).focus b{color:var(--c2)} #work .step:nth-child(3).focus b{color:var(--c3)} #work .step:nth-child(4).focus b{color:var(--c4)} #work .step:nth-child(5).focus b{color:var(--c5)} #work .step:nth-child(6).focus b{color:var(--c6)}
+  .stats li:nth-child(1) b{color:var(--c2)} .stats li:nth-child(2) b{color:var(--c3)} .stats li:nth-child(3) b{color:var(--c4)}
+  .notch.side b{transition:color .35s linear} .notch.side[data-k="0"] b{color:var(--c2)} .notch.side[data-k="1"] b{color:var(--c3)} .notch.side[data-k="2"] b{color:var(--c4)} .notch.side[data-k="3"] b{color:var(--c1)} .chap.dark .step{border-top-color:rgba(247,248,245,.12)}
   .chap.dark .panel{box-shadow:0 40px 90px -30px rgba(0,0,0,.8)}
   .chap.dark .chip button{background:rgba(247,248,245,.08)} .chap.dark .chip button:hover{background:rgba(247,248,245,.13)} .chap.dark .chip .pm{border-color:rgba(247,248,245,.4)} .chap.dark .chip .pm::before,.chap.dark .chip .pm::after{background:var(--mist-t)}
   .chap.dark .chip.open button{background:rgba(107,140,255,.18);color:var(--sky)} .chap.dark .chip.open .a{background:rgba(107,140,255,.18)}
@@ -403,14 +406,14 @@
   .notch.top{left:0;top:0;padding:0 40px 26px 0;border-radius:0 0 28px 0;max-width:min(720px,58%)} .notch.top h2{font-size:clamp(24px,2.2vw,34px);line-height:1.12;font-weight:600;color:var(--mist-t);margin:0;max-width:26ch} .notch.top .eyebrow{margin-bottom:10px}
   .notch.top::before{left:100%;top:0;-webkit-mask:radial-gradient(circle at 100% 100%,transparent 27.5px,#000 28px);mask:radial-gradient(circle at 100% 100%,transparent 27.5px,#000 28px)}
   .notch.top::after{left:0;top:100%;-webkit-mask:radial-gradient(circle at 100% 100%,transparent 27.5px,#000 28px);mask:radial-gradient(circle at 100% 100%,transparent 27.5px,#000 28px)}
-  .notch.side{right:0;top:50%;transform:translateY(-50%);width:min(460px,36%);padding:30px 0 30px 34px;border-radius:28px 0 0 28px}
+  .notch.side{right:0;top:50%;transform:translateY(calc(-50% + var(--lift,0px)));transition:transform .7s var(--ease);width:min(460px,36%);padding:30px 0 30px 34px;border-radius:28px 0 0 28px}
   .notch.side::before{right:0;bottom:100%;-webkit-mask:radial-gradient(circle at 0 0,transparent 27.5px,#000 28px);mask:radial-gradient(circle at 0 0,transparent 27.5px,#000 28px)}
   .notch.side::after{right:0;top:100%;-webkit-mask:radial-gradient(circle at 0 100%,transparent 27.5px,#000 28px);mask:radial-gradient(circle at 0 100%,transparent 27.5px,#000 28px)}
   .notch.side b{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--sky);font-weight:600;margin-bottom:10px} .notch.side span{display:block;font-size:clamp(16px,1.25vw,19px);line-height:1.5;font-weight:500;color:var(--mist-t);max-width:none;opacity:1;transition:opacity .35s linear} .notch.side.swap span,.notch.side.swap b{opacity:0}
   .stats{list-style:none;margin:0 0 clamp(28px,4vh,44px);padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,48px);max-width:960px}
   .stats li{border-top:1px solid rgba(247,248,245,.22);padding-top:14px} .stats b{display:block;font-size:clamp(22px,2.2vw,32px);line-height:1.1;font-weight:600;letter-spacing:-.01em;color:var(--mist-t)} .stats span{display:block;margin-top:6px;font-size:14px;line-height:1.4;color:var(--mist-3)}
   .logbook-band{position:relative} .logbook-band .panel.wide{margin:0;aspect-ratio:2/1;min-height:560px}
-  .form-panel.float{position:absolute !important;right:clamp(24px,4vw,56px);top:50%;transform:translateY(-50%) !important;width:min(520px,42%) !important;max-height:calc(100% - 48px) !important;overflow:auto;box-shadow:0 40px 90px -30px rgba(0,0,0,.7)}
+  .form-panel.float{position:absolute !important;right:clamp(24px,4vw,56px);top:50%;transform:translateY(-50%) !important;width:min(680px,52%) !important;max-height:calc(100% - 48px) !important;overflow:auto;box-shadow:0 40px 90px -30px rgba(0,0,0,.7)}
   #top .frame{padding-bottom:clamp(20px,3vh,40px)}
   /* the viewer: one panel, the film on the right, the questions as chips on the left, one open at a time */
   .viewer{display:grid;grid-template-columns:minmax(0,38fr) minmax(0,62fr);gap:0;border-radius:28px;overflow:hidden;background:var(--paper);box-shadow:0 34px 80px -36px rgba(19,34,56,.42)}
@@ -709,7 +712,7 @@
     // the stories
     stories.forEach(s => { const r = s.el.getBoundingClientRect(); const band = s.el.hasAttribute('data-band'); const range = Math.max(1, r.height - vh * (band ? 1 : 0.8)); const p = Math.min(1, Math.max(0, ((band ? 0 : vh * 0.06) - r.top) / range)); if (s.v && !phone && !reduced) scrubTo(s.v, p);
       let best = 0; if (band) { best = Math.min(s.steps.length - 1, Math.floor(p * s.steps.length)); } else { let bd = 1e9; s.steps.forEach((st, k) => { const b = st.getBoundingClientRect(); const d = Math.abs((b.top + b.bottom) / 2 - vh * 0.5); if (d < bd) { bd = d; best = k; } }); } s.steps.forEach((st, k) => st.classList.toggle('focus', k === best));
-      if (s.side && s.shown !== best) { s.shown = best; const st = s.steps[best]; const b = st.querySelector('b'), sp = st.querySelector('span'); s.side.classList.add('swap'); clearTimeout(s.tm); s.tm = setTimeout(() => { s.side.querySelector('b').textContent = b ? b.textContent : ''; s.side.querySelector('span').innerHTML = sp ? sp.innerHTML : ''; s.side.classList.remove('swap'); }, 220); } });
+      if (s.side && s.shown !== best) { s.shown = best; s.side.dataset.k = String(best); const n = s.steps.length; s.side.style.setProperty('--lift', `${(((best - (n - 1) / 2) / Math.max(1, n - 1)) * 44).toFixed(1)}vh`); const st = s.steps[best]; const b = st.querySelector('b'), sp = st.querySelector('span'); s.side.classList.add('swap'); clearTimeout(s.tm); s.tm = setTimeout(() => { s.side.querySelector('b').textContent = b ? b.textContent : ''; s.side.querySelector('span').innerHTML = sp ? sp.innerHTML : ''; s.side.classList.remove('swap'); }, 220); } });
     { let mid = 0; anchors.forEach((a, i) => { if (y + vh * 0.5 >= absTop(a)) mid = i; }); document.body.classList.toggle('on-dark', mid > 0 && anchors[mid].classList.contains('dark')); }
   };
   const travelTo = i => { const a = anchors[i]; const target = i === 0 ? 0 : a.getBoundingClientRect().top + window.scrollY - 12; if (lenis) { const d = Math.abs(target - window.scrollY); lenis.scrollTo(target, { duration: Math.min(2.4, Math.max(1.1, d / 1300)), easing: x => 1 - Math.pow(1 - x, 3) }); return; } window.scrollTo({ top: target, behavior: 'smooth' }); };
