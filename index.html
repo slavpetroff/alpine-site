@@ -360,12 +360,23 @@
 </style>
 <style>
   /* THE FLOW (14.09): after the hero the page is a normal flow on solid mist; the media pins inside its section, the words scroll past it; nothing is written over a picture */
-  .flow{position:relative;z-index:2;background:var(--mist);padding:0 clamp(24px,5vw,72px) 0 clamp(24px,5vw,72px)}
-  @media (min-width:901px){ .flow{padding-left:max(280px,calc((100vw - 1180px) / 2));padding-right:clamp(24px,5vw,72px)} }
-  .wrap{max-width:1180px;margin-inline:auto}
+  :root{--night:#0B1120;--night-alt:#111A2E;--mist-t:#F7F8F5;--mist-2:rgba(247,248,245,.64);--mist-3:rgba(247,248,245,.42);--sky:#6B8CFF;--gut:clamp(24px,5vw,72px)}
+  .flow{position:relative;z-index:2;background:var(--mist);padding:0 var(--gut)}
+  @media (min-width:901px){ .flow{--left:max(250px,calc((100vw - 1320px) / 2));padding-left:var(--left);padding-right:var(--gut)} }
+  .wrap{max-width:1320px;margin-inline:auto}
   .chap{padding:clamp(72px,11vh,140px) 0 clamp(64px,9vh,120px)}
-  .chap.light{background:var(--paper);margin:0 calc(-1 * clamp(24px,5vw,72px));padding-left:clamp(24px,5vw,72px);padding-right:clamp(24px,5vw,72px)}
-  @media (min-width:901px){ .chap.light{margin-left:calc(-1 * max(280px,calc((100vw - 1180px) / 2)));padding-left:max(280px,calc((100vw - 1180px) / 2))} }
+  .chap.light,.chap.dark{margin:0 calc(-1 * var(--gut));padding-left:var(--gut);padding-right:var(--gut)}
+  .chap.light{background:var(--paper)}
+  .chap.dark{background:var(--night);color:var(--mist-t)} .chap.dark.alt{background:var(--night-alt)}
+  @media (min-width:901px){ .chap.light,.chap.dark{margin-left:calc(-1 * var(--left));padding-left:var(--left)} }
+  .chap.dark .eyebrow,.chap.dark .step b,.chap.dark .gcard b{color:var(--mist-3)} .chap.dark .head h2,.chap.dark .step span,.chap.dark .gcard span,.chap.dark .chip button,.chap.dark .chip .a > p{color:var(--mist-t)} .chap.dark .lede{color:var(--mist-2)}
+  .chap.dark .step.focus b{color:var(--sky)} .chap.dark .step{border-top-color:rgba(247,248,245,.12)}
+  .chap.dark .panel{box-shadow:0 40px 90px -30px rgba(0,0,0,.8)}
+  .chap.dark .chip button{background:rgba(247,248,245,.08)} .chap.dark .chip button:hover{background:rgba(247,248,245,.13)} .chap.dark .chip .pm{border-color:rgba(247,248,245,.4)} .chap.dark .chip .pm::before,.chap.dark .chip .pm::after{background:var(--mist-t)}
+  .chap.dark .chip.open button{background:rgba(107,140,255,.18);color:var(--sky)} .chap.dark .chip.open .a{background:rgba(107,140,255,.18)}
+  .chap.dark .viewer{background:#0E1628;box-shadow:0 40px 90px -30px rgba(0,0,0,.8)}
+  .chap.dark .gcard{background:#151F36;box-shadow:0 30px 60px -30px rgba(0,0,0,.7)} .chap.dark .dots button{background:rgba(247,248,245,.25)} .chap.dark .dots button.on{background:var(--sky)}
+  .chap.dark .door-link a.pill{border-color:rgba(247,248,245,.32);color:var(--mist-t)} .chap.dark .door-link a.pill:hover{border-color:var(--sky);color:var(--sky)}
   .head{margin-bottom:clamp(28px,4vh,44px)}
   .eyebrow{display:block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--slate);font-weight:600;margin-bottom:14px}
   .head h2{font-size:clamp(28px,2.8vw,42px);line-height:1.12;letter-spacing:-.012em;font-weight:600;color:var(--ink);max-width:30ch;margin:0 0 16px;clip-path:none;opacity:1;transform:none}
@@ -375,8 +386,8 @@
   .panel video{opacity:0;transition:opacity .6s linear} .panel video.on{opacity:1}
   .panel.tall{aspect-ratio:4/3}
   /* the pinned story: the media holds on the left while the steps pass on the right; the step at the middle of the frame is the bright one */
-  .story{display:grid;grid-template-columns:minmax(0,58fr) minmax(0,42fr);gap:clamp(24px,4vw,56px);align-items:start}
-  .pinned{position:sticky;top:12vh}
+  .story{display:grid;grid-template-columns:minmax(0,64fr) minmax(0,36fr);gap:clamp(24px,4vw,56px);align-items:start}
+  .pinned{position:sticky;top:6vh;height:94vh} .pinned .panel{height:100%;aspect-ratio:auto;border-radius:28px 28px 0 0} .pinned .panel img.still,.pinned .panel video{object-position:50% 50%}
   .steps{list-style:none;margin:0;padding:6vh 0 10vh}
   .step{min-height:46vh;display:flex;flex-direction:column;justify-content:center;opacity:.28;transition:opacity .4s linear;border-top:1px solid rgba(19,34,56,.1);padding:8px 0}
   .step:first-child{border-top:0} .step.focus{opacity:1}
@@ -396,13 +407,24 @@
   .chip .a > p{overflow:hidden;min-height:0;margin:0;font-size:clamp(14px,1.05vw,15.5px);line-height:1.55;color:var(--ink);font-weight:500;max-width:none;opacity:0;transition:opacity .4s linear .1s;padding:0 20px}
   .chip.open .a > p{opacity:1;padding:14px 20px 18px} .chip .a b{font-weight:700}
   .chip.open button{background:rgba(36,87,255,.08);color:var(--cobalt);border-radius:20px 20px 0 0} .chip.open .a{background:rgba(36,87,255,.08);border-radius:0 0 20px 20px}
+  .roots-grid{display:grid;grid-template-columns:minmax(0,34fr) minmax(0,66fr);gap:clamp(24px,4vw,56px);align-items:start} .roots-head{position:sticky;top:12vh} .roots-head .head{margin:0} .roots-head .door-link{margin-top:22px}
   /* the gallery: four cards on the content width, the next one peeking, dots under */
   .gcards{list-style:none;margin:0;padding:0 0 8px;display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch} .gcards::-webkit-scrollbar{display:none}
-  .gcard{flex:0 0 min(78%,720px);scroll-snap-align:start;background:var(--paper);border-radius:28px;padding:clamp(28px,3vw,44px);box-shadow:0 22px 44px -26px rgba(19,34,56,.22);min-height:280px;display:flex;flex-direction:column;justify-content:flex-end}
+  .gcard{flex:0 0 min(82%,640px);scroll-snap-align:start;background:var(--paper);border-radius:28px;padding:clamp(28px,3vw,44px);box-shadow:0 22px 44px -26px rgba(19,34,56,.22);min-height:280px;display:flex;flex-direction:column;justify-content:flex-end}
   .gcard b{display:block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--slate);font-weight:600;margin-bottom:auto;padding-bottom:20px}
   .gcard span{display:block;font-size:clamp(18px,1.55vw,24px);line-height:1.4;font-weight:600;color:var(--ink);max-width:30ch}
   .dots{display:flex;gap:8px;justify-content:center;margin:18px 0 22px} .dots button{width:8px;height:8px;border-radius:50%;border:0;padding:0;background:rgba(19,34,56,.22);cursor:pointer;transition:background .25s linear,transform .25s var(--ease)} .dots button.on{background:var(--cobalt);transform:scale(1.25)}
-  .gallery .door-link{text-align:center}
+  .chap.band{padding:0}
+  .band-story{position:relative;min-height:220vh}
+  .band-pin{position:sticky;top:0;height:100vh;overflow:hidden}
+  .band-pin .panel{position:absolute;inset:0;border-radius:0;box-shadow:none;aspect-ratio:auto;height:100%}
+  .band-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,17,32,0) 38%,rgba(11,17,32,.8) 100%),linear-gradient(90deg,rgba(11,17,32,.62) 0,rgba(11,17,32,0) 26%);pointer-events:none}
+  .band-words{position:absolute;left:var(--left,var(--gut));right:calc(var(--gut) + min(440px,34vw));bottom:clamp(40px,8vh,96px)} .band-words .eyebrow{color:var(--mist-3)} .band-words h2{font-size:clamp(26px,2.6vw,40px);line-height:1.12;font-weight:600;color:var(--mist-t);max-width:26ch;margin:0}
+  .band-steps{position:absolute;right:var(--gut);bottom:clamp(40px,8vh,96px);width:min(420px,32vw);padding:0;margin:0} .band-steps .step{min-height:0;position:absolute;right:0;bottom:0;width:100%;opacity:0;transition:opacity .5s linear;border:0;padding:0} .band-steps .step.focus{opacity:1}
+  .band-steps .step b{color:var(--mist-3)} .band-steps .step span{color:var(--mist-t);font-size:clamp(15px,1.15vw,17px)}
+  .band-story .steps-run{position:absolute;inset:0;pointer-events:none}
+  .panel.wide{aspect-ratio:21/9;margin-bottom:28px}
+  .form-panel.narrow{max-width:760px !important}
   /* the light sections: the logbook and the door */
   .two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:start}
   .form-panel{position:static !important;width:auto !important;max-width:none !important;max-height:none !important;transform:none !important;opacity:1 !important;filter:none !important;background:#fff;border:1px solid rgba(19,34,56,.08);border-radius:28px;padding:clamp(24px,3vw,40px);box-shadow:0 22px 44px -26px rgba(19,34,56,.18);overflow:visible}
@@ -417,14 +439,17 @@
   .reduced .rv{opacity:1;transform:none}
   /* the hero keeps its film; the route sits on the flow's ground */
   .chapters::before{display:none}
+  .on-dark .chapters .ch{color:var(--mist-3)} .on-dark .chapters .ch.on,.on-dark .chapters .ch.done{color:var(--mist-t)} .on-dark .chapters .base{stroke:rgba(247,248,245,.3)} .on-dark .chapters .fx circle.o,.on-dark .chapters .fx path,.on-dark .chapters .fx circle.dep{stroke:rgba(247,248,245,.45)} .on-dark .chapters .fx circle.i,.on-dark .chapters .fx path.star{fill:rgba(247,248,245,.45)} .on-dark .chapters .flown,.on-dark .chapters .fx.done circle.o,.on-dark .chapters .fx.done path{stroke:var(--sky)} .on-dark .chapters .fx.done circle.i,.on-dark .chapters .plane,.on-dark .chapters .fx.done path.star,.on-dark .chapters .fx.on path.star{fill:var(--sky)} .on-dark .chapters .plane circle.halo{stroke:var(--sky)}
   .hero-words .plate-text{inset:22% -300px -200px -280px;opacity:1 !important;background:radial-gradient(ellipse 50% 50% at 50% 52%, rgba(247,248,245,.98) 0%, rgba(247,248,245,.95) 44%, rgba(247,248,245,.72) 64%, rgba(247,248,245,.22) 84%, rgba(247,248,245,0) 100%)}
   .stage.parked{position:absolute;top:auto;bottom:0}
   @media (max-width:900px){
     .flow{padding:0 20px}
     .chap{padding:56px 0 48px}
     .chap.light{margin:0 -20px;padding-left:20px;padding-right:20px}
-    .story,.viewer,.two{grid-template-columns:1fr}
-    .pinned{position:relative;top:auto;margin-bottom:8px}
+    .story,.viewer,.two,.roots-grid{grid-template-columns:1fr}
+    .pinned{position:relative;top:auto;height:auto;margin-bottom:8px} .pinned .panel{height:auto;aspect-ratio:16/9;border-radius:18px} .roots-head{position:static}
+    .band-story{min-height:0} .band-pin{position:relative;height:auto;aspect-ratio:9/12;overflow:hidden;border-radius:0} .band-words{left:20px;right:20px;bottom:24px} .band-steps{position:static;width:auto;padding:22px 20px 0} .band-steps .step{position:static;opacity:1;padding:12px 0}
+    .chap.light,.chap.dark{margin:0 -20px;padding-left:20px;padding-right:20px}
     .step{min-height:0;opacity:1 !important;padding:18px 0}
     .viewer-media{order:1} .viewer-media .panel{min-height:0;aspect-ratio:16/9} .viewer-side{order:2;padding:18px}
     .panel{border-radius:18px} .viewer{border-radius:18px}
@@ -473,7 +498,7 @@
 
 
 <main class="flow" id="flow">
-<section class="chap" id="work" data-ch="work">
+<section class="chap dark" id="work" data-ch="work">
   <header class="head wrap"><span class="eyebrow">The work</span><h2>Sales first, because that is where the money comes from, and then every other department, one at a time, until the whole company moves and only the decisions reach you.</h2></header>
 
   <div class="story wrap" data-story>
@@ -489,7 +514,7 @@
   </div>
 </section>
 
-<section class="chap" id="crew" data-ch="crew">
+<section class="chap dark alt" id="crew" data-ch="crew">
   <header class="head wrap"><span class="eyebrow">The crew</span><h2>We are with you at each step, and whatever comes up is ours to carry with you, so it stays easy on your side.</h2><p class="lede">Before you ask</p></header>
 
   <div class="viewer wrap">
@@ -507,18 +532,19 @@
   </div>
 </section>
 
-<section class="chap" id="roots" data-ch="roots">
-  <header class="head wrap"><span class="eyebrow">The roots</span><h2>Every correction you make is kept, so nothing is corrected twice.</h2><p class="lede">Everything we build grows from these four roots, and each one is a promise you can hold us to on your own case.</p></header>
-
-  <div class="gallery wrap"><ul class="gcards" id="gcards">
+<section class="chap dark" id="roots" data-ch="roots">
+  <div class="roots-grid wrap">
+    <div class="roots-head"><header class="head"><span class="eyebrow">The roots</span><h2>Every correction you make is kept, so nothing is corrected twice.</h2><p class="lede">Everything we build grows from these four roots, and each one is a promise you can hold us to on your own case.</p><p class="door-link"><a class="pill" href="#door" data-go="7"><span>Talk to us.</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p></header></div>
+    <div class="gallery"><ul class="gcards" id="gcards">
       <li class="gcard"><b>Money</b><span>Stop spending your day on the questions and the interruptions that the recurring work throws at you, and put your focus where it belongs for an owner: on what brings money in and grows the business.</span></li>
       <li class="gcard"><b>Risk</b><span>You already know how it should be done. You were just buried. Now you are in every stage, looking and correcting, so the result is right by construction, and the only part left with you is the one where you have to decide.</span></li>
       <li class="gcard"><b>Control</b><span>You can change any step to fit how you work, without knowing anything about what is underneath. It is as easy as changing your mind, and the next run already does it.</span></li>
       <li class="gcard"><b>Speed</b><span>You describe the work, and within days it is running on your own case. From then on every correction takes effect the moment it is made, and nobody has to rebuild anything to get there.</span></li>
-  </ul><div class="dots" id="dots"><button type="button" aria-label="Root 1" class="on"></button><button type="button" aria-label="Root 2"></button><button type="button" aria-label="Root 3"></button><button type="button" aria-label="Root 4"></button></div><p class="door-link"><a class="pill" href="#door" data-go="7"><span>Talk to us.</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p></div>
+    </ul><div class="dots" id="dots"><button type="button" aria-label="Root 1" class="on"></button><button type="button" aria-label="Root 2"></button><button type="button" aria-label="Root 3"></button><button type="button" aria-label="Root 4"></button></div></div>
+  </div>
 </section>
 
-<section class="chap" id="record" data-ch="arrival">
+<section class="chap dark alt" id="record" data-ch="arrival">
   <header class="head wrap"><span class="eyebrow">The record</span><h2>A PR campaign, thirty days, up to a hundred creators, and every story caught the day it appeared.</h2><p class="lede">The record is where we show what we have done, as it happened, for a real client, with the part that went wrong kept in.</p></header>
 
   <div class="story wrap" data-story>
@@ -532,32 +558,29 @@
   </div>
 </section>
 
-<section class="chap" id="hangar" data-ch="hangar">
-  <header class="head wrap"><span class="eyebrow">The hangar</span><h2>The same discipline that keeps the software people depend on running, brought to the work that waits until the day lets you.</h2></header>
-
-  <div class="story wrap" data-story>
-    <div class="pinned"><div class="panel"><img class="still" src="assets/scene/posters/ch5-hangar.jpg" alt=""><video class="scrub" muted playsinline preload="none" data-hd="assets/scene/1080/ch5-hangar.mp4" data-sd="assets/scene/web/ch5-hangar.mp4"></video></div></div>
-    <ol class="steps">
-      <li class="step"><b>How it is built</b><span>This is built the way the systems a business runs on are built, and it shows in what reaches you: checked before it is yours, and on record after.</span></li>
-      <li class="step"><b>Who it is for</b><span>Made for owners who want the recurring work done properly, and want to stay in charge of it.</span></li>
-    </ol>
+<section class="chap dark band" id="hangar" data-ch="hangar">
+  <div class="band-story" data-story data-band>
+    <div class="band-pin"><div class="panel"><img class="still" src="assets/scene/posters/ch5-hangar.jpg" alt=""><video class="scrub" muted playsinline preload="none" data-hd="assets/scene/1080/ch5-hangar.mp4" data-sd="assets/scene/web/ch5-hangar.mp4"></video></div><div class="band-scrim"></div>
+      <div class="band-words"><span class="eyebrow">The hangar</span><h2>The same discipline that keeps the software people depend on running, brought to the work that waits until the day lets you.</h2></div>
+      <ol class="steps band-steps">
+        <li class="step"><b>How it is built</b><span>This is built the way the systems a business runs on are built, and it shows in what reaches you: checked before it is yours, and on record after.</span></li>
+        <li class="step"><b>Who it is for</b><span>Made for owners who want the recurring work done properly, and want to stay in charge of it.</span></li>
+      </ol></div>
   </div>
 </section>
 
 <section class="chap light" id="logbook" data-ch="logbook">
   <header class="head wrap"><span class="eyebrow">The logbook</span><h2>Every crew we fly with writes here, in their own name, once the work holds. We read each entry before it goes on the page. Yours is welcome.</h2></header>
 
-  <div class="two wrap">
-    <div class="panel tall"><img class="still" src="assets/scene/posters/logbook.jpg" alt=""></div>
-    <div class="form-panel log-form" id="logForm"><form id="logbookForm" novalidate>
+  <div class="panel wide wrap"><img class="still" src="assets/scene/posters/logbook.jpg" alt=""></div>
+  <div class="wrap"><div class="form-panel log-form narrow" id="logForm"><form id="logbookForm" novalidate>
       <div class="f"><span class="lab">Your rating</span><div class="stars" id="stars" role="radiogroup" aria-label="Your rating"><button type="button" role="radio" aria-checked="false" aria-label="1 of 5"></button><button type="button" role="radio" aria-checked="false" aria-label="2 of 5"></button><button type="button" role="radio" aria-checked="false" aria-label="3 of 5"></button><button type="button" role="radio" aria-checked="false" aria-label="4 of 5"></button><button type="button" role="radio" aria-checked="false" aria-label="5 of 5"></button></div><input type="hidden" id="rating" name="rating" value=""></div>
       <div class="f"><label for="entry">Your words</label><textarea id="entry" name="entry" rows="3"></textarea></div>
       <div class="f two"><div><label for="who">Your name</label><input id="who" name="who" type="text" autocomplete="name"></div><div><label for="company">Company</label><input id="company" name="company" type="text" autocomplete="organization"></div></div>
       <label class="consent"><input type="checkbox" id="consent" name="consent"><span>You may show this entry on the site with my name and company.</span></label>
       <button type="submit"><i></i>Send</button>
     </form>
-    <p class="sent">Your entry is in the logbook. We read every one before it goes on the page.</p></div>
-  </div>
+    <p class="sent">Your entry is in the logbook. We read every one before it goes on the page.</p></div></div>
   <div class="entries wrap" id="entries" hidden></div>
 </section>
 
@@ -661,8 +684,9 @@
     anchors.forEach((a, i) => { const on = i === active; chRows[i].classList.toggle('on', on); chRows[i].classList.toggle('done', i < active); if (fixEls[i]) { fixEls[i].classList.toggle('on', on); fixEls[i].classList.toggle('done', i < active); } if (on) { const top = absTop(a), h = a.offsetHeight; const tt = Math.min(1, Math.max(0, (y + vh * 0.4 - top) / Math.max(1, h))); flownProgress = fixFrac[i] + (fixFrac[Math.min(7, i + 1)] - fixFrac[i]) * tt; } });
     { const pt = rbase.getPointAtLength(flownProgress * rlen); rflown.style.strokeDashoffset = String(rlen * (1 - flownProgress)); rplane.setAttribute('transform', `translate(${pt.x} ${pt.y})`); }
     // the stories
-    stories.forEach(s => { const r = s.el.getBoundingClientRect(); const range = Math.max(1, r.height - vh * 0.8); const p = Math.min(1, Math.max(0, (vh * 0.12 - r.top) / range)); if (s.v && !phone && !reduced) scrubTo(s.v, p);
-      let best = 0, bd = 1e9; s.steps.forEach((st, k) => { const b = st.getBoundingClientRect(); const d = Math.abs((b.top + b.bottom) / 2 - vh * 0.5); if (d < bd) { bd = d; best = k; } }); s.steps.forEach((st, k) => st.classList.toggle('focus', k === best)); });
+    stories.forEach(s => { const r = s.el.getBoundingClientRect(); const band = s.el.hasAttribute('data-band'); const range = Math.max(1, r.height - vh * (band ? 1 : 0.8)); const p = Math.min(1, Math.max(0, ((band ? 0 : vh * 0.06) - r.top) / range)); if (s.v && !phone && !reduced) scrubTo(s.v, p);
+      let best = 0; if (band) { best = Math.min(s.steps.length - 1, Math.floor(p * s.steps.length)); } else { let bd = 1e9; s.steps.forEach((st, k) => { const b = st.getBoundingClientRect(); const d = Math.abs((b.top + b.bottom) / 2 - vh * 0.5); if (d < bd) { bd = d; best = k; } }); } s.steps.forEach((st, k) => st.classList.toggle('focus', k === best)); });
+    document.body.classList.toggle('on-dark', active > 0 && anchors[active].classList.contains('dark'));
   };
   const travelTo = i => { const a = anchors[i]; const target = i === 0 ? 0 : a.getBoundingClientRect().top + window.scrollY - 12; if (lenis) { const d = Math.abs(target - window.scrollY); lenis.scrollTo(target, { duration: Math.min(2.4, Math.max(1.1, d / 1300)), easing: x => 1 - Math.pow(1 - x, 3) }); return; } window.scrollTo({ top: target, behavior: 'smooth' }); };
   document.querySelectorAll('[data-go]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); travelTo(Number(a.dataset.go)); }));
