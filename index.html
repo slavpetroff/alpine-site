@@ -338,13 +338,18 @@
   .placard .ans > span{color:var(--ink)}
   .card{background:var(--glass);-webkit-backdrop-filter:blur(14px) saturate(1.1);backdrop-filter:blur(14px) saturate(1.1);border:1px solid var(--glass-line);box-shadow:inset 0 1px 0 var(--glass-edge),var(--glass-shadow);border-radius:10px}
   .door-form,.log-form{background:var(--glass);-webkit-backdrop-filter:blur(14px) saturate(1.1);backdrop-filter:blur(14px) saturate(1.1);border:1px solid var(--glass-line);box-shadow:inset 0 1px 0 var(--glass-edge),var(--glass-shadow);border-radius:14px}
-  /* the map of the work and the log cards: short cards on the right, the words on the left */
-  .map,.logcards{position:absolute;right:clamp(24px,5vw,72px);top:50%;transform:translateY(-50%);width:min(640px,44vw);display:grid;grid-template-columns:1fr 1fr;gap:12px;pointer-events:auto}
-  .logcards{grid-template-columns:1fr;width:min(520px,40vw)}
-  .mapcard{background:var(--glass);-webkit-backdrop-filter:blur(14px) saturate(1.1);backdrop-filter:blur(14px) saturate(1.1);border:1px solid var(--glass-line);box-shadow:inset 0 1px 0 var(--glass-edge),var(--glass-shadow);border-radius:10px;padding:18px 20px 16px}
-  .mapcard b{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--slate);font-weight:600;margin-bottom:8px}
-  .mapcard span{display:block;font-size:clamp(13px,.95vw,14.5px);line-height:1.5;font-weight:500;color:var(--ink)}
-  .logcards .mapcard span{font-size:clamp(14px,1.05vw,16px)}
+  /* the walk: the items pass one at a time through a focal point at mid-frame; the current one bright, the others receded; the heading stays pinned on the left */
+  .walk{position:absolute;right:clamp(24px,5vw,72px);top:50%;transform:translateY(-50%);width:min(560px,42vw);height:min(66vh,680px);overflow:hidden;pointer-events:auto;background:var(--glass);-webkit-backdrop-filter:blur(14px) saturate(1.1);backdrop-filter:blur(14px) saturate(1.1);border:1px solid var(--glass-line);box-shadow:inset 0 1px 0 var(--glass-edge),var(--glass-shadow);border-radius:14px}
+  .walk::before,.walk::after{content:"";position:absolute;left:0;right:0;height:22%;z-index:2;pointer-events:none}
+  .walk::before{top:0;background:linear-gradient(180deg,rgba(247,248,245,.92),rgba(247,248,245,0))} .walk::after{bottom:0;background:linear-gradient(0deg,rgba(247,248,245,.92),rgba(247,248,245,0))}
+  .walk.obj{transform:translate3d(0,calc(-50% + 18px),0)} .walk.obj.in{transform:translate3d(0,-50%,0)}
+  .walk .rows{position:absolute;left:0;right:0;top:0;padding:0 28px;will-change:transform}
+  .walk .row{padding:20px 0 22px;border-top:1px solid rgba(19,34,56,.1);opacity:.32;transform-origin:0 50%;transition:opacity .35s linear}
+  .walk .row:first-child{border-top:0}
+  .walk .row.focus{opacity:1}
+  .walk .row b{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--slate);font-weight:600;margin-bottom:8px}
+  .walk .row.focus b{color:var(--cobalt)}
+  .walk .row span{display:block;font-size:clamp(14px,1.05vw,16px);line-height:1.5;font-weight:500;color:var(--ink)}
   #roots .words h2{font-size:clamp(22px,2.2vw,32px);max-width:24ch} #roots .kicker{font-size:clamp(14px,1.05vw,15px)} #work .words h2{font-size:clamp(24px,2.3vw,34px)}
   /* the door link: a quiet control, never a bare link, never a pill */
   .door-link{margin:10px 0 0}
@@ -355,8 +360,8 @@
   @media (max-width:900px){
     .words:not(.hero-words){opacity:1 !important;background:none;-webkit-backdrop-filter:none;backdrop-filter:none;border:0;border-radius:0;padding:0;box-shadow:none}
     .placards{background:none;-webkit-backdrop-filter:none;backdrop-filter:none;border:0;padding:0;box-shadow:none}
-    .map,.logcards{position:static;transform:none;width:auto;grid-template-columns:1fr;gap:10px}
-    .mapcard,.card,.door-form,.log-form{background:rgba(247,248,245,.92);-webkit-backdrop-filter:none;backdrop-filter:none}
+    .walk{position:static;transform:none !important;width:auto;height:auto;overflow:visible;background:none;-webkit-backdrop-filter:none;backdrop-filter:none;border:0;box-shadow:none;border-radius:0;margin-top:8px} .walk::before,.walk::after{display:none} .walk .rows{position:static;padding:0;transform:none !important} .walk .row{opacity:1 !important;transform:none !important} .walk .row b{color:var(--cobalt)}
+    .card,.door-form,.log-form{background:rgba(247,248,245,.92);-webkit-backdrop-filter:none;backdrop-filter:none}
   }
 </style>
 </head>
@@ -399,21 +404,21 @@
 </div>
 
 <!-- 2 THE WORK: chart + flight strips -->
-<div class="pin" id="work" data-ch="work" data-roll="1" data-len="320" data-hd="assets/scene/1080/ch1-work.mp4" data-sd="assets/scene/web/ch1-work.mp4">
+<div class="pin" id="work" data-ch="work" data-len="320" data-hd="assets/scene/1080/ch1-work.mp4" data-sd="assets/scene/web/ch1-work.mp4">
 <section class="stage">
   <img class="still" src="assets/scene/posters/ch1-work.jpg" alt="">
   <video class="scrub" muted playsinline preload="none"></video>
   <div class="fade"></div>
   <div class="fade-top"></div>
   <div class="plates"><img class="plate c" src="assets/scene/plates/mist-c.png" alt=""></div>
-    <div class="objects"><div class="map" data-stagger="0.14,0.17,0.2,0.23,0.26,0.29">
-    <div class="mapcard obj"><b>Finding the next client</b><span>You say who the next client should be, and the work runs as a route of steps: the list comes to you, you strike the wrong names, the research takes your list, the first message comes drafted, and nothing is sent that you did not read and change first.</span></div>
-    <div class="mapcard obj"><b>The campaign and the report</b><span>Marketing is many routes, the posts, the campaign, the report, and each one runs step by step, with you or your person reading every step, correcting it, and the next step starting from what you corrected.</span></div>
-    <div class="mapcard obj"><b>The client work</b><span>Delivery is the work you get paid for, and it runs step by step, each step leaving a result your person checks and fixes before the next begins, with the status report and the handover coming out of the same record.</span></div>
-    <div class="mapcard obj"><b>Quotes, invoices, reminders</b><span>Money runs step by step, the quote drafted from the work, the invoice from the quote, the reminder from the unpaid one, and each step waits for your correction, so nothing leaves and nothing is paid without you.</span></div>
-    <div class="mapcard obj"><b>Hiring and the first weeks</b><span>Hiring starts with your rule for the role, where to search and who counts, and runs from there as a route: the search done to your rule, the shortlist yours to cut, the onboarding in your own way, nothing moving without your word.</span></div>
-    <div class="mapcard obj"><b>The weekly numbers</b><span>Management is the route that reads the others: the week's numbers pulled from every department, laid out the way you read them, the questions marked, and the decision yours, kept on record so the next week starts from it.</span></div>
-  </div></div>
+    <div class="objects"><div class="walk obj" data-at="0.12"><div class="rows">
+    <div class="row"><b>Finding the next client</b><span>You say who the next client should be, and the work runs as a route of steps: the list comes to you, you strike the wrong names, the research takes your list, the first message comes drafted, and nothing is sent that you did not read and change first.</span></div>
+    <div class="row"><b>The campaign and the report</b><span>Marketing is many routes, the posts, the campaign, the report, and each one runs step by step, with you or your person reading every step, correcting it, and the next step starting from what you corrected.</span></div>
+    <div class="row"><b>The client work</b><span>Delivery is the work you get paid for, and it runs step by step, each step leaving a result your person checks and fixes before the next begins, with the status report and the handover coming out of the same record.</span></div>
+    <div class="row"><b>Quotes, invoices, reminders</b><span>Money runs step by step, the quote drafted from the work, the invoice from the quote, the reminder from the unpaid one, and each step waits for your correction, so nothing leaves and nothing is paid without you.</span></div>
+    <div class="row"><b>Hiring and the first weeks</b><span>Hiring starts with your rule for the role, where to search and who counts, and runs from there as a route: the search done to your rule, the shortlist yours to cut, the onboarding in your own way, nothing moving without your word.</span></div>
+    <div class="row"><b>The weekly numbers</b><span>Management is the route that reads the others: the week's numbers pulled from every department, laid out the way you read them, the questions marked, and the decision yours, kept on record so the next week starts from it.</span></div>
+  </div></div></div>
   <div class="wash"></div>
   <div class="frame"><div class="words" style="grid-column:3 / span 4">
     <div class="plate-text"></div><div class="plate-dark"></div>
@@ -479,20 +484,20 @@
 </div>
 
 <!-- 5 THE RECORD: the arrival -->
-<div class="pin" id="record" data-ch="arrival" data-roll="1" data-len="260" data-hd="assets/scene/1080/ch4-arrival.mp4" data-sd="assets/scene/web/ch4-arrival.mp4">
+<div class="pin" id="record" data-ch="arrival" data-len="260" data-hd="assets/scene/1080/ch4-arrival.mp4" data-sd="assets/scene/web/ch4-arrival.mp4">
 <section class="stage">
   <img class="still" src="assets/scene/posters/ch4-arrival.jpg" alt="">
   <video class="scrub" muted playsinline preload="none"></video>
   <div class="fade"></div>
   <div class="fade-top"></div>
   <div class="plates"><img class="plate a" src="assets/scene/plates/mist-a.png" alt="" style="opacity:.7"></div>
-  <div class="objects"><div class="logcards" data-stagger="0.14,0.2,0.26">
-    <div class="mapcard obj"><b>By hand</b><span>Before, one person spent part of every day of the campaign walking two feeds for up to a hundred creators, copying what she found into Excel, keeping the formulas straight, and losing every story that expired before she got to it. Stories vanish after a day, so a day missed is gone for good.</span></div>
-    <div class="mapcard obj"><b>Now</b><span>Now she hands over three files, the brief, the list and the product sheet. From there the route runs: the missing platforms found, the followers counted at the start and the end, every story caught the day it appears, the uncertain ones set aside for her eye.</span></div>
-    <div class="mapcard obj"><b>The catch</b><span>The catch: a product in frame with no tag still counts, and no keyword can see it. So those cases are not guessed. They are set aside, and she looks at them herself, on purpose.</span></div>
-  </div></div>
+  <div class="objects"><div class="walk obj" data-at="0.12"><div class="rows">
+    <div class="row"><b>By hand</b><span>Before, one person spent part of every day of the campaign walking two feeds for up to a hundred creators, copying what she found into Excel, keeping the formulas straight, and losing every story that expired before she got to it. Stories vanish after a day, so a day missed is gone for good.</span></div>
+    <div class="row"><b>Now</b><span>Now she hands over three files, the brief, the list and the product sheet. From there the route runs: the missing platforms found, the followers counted at the start and the end, every story caught the day it appears, the uncertain ones set aside for her eye.</span></div>
+    <div class="row"><b>The catch</b><span>The catch: a product in frame with no tag still counts, and no keyword can see it. So those cases are not guessed. They are set aside, and she looks at them herself, on purpose.</span></div>
+  </div></div></div>
   <div class="wash"></div>
-  <div class="frame" style="align-content:start;padding-top:8vh"><div class="words case" style="grid-column:3 / span 5">
+  <div class="frame" style="align-content:start;padding-top:8vh"><div class="words case" style="grid-column:3 / span 4">
     <div class="plate-text"></div><div class="plate-dark"></div>
     <span class="label">The record</span>
     <p class="kicker">The record is where we show what we have done, as it happened, for a real client, with the part that went wrong kept in.</p>
@@ -615,7 +620,8 @@
   const state = pins.map(pin => {
     const idle = pin.querySelector('video.idle'), v = pin.querySelector('video.scrub') || idle;
     const st = { pin, v, idle, stage: pin.querySelector('.stage'), wash: pin.querySelector('.wash'), words: pin.querySelector('.words'), still: pin.querySelector('img.still'), plates: [...pin.querySelectorAll('.plate')],
-      objs: [...pin.querySelectorAll('.obj')], stagger: (pin.querySelector('[data-stagger]')?.dataset.stagger || '').split(',').filter(Boolean).map(Number), track: pin.querySelector('.track'), ready: false, loaded: false };
+      objs: [...pin.querySelectorAll('.obj')], stagger: (pin.querySelector('[data-stagger]')?.dataset.stagger || '').split(',').filter(Boolean).map(Number), track: pin.querySelector('.track'), walk: pin.querySelector('.walk'), ready: false, loaded: false };
+    if (st.walk) { st.walkRowsEl = st.walk.querySelector('.rows'); st.walkRows = [...st.walk.querySelectorAll('.row')]; }
     if (v) v.addEventListener('loadedmetadata', () => { st.ready = true; if (!reduced && !idle) { v.currentTime = 0.7; } if (window.__update) window.__update(); });
     if (v) v.addEventListener('seeked', () => { if (!reduced && !v.classList.contains('on')) { v.classList.add('on'); } }, { once: true });
     if (idle) v.addEventListener('loadeddata', () => { if (!reduced) v.classList.add('on'); });
@@ -742,6 +748,13 @@
         place(st.words, false); place(st.pin.querySelector('.placards'), true);
       } else if (!phone && i !== 0 && i !== last) {
         const dy = t < 0.3 ? (0.3 - t) / 0.1 * 36 : t > 0.74 ? -(t - 0.74) / 0.16 * 120 : 0; st.words.style.transform = dy ? `translateY(${dy.toFixed(1)}px)` : ''; const pl = st.pin.querySelector('.placards'); if (pl) pl.style.marginTop = dy ? `${(dy * 1.4).toFixed(1)}px` : '';
+      }
+      if (st.walk && !phone) {
+        // the walk: the rows pass through the focal point at mid-frame between t 0.15 and 0.85; the current row is bright, the others recede
+        const rows = st.walkRows; const n = rows.length; const p = Math.min(1, Math.max(0, (t - 0.15) / 0.7)); const pos = p * (n - 1);
+        const cs = rows.map(r => r.offsetTop + r.offsetHeight / 2); const k0 = Math.min(n - 1, Math.floor(pos)), k1 = Math.min(n - 1, k0 + 1); const c = cs[k0] + (cs[k1] - cs[k0]) * (pos - k0);
+        st.walkRowsEl.style.transform = `translate3d(0, ${(st.walk.clientHeight / 2 - c).toFixed(1)}px, 0)`;
+        rows.forEach((r, k) => { const dd = Math.min(1, Math.abs(pos - k)); const e = dd * dd * (3 - 2 * dd); r.style.opacity = (1 - 0.68 * e).toFixed(3); r.style.transform = `scale(${(1 - 0.03 * e).toFixed(4)})`; r.classList.toggle('focus', Math.round(pos) === k); });
       }
       if (st.track && !phone) {
         // the slider: the page scroll walks the middle card from the first to the last and on out of the frame; the middle card changes only when the walk has clearly passed the midpoint
