@@ -397,7 +397,7 @@
   .story.mirror{grid-template-columns:minmax(0,30fr) minmax(0,70fr)} .story.mirror .pinned{order:2} .story.mirror .steps{order:1}
   .stats{list-style:none;margin:0 0 clamp(28px,4vh,44px);padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,48px);max-width:960px}
   .stats li{border-top:1px solid rgba(247,248,245,.22);padding-top:14px} .stats b{display:block;font-size:clamp(22px,2.2vw,32px);line-height:1.1;font-weight:600;letter-spacing:-.01em;color:var(--mist-t)} .stats span{display:block;margin-top:6px;font-size:14px;line-height:1.4;color:var(--mist-3)}
-  .logbook-band{position:relative} .logbook-band .panel.wide{margin:0;aspect-ratio:21/9}
+  .logbook-band{position:relative} .logbook-band .panel.wide{margin:0;aspect-ratio:2/1;min-height:560px}
   .form-panel.float{position:absolute !important;right:clamp(24px,4vw,56px);top:50%;transform:translateY(-50%) !important;width:min(520px,42%) !important;max-height:calc(100% - 48px) !important;overflow:auto;box-shadow:0 40px 90px -30px rgba(0,0,0,.7)}
   #top .frame{padding-bottom:clamp(20px,3vh,40px)}
   /* the viewer: one panel, the film on the right, the questions as chips on the left, one open at a time */
@@ -697,7 +697,7 @@
     // the stories
     stories.forEach(s => { const r = s.el.getBoundingClientRect(); const band = s.el.hasAttribute('data-band'); const range = Math.max(1, r.height - vh * (band ? 1 : 0.8)); const p = Math.min(1, Math.max(0, ((band ? 0 : vh * 0.06) - r.top) / range)); if (s.v && !phone && !reduced) scrubTo(s.v, p);
       let best = 0; if (band) { best = Math.min(s.steps.length - 1, Math.floor(p * s.steps.length)); } else { let bd = 1e9; s.steps.forEach((st, k) => { const b = st.getBoundingClientRect(); const d = Math.abs((b.top + b.bottom) / 2 - vh * 0.5); if (d < bd) { bd = d; best = k; } }); } s.steps.forEach((st, k) => st.classList.toggle('focus', k === best)); });
-    document.body.classList.toggle('on-dark', active > 0 && anchors[active].classList.contains('dark'));
+    { let mid = 0; anchors.forEach((a, i) => { if (y + vh * 0.5 >= absTop(a)) mid = i; }); document.body.classList.toggle('on-dark', mid > 0 && anchors[mid].classList.contains('dark')); }
   };
   const travelTo = i => { const a = anchors[i]; const target = i === 0 ? 0 : a.getBoundingClientRect().top + window.scrollY - 12; if (lenis) { const d = Math.abs(target - window.scrollY); lenis.scrollTo(target, { duration: Math.min(2.4, Math.max(1.1, d / 1300)), easing: x => 1 - Math.pow(1 - x, 3) }); return; } window.scrollTo({ top: target, behavior: 'smooth' }); };
   document.querySelectorAll('[data-go]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); travelTo(Number(a.dataset.go)); }));
