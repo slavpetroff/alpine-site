@@ -473,7 +473,7 @@
     .flow{padding:0 20px}
     .chap{padding:56px 0 48px}
     .chap.light{margin:0 -20px;padding-left:20px;padding-right:20px}
-    .story,.viewer,.two,.roots-grid{grid-template-columns:1fr}
+    .story,.viewer,.two,.roots-grid{grid-template-columns:minmax(0,1fr)} .gallery,.roots-head,.gcards{min-width:0;max-width:100%}
     .pinned{position:relative;top:auto;height:auto;margin-bottom:8px} .pinned .panel{height:auto;aspect-ratio:16/9;border-radius:18px} .roots-head{position:static}
     .story.mirror .pinned{order:1} .story.mirror .steps{order:2} .stats{grid-template-columns:1fr;gap:14px}
     .story.notched .steps.driver{visibility:visible;pointer-events:auto} .notch.side{display:none} .notch.top.center{position:static;transform:none;max-width:none;padding:0 0 14px} .notch.top{position:static;transform:none;padding:0 0 14px;max-width:none;border-radius:0} .notch::before,.notch::after{display:none} .story.notched .pinned{height:auto}
