@@ -754,8 +754,10 @@
   const click = x => 1 + 1.9 * Math.pow(x - 1, 3) + 0.9 * Math.pow(x - 1, 2);
   let pulling = false, cool = 0;
   if (lenis && !phone && !reduced) {
-    lenis.on('scroll', () => { const now = performance.now(); if (pulling || now < cool) return; const v = Math.abs(lenis.velocity || 0); if (v > 16) return; const vh = window.innerHeight; const { best, bd } = nearest(lenis.scroll);
-      if (best === null || bd < 2 || bd > vh * 0.26) return; pulling = true; cool = now + 800;
+    let lastT = null;
+    lenis.on('scroll', () => { const now = performance.now(); if (pulling || now < cool) return; const vel = lenis.velocity || 0, v = Math.abs(vel); if (v > 16) return; const vh = window.innerHeight; const y = lenis.scroll; const { best, bd } = nearest(y);
+      if (best === null || bd > vh * 0.26) return; if (lastT !== null && Math.abs(y - lastT) < vh * 0.3 && best === lastT) return; if (bd < 3) { lastT = best; return; } if (v > 0.3 && (best - y) * vel < 0) return;
+      pulling = true; cool = now + 700; lastT = best;
       lenis.scrollTo(best, { duration: 0.5, easing: click, lock: true, onComplete: () => { pulling = false; } }); setTimeout(() => { pulling = false; }, 800); });
   } else if (!phone && !reduced) {
     let settleT = 0; window.addEventListener('scroll', () => { clearTimeout(settleT); settleT = setTimeout(() => { const vh = window.innerHeight; const { best, bd } = nearest(window.scrollY); if (best !== null && bd > 2 && bd < vh * 0.26) window.scrollTo({ top: best, behavior: 'smooth' }); }, 120); }, { passive: true });
