@@ -362,7 +362,7 @@
   /* THE FLOW (14.09): after the hero the page is a normal flow on solid mist; the media pins inside its section, the words scroll past it; nothing is written over a picture */
   :root{--night:#0B1120;--night-alt:#111A2E;--black:#05070C;--c1:#6B8CFF;--c2:#5CC8FF;--c3:#6BE0C8;--c4:#F2C36B;--c5:#FF8A7A;--c6:#B39CFF;--mist-t:#F7F8F5;--mist-2:rgba(247,248,245,.64);--mist-3:rgba(247,248,245,.42);--sky:#6B8CFF;--gut:clamp(24px,5vw,72px)}
   .flow{position:relative;z-index:2;background:var(--mist);padding:0 var(--gut)}
-  @media (min-width:901px){ .flow{--left:260px;padding-left:var(--left);padding-right:var(--gut)} }
+  @media (min-width:901px){ .flow{--left:228px;padding-left:var(--left);padding-right:var(--gut)} }
   .wrap{max-width:none;margin-inline:0}
   .chap{padding:clamp(72px,11vh,140px) 0 clamp(64px,9vh,120px)}
   .chap.light,.chap.dark{margin:0 calc(-1 * var(--gut));padding-left:var(--gut);padding-right:var(--gut)}
@@ -471,6 +471,8 @@
   .reduced .rv{opacity:1;transform:none}
   /* the hero keeps its film; the route sits on the flow's ground */
   .chapters::before{display:none}
+  .chapters{width:190px} .chapters .base{stroke-dasharray:1.6 7;stroke-linecap:round;stroke:rgba(19,34,56,.4);stroke-width:1.6} .chapters .flown{stroke-width:1.6} .on-dark .chapters .base{stroke:rgba(247,248,245,.42)}
+  .chapters .ch{font-size:10.5px;letter-spacing:.16em}
   .on-dark .chapters .ch{color:var(--mist-3)} .on-dark .chapters .ch.on,.on-dark .chapters .ch.done{color:var(--mist-t)} .on-dark .chapters .base{stroke:rgba(247,248,245,.3)} .on-dark .chapters .fx circle.o,.on-dark .chapters .fx path,.on-dark .chapters .fx circle.dep{stroke:rgba(247,248,245,.45)} .on-dark .chapters .fx circle.i,.on-dark .chapters .fx path.star{fill:rgba(247,248,245,.45)} .on-dark .chapters .flown,.on-dark .chapters .fx.done circle.o,.on-dark .chapters .fx.done path{stroke:var(--sky)} .on-dark .chapters .fx.done circle.i,.on-dark .chapters .plane,.on-dark .chapters .fx.done path.star,.on-dark .chapters .fx.on path.star{fill:var(--sky)} .on-dark .chapters .plane circle.halo{stroke:var(--sky)}
   .hero-words .plate-text{inset:22% -300px -200px -280px;opacity:1 !important;background:radial-gradient(ellipse 50% 50% at 50% 52%, rgba(247,248,245,.98) 0%, rgba(247,248,245,.95) 44%, rgba(247,248,245,.72) 64%, rgba(247,248,245,.22) 84%, rgba(247,248,245,0) 100%)}
   .stage.parked{position:absolute;top:auto;bottom:0}
@@ -501,8 +503,8 @@
 </defs></svg>
 <nav class="chapters" id="chapters" aria-label="The flight">
   <svg viewBox="0 0 120 720" preserveAspectRatio="none" id="rnav">
-    <path id="rbase" class="base" d="M 34 10 C 96 90, 4 190, 46 280 S 112 420, 40 500 S 6 640, 60 710"/>
-    <path id="rflown" class="flown" d="M 34 10 C 96 90, 4 190, 46 280 S 112 420, 40 500 S 6 640, 60 710"/>
+    <path id="rbase" class="base" d="M 24 12 L 24 708"/>
+    <path id="rflown" class="flown" d="M 24 12 L 24 708"/>
     <g id="rfixes"></g>
     <g class="plane" id="rplane"><circle class="halo" r="11"/><path d="M80 690C275 616 490 560 690 486C785 451 836 415 871 373C904 333 930 280 946 194C909 201 876 220 854 251C827 287 809 332 781 363C739 411 678 440 603 465C418 526 226 595 80 690Z" transform="translate(-14 -12) scale(0.027)"/></g>
   </svg>
