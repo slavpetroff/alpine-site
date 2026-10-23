@@ -1,19 +1,17 @@
 # Alpine
 
-> The company runs through you, every spreadsheet checked by hand and every list of names gone through one by one, and growing it, the job you actually own, waits for a week that never comes. Every department keeps moving without your hands in it and stops only where your judgment is needed, so the whole of you goes where the money is made: the next client and the bigger deal. We build for the business first, and then for everything the business is for.
+> Software companies that grew on referrals get the attention their good work deserves, from the buyers who don't know them yet.
 
-Alpine LTD, founded 2024, built in Bulgaria, clients worldwide. One page, eight chapters, English. Everything Alpine builds is handed over whole and runs on the client's own machines; nothing is hosted or stored by Alpine.
+Alpine LTD, founded 2024. One page, English.
 
 ## The page
 
-- [The plan](https://alpine-engineering.eu/#plan): what we build, in the owner's order. A company that grows on one pair of hands, the owner's. The other roads: another pair of hands, an agency, a tool, after hours. We take one department at a time, starting with the one that brings the money in, learn how the work gets done today in the owner's words, and the same work comes back done that way, each piece waiting for a yes. Every decision stays the owner's; it changes with them the same day; it runs their way wherever they run it and is theirs to keep; faster than by hand, measured on their own work; seen running on their own work before it is theirs.
-- [The work](https://alpine-engineering.eu/#work): Sales first, because that is where the money comes from, and then every other department, one at a time, until the whole company moves and only the decisions reach you. The chapter shows examples of what a department's work looks like when it runs this way: finding the next client, marketing, delivery, money, people, management; the departments are the owner's to name.
-- [The crew](https://alpine-engineering.eu/#crew): we are with you at each step. Eight questions an owner asks before writing, with their answers: which parts of the company can run this way; do I stay in charge; what happens to my data; what do my people and I have to learn; how fast is the first one running; what if I want it to work differently later; what if something is wrong and nobody notices; who is there after it is built.
-- [The roots](https://alpine-engineering.eu/#roots): money, risk, control, speed.
-- [The record](https://alpine-engineering.eu/#record): a PR campaign, thirty days, up to a hundred creators, every story caught the day it appeared; every correction you make is kept, so nothing is corrected twice.
-- [The hangar](https://alpine-engineering.eu/#hangar): the same discipline that keeps the software people depend on running, brought to the work that waits until the day lets you.
-- [The logbook](https://alpine-engineering.eu/#logbook): what the crews we fly with write, in their own name, once the work holds.
-- [Talk to us](https://alpine-engineering.eu/#door): contact@alpine-engineering.eu
+- What it is: What you already say about your work becomes your presence on every platform your buyers use, in your own words and under your own name.
+- How it works for the people who need you: You're already in front of the people who need you, in the posts they watch and the views you both hold, so there's nothing left for them to find.
+- The record: Because we come from the same world, the road you're on is one we travel too, and we learn from each other as we both move toward our goals.
+- Free help: We share what we learn about reaching buyers who don't know you yet, and all of it is free to use, whether we ever work together or not.
+- About: We built this company because sharing what you know is the one free way left to earn attention, and when you keep showing up, that presence grows until the right people already know and trust you.
+- [See if you're a fit](https://alpine-engineering.eu/#ask): Before anything starts, we have a short call to see if this fits you, because it only works when it feels like yours.
 
 ## Reach
 
