@@ -1,18 +1,24 @@
-# Alpine
+# Alpine Engineering
 
 > Software companies that grew on referrals get the attention their good work deserves, from the buyers who don't know them yet.
 
-Alpine LTD, founded 2024. One page, English.
+Alpine Engineering (Alpine LTD) was founded in 2024 by Stanislav Petrov, who has built software since 2015. What a software company's owner already says about their work becomes their presence on every platform their buyers use, in their own words and under their own name. The company keeps it to three owners at a time. The site is one page in English.
 
 ## The page
 
-- What it is: What you already say about your work becomes your presence on every platform your buyers use, in your own words and under your own name.
-- How it works for the people who need you: You're already in front of the people who need you, in the posts they watch and the views you both hold, so there's nothing left for them to find.
-- The record: Because we come from the same world, the road you're on is one we travel too, and we learn from each other as we both move toward our goals.
-- Free help: We share what we learn about reaching buyers who don't know you yet, and all of it is free to use, whether we ever work together or not.
-- About: We built this company because sharing what you know is the one free way left to earn attention, and when you keep showing up, that presence grows until the right people already know and trust you.
+- [What it is](https://alpine-engineering.eu/#what): What you already say about your work becomes your presence on every platform your buyers use, in your own words and under your own name.
+- [How it works](https://alpine-engineering.eu/#how): You're already in front of the people who need you, in the posts they watch and the views you both hold, so there's nothing left for them to find.
+- [Our record](https://alpine-engineering.eu/#record): AI assistants for a Big Four company (Google Vertex AI, Python); cloud infrastructure and platform for one of Europe's biggest retailers (FastAPI, Go, Kubernetes); a vibe-coded platform for teachers moved onto properly built software (Django, AWS).
+- [Free help](https://alpine-engineering.eu/#free): We share what we learn about reaching buyers who don't know you yet, and all of it is free to use, whether we ever work together or not.
+- [About us](https://alpine-engineering.eu/#about): We built this company because sharing what you know is the one free way left to earn attention, and when you keep showing up, that presence grows until the right people already know and trust you.
 - [See if you're a fit](https://alpine-engineering.eu/#ask): Before anything starts, we have a short call to see if this fits you, because it only works when it feels like yours.
 
-## Reach
+## Contact
 
 - Email: contact@alpine-engineering.eu
+- Founder: Stanislav Petrov, https://www.youtube.com/@slavpetroff, https://www.instagram.com/slavpetroff/
+
+## Optional
+
+- [Privacy](https://alpine-engineering.eu/privacy.html)
+- [Terms](https://alpine-engineering.eu/terms.html)

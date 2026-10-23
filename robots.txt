@@ -1,21 +1,36 @@
-# Search crawlers (Google Search, AI Overviews and AI Mode use Googlebot)
+# alpine-engineering.eu: every page is public and may be read, indexed and cited.
+# Search engines and their AI answers (Google AI Overviews and AI Mode use Googlebot)
 User-agent: Googlebot
-Allow: /
-
 User-agent: Bingbot
+User-agent: Applebot
+User-agent: DuckDuckBot
+User-agent: YandexBot
 Allow: /
 
-# AI search crawlers: these decide whether an answer can cite this site
+# AI search and answer engines: these decide whether an answer can cite this site
 User-agent: OAI-SearchBot
-Allow: /
-
+User-agent: ChatGPT-User
 User-agent: Claude-SearchBot
-Allow: /
-
+User-agent: Claude-User
 User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: DuckAssistBot
+User-agent: MistralAI-User
+User-agent: Amazonbot
+User-agent: meta-externalfetcher
 Allow: /
 
-# Everyone else, the training crawlers included
+# AI model training: allowed, so the models know who we are
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: meta-externalagent
+User-agent: CCBot
+User-agent: cohere-ai
+Allow: /
+
+# Everyone else
 User-agent: *
 Allow: /
 
