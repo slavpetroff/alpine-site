@@ -7,18 +7,18 @@
 <meta name="description" content="Software firms that grew on referrals get the attention their good work deserves, from the buyers who don't know them yet.">
 <link rel="icon" href="assets/scene/mark.svg" type="image/svg+xml">
 <style>
-:root{--cobalt:#2457FF;--cobalt-deep:#1B44CC;--mist:#F7F8F5;--mist-cool:#E8F0F4;--white:#FFFFFF;--ink:#132238;--ink-70:rgba(19,34,56,.72);--slate:#64748B;--hair:#E2E8F0;--gut:clamp(20px,5vw,80px);--ease:cubic-bezier(.32,.94,.6,1)}
+:root{--cobalt:#2457FF;--cobalt-deep:#1B44CC;--cobalt-light:#5B84FF;--mist:#F7F8F5;--mist-cool:#E8F0F4;--white:#FFFFFF;--ink:#132238;--ink-70:rgba(19,34,56,.72);--ink-45:rgba(19,34,56,.45);--slate-light:#94A3B8;--hair:#E2E8F0;--gut:clamp(20px,5vw,80px);--ease:cubic-bezier(.32,.94,.6,1)}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 body{margin:0;background:var(--mist);color:var(--ink);font-family:"Avenir Next","Helvetica Neue",Helvetica,sans-serif;font-weight:500;font-size:18px;line-height:1.56;-webkit-font-smoothing:antialiased}
 ::selection{background:var(--cobalt);color:var(--white)}
 a{color:inherit}
 img,svg{display:block}
+img{max-width:100%}
 .wrap{max-width:1240px;margin:0 auto;padding:0 var(--gut)}
 h1,h2,h3{font-weight:600;letter-spacing:-.02em;margin:0;text-wrap:balance}
 h1{font-size:clamp(30px,3.2vw,48px);line-height:1.14}
 h2{font-size:clamp(26px,2.6vw,40px);line-height:1.18}
-h3{font-size:clamp(19px,1.5vw,22px);line-height:1.3}
 p{margin:0}
 .lede{font-size:clamp(18px,1.35vw,21px);max-width:44ch}
 .gap{display:inline;background:repeating-linear-gradient(135deg,rgba(36,87,255,.06) 0 6px,transparent 6px 12px);outline:1px dashed rgba(36,87,255,.45);outline-offset:3px;color:var(--ink-70);font-style:italic}
@@ -36,124 +36,158 @@ p{margin:0}
 .top .ask{min-height:40px;font-size:15px;padding:0 18px}
 .link{text-decoration:none;font-weight:600;border-bottom:1px solid var(--hair);transition:border-color .2s}
 .link:hover{border-color:var(--cobalt)}
-.exit{margin-top:14px;font-size:15px;color:var(--ink-70)}
+.exit{margin-top:14px;font-size:15px;color:var(--ink-70);max-width:44ch}
 
-/* the fragments: platform-neutral interface pieces in the brand's tokens */
-.frag{background:var(--white);border:1px solid var(--hair);border-radius:16px;box-shadow:0 1px 2px rgba(19,34,56,.04)}
-.post{padding:20px 22px}
-.who{display:flex;align-items:center;gap:12px;margin-bottom:14px}
-.av{width:40px;height:40px;border-radius:50%;background:var(--mist-cool);display:grid;place-items:center;font-weight:700;font-size:14px;color:var(--ink)}
-.who b{display:block;font-size:15px;line-height:1.3} .who span{font-size:13px;color:var(--ink-70)}
-.post .t{font-size:16px;line-height:1.5}
-.post .t i{display:block;height:9px;border-radius:5px;background:var(--mist-cool);margin-top:10px}
-.post .acts{display:flex;gap:18px;margin-top:16px;padding-top:12px;border-top:1px solid var(--hair);font-size:13px;color:var(--ink-70)}
-.post .acts .on{color:var(--cobalt);font-weight:600}
-.follow{display:inline-block;margin-left:auto;font-size:13px;font-weight:600;color:var(--cobalt);border:1px solid var(--cobalt);border-radius:8px;padding:3px 12px}
-.slot{padding:20px 22px}
-.slot .day{font-size:13px;color:var(--ink-70)} .slot .when{font-size:20px;font-weight:600;margin:4px 0 14px}
-.slot .ok{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:600;color:var(--cobalt)}
-.slot .ok svg{width:18px;height:18px}
-
-
-/* more formats: short video, long video, comment */
-.vid{position:relative;border-radius:12px;overflow:hidden;background:linear-gradient(160deg,#1d3150,#132238 60%,#0e1a2c)}
-.vid .play{position:absolute;inset:0;display:grid;place-items:center}
-.vid .play span{width:48px;height:48px;border-radius:50%;background:rgba(247,248,245,.92);display:grid;place-items:center}
-.vid .play svg{width:16px;height:16px;margin-left:3px}
-.vid .cap{position:absolute;left:12px;right:12px;bottom:12px}
-.vid .cap i{display:block;height:7px;border-radius:4px;background:rgba(247,248,245,.75);margin-top:6px}
-.vid .dur{position:absolute;right:10px;top:10px;font-size:11px;font-weight:600;color:var(--mist);background:rgba(19,34,56,.7);padding:2px 6px;border-radius:5px}
-.short{padding:12px}.short .vid{aspect-ratio:9/16}
-.long{padding:12px}.long .vid{aspect-ratio:16/9}
-.long .meta{display:flex;gap:10px;align-items:center;padding:12px 4px 2px}.long .meta i{flex:1;display:block;height:9px;border-radius:5px;background:var(--mist-cool)}
-.comment{padding:18px 20px}
-.comment .q{font-size:14px;color:var(--ink-70);padding-bottom:12px;border-bottom:1px solid var(--hair)}
-.comment .q i,.comment .a i{display:block;height:8px;border-radius:4px;background:var(--mist-cool);margin-top:8px}
-.comment .a{display:flex;gap:10px;padding-top:12px}.comment .a .av{width:30px;height:30px;font-size:11px;flex:none}
-.comment .a div{flex:1}.comment .a b{font-size:13px}
-.stack .frag.short{width:min(190px,46%);top:0;left:8%} .beat .frag.short{width:58%}
-
-
-.cal{padding:18px 20px}
-.cal .mon{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:16px}
-.cal .mon span{font-size:11px;font-weight:600;color:var(--ink-70);text-align:center}
-.cal .mon i{display:block;aspect-ratio:1;border-radius:6px;background:var(--white);border:1px solid var(--hair)}
-.cal .mon i.on{background:var(--cobalt);border-color:var(--cobalt)}
-.cal .ok{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--cobalt)} .cal .ok svg{width:16px;height:16px;flex:none}
-.beats{grid-template-rows:auto auto auto} .beat{display:grid;grid-row:span 3;grid-template-rows:subgrid;row-gap:0} .beat p{min-height:0} .beat .frag{align-self:start}
+/* the fragments: platform-neutral pieces of the owner's own presence, in the brand's tokens */
+.frag{background:var(--white);border:1px solid var(--hair);border-radius:16px;box-shadow:0 1px 2px rgba(19,34,56,.04);overflow:hidden}
+.av{width:36px;height:36px;border-radius:50%;background:var(--mist-cool);display:grid;place-items:center;flex:none;box-shadow:0 0 0 2px var(--white),0 0 0 3px var(--hair)}
+.av svg{width:20px;height:20px}
+.who{display:flex;align-items:center;gap:10px}
+.who b{display:block;font-size:14px;line-height:1.25} .who small{display:block;font-size:12px;color:var(--ink-70);line-height:1.3}
+.follow{margin-left:auto;font-size:12px;font-weight:600;color:var(--cobalt);border:1px solid var(--cobalt);border-radius:8px;padding:3px 10px;white-space:nowrap}
+.follow.on{background:var(--cobalt);color:var(--white)}
+.bars i{display:block;height:8px;border-radius:4px;background:var(--mist-cool);margin-top:8px}
+.acts{display:flex;gap:16px;align-items:center;color:var(--ink-70)}
+.acts svg{width:18px;height:18px}
+.acts .on{color:var(--cobalt)}
+/* a post */
+.post{padding:16px}
+.post .bars{margin:12px 0 12px}
+.post .ph{border-radius:10px;overflow:hidden;aspect-ratio:16/10;background:var(--mist-cool)}
+.post .ph img{width:100%;height:100%;object-fit:cover}
+.post .acts{margin-top:12px;padding-top:10px;border-top:1px solid var(--hair)}
+/* a short vertical video */
+.short{position:relative;aspect-ratio:9/16;background:#0e1a2c;color:var(--white)}
+.short img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.92}
+.short::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,26,44,.35) 0%,rgba(14,26,44,0) 22%,rgba(14,26,44,0) 52%,rgba(14,26,44,.82) 100%)}
+.short .seg{position:absolute;left:10px;right:10px;top:10px;display:flex;gap:4px;z-index:1}
+.short .seg i{flex:1;height:3px;border-radius:2px;background:rgba(255,255,255,.4)} .short .seg i.on{background:var(--white)}
+.short .rail{position:absolute;right:10px;bottom:76px;display:grid;gap:14px;z-index:1}
+.short .rail svg{width:22px;height:22px}
+.short .foot{position:absolute;left:12px;right:46px;bottom:14px;z-index:1}
+.short .foot .who b{color:var(--white)} .short .foot .av{width:28px;height:28px;box-shadow:0 0 0 2px rgba(255,255,255,.8)}
+.short .foot .bars i{background:rgba(255,255,255,.75);height:6px;margin-top:6px}
+/* a long video */
+.long .shot{position:relative;aspect-ratio:16/9;background:#0e1a2c}
+.long .shot img{width:100%;height:100%;object-fit:cover}
+.long .play{position:absolute;inset:0;display:grid;place-items:center}
+.long .play span{width:46px;height:46px;border-radius:50%;background:rgba(247,248,245,.94);display:grid;place-items:center}
+.long .play svg{width:15px;height:15px;margin-left:3px}
+.long .dur{position:absolute;right:8px;bottom:12px;font-size:11px;font-weight:600;color:var(--white);background:rgba(14,26,44,.78);padding:2px 6px;border-radius:5px}
+.long .prog{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(255,255,255,.35)} .long .prog i{display:block;height:100%;width:62%;background:var(--cobalt)}
+.long .info{display:flex;gap:10px;padding:12px 14px 14px}
+.long .info .bars{flex:1} .long .info .bars i:first-child{margin-top:4px;height:9px;background:#dfe7ee}
+/* a booked week */
+.week-cal{padding:14px}
+.week-cal .hd{display:flex;align-items:center;justify-content:space-between;font-size:12px;font-weight:600;margin-bottom:10px}
+.week-cal .hd span{color:var(--ink-70);font-weight:500}
+.week-cal .grid{display:grid;grid-template-columns:repeat(5,1fr);gap:4px}
+.week-cal .grid b{font-size:11px;font-weight:600;color:var(--ink-70);text-align:center;padding-bottom:4px}
+.week-cal .col{display:grid;grid-template-rows:repeat(6,16px);gap:3px}
+.week-cal .col i{border-radius:4px;background:var(--mist)}
+.week-cal .col i.busy{background:var(--mist-cool)}
+.week-cal .col i.call{grid-row:span 2;background:var(--cobalt)}
+.week-cal .note{display:flex;gap:8px;align-items:center;margin-top:12px;padding:10px;border-radius:10px;background:rgba(36,87,255,.07);font-size:12px;line-height:1.35;color:var(--cobalt);font-weight:600}
+.week-cal .note svg{width:16px;height:16px;flex:none}
 
 /* 1 the opening */
 .open{min-height:calc(100dvh - 72px);display:grid;align-items:center}
-.open .wrap{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(40px,6vw,104px);align-items:center;padding-top:40px;padding-bottom:64px}
+.open .wrap{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:clamp(40px,5vw,96px);align-items:center;padding-top:32px;padding-bottom:64px}
 .open h1{margin-bottom:24px;max-width:24ch}
 .open .lede{margin-bottom:36px}
-.stack{position:relative;height:440px}
-.stack .frag{position:absolute;width:min(380px,100%);transition:transform .8s var(--ease),opacity .8s linear}
-.stack .f1{top:0;left:0;transform:rotate(-1.5deg)}
-.stack .f2{top:150px;right:0;transform:rotate(1deg)}
-.stack .f3{bottom:0;left:24px;width:min(300px,90%)}
+.scene{position:relative;height:560px;border-radius:28px;background:linear-gradient(160deg,var(--mist-cool) 0%,#eef3f6 55%,var(--mist) 100%);border:1px solid var(--hair)}
+.scene .route{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.scene .route path{fill:none;stroke:var(--cobalt);stroke-width:1.5;stroke-dasharray:2 7;stroke-linecap:round;opacity:.55}
+.scene .frag{position:absolute}
+.scene .s1{left:7%;top:7%;width:31%}
+.scene .s2{right:6%;top:6%;width:50%}
+.scene .s3{left:12%;bottom:5%;width:54%}
 
 /* 2 sound familiar */
 .familiar{padding:clamp(96px,16vh,176px) 0}
-.familiar .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,5vw,88px)}
-.quote{font-size:clamp(22px,2vw,30px);line-height:1.36;font-weight:600;letter-spacing:-.012em;max-width:28ch;padding-top:28px;border-top:1px solid var(--ink)}
+.familiar .row{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(32px,5vw,88px);align-items:center}
+.familiar .row + .row{margin-top:clamp(56px,9vh,112px)}
+.familiar .row.flip .pic{order:2}
+.familiar .pic{border-radius:20px;overflow:hidden;aspect-ratio:4/3;background:var(--mist-cool)}
+.familiar .pic img{width:100%;height:100%;object-fit:cover}
+.quote{font-size:clamp(22px,2vw,30px);line-height:1.36;font-weight:600;letter-spacing:-.012em;max-width:26ch}
 
 /* 3 the buyer's week */
 .week{background:var(--white);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);padding:clamp(96px,16vh,176px) 0}
 .week h2{max-width:34ch;margin-bottom:clamp(56px,9vh,96px)}
-.beats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(20px,2.4vw,36px);position:relative}
+.beats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:auto auto auto;gap:0 clamp(20px,2.4vw,36px);position:relative}
 .beats::before{content:"";position:absolute;left:0;right:0;top:15px;height:1px;background:var(--hair)}
+.beat{display:grid;grid-row:span 3;grid-template-rows:subgrid}
 .beat .n{position:relative;width:31px;height:31px;border-radius:50%;background:var(--white);border:1px solid var(--ink);display:grid;place-items:center;font-size:14px;font-weight:600;margin-bottom:28px}
 .beat:last-child .n{background:var(--cobalt);border-color:var(--cobalt);color:var(--white)}
-.beat p{font-size:17px;margin-bottom:22px;min-height:6.4em}
-.beat .frag{background:var(--mist)}
+.beat p{font-size:17px;margin-bottom:24px}
+.beat .frag{align-self:start}
+.beat .short{width:62%}
 
 /* 4 how we see it */
 .view{padding:clamp(96px,16vh,176px) 0}
 .view .wrap{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(32px,5vw,88px)}
-.view h2{position:sticky;top:120px;align-self:start}
+.view .side{position:sticky;top:120px;align-self:start}
+.view .side .pic{margin-top:32px;border-radius:18px;overflow:hidden;aspect-ratio:4/3}
+.view .side .pic img{width:100%;height:100%;object-fit:cover}
 details{border-top:1px solid var(--hair)} details:last-child{border-bottom:1px solid var(--hair)}
-summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:48px 1fr 24px;align-items:baseline;padding:28px 0;font-size:clamp(20px,1.7vw,26px);font-weight:600;letter-spacing:-.012em}
+summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:56px 1fr 24px;align-items:baseline;padding:30px 0;font-size:clamp(20px,1.7vw,26px);font-weight:600;letter-spacing:-.012em;transition:color .2s}
+summary:hover{color:var(--cobalt)}
 summary::-webkit-details-marker{display:none}
 summary .k{font-size:14px;color:var(--cobalt);font-weight:600}
 summary .pm{justify-self:end;transition:transform .3s var(--ease)} details[open] summary .pm{transform:rotate(45deg)}
-details .body{padding:0 0 32px 48px;max-width:60ch}
+details .body{padding:0 0 32px 56px;max-width:60ch}
 details .proof{margin-top:16px;font-size:15px}
 
 /* 5 the proof */
 .proofs{background:var(--ink);color:var(--mist);padding:clamp(96px,16vh,176px) 0}
 .proofs .wrap{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,5vw,88px);align-items:start}
-.proofs .link{color:var(--mist);border-color:rgba(247,248,245,.3)} .proofs .link:hover{border-color:#5B84FF}
+.proofs .link{color:var(--mist);border-color:rgba(247,248,245,.3)} .proofs .link:hover{border-color:var(--cobalt-light)}
 .proofs .lede{margin:24px 0 32px}
 .ledger{list-style:none;margin:0;padding:0;border-top:1px solid rgba(247,248,245,.16)}
-.ledger li{display:grid;grid-template-columns:120px 96px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid rgba(247,248,245,.16);font-size:16px}
-.ledger .pl{font-weight:600} .ledger .d{color:#94A3B8}
-.proofs .gap{color:var(--mist)} .proofs .gap::before{color:#5B84FF}
+.ledger li{display:grid;grid-template-columns:56px 112px 1fr;gap:18px;align-items:center;padding:16px 0;border-bottom:1px solid rgba(247,248,245,.16);font-size:16px}
+.ledger .th{width:56px;height:56px;border-radius:10px;overflow:hidden;background:#1d3150}
+.ledger .th img{width:100%;height:100%;object-fit:cover;opacity:.9}
+.ledger .pl b{display:block;font-weight:600} .ledger .pl small{display:block;color:var(--slate-light);font-size:13px}
+.proofs .gap{color:var(--mist)} .proofs .gap::before{color:var(--cobalt-light)}
 
 /* 6 it stays yours */
 .yours{padding:clamp(96px,16vh,176px) 0}
-.card{border:1px dashed rgba(19,34,56,.35);border-radius:18px;padding:clamp(28px,4vw,56px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,64px)}
+.card{border:1px dashed rgba(19,34,56,.35);border-radius:22px;padding:clamp(28px,4vw,56px);display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(24px,4vw,64px);align-items:start}
+.keeps{display:grid;gap:24px}
+.keep{display:grid;grid-template-columns:44px 1fr;gap:16px;align-items:start}
+.keep .ic{width:44px;height:44px;border-radius:12px;background:rgba(36,87,255,.08);display:grid;place-items:center}
+.keep .ic svg{width:22px;height:22px}
 
 /* 7 three places */
 .places{background:var(--white);border-top:1px solid var(--hair);padding:clamp(96px,16vh,176px) 0}
-.places .wrap{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:clamp(32px,5vw,88px);align-items:start}
-.sq{display:flex;gap:12px;margin:28px 0 20px}
-.sq span{width:22px;height:22px;border-radius:5px;border:1.5px solid var(--cobalt)}
-.sq span.taken{background:var(--ink);border-color:var(--ink)}
-.qs{list-style:none;counter-reset:q;margin:0 0 28px;padding:0}
-.qs li{counter-increment:q;display:grid;grid-template-columns:40px 1fr;padding:18px 0;border-top:1px solid var(--hair)}
-.qs li::before{content:counter(q);font-weight:600;color:var(--cobalt)}
+.places .wrap{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,5vw,88px);align-items:start}
+.seats{display:grid;grid-template-columns:repeat(3,72px);gap:12px;margin:32px 0 20px}
+.seat{height:72px;border-radius:14px;border:1.5px solid var(--cobalt);display:grid;place-items:center;background:rgba(36,87,255,.04)}
+.seat svg{width:22px;height:22px}
+.seat.taken{background:var(--ink);border-color:var(--ink)}
+.form{border:1px solid var(--hair);border-radius:20px;padding:clamp(22px,3vw,36px);background:var(--mist)}
+.form .q{display:grid;grid-template-columns:32px 1fr;gap:12px;padding:16px 0;border-bottom:1px solid var(--hair)}
+.form .q:first-child{padding-top:0}
+.form .q .k{width:28px;height:28px;border-radius:50%;background:var(--white);border:1px solid var(--hair);display:grid;place-items:center;font-size:13px;font-weight:600;color:var(--cobalt)}
+.form .q .field{margin-top:10px;height:42px;border-radius:10px;background:var(--white);border:1px solid var(--hair)}
+.form .go{display:flex;align-items:center;gap:16px;margin-top:24px;flex-wrap:wrap}
+.form .go small{font-size:14px;color:var(--ink-70)}
 
 /* 8 not ready yet */
 .ready{padding:clamp(96px,16vh,176px) 0}
 .ready h2{max-width:26ch}
-.teach{list-style:none;margin:28px 0 0;padding:0}
-.teach li{padding:18px 0;border-top:1px solid var(--hair)}
+.teach{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2vw,28px);margin-top:40px}
+.piece{text-decoration:none;display:block}
+.piece .pic{border-radius:16px;overflow:hidden;aspect-ratio:4/3;background:var(--mist-cool)}
+.piece .pic img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.piece:hover .pic img{transform:scale(1.03)}
+.piece p{margin-top:14px;font-size:17px;font-weight:600}
 
 /* footer */
-.foot{border-top:1px solid var(--hair);padding:48px 0 64px;font-size:15px}
-.foot .wrap{display:flex;flex-wrap:wrap;gap:16px 40px;align-items:center;justify-content:space-between}
-.foot nav{display:flex;gap:24px;flex-wrap:wrap}
+.foot-bar{border-top:1px solid var(--hair);padding:48px 0 64px;font-size:15px}
+.foot-bar .wrap{display:flex;flex-wrap:wrap;gap:16px 40px;align-items:center;justify-content:space-between}
+.foot-bar nav{display:flex;gap:24px;flex-wrap:wrap}
 
 /* reveal */
 .rv{opacity:0;transform:translate3d(0,16px,0);transition:opacity .7s linear,transform .6s var(--ease)}
@@ -161,13 +195,15 @@ details .proof{margin-top:16px;font-size:15px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}}
 
 @media (max-width:900px){
- .open .wrap,.familiar .wrap,.view .wrap,.proofs .wrap,.card,.places .wrap{grid-template-columns:1fr}
- .stack{height:400px}
- .beats{grid-template-columns:1fr 1fr;row-gap:48px} .beats::before{display:none}
- .view h2{position:static}
- .ledger li{grid-template-columns:1fr;gap:2px}
+ .open .wrap,.familiar .row,.view .wrap,.proofs .wrap,.card,.places .wrap{grid-template-columns:1fr}
+ .familiar .row.flip .pic{order:0}
+ .scene{height:520px}
+ .beats{grid-template-columns:1fr 1fr;grid-template-rows:none;row-gap:56px} .beats::before{display:none}
+ .beat{grid-row:auto;grid-template-rows:none}
+ .view .side{position:static}
+ .teach{grid-template-columns:1fr}
 }
-@media (max-width:520px){.beats{grid-template-columns:1fr}.beat p{min-height:0}.stack .frag{width:92%}}
+@media (max-width:520px){.beats{grid-template-columns:1fr}.scene{height:600px}.scene .s1{width:42%;left:5%;top:4%}.scene .s2{width:64%;right:4%;top:20%}.scene .s3{width:80%;left:6%;bottom:3%}.scene .s2 small{display:none}}
 </style>
 </head>
 <body>
@@ -179,6 +215,21 @@ details .proof{margin-top:16px;font-size:15px}
   </div>
 </header>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-person" viewBox="0 0 24 24"><circle cx="12" cy="9" r="4" fill="currentColor" opacity=".55"/><path d="M4 21c1.4-4 4.4-6 8-6s6.6 2 8 6" fill="currentColor" opacity=".55"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-heart-on" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z" fill="currentColor"/></symbol>
+  <symbol id="i-comment" viewBox="0 0 24 24"><path d="M5 5h14v10H10l-4 4v-4H5z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-share" viewBox="0 0 24 24"><path d="M5 12l14-7-5 15-2.5-6z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-save" viewBox="0 0 24 24"><path d="M7 4h10v16l-5-4-5 4z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-save-on" viewBox="0 0 24 24"><path d="M7 4h10v16l-5-4-5 4z" fill="currentColor"/></symbol>
+  <symbol id="i-play" viewBox="0 0 16 16"><path d="M3 1.5v13l11-6.5z" fill="#132238"/></symbol>
+  <symbol id="i-check" viewBox="0 0 18 18"><path d="M3 9.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="12" r="4" fill="none" stroke="#2457FF" stroke-width="1.7"/><path d="M12 12h9M18 12v3M21 12v2" fill="none" stroke="#2457FF" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-door" viewBox="0 0 24 24"><path d="M6 20V4h9v16M15 6l4 1.5V20H4" fill="none" stroke="#2457FF" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"/><circle cx="12.5" cy="12.5" r=".9" fill="#2457FF"/></symbol>
+  <symbol id="i-open" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="#2457FF" stroke-width="1.8" stroke-linecap="round"/></symbol>
+</svg>
+
 <main>
 <!-- 1 the opening -->
 <section class="open">
@@ -189,10 +240,32 @@ details .proof{margin-top:16px;font-size:15px}
       <a class="ask" href="#places">See if you're a fit</a>
       <p class="exit">If it doesn't work for you, you just call us or send a message, and you're out the next day.</p>
     </div>
-    <div class="stack" aria-hidden="true">
-      <div class="frag short f1"><div class="vid"><span class="dur">0:42</span><div class="play"><span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 1.5v13l11-6.5z" fill="#132238"/></svg></span></div><div class="cap"><i style="width:80%"></i><i style="width:56%"></i></div></div></div>
-      <div class="frag post f2"><div class="who"><span class="av" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20"><circle cx="12" cy="9" r="4" fill="#132238" opacity=".55"/><path d="M4 21c1.4-4 4.4-6 8-6s6.6 2 8 6" fill="#132238" opacity=".55"/></svg></span><div><b>You</b><span>Two days later</span></div><span class="follow">Follow</span></div><div class="t"><i style="width:90%"></i><i style="width:72%"></i></div><div class="acts"><span class="on">Saved</span><span>Comment</span></div></div>
-      <div class="frag slot f3"><div class="day">New call booked</div><div class="when">Intro call with you</div><div class="ok"><svg viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9.5l4 4 8-9" stroke="#2457FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Booked</div></div>
+    <div class="scene" aria-hidden="true">
+      <svg class="route" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M22 40 C 30 52, 40 46, 52 42 S 70 56, 66 74"/></svg>
+      <div class="frag short s1">
+        <img src="assets/site/desk-headset.jpg" alt="">
+        <div class="seg"><i class="on"></i><i class="on"></i><i></i></div>
+        <div class="rail acts"><span class="on"><svg style="color:#fff"><use href="#i-heart-on"/></svg></span><span><svg style="color:#fff"><use href="#i-comment"/></svg></span><span><svg style="color:#fff"><use href="#i-share"/></svg></span></div>
+        <div class="foot"><div class="who"><span class="av"><svg style="color:#132238"><use href="#i-person"/></svg></span><b>You</b></div><div class="bars"><i style="width:92%"></i><i style="width:64%"></i></div></div>
+      </div>
+      <div class="frag post s2">
+        <div class="who"><span class="av"><svg style="color:#132238"><use href="#i-person"/></svg></span><div><b>You</b><small>Two days later</small></div><span class="follow">Follow</span></div>
+        <div class="bars"><i style="width:94%"></i><i style="width:78%"></i></div>
+        <div class="ph"><img src="assets/site/map-pencil.jpg" alt=""></div>
+        <div class="acts"><svg><use href="#i-heart"/></svg><svg><use href="#i-comment"/></svg><svg><use href="#i-share"/></svg><svg style="margin-left:auto;color:#2457FF"><use href="#i-save-on"/></svg></div>
+      </div>
+      <div class="frag week-cal s3">
+        <div class="hd">Your calendar <span>This week</span></div>
+        <div class="grid">
+          <b>Mo</b><b>Tu</b><b>We</b><b>Th</b><b>Fr</b>
+          <div class="col"><i class="busy"></i><i></i><i></i><i class="busy"></i><i></i><i></i></div>
+          <div class="col"><i></i><i class="busy"></i><i></i><i></i><i></i><i class="busy"></i></div>
+          <div class="col"><i></i><i></i><i class="busy"></i><i></i><i></i><i></i></div>
+          <div class="col"><i></i><i class="call"></i><i></i><i class="busy"></i><i></i></div>
+          <div class="col"><i class="busy"></i><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+        <div class="note"><svg><use href="#i-check"/></svg>Intro call with you, initiated by him</div>
+      </div>
     </div>
   </div>
 </section>
@@ -200,8 +273,8 @@ details .proof{margin-top:16px;font-size:15px}
 <!-- 2 sound familiar -->
 <section class="familiar">
   <div class="wrap">
-    <p class="quote rv">Maybe you started posting, kept it up for a few weeks, and then a deadline took over.</p>
-    <p class="quote rv">Maybe a buyer you'd have been perfect for picked someone he'd seen online, and you only heard about it later.</p>
+    <div class="row rv"><div class="pic"><img src="assets/site/desk-laptop.jpg" alt="A laptop left open on an empty desk by the window" loading="lazy"></div><p class="quote">Maybe you started posting, kept it up for a few weeks, and then a deadline took over.</p></div>
+    <div class="row flip rv"><div class="pic"><img src="assets/site/desk-empty.jpg" alt="An empty desk, the work going on outside without you" loading="lazy"></div><p class="quote">Maybe a buyer you'd have been perfect for picked someone he'd seen online, and you only heard about it later.</p></div>
   </div>
 </section>
 
@@ -210,10 +283,38 @@ details .proof{margin-top:16px;font-size:15px}
   <div class="wrap">
     <h2 class="rv">Stop chasing the next client and spend that time on the work you're good at, while what you already know reaches the buyers who need it.</h2>
     <div class="beats">
-      <div class="beat rv"><span class="n">1</span><p>He isn't looking for something to buy or someone to hire, yet a presence that speaks to him and his problems makes him stop.</p><div class="frag short"><div class="vid"><span class="dur">0:42</span><div class="play"><span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 1.5v13l11-6.5z" fill="#132238"/></svg></span></div><div class="cap"><i style="width:80%"></i><i style="width:56%"></i></div></div></div></div>
-      <div class="beat rv"><span class="n">2</span><p>Then he keeps running into you, in a short video one day and a post the next, and that steady presence is what makes him follow.</p><div class="frag post"><div class="who"><span class="av" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20"><circle cx="12" cy="9" r="4" fill="#132238" opacity=".55"/><path d="M4 21c1.4-4 4.4-6 8-6s6.6 2 8 6" fill="#132238" opacity=".55"/></svg></span><div><b>You</b><span>Again</span></div><span class="follow">Following</span></div><div class="t"><i style="width:84%"></i></div></div></div>
-      <div class="beat rv"><span class="n">3</span><p>When the need shows up, he doesn't have to search, because he already knows whose work he trusts.</p><div class="frag long"><div class="vid"><span class="dur">14:08</span><div class="play"><span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 1.5v13l11-6.5z" fill="#132238"/></svg></span></div></div><div class="meta"><span class="av" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20"><circle cx="12" cy="9" r="4" fill="#132238" opacity=".55"/><path d="M4 21c1.4-4 4.4-6 8-6s6.6 2 8 6" fill="#132238" opacity=".55"/></svg></span><i></i></div></div></div>
-      <div class="beat rv"><span class="n">4</span><p>He books the call without anyone asking him to, and you start the conversation as someone he already knows and trusts.</p><div class="frag cal"><div class="mon"><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="ok"><svg viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9.5l4 4 8-9" stroke="#2457FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>A call with you, booked by him</div></div>
+      <div class="beat rv"><span class="n">1</span><p>He isn't looking for something to buy or someone to hire, yet a presence that speaks to him and his problems makes him stop.</p>
+        <div class="frag short" aria-hidden="true">
+          <img src="assets/site/desk-notebook.jpg" alt="">
+          <div class="seg"><i class="on"></i><i></i><i></i></div>
+          <div class="rail acts"><span><svg style="color:#fff"><use href="#i-heart"/></svg></span><span><svg style="color:#fff"><use href="#i-comment"/></svg></span><span><svg style="color:#fff"><use href="#i-share"/></svg></span></div>
+          <div class="foot"><div class="who"><span class="av"><svg style="color:#132238"><use href="#i-person"/></svg></span><b>You</b></div><div class="bars"><i style="width:88%"></i><i style="width:60%"></i></div></div>
+        </div></div>
+      <div class="beat rv"><span class="n">2</span><p>Then he keeps running into you, in a short video one day and a post the next, and that steady presence is what makes him follow.</p>
+        <div class="frag post" aria-hidden="true">
+          <div class="who"><span class="av"><svg style="color:#132238"><use href="#i-person"/></svg></span><div><b>You</b><small>Again</small></div><span class="follow on">Following</span></div>
+          <div class="bars"><i style="width:92%"></i><i style="width:70%"></i></div>
+          <div class="ph"><img src="assets/site/map-pencil.jpg" alt=""></div>
+          <div class="acts"><span class="on"><svg><use href="#i-heart-on"/></svg></span><svg><use href="#i-comment"/></svg><svg><use href="#i-share"/></svg></div>
+        </div></div>
+      <div class="beat rv"><span class="n">3</span><p>When the need shows up, he doesn't have to search, because he already knows whose work he trusts.</p>
+        <div class="frag long" aria-hidden="true">
+          <div class="shot"><img src="assets/site/desk-invoice.jpg" alt=""><div class="play"><span><svg><use href="#i-play"/></svg></span></div><span class="dur">14:08</span><div class="prog"><i></i></div></div>
+          <div class="info"><span class="av"><svg style="color:#132238"><use href="#i-person"/></svg></span><div class="bars"><i style="width:96%"></i><i style="width:58%"></i></div></div>
+        </div></div>
+      <div class="beat rv"><span class="n">4</span><p>He books the call without anyone asking him to, and you start the conversation as someone he already knows and trusts.</p>
+        <div class="frag week-cal" aria-hidden="true">
+          <div class="hd">Your calendar <span>This week</span></div>
+          <div class="grid">
+            <b>Mo</b><b>Tu</b><b>We</b><b>Th</b><b>Fr</b>
+            <div class="col"><i class="busy"></i><i></i><i></i><i class="busy"></i><i></i><i></i></div>
+            <div class="col"><i></i><i class="busy"></i><i></i><i></i><i></i><i class="busy"></i></div>
+            <div class="col"><i></i><i></i><i class="busy"></i><i></i><i></i><i></i></div>
+            <div class="col"><i></i><i class="call"></i><i></i><i class="busy"></i><i></i></div>
+            <div class="col"><i class="busy"></i><i></i><i></i><i></i><i></i><i></i></div>
+          </div>
+          <div class="note"><svg><use href="#i-check"/></svg>Intro call with you, initiated by him</div>
+        </div></div>
     </div>
   </div>
 </section>
@@ -221,7 +322,10 @@ details .proof{margin-top:16px;font-size:15px}
 <!-- 4 how we see it -->
 <section class="view">
   <div class="wrap">
-    <h2 class="rv"><span class="gap">the section's line: how we see business, in «we»</span></h2>
+    <div class="side rv">
+      <h2><span class="gap">the section's line: how we see business, in «we»</span></h2>
+      <div class="pic"><img src="assets/site/logbook.jpg" alt="An open logbook and a pen on a desk by the window" loading="lazy"></div>
+    </div>
     <div>
       <details class="rv"><summary><span class="k">01</span><span><span class="gap">attention is how business is found now</span></span><span class="pm" aria-hidden="true">+</span></summary><div class="body"><p><span class="gap">one paragraph in «we»</span></p><p class="proof"><span class="gap">the proof right under it</span></p></div></details>
       <details class="rv"><summary><span class="k">02</span><span><span class="gap">attention is earned by helping</span></span><span class="pm" aria-hidden="true">+</span></summary><div class="body"><p><span class="gap">one paragraph: sharing what worked and what didn't</span></p></div></details>
@@ -240,12 +344,12 @@ details .proof{margin-top:16px;font-size:15px}
       <a class="link" href="#"><span class="gap">the channel link</span></a>
     </div>
     <ol class="ledger rv" aria-label="This week on our channel">
-      <li><span class="pl">LinkedIn</span><span class="d">GAP date</span><span><span class="gap">the post's first line, pulled from the channel</span></span></li>
-      <li><span class="pl">X</span><span class="d">GAP date</span><span><span class="gap">the post's first line</span></span></li>
-      <li><span class="pl">TikTok</span><span class="d">GAP date</span><span><span class="gap">the post's first line</span></span></li>
-      <li><span class="pl">Instagram</span><span class="d">GAP date</span><span><span class="gap">the post's first line</span></span></li>
-      <li><span class="pl">YouTube</span><span class="d">GAP date</span><span><span class="gap">the post's first line</span></span></li>
-      <li><span class="pl">Facebook</span><span class="d">GAP date</span><span><span class="gap">the post's first line</span></span></li>
+      <li><span class="th"><img src="assets/site/desk-notebook.jpg" alt="" loading="lazy"></span><span class="pl"><b>LinkedIn</b><small>GAP date</small></span><span><span class="gap">the post's first line, pulled from the channel</span></span></li>
+      <li><span class="th"><img src="assets/site/map-pencil.jpg" alt="" loading="lazy"></span><span class="pl"><b>X</b><small>GAP date</small></span><span><span class="gap">the post's first line</span></span></li>
+      <li><span class="th"><img src="assets/site/desk-headset.jpg" alt="" loading="lazy"></span><span class="pl"><b>TikTok</b><small>GAP date</small></span><span><span class="gap">the post's first line</span></span></li>
+      <li><span class="th"><img src="assets/site/desk-invoice.jpg" alt="" loading="lazy"></span><span class="pl"><b>Instagram</b><small>GAP date</small></span><span><span class="gap">the post's first line</span></span></li>
+      <li><span class="th"><img src="assets/site/logbook.jpg" alt="" loading="lazy"></span><span class="pl"><b>YouTube</b><small>GAP date</small></span><span><span class="gap">the post's first line</span></span></li>
+      <li><span class="th"><img src="assets/site/desk-laptop.jpg" alt="" loading="lazy"></span><span class="pl"><b>Facebook</b><small>GAP date</small></span><span><span class="gap">the post's first line</span></span></li>
     </ol>
   </div>
 </section>
@@ -255,7 +359,10 @@ details .proof{margin-top:16px;font-size:15px}
   <div class="wrap">
     <div class="card rv">
       <h2><span class="gap">the section's line: it stays yours</span></h2>
-      <div><p class="lede"><span class="gap">your accounts and your posts are yours from the first day; you leave any day and pay only for the days you used</span></p></div>
+      <div class="keeps">
+        <div class="keep"><span class="ic"><svg><use href="#i-key"/></svg></span><p class="lede"><span class="gap">your accounts and your posts are yours from the first day</span></p></div>
+        <div class="keep"><span class="ic"><svg><use href="#i-door"/></svg></span><p class="lede"><span class="gap">you leave any day, with a call or a message</span></p></div>
+      </div>
     </div>
   </div>
 </section>
@@ -265,16 +372,14 @@ details .proof{margin-top:16px;font-size:15px}
   <div class="wrap">
     <div class="rv">
       <h2><span class="gap">the ask in «we»: a short call tells us both if this fits</span></h2>
-      <div class="sq" role="img" aria-label="Three places, all open"><span></span><span></span><span></span></div>
+      <div class="seats" role="img" aria-label="Three places, all open"><span class="seat"><svg><use href="#i-open"/></svg></span><span class="seat"><svg><use href="#i-open"/></svg></span><span class="seat"><svg><use href="#i-open"/></svg></span></div>
       <p><span class="gap">the limit in «we»: three owners at a time; when all are taken, the waiting list, and only the first in line hears from us</span></p>
     </div>
-    <div class="rv">
-      <ol class="qs">
-        <li><span class="gap">question one</span></li>
-        <li><span class="gap">question two</span></li>
-        <li><span class="gap">question three</span></li>
-      </ol>
-      <a class="ask" href="https://calendar.app.google/FxynsTa1aq99jmcm7" rel="noopener">See if you're a fit</a>
+    <div class="form rv">
+      <div class="q"><span class="k">1</span><div><span class="gap">question one</span><div class="field"></div></div></div>
+      <div class="q"><span class="k">2</span><div><span class="gap">question two</span><div class="field"></div></div></div>
+      <div class="q"><span class="k">3</span><div><span class="gap">question three</span><div class="field"></div></div></div>
+      <div class="go"><a class="ask" href="https://calendar.app.google/FxynsTa1aq99jmcm7" rel="noopener">See if you're a fit</a><small><span class="gap">then pick a time</span></small></div>
     </div>
   </div>
 </section>
@@ -283,16 +388,16 @@ details .proof{margin-top:16px;font-size:15px}
 <section class="ready">
   <div class="wrap">
     <h2 class="rv"><span class="gap">not ready yet, in «we»: the posts on getting your work in front of buyers who don't know you yet, free</span></h2>
-    <ul class="teach rv">
-      <li><a class="link" href="#"><span class="gap">a free piece</span></a></li>
-      <li><a class="link" href="#"><span class="gap">a free piece</span></a></li>
-      <li><a class="link" href="#"><span class="gap">a free piece</span></a></li>
-    </ul>
+    <div class="teach rv">
+      <a class="piece" href="#"><div class="pic"><img src="assets/site/map-pencil.jpg" alt="" loading="lazy"></div><p><span class="gap">a free piece</span></p></a>
+      <a class="piece" href="#"><div class="pic"><img src="assets/site/desk-notebook.jpg" alt="" loading="lazy"></div><p><span class="gap">a free piece</span></p></a>
+      <a class="piece" href="#"><div class="pic"><img src="assets/site/desk-headset.jpg" alt="" loading="lazy"></div><p><span class="gap">a free piece</span></p></a>
+    </div>
   </div>
 </section>
 </main>
 
-<footer class="foot">
+<footer class="foot-bar">
   <div class="wrap">
     <a class="brand" href="#top" aria-label="Alpine, back to the top"><svg viewBox="0 0 1024 1024" aria-hidden="true"><path fill="#2457FF" d="M80 690C275 616 490 560 690 486C785 451 836 415 871 373C904 333 930 280 946 194C909 201 876 220 854 251C827 287 809 332 781 363C739 411 678 440 603 465C418 526 226 595 80 690Z"/></svg>Alpine</a>
     <span>Alpine LTD · Founded 2024 · Built in Bulgaria · Clients worldwide</span>
