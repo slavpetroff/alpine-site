@@ -247,11 +247,25 @@ section[id]{scroll-margin-top:72px}
 .record .more{margin-top:48px;max-width:60ch;font-size:19px;color:rgba(247,248,245,.86)}
 
 /* 5 free help */
-.free{background:var(--mist-cool)}
-.free h2{max-width:28ch}
-.freebies{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2vw,28px);margin-top:clamp(40px,7vh,72px);align-items:start}
-.freebies a{text-decoration:none;display:block;transition:transform .3s var(--ease)}
-.freebies a:hover{transform:translateY(-2px)}
+.free{background:linear-gradient(180deg,var(--mist-cool),#DCE7F2);overflow:hidden}
+.free .wrap{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);grid-template-areas:"h phone" "chans phone";grid-template-rows:auto 1fr;column-gap:clamp(40px,6vw,104px);align-items:start}
+.free-h{grid-area:h;max-width:20ch}
+.free-grid{display:contents}
+.chans{grid-area:chans;display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:clamp(32px,5vh,48px);align-self:start}
+.chan{display:grid;grid-template-columns:40px 1fr auto;gap:14px;align-items:center;padding:14px 16px;border-radius:16px;background:var(--white);border:1px solid var(--hair);text-decoration:none;color:var(--ink);transition:transform .35s var(--out),box-shadow .35s var(--out),border-color .3s}
+.chan:hover{transform:translateY(-3px);border-color:#C5CFDC;box-shadow:0 16px 28px -20px rgba(19,34,56,.45)}
+.chan:focus-visible{outline:2px solid var(--cobalt);outline-offset:3px}
+.chan .cl{width:40px;height:40px}
+.chan .cn{display:grid;font-size:14px;color:var(--ink-70);line-height:1.3} .chan .cn b{font-size:17px;color:var(--ink);font-weight:700;font-stretch:110%}
+.chan .cf{display:inline-flex;align-items:center;font-size:14px;font-weight:700;color:var(--cobalt)}
+.chan .cf .arr{width:14px;height:14px;margin-left:6px;transition:transform .3s var(--out)} .chan:hover .cf .arr{transform:translateX(3px)}
+.phone{grid-area:phone;justify-self:center;position:relative;width:min(340px,100%);aspect-ratio:9/18.5;border-radius:46px;background:#0E1A2C;padding:12px;box-shadow:0 40px 80px -40px rgba(19,34,56,.55),inset 0 0 0 2px rgba(255,255,255,.08)}
+.ph-top{position:absolute;top:12px;left:12px;right:12px;height:68px;border-radius:34px 34px 0 0;background:var(--white);z-index:2;display:grid;place-items:end center;padding-bottom:10px;border-bottom:1px solid var(--hair)}
+.ph-top::before{content:"";position:absolute;top:10px;left:50%;width:84px;height:22px;border-radius:12px;background:#0E1A2C;transform:translateX(-50%)}
+.ph-top span{font-size:12px;font-weight:700;letter-spacing:.02em;color:var(--ink-70)}
+.ph-feed{height:100%;border-radius:34px;overflow:hidden;background:#F0F2F5;padding:80px 10px 0}
+.ph-lane{display:grid;gap:10px;animation:lane 40s linear infinite;animation-play-state:paused}
+.inview .ph-lane{animation-play-state:running} .phone:hover .ph-lane{animation-play-state:paused}
 
 /* 6 about */
 .about{background:var(--white);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
@@ -345,7 +359,6 @@ html{scrollbar-color:#C5CFDC transparent;caret-color:var(--cobalt)}
 /* the wall and the free pieces answer the pointer */
 .wall .pf{transition:transform .5s var(--out),box-shadow .5s var(--out)}
 .wall .pf:hover{transform:translateY(-4px);box-shadow:0 18px 30px -20px rgba(19,34,56,.35)}
-.freebies a .pf{transition:box-shadow .4s var(--out)} .freebies a:hover .pf{box-shadow:0 20px 34px -22px rgba(19,34,56,.4)}
 @media (prefers-reduced-motion:reduce){
  *,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}
  .js .rv,.js .open .intro > *,.js .scene .feed,.js .scene .cal-card{opacity:1;filter:none;transform:none} .open .hl{background-size:100% .14em}
@@ -366,10 +379,11 @@ html{scrollbar-color:#C5CFDC transparent;caret-color:var(--cobalt)}
  .open .wrap,.familiar .wrap,.what .wrap,.about .wrap,.ask-sec .wrap,.how .wrap{grid-template-columns:1fr}
  .how-head{position:static} .track{display:none}
  .beat{grid-template-columns:1fr}
- .projects,.freebies{grid-template-columns:1fr}
+ .projects{grid-template-columns:1fr}
+ .free .wrap{grid-template-columns:1fr;grid-template-areas:"h" "chans" "phone"} .phone{margin-top:48px;width:min(320px,86%)}
  .wall > *:nth-child(2),.wall > *:nth-child(5){margin-top:0}
 }
-@media (max-width:520px){.top .ask{display:none}.scene{height:560px}.feed{inset:0;grid-template-columns:1fr}.lane.b{display:none}.lane .tt-card{aspect-ratio:4/5}.scene .cal-card{width:78%;left:4%}.wall{grid-template-columns:1fr 1fr}.li-card .bar span,.fb-card .bar span{font-size:0;gap:0}}
+@media (max-width:520px){.chans{grid-template-columns:1fr}.top .ask{display:none}.scene{height:560px}.feed{inset:0;grid-template-columns:1fr}.lane.b{display:none}.lane .tt-card{aspect-ratio:4/5}.scene .cal-card{width:78%;left:4%}.wall{grid-template-columns:1fr 1fr}.li-card .bar span,.fb-card .bar span{font-size:0;gap:0}}
 </style>
 </head>
 <body>
@@ -380,6 +394,8 @@ html{scrollbar-color:#C5CFDC transparent;caret-color:var(--cobalt)}
   <symbol id="logo-x" viewBox="0 0 24 24"><path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.4l-5.8-7.59-6.64 7.59H.47l8.6-9.83L0 1.15h7.59l5.24 6.93zM17.6 20.64h2.04L6.49 3.24H4.3z" fill="#0F1419"/></symbol>
   <symbol id="logo-tt" viewBox="0 0 24 24"><path d="M16.6 2h-3.4v13.4a3 3 0 1 1-2.6-3V9a6.4 6.4 0 1 0 6 6.4V8.6a7.7 7.7 0 0 0 4.4 1.4V6.6A4.4 4.4 0 0 1 16.6 2z" fill="#fff"/></symbol>
   <symbol id="logo-yt" viewBox="0 0 58 40"><rect width="58" height="40" rx="10" fill="#FF0033"/><path d="M23 12v16l14-8z" fill="#fff"/></symbol>
+  <symbol id="logo-ig" viewBox="0 0 24 24"><defs><linearGradient id="igg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#FEDA75"/><stop offset=".35" stop-color="#FA7E1E"/><stop offset=".65" stop-color="#D62976"/><stop offset="1" stop-color="#4F5BD5"/></linearGradient></defs><rect width="24" height="24" rx="6" fill="url(#igg)"/><rect x="5.5" y="5.5" width="13" height="13" rx="4" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="12" cy="12" r="3.1" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="16.3" cy="7.7" r="1" fill="#fff"/></symbol>
+  <symbol id="logo-tt-b" viewBox="0 0 24 24"><rect width="24" height="24" rx="6" fill="#000"/><path d="M15.2 5h-2.4v9.4a2.1 2.1 0 1 1-1.8-2.1V9.9a4.5 4.5 0 1 0 4.2 4.5V9.6a5.4 5.4 0 0 0 3.1 1V8.2A3.1 3.1 0 0 1 15.2 5z" fill="#fff"/></symbol>
   <symbol id="logo-fb" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#0866FF"/><path d="M13.4 24v-8.6h2.9l.45-3.4H13.4V9.9c0-.97.3-1.65 1.68-1.65h1.78V5.2a23 23 0 0 0-2.6-.13c-2.57 0-4.33 1.57-4.33 4.45V12H7v3.4h2.93V24z" fill="#fff"/></symbol>
   <symbol id="i-like-li" viewBox="0 0 24 24"><path d="M7 11v9H4v-9zm2 9V11l4-7c1.3 0 2 .9 1.7 2.3L14 10h5a2 2 0 0 1 2 2.3l-1.2 6A2.2 2.2 0 0 1 17.6 20z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
   <symbol id="i-like-f" viewBox="0 0 24 24"><path d="M7 11v9H4v-9zm2 9V11l4-7c1.3 0 2 .9 1.7 2.3L14 10h5a2 2 0 0 1 2 2.3l-1.2 6A2.2 2.2 0 0 1 17.6 20z" fill="currentColor"/></symbol>
@@ -492,11 +508,13 @@ html{scrollbar-color:#C5CFDC transparent;caret-color:var(--cobalt)}
 <!-- 5 free help -->
 <section class="free" id="free">
   <div class="wrap">
-    <h2 class="rv">We share what we learn about reaching buyers who don't know you yet, and all of it is <span class="hl">free to use</span>, whether we ever work together or not.</h2>
-    <div class="freebies rv">
-      <a href="#" aria-label="A free piece on X"><div class="pf x-card"><span class="ava"><svg><use href="#person"/></svg></span><div class="main"><div class="nm">Alpine <span>@alpine · 1d</span><svg class="logo"><use href="#logo-x"/></svg></div><span class="ln" style="width:96%"></span><span class="ln" style="width:90%"></span><span class="ln" style="width:58%"></span><div class="media"><img src="assets/site/free-x.jpg" alt="" loading="lazy"></div><div class="row"><svg><use href="#i-comment"/></svg><svg><use href="#i-repost"/></svg><svg><use href="#i-heart"/></svg><svg><use href="#i-views"/></svg><svg><use href="#i-share-up"/></svg></div></div></div></a>
-      <a href="#" aria-label="A free piece on Instagram"><div class="pf ig-card"><div class="hd"><span class="ring"><span class="ava"><svg><use href="#person"/></svg></span></span>alpine<span class="dots">•••</span></div><div class="media"><img src="assets/site/free-instagram.jpg" alt="" loading="lazy"></div><div class="row"><svg><use href="#i-heart"/></svg><svg><use href="#i-comment"/></svg><svg><use href="#i-send"/></svg><svg class="sv"><use href="#i-bookmark"/></svg></div><div class="dotsrow"><i class="on"></i><i></i><i></i></div></div></a>
-      <a href="#" aria-label="A free piece on YouTube"><div class="pf yt-card"><div class="media"><img src="assets/site/free-youtube.jpg" alt="" loading="lazy"><svg class="bigplay"><use href="#logo-yt"/></svg></div><div class="info"><span class="ava"><svg><use href="#person"/></svg></span><div class="t"><span class="ln" style="width:94%"></span><span class="ln" style="width:52%"></span><div class="ch">Alpine</div></div><span class="sub">Subscribe</span></div></div></a>
+    <h2 class="rv free-h">We share what we learn about reaching buyers who don't know you yet, and all of it is <span class="hl">free to use</span>, whether we ever work together or not.</h2>
+    <div class="free-grid">
+      <div class="chans rv"><a class="chan" href="https://www.linkedin.com/in/slavpetroff/" target="_blank" rel="noopener"><svg class="cl"><use href="#logo-li"/></svg><span class="cn"><b>LinkedIn</b>@slavpetroff</span><span class="cf">Follow<svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><a class="chan" href="https://www.youtube.com/@slavpetroff" target="_blank" rel="noopener"><svg class="cl"><use href="#logo-yt"/></svg><span class="cn"><b>YouTube</b>@slavpetroff</span><span class="cf">Follow<svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><a class="chan" href="https://www.instagram.com/slavpetroff/" target="_blank" rel="noopener"><svg class="cl"><use href="#logo-ig"/></svg><span class="cn"><b>Instagram</b>@slavpetroff</span><span class="cf">Follow<svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><a class="chan" href="https://www.tiktok.com/@slavpetroff" target="_blank" rel="noopener"><svg class="cl"><use href="#logo-tt-b"/></svg><span class="cn"><b>TikTok</b>@slavpetroff</span><span class="cf">Follow<svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><a class="chan" href="https://www.facebook.com/slavpetroff" target="_blank" rel="noopener"><svg class="cl"><use href="#logo-fb"/></svg><span class="cn"><b>Facebook</b>@slavpetroff</span><span class="cf">Follow<svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></div>
+      <div class="phone rv" aria-hidden="true">
+        <div class="ph-top"><span>Example posts</span></div>
+        <div class="ph-feed"><div class="ph-lane"><div class="pf x-card"><span class="ava"><svg><use href="#person"/></svg></span><div class="main"><div class="nm">Alpine <span>· 2h</span></div><p class="pt">The questions your clients ask on calls are your best post ideas, so write the answer down once and share it.</p><div class="media"><img src="assets/site/free-x.jpg" alt=""></div><div class="row"><svg><use href="#i-comment"/></svg><svg><use href="#i-repost"/></svg><svg><use href="#i-heart"/></svg><svg><use href="#i-share-up"/></svg></div></div></div><div class="pf li-card"><div class="hd"><span class="ava"><svg><use href="#person"/></svg></span><div><div class="nm">Alpine</div><div class="sub">1d</div></div><svg class="logo" style="margin-left:auto"><use href="#logo-li"/></svg></div><div class="body"><p class="pt">Share the problem you solved this week, because people remember a story about a fix long after a list of features.</p></div><div class="bar"><span><svg><use href="#i-like-li"/></svg></span><span><svg><use href="#i-comment"/></svg></span><span><svg><use href="#i-repost"/></svg></span><span><svg><use href="#i-send"/></svg></span></div></div><div class="pf ig-card"><div class="hd"><span class="ring"><span class="ava"><svg><use href="#person"/></svg></span></span>alpine<span class="dots">•••</span></div><div class="media"><img src="assets/site/free-instagram.jpg" alt=""></div><div class="row"><svg><use href="#i-heart"/></svg><svg><use href="#i-comment"/></svg><svg><use href="#i-send"/></svg><svg class="sv"><use href="#i-bookmark"/></svg></div><p class="pt"><b>alpine</b> Write the way you talk on a call, because that is the voice your next client will trust.</p></div><div class="pf yt-card"><div class="media"><img src="assets/site/free-youtube.jpg" alt=""><svg class="bigplay"><use href="#logo-yt"/></svg></div><div class="info"><span class="ava"><svg><use href="#person"/></svg></span><div class="t"><p class="pt">Small posts that keep showing up get noticed by the people who need you, long before one big post would.</p><div class="ch">Alpine</div></div></div></div><div class="pf x-card"><span class="ava"><svg><use href="#person"/></svg></span><div class="main"><div class="nm">Alpine <span>· 2h</span></div><p class="pt">The questions your clients ask on calls are your best post ideas, so write the answer down once and share it.</p><div class="media"><img src="assets/site/free-x.jpg" alt=""></div><div class="row"><svg><use href="#i-comment"/></svg><svg><use href="#i-repost"/></svg><svg><use href="#i-heart"/></svg><svg><use href="#i-share-up"/></svg></div></div></div><div class="pf li-card"><div class="hd"><span class="ava"><svg><use href="#person"/></svg></span><div><div class="nm">Alpine</div><div class="sub">1d</div></div><svg class="logo" style="margin-left:auto"><use href="#logo-li"/></svg></div><div class="body"><p class="pt">Share the problem you solved this week, because people remember a story about a fix long after a list of features.</p></div><div class="bar"><span><svg><use href="#i-like-li"/></svg></span><span><svg><use href="#i-comment"/></svg></span><span><svg><use href="#i-repost"/></svg></span><span><svg><use href="#i-send"/></svg></span></div></div><div class="pf ig-card"><div class="hd"><span class="ring"><span class="ava"><svg><use href="#person"/></svg></span></span>alpine<span class="dots">•••</span></div><div class="media"><img src="assets/site/free-instagram.jpg" alt=""></div><div class="row"><svg><use href="#i-heart"/></svg><svg><use href="#i-comment"/></svg><svg><use href="#i-send"/></svg><svg class="sv"><use href="#i-bookmark"/></svg></div><p class="pt"><b>alpine</b> Write the way you talk on a call, because that is the voice your next client will trust.</p></div><div class="pf yt-card"><div class="media"><img src="assets/site/free-youtube.jpg" alt=""><svg class="bigplay"><use href="#logo-yt"/></svg></div><div class="info"><span class="ava"><svg><use href="#person"/></svg></span><div class="t"><p class="pt">Small posts that keep showing up get noticed by the people who need you, long before one big post would.</p><div class="ch">Alpine</div></div></div></div></div></div>
+      </div>
     </div>
   </div>
 </section>
