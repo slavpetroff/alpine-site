@@ -145,10 +145,10 @@ section{padding:clamp(96px,15vh,168px) 0}
 .cal-card .note svg{width:16px;height:16px;flex:none}
 
 .pf .media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.project .draw{aspect-ratio:4/3;background:var(--mist);display:grid;place-items:center;padding:20px}
-.project .draw img{width:100%;height:100%;object-fit:contain}
-.about-pic{aspect-ratio:4/5;border-radius:22px;background:var(--mist);border:1px solid var(--hair);display:grid;place-items:center;padding:28px}
-.about-pic img{width:100%;height:100%;object-fit:contain}
+.project .draw{aspect-ratio:4/3;background:var(--mist);overflow:hidden}
+.project .draw img{width:100%;height:100%;object-fit:cover}
+.about-pic{aspect-ratio:4/5;border-radius:22px;background:var(--mist);border:1px solid var(--hair);overflow:hidden}
+.about-pic img{width:100%;height:100%;object-fit:cover}
 
 /* 1 mission */
 .open{min-height:calc(100dvh - 72px);display:grid;align-items:center;padding:0}
@@ -373,9 +373,9 @@ section{padding:clamp(96px,15vh,168px) 0}
   <div class="wrap">
     <h2 class="rv">Because we come from the same world, the road you're on is one we travel too, and we learn from each other as we both move toward our goals.</h2>
     <div class="projects">
-      <article class="project rv"><div class="draw"><img src="assets/site/record-bigfour.svg" alt="" loading="lazy"></div><div class="txt"><span class="sector">A Big Four company</span><h3>We built the AI assistant that builds other assistants, and we kept a person in charge between every step, so nothing moved forward without their yes.</h3><div class="tags"><span>Google Vertex AI</span><span>Python</span></div></div></article>
-      <article class="project rv"><div class="draw"><img src="assets/site/record-retailer.svg" alt="" loading="lazy"></div><div class="txt"><span class="sector">One of Europe's biggest retailers</span><h3>They trusted us with their cloud infrastructure and the platform on top of it, and we built and drove both together with their own team.</h3><div class="tags"><span>FastAPI</span><span>Go</span><span>Kubernetes</span></div></div></article>
-      <article class="project rv"><div class="draw"><img src="assets/site/record-teachers.svg" alt="" loading="lazy"></div><div class="txt"><span class="sector">A platform for teachers</span><h3>We moved a vibe-coded platform that many teachers used for AI onto properly built software, so it could grow into the serious product it was meant to be.</h3><div class="tags"><span>Django</span><span>AWS</span></div></div></article>
+      <article class="project rv"><div class="draw"><img src="assets/site/record-bigfour.jpg" alt="A team in a boardroom listening to a presentation" loading="lazy" width="1200" height="900"></div><div class="txt"><span class="sector">A Big Four company</span><h3>We built the AI assistant that builds other assistants, and we kept a person in charge between every step, so nothing moved forward without their yes.</h3><div class="tags"><span>Google Vertex AI</span><span>Python</span></div></div></article>
+      <article class="project rv"><div class="draw"><img src="assets/site/record-retailer.jpg" alt="A long, fully stocked supermarket aisle" loading="lazy" width="1200" height="900"></div><div class="txt"><span class="sector">One of Europe's biggest retailers</span><h3>They trusted us with their cloud infrastructure and the platform on top of it, and we built and drove both together with their own team.</h3><div class="tags"><span>FastAPI</span><span>Go</span><span>Kubernetes</span></div></div></article>
+      <article class="project rv"><div class="draw"><img src="assets/site/record-teachers.jpg" alt="A teacher in front of a classroom" loading="lazy" width="1200" height="900"></div><div class="txt"><span class="sector">A platform for teachers</span><h3>We moved a vibe-coded platform that many teachers used for AI onto properly built software, so it could grow into the serious product it was meant to be.</h3><div class="tags"><span>Django</span><span>AWS</span></div></div></article>
     </div>
     <p class="more rv">We've been building software since 2015, and these three are only a few of the places that work has taken us.</p>
   </div>
@@ -396,7 +396,7 @@ section{padding:clamp(96px,15vh,168px) 0}
 <!-- 6 about -->
 <section class="about">
   <div class="wrap">
-    <div class="about-pic rv"><img src="assets/site/about.svg" alt="" loading="lazy"></div>
+    <div class="about-pic rv"><img src="assets/site/about.jpg" alt="A hand holding a compass by the sea" loading="lazy" width="960" height="1200"></div>
     <div class="rv">
       <h2>We built this company because sharing what you know is the one free way left to earn attention, and when you keep showing up, that presence grows until the right people already know and trust you.</h2>
       <p class="lede">Business is there to help people and to earn from it, and the work you share, the problems you solved and the ideas that didn't work, helps someone in the same spot long before they ever call you.</p>
