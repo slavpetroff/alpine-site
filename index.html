@@ -153,17 +153,6 @@ section[id]{scroll-margin-top:72px}
 .fb-card .bar span{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:#65676B;padding:6px}
 .fb-card .bar svg{width:18px;height:18px}
 /* the booked call */
-.cal-card{font-family:"Archivo","Avenir Next",sans-serif;color:var(--ink);padding:14px}
-.cal-card .hd{display:flex;align-items:center;justify-content:space-between;font-size:12px;font-weight:600;margin-bottom:10px}
-.cal-card .hd span{color:var(--ink-70);font-weight:500}
-.cal-card .grid{display:grid;grid-template-columns:repeat(5,1fr);gap:4px}
-.cal-card .grid b{font-size:11px;font-weight:600;color:var(--ink-70);text-align:center;padding-bottom:4px}
-.cal-card .col{display:grid;grid-template-rows:repeat(6,15px);gap:3px}
-.cal-card .col i{border-radius:4px;background:var(--mist)}
-.cal-card .col i.busy{background:var(--mist-cool)}
-.cal-card .col i.call{grid-row:span 2;background:var(--cobalt)}
-.cal-card .note{display:flex;gap:8px;align-items:center;margin-top:12px;padding:10px;border-radius:10px;background:rgba(36,87,255,.07);font-size:12px;line-height:1.35;color:var(--cobalt);font-weight:600}
-.cal-card .note svg{width:16px;height:16px;flex:none}
 
 .pf .media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .project .draw{aspect-ratio:4/3;background:var(--mist);overflow:hidden}
@@ -186,17 +175,6 @@ section[id]{scroll-margin-top:72px}
 .ask-sec .hl{background-image:linear-gradient(var(--cobalt-light),var(--cobalt-light))}
 .open .lede{margin-bottom:36px;color:rgba(247,248,245,.82)}
 .open .exit{color:rgba(247,248,245,.66)}
-.scene{position:relative;height:min(660px,74vh)}
-.feed{position:absolute;inset:0 0 0 8%;display:grid;grid-template-columns:1fr 1fr;gap:16px;overflow:hidden;-webkit-mask:linear-gradient(transparent,#000 14%,#000 86%,transparent);mask:linear-gradient(transparent,#000 14%,#000 86%,transparent)}
-.lane{display:grid;gap:16px;align-content:start;animation:lane 46s linear infinite;animation-play-state:paused}
-.lane.b{animation-name:lane-b;animation-duration:54s}
-.inview .lane{animation-play-state:running} .feed:hover .lane{animation-play-state:paused}
-@keyframes lane{from{transform:translateY(0)}to{transform:translateY(calc(-50% - 8px))}}
-@keyframes lane-b{from{transform:translateY(calc(-50% - 8px))}to{transform:translateY(0)}}
-.lane .pf{box-shadow:0 14px 34px -18px rgba(0,0,0,.55);border-color:transparent}
-.lane .tt-card{aspect-ratio:9/15}
-.lane{gap:18px} .feed{gap:18px}
-.scene .cal-card{position:absolute;left:0;bottom:7%;width:min(300px,58%);z-index:2;box-shadow:0 30px 60px -24px rgba(0,0,0,.6);border-color:transparent}
 
 /* 1b the symptoms */
 .familiar{padding:clamp(80px,13vh,140px) 0;background:var(--cobalt);color:var(--white);position:relative;overflow:hidden}
@@ -210,9 +188,9 @@ section[id]{scroll-margin-top:72px}
 .belief-card{position:relative;margin:0;border-radius:28px;overflow:hidden;min-height:min(86vh,820px);display:flex;align-items:flex-end;background:var(--ink);isolation:isolate;clip-path:inset(4% 5% round 28px);transition:clip-path 1.4s var(--out)}
 .belief.lit .belief-card,html:not(.js) .belief-card{clip-path:inset(0 round 28px)}
 .belief-pic{position:absolute;inset:0;z-index:-1}
-.belief-pic img{width:100%;height:100%;object-fit:cover;object-position:50% 28%;transform:scale(1.12);transition:transform 2.2s var(--out)}
+.belief-pic img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;filter:brightness(.78) contrast(1.15) saturate(.9);transform:scale(1.12);transition:transform 2.2s var(--out)}
 .belief.lit .belief-pic img{transform:scale(1)}
-.belief-pic::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,22,38,0) 26%,rgba(11,22,38,.62) 56%,rgba(11,22,38,.94) 100%),linear-gradient(90deg,rgba(11,22,38,.55),rgba(11,22,38,0) 65%)}
+.belief-pic::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,22,38,.05) 20%,rgba(11,22,38,.68) 54%,rgba(11,22,38,.95) 100%),linear-gradient(90deg,rgba(11,22,38,.6),rgba(11,22,38,0) 70%)}
 .belief-t{padding:clamp(28px,5vw,72px);font-size:clamp(26px,3.3vw,52px);line-height:1.1;font-weight:760;font-stretch:116%;letter-spacing:-.032em;max-width:25ch;text-wrap:balance;color:rgba(247,248,245,.74)}
 .belief-t .hl{color:var(--white)}
 .belief-t .hl{background-image:linear-gradient(var(--cobalt-light),var(--cobalt-light));background-size:0% .09em}
@@ -223,18 +201,6 @@ section[id]{scroll-margin-top:72px}
 .how-h{max-width:26ch;font-size:clamp(30px,3.5vw,54px)}
 .how-grid{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:clamp(40px,6vw,104px);align-items:start;margin-top:clamp(56px,9vh,96px)}
 .stage{position:sticky;top:clamp(104px,15vh,150px);border-radius:28px;padding:clamp(36px,5vw,64px) clamp(24px,4vw,56px) clamp(28px,4vw,44px);background:radial-gradient(80% 60% at 50% 0%,rgba(36,87,255,.16),transparent 70%),linear-gradient(180deg,#EEF3F8,#E3EBF3);border:1px solid var(--hair);overflow:hidden;isolation:isolate}
-.stage::before{content:"";position:absolute;inset:0;z-index:-1;background-image:radial-gradient(rgba(19,34,56,.1) 1px,transparent 1.2px);background-size:22px 22px;-webkit-mask:radial-gradient(70% 70% at 50% 40%,#000,transparent);mask:radial-gradient(70% 70% at 50% 40%,#000,transparent)}
-.post-fig{position:relative;margin:0 auto;width:min(380px,100%)}
-.post-fig .li-card{box-shadow:0 40px 70px -36px rgba(19,34,56,.5),0 2px 6px rgba(19,34,56,.06);border-color:transparent;position:relative;z-index:1}
-.post-fig .ok{position:absolute;z-index:2;top:-16px;left:-16px;width:44px;height:44px;border-radius:50%;background:var(--cobalt);color:var(--white);display:grid;place-items:center;box-shadow:0 10px 22px -10px rgba(11,22,38,.55);transform:scale(0);transition:transform .5s cubic-bezier(.34,1.56,.64,1)}
-.post-fig .ok svg{width:20px;height:20px}
-.chips{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:20px}
-.chip{aspect-ratio:1;border-radius:14px;background:var(--white);border:1px solid var(--hair);display:grid;place-items:center;opacity:.35;filter:grayscale(1);transform:scale(.92);transition:opacity .5s var(--out),filter .5s var(--out),transform .6s cubic-bezier(.34,1.56,.64,1),box-shadow .5s}
-.chip svg{width:46%;height:46%}
-.chip:nth-child(2){transition-delay:.08s} .chip:nth-child(3){transition-delay:.16s} .chip:nth-child(4){transition-delay:.06s} .chip:nth-child(5){transition-delay:.14s} .chip:nth-child(6){transition-delay:.22s}
-.post-fig[data-stage="1"] .ok,.post-fig[data-stage="2"] .ok,.post-fig[data-stage="3"] .ok{transform:scale(1)}
-.post-fig[data-stage="1"] .chip:nth-child(1),.post-fig[data-stage="2"] .chip:nth-child(-n+3),.post-fig[data-stage="3"] .chip{opacity:1;filter:none;transform:none;box-shadow:0 12px 22px -16px rgba(19,34,56,.5)}
-.post-fig[data-stage="3"] .flw .f0{display:none} .post-fig[data-stage="3"] .flw .f1{display:inline} .post-fig[data-stage="3"] .flw{color:#057642}
 .steps{list-style:none;margin:0;padding:0 0 0 0;position:relative;display:grid;gap:clamp(56px,11vh,112px);padding-block:clamp(8px,4vh,40px)}
 .steps::before,.steps::after{content:"";position:absolute;left:23px;top:24px;bottom:24px;width:2px;border-radius:2px;background:var(--hair)}
 .steps::after{background:var(--cobalt);transform:scaleY(var(--fill,0));transform-origin:top}
@@ -365,10 +331,6 @@ h2{font-size:clamp(30px,3.3vw,52px);line-height:1.06}
 .open::before{background:radial-gradient(55% 60% at 78% 38%,rgba(36,87,255,.42),transparent 70%),radial-gradient(40% 45% at 12% 100%,rgba(91,132,255,.18),transparent 70%),var(--noise)}
 .open h1{font-size:clamp(32px,3.5vw,56px);max-width:22ch}
 .open .wrap{grid-template-columns:minmax(0,6.4fr) minmax(0,5.6fr)}
-.scene{perspective:1800px}
-.feed{border-radius:24px;border:1px solid rgba(247,248,245,.12);background:linear-gradient(180deg,rgba(247,248,245,.06),rgba(247,248,245,.015));box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 50px 100px -40px rgba(0,0,0,.7);padding:12px;gap:12px;transform:rotateY(-7deg) rotateX(4deg);transform-origin:60% 50%;inset:0 0 0 4%;-webkit-mask:none;mask:none}
-.feed .lane{-webkit-mask:linear-gradient(transparent,#000 10%,#000 90%,transparent);mask:linear-gradient(transparent,#000 10%,#000 90%,transparent)}
-.scene .cal-card{box-shadow:0 40px 80px -24px rgba(0,0,0,.75),0 0 0 1px rgba(255,255,255,.06)}
 .familiar{background:var(--cobalt);padding:clamp(120px,20vh,220px) 0;isolation:isolate}
 .fam-pic{position:absolute;top:0;bottom:0;right:0;width:62%;z-index:-1;-webkit-mask:linear-gradient(90deg,transparent,#000 45%);mask:linear-gradient(90deg,transparent,#000 45%)}
 .fam-pic img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.05);mix-blend-mode:multiply;opacity:.7}
@@ -392,6 +354,71 @@ h2{font-size:clamp(30px,3.3vw,52px);line-height:1.06}
 .about-pic figcaption{left:auto;right:20px;bottom:24px}
 .about h2{font-size:clamp(28px,2.9vw,46px);padding:clamp(80px,12vh,140px) 0}
 
+.stage::before{content:"";position:absolute;inset:0;z-index:-1;background-image:radial-gradient(rgba(19,34,56,.1) 1px,transparent 1.2px);background-size:22px 22px;-webkit-mask:radial-gradient(70% 70% at 50% 40%,#000,transparent);mask:radial-gradient(70% 70% at 50% 40%,#000,transparent)}
+/* the example chain: a line from a call becomes a post (the underline means one thing: the line we took from your call) */
+main .hl{background-image:none!important}
+.open h1 .hl{background-image:linear-gradient(var(--cobalt),var(--cobalt))!important}
+.chain{position:relative;margin:0;display:grid;width:100%;max-width:600px;justify-self:end}
+.ex{display:block;font:600 11px/1 ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--cobalt-light);margin:0 0 14px 2px}
+.tx{border-radius:18px;border:1px solid rgba(247,248,245,.13);background:linear-gradient(180deg,rgba(247,248,245,.075),rgba(247,248,245,.025));box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 40px 80px -40px rgba(0,0,0,.7);padding:14px 18px 18px}
+.tx-hd{display:flex;align-items:center;gap:12px;padding-bottom:12px;margin-bottom:12px;border-bottom:1px solid rgba(247,248,245,.1)}
+.rec{width:8px;height:8px;border-radius:50%;background:#F04438}
+.wave{display:flex;gap:3px;align-items:center;height:16px}
+.wave i{display:block;width:3px;height:30%;border-radius:2px;background:rgba(247,248,245,.42);animation:wave 1.2s ease-in-out infinite;animation-play-state:paused}
+.wave i:nth-child(3n){animation-delay:-.4s} .wave i:nth-child(3n+1){animation-delay:-.8s} .wave i:nth-child(4n){animation-duration:.9s}
+.inview .wave i{animation-play-state:running}
+@keyframes wave{50%{height:100%}}
+.tx-lines{list-style:none;margin:0;padding:0;display:grid;gap:9px;font:400 14px/1.5 ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;color:rgba(247,248,245,.8)}
+.tx-lines li{display:grid;grid-template-columns:70px 38px minmax(0,1fr);gap:8px;opacity:0;transform:translateY(6px);transition:opacity .45s var(--out),transform .45s var(--out)}
+.tx-lines time{color:rgba(247,248,245,.36)} .tx-lines b{font-weight:600;color:rgba(247,248,245,.5)}
+.c-lines .tx-lines li{opacity:1;transform:none}
+.tx-lines li:nth-child(2){transition-delay:.3s} .tx-lines li:nth-child(3){transition-delay:.6s} .tx-lines li:nth-child(4){transition-delay:.9s} .tx-lines li:nth-child(5){transition-delay:1.2s} .tx-lines li:nth-child(6){transition-delay:1.5s} .tx-lines li:nth-child(7){transition-delay:1.8s}
+.c-hit .tx-lines li:not(.hit){opacity:.42;transition-delay:0s}
+.tx-lines mark{color:inherit;background:linear-gradient(rgba(91,132,255,.22),rgba(91,132,255,.22)) no-repeat 0 0/0% 100%,linear-gradient(var(--cobalt-light),var(--cobalt-light)) no-repeat 0 100%/0% 2px;transition:background-size 1s var(--out),color .4s}
+.c-hit .tx-lines mark{color:#fff;background-size:100% 100%,100% 2px}
+.c-arrow{display:block;width:120px;height:90px;margin:0 0 4px 30px;overflow:visible}
+.c-arrow path{fill:none;stroke:var(--cobalt-light);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:160;stroke-dashoffset:160;transition:stroke-dashoffset 1s var(--out)}
+.c-arrow .head{stroke-dasharray:30;stroke-dashoffset:30;transition-delay:.75s}
+.c-link .c-arrow path{stroke-dashoffset:0}
+.post{justify-self:end;width:min(480px,92%);background:#fff;color:var(--ink);border-radius:18px;padding:18px 20px 20px;box-shadow:0 40px 80px -30px rgba(0,0,0,.75),0 0 0 1px rgba(255,255,255,.06);opacity:0;transform:translateY(14px) scale(.98);transition:opacity .6s var(--out),transform .7s var(--out)}
+.c-post .post{opacity:1;transform:none}
+.post-hd{display:flex;align-items:center;gap:10px;margin-bottom:10px;font-size:14px;color:var(--ink)}
+.post-hd .ava{width:30px;height:30px;border-radius:50%;background:#cfd8e3;display:grid;place-items:center;flex:none} .post-hd .ava svg{width:18px;height:18px;color:#8a99ab}
+.post-t{font-size:17px;line-height:1.52;color:var(--ink)}
+.post-t .pw{opacity:0;transition:opacity .5s var(--out)}
+.c-post .post-t .pw{opacity:1} .c-post .post-t .pw:nth-child(2){transition-delay:.6s} .c-post .post-t .pw:nth-child(3){transition-delay:1.2s}
+.carry{text-decoration:none;background:linear-gradient(var(--cobalt),var(--cobalt)) no-repeat 0 100%/0% 2px;transition:background-size 1s var(--out)}
+.c-carry .carry{background-size:100% 2px}
+/* the resolution: the same post, edited by you, approved, out to the platforms */
+.review{margin:0 auto;width:min(430px,100%)}
+.review .ex{color:var(--cobalt)}
+.rv-post{position:relative;background:#fff;border-radius:18px;padding:18px 20px 20px;box-shadow:0 40px 70px -36px rgba(19,34,56,.5),0 2px 6px rgba(19,34,56,.06)}
+.rv-post p{font-size:16px;line-height:1.55;color:var(--ink)}
+.rv-post del{text-decoration:none;color:var(--ink-70);background:linear-gradient(#B42318,#B42318) no-repeat 0 58%/0% 1.6px;transition:background-size .7s var(--out),color .5s}
+.rv-post ins{text-decoration:none;font-weight:600;color:var(--ink);opacity:0;background:linear-gradient(var(--cobalt),var(--cobalt)) no-repeat 0 100%/0% 2px;transition:opacity .5s var(--out) .55s,background-size .9s var(--out) .8s}
+.review[data-stage] del{background-size:100% 1.6px;color:rgba(19,34,56,.45)}
+.review[data-stage] ins{opacity:1;background-size:100% 2px}
+.review .ok{position:absolute;top:-14px;right:-14px;width:42px;height:42px;border-radius:50%;background:var(--cobalt);color:var(--white);display:grid;place-items:center;box-shadow:0 10px 22px -10px rgba(11,22,38,.55);transform:scale(0);transition:transform .5s cubic-bezier(.34,1.56,.64,1)}
+.review .ok svg{width:20px;height:20px}
+.review[data-stage="2"] .ok,.review[data-stage="3"] .ok{transform:scale(1)}
+.outs{list-style:none;padding:0;margin:18px 0 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;font:500 12px/1 ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace}
+.outs li{display:flex;align-items:center;gap:8px;padding:11px 12px;border-radius:10px;border:1px solid var(--hair);background:rgba(255,255,255,.6);color:var(--ink-70);transition:color .4s,border-color .4s,background .4s}
+.outs li::before{content:"";flex:none;width:7px;height:7px;border-radius:50%;background:#C5CFDC;transition:background .4s}
+.review[data-stage="2"] .outs li:nth-child(-n+3),.review[data-stage="3"] .outs li{color:var(--ink);border-color:#C5CFDC;background:#fff}
+.review[data-stage="2"] .outs li:nth-child(-n+3)::before,.review[data-stage="3"] .outs li::before{background:var(--cobalt)}
+.outs li:nth-child(2){transition-delay:.08s} .outs li:nth-child(3){transition-delay:.16s} .outs li:nth-child(4){transition-delay:.06s} .outs li:nth-child(5){transition-delay:.14s} .outs li:nth-child(6){transition-delay:.22s}
+/* the reason beside the urgency line */
+.form .urgent{display:grid;gap:6px}
+.form .urgent .why{font-weight:500;font-size:14px;color:var(--ink-70)}
+/* the free template */
+.free .wrap{grid-template-areas:"h phone" "chans phone" "tpl phone";grid-template-rows:auto auto 1fr}
+.tpl{grid-area:tpl;align-self:start;display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:16px;align-items:center;margin-top:12px;padding:18px 20px;border-radius:18px;background:var(--ink);color:var(--white);text-decoration:none;box-shadow:0 24px 44px -28px rgba(19,34,56,.6);transition:transform .35s var(--out),box-shadow .35s var(--out)}
+.tpl:hover{transform:translateY(-3px);box-shadow:0 30px 54px -28px rgba(19,34,56,.7)}
+.tpl:focus-visible{outline:2px solid var(--cobalt);outline-offset:3px}
+.tpl-ic{width:48px;height:48px;border-radius:12px;background:rgba(91,132,255,.18);color:var(--cobalt-light);display:grid;place-items:center} .tpl-ic svg{width:24px;height:24px}
+.tpl-t{display:grid;gap:4px} .tpl-t b{font-size:16px;font-weight:650;line-height:1.3} .tpl-t span{font:500 12px/1 ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;color:rgba(247,248,245,.55)}
+.tpl-dl{width:22px;height:22px;color:var(--cobalt-light);transition:transform .3s var(--out)} .tpl:hover .tpl-dl{transform:translateY(2px)}
+
 /* reveal */
 /* motion */
 :root{--out:cubic-bezier(.16,1,.3,1);--noise:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
@@ -402,19 +429,9 @@ html{scrollbar-color:#C5CFDC transparent;caret-color:var(--cobalt)}
 /* the opening plays in */
 .js .open .intro > *{opacity:0;filter:blur(10px);transform:translateY(16px);animation:intro .9s var(--out) forwards}
 .js .open .intro > :nth-child(2){animation-delay:.12s} .js .open .intro > :nth-child(3){animation-delay:.24s} .js .open .intro > :nth-child(4){animation-delay:.32s}
-.js .scene .feed,.js .scene .cal-card{opacity:0;animation:card 1.1s var(--out) forwards}
-.js .scene .feed{animation-delay:.3s} .js .scene .cal-card{animation-delay:.7s}
 @keyframes intro{to{opacity:1;filter:none;transform:none}}
 @keyframes card{from{opacity:0;transform:translateY(28px) scale(.97);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
 /* the buyer's story, acted out by the cards */
-.flw .f1{display:none} .story-follow .flw .f0{display:none} .story-follow .flw .f1{display:inline}
-.flw{transition:color .3s} .story-follow .flw{color:#057642}
-.scene .tt-card .rail svg.ic:first-of-type{transition:transform .35s var(--out),color .3s}
-.story-like .tt-card .rail svg.ic:first-of-type{transform:scale(1.28);color:var(--tt-red)}
-.cal-card .col i.call{transform:scaleY(0);transform-origin:top;transition:transform .6s var(--out)}
-.story-call .cal-card .col i.call{transform:none}
-.cal-card .note{opacity:0;transform:translateY(6px);transition:opacity .5s,transform .5s var(--out)}
-.story-note .cal-card .note{opacity:1;transform:none}
 /* the quotes light up as they are read */
 .quote .w,.scrub .w{opacity:var(--o,1);transition:opacity .25s linear}
 /* record photos wipe in */
@@ -433,8 +450,7 @@ html{scrollbar-color:#C5CFDC transparent;caret-color:var(--cobalt)}
  *,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}
  .js .rv,.js .open .intro > *,.js .scene .feed,.js .scene .cal-card{opacity:1;filter:none;transform:none} .open .hl{background-size:100% .14em}
  .js .project .draw img{clip-path:none}
- .cal-card .col i.call{transform:none} .cal-card .note{opacity:1;transform:none}
- .quote .w,.scrub .w{opacity:1} .belief-card{clip-path:none} .belief-pic img,.side-pic img{transform:none} .belief .hl{background-size:100% .1em} .pill{clip-path:none} .steps::after{transform:none}
+ .quote .w,.scrub .w{opacity:1} .tx-lines li,.post,.post-t .pw,.rv-post ins{opacity:1;transform:none} .belief-card{clip-path:none} .belief-pic img,.side-pic img{transform:none} .belief .hl{background-size:100% .1em} .pill{clip-path:none} .steps::after{transform:none}
 }
 
 @media (max-width:1080px){
@@ -447,7 +463,6 @@ html{scrollbar-color:#C5CFDC transparent;caret-color:var(--cobalt)}
 }
 @media (max-width:900px){
  .open .wrap,.familiar .wrap,.about .wrap,.ask-sec .wrap,.how-grid,.fit .wrap{grid-template-columns:1fr}
- .post-fig{position:relative;top:0;width:min(330px,82%)} .steps{gap:48px}
  .no{margin-top:0}
  .projects{grid-template-columns:1fr}
  .free .wrap{grid-template-columns:1fr;grid-template-areas:"h" "chans" "phone"} .phone{margin-top:48px;width:min(320px,86%)}
@@ -459,19 +474,22 @@ html{scrollbar-color:#C5CFDC transparent;caret-color:var(--cobalt)}
  .belief-pic::after{background:linear-gradient(180deg,rgba(11,22,38,0) 55%,rgba(11,22,38,1) 100%)}
  .belief-t{margin-top:-48px;position:relative}
  .stage{position:relative;top:0}
- .post-fig{width:min(330px,100%)}
  .side{min-height:520px}
  .projects{grid-template-columns:1fr}
  .project:first-child{grid-row:auto} .project:first-child .draw{aspect-ratio:4/3;min-height:0;flex:none}
  .project:not(:first-child) .draw{aspect-ratio:4/3}
  .quote:nth-child(2){margin-left:0}
- .feed{transform:none}
  .phone{transform:none} .free .wrap::after{display:none}
  .about .wrap{min-height:0;gap:0}
  .about-pic{margin-left:calc(-1 * var(--gut));margin-right:calc(-1 * var(--gut));aspect-ratio:4/5;max-height:76vh}
  .about h2{padding:48px 0 88px}
 }
 @media (max-width:520px){.belief-t{padding:24px 22px 30px;margin-top:-36px}.side{min-height:480px}.seats{grid-template-columns:repeat(3,64px)}.seat{height:64px}}
+@media (max-width:900px){
+ .chain{justify-self:stretch;max-width:none;margin-top:8px}
+ .free .wrap{grid-template-areas:"h" "chans" "tpl" "phone";grid-template-rows:auto}
+}
+@media (max-width:520px){.tx{padding:12px 14px 14px}.tx-lines{font-size:12px}.tx-lines li{grid-template-columns:56px 30px minmax(0,1fr);gap:6px}.post{width:94%}.outs{grid-template-columns:repeat(2,minmax(0,1fr))}.tpl{grid-template-columns:40px minmax(0,1fr) auto;padding:16px}.tpl-ic{width:40px;height:40px}}
 </style>
 </head>
 <body>
@@ -527,10 +545,26 @@ html{scrollbar-color:#C5CFDC transparent;caret-color:var(--cobalt)}
       <a class="ask" href="#ask">See if you're a fit<svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       <p class="exit">If it doesn't work for you, you just call us or send a message, and you're out the next day.</p>
     </div>
-    <div class="scene" aria-hidden="true">
-      <div class="feed"><div class="lane"><div class="pf tt-card"><div class="media"><img src="assets/site/hero-tiktok.webp" alt=""></div><svg class="tlogo"><use href="#logo-tt"/></svg><div class="tabs"><span>Following</span><b>For You</b></div><div class="rail"><span class="me"><svg><use href="#person"/></svg><b>+</b></span><svg class="ic"><use href="#i-heart-f"/></svg><svg class="ic"><use href="#i-comment"/></svg><svg class="ic"><use href="#i-share-tt"/></svg><span class="disc"></span></div><div class="cap"><b>@you</b><p class="pt">How we estimate a project without lying to the client</p><div class="music"><svg><use href="#i-note"/></svg>original sound · you</div></div></div><div class="pf x-card"><span class="ava"><svg><use href="#person"/></svg></span><div class="main"><div class="nm">You <span>@you · 3h</span><svg class="logo"><use href="#logo-x"/></svg></div><p class="pt">Before we rewrite an old system, we write down why it still works, and that list goes with us into every decision.</p><div class="row"><svg><use href="#i-comment"/></svg><svg><use href="#i-repost"/></svg><svg><use href="#i-heart"/></svg><svg><use href="#i-views"/></svg><svg><use href="#i-share-up"/></svg></div></div></div><div class="pf li-card"><div class="hd"><span class="ava"><svg><use href="#person"/></svg></span><div><div class="nm">You</div><div class="sub">5d</div></div><svg class="logo" style="margin-left:auto"><use href="#logo-li"/></svg></div><div class="body"><p class="pt">The most useful question on a discovery call is a simple one: what happens if we never build this?</p></div><div class="bar"><span><svg><use href="#i-like-li"/></svg></span><span><svg><use href="#i-comment"/></svg></span><span><svg><use href="#i-repost"/></svg></span><span><svg><use href="#i-send"/></svg></span></div></div><div class="pf tt-card"><div class="media"><img src="assets/site/hero-tiktok.webp" alt=""></div><svg class="tlogo"><use href="#logo-tt"/></svg><div class="tabs"><span>Following</span><b>For You</b></div><div class="rail"><span class="me"><svg><use href="#person"/></svg><b>+</b></span><svg class="ic"><use href="#i-heart-f"/></svg><svg class="ic"><use href="#i-comment"/></svg><svg class="ic"><use href="#i-share-tt"/></svg><span class="disc"></span></div><div class="cap"><b>@you</b><p class="pt">How we estimate a project without lying to the client</p><div class="music"><svg><use href="#i-note"/></svg>original sound · you</div></div></div><div class="pf x-card"><span class="ava"><svg><use href="#person"/></svg></span><div class="main"><div class="nm">You <span>@you · 3h</span><svg class="logo"><use href="#logo-x"/></svg></div><p class="pt">Before we rewrite an old system, we write down why it still works, and that list goes with us into every decision.</p><div class="row"><svg><use href="#i-comment"/></svg><svg><use href="#i-repost"/></svg><svg><use href="#i-heart"/></svg><svg><use href="#i-views"/></svg><svg><use href="#i-share-up"/></svg></div></div></div><div class="pf li-card"><div class="hd"><span class="ava"><svg><use href="#person"/></svg></span><div><div class="nm">You</div><div class="sub">5d</div></div><svg class="logo" style="margin-left:auto"><use href="#logo-li"/></svg></div><div class="body"><p class="pt">The most useful question on a discovery call is a simple one: what happens if we never build this?</p></div><div class="bar"><span><svg><use href="#i-like-li"/></svg></span><span><svg><use href="#i-comment"/></svg></span><span><svg><use href="#i-repost"/></svg></span><span><svg><use href="#i-send"/></svg></span></div></div></div><div class="lane b"><div class="pf li-card"><div class="hd"><span class="ava"><svg><use href="#person"/></svg></span><div><div class="nm">You <span>· 2nd</span></div><div class="sub">Owner of a software company</div><div class="sub">2d</div></div><span class="flw"><span class="f0">+ Follow</span><span class="f1">✓ Following</span></span></div><div class="body"><p class="pt">Monday with the team, deciding what we will not build this quarter.</p></div><div class="media"><img src="assets/site/hero-linkedin.webp" alt=""></div><div class="rx"><i style="background:#378FE9"><svg><use href="#i-like-f"/></svg></i><i style="background:#DF704D"><svg><use href="#i-heart-f"/></svg></i><i style="background:#F5BB5C"><svg><use href="#i-bulb"/></svg></i></div><div class="bar"><span><svg><use href="#i-like-li"/></svg></span><span><svg><use href="#i-comment"/></svg></span><span><svg><use href="#i-repost"/></svg></span><span><svg><use href="#i-send"/></svg></span></div></div><div class="pf fb-card"><div class="hd"><span class="ava"><svg><use href="#person"/></svg></span><div><div class="nm">You</div><div class="sub">1d</div></div><svg class="logo" style="margin-left:auto"><use href="#logo-fb"/></svg></div><div class="body"><p class="pt">We moved a client's checkout off a system nobody dared to touch. The trick was boring: small steps, and every one of them could be undone.</p></div><div class="bar"><span><svg><use href="#i-like-li"/></svg></span><span><svg><use href="#i-comment"/></svg></span><span><svg><use href="#i-fb-share"/></svg></span></div></div><div class="pf x-card"><span class="ava"><svg><use href="#person"/></svg></span><div class="main"><div class="nm">You <span>@you · 1d</span><svg class="logo"><use href="#logo-x"/></svg></div><p class="pt">A client asked why we push back on rushed deadlines. A rushed date is a guess, and the bug that shows up months later is very real.</p><div class="row"><svg><use href="#i-comment"/></svg><svg><use href="#i-repost"/></svg><svg><use href="#i-heart"/></svg><svg><use href="#i-views"/></svg><svg><use href="#i-share-up"/></svg></div></div></div><div class="pf li-card"><div class="hd"><span class="ava"><svg><use href="#person"/></svg></span><div><div class="nm">You <span>· 2nd</span></div><div class="sub">Owner of a software company</div><div class="sub">2d</div></div><span class="flw"><span class="f0">+ Follow</span><span class="f1">✓ Following</span></span></div><div class="body"><p class="pt">Monday with the team, deciding what we will not build this quarter.</p></div><div class="media"><img src="assets/site/hero-linkedin.webp" alt=""></div><div class="rx"><i style="background:#378FE9"><svg><use href="#i-like-f"/></svg></i><i style="background:#DF704D"><svg><use href="#i-heart-f"/></svg></i><i style="background:#F5BB5C"><svg><use href="#i-bulb"/></svg></i></div><div class="bar"><span><svg><use href="#i-like-li"/></svg></span><span><svg><use href="#i-comment"/></svg></span><span><svg><use href="#i-repost"/></svg></span><span><svg><use href="#i-send"/></svg></span></div></div><div class="pf fb-card"><div class="hd"><span class="ava"><svg><use href="#person"/></svg></span><div><div class="nm">You</div><div class="sub">1d</div></div><svg class="logo" style="margin-left:auto"><use href="#logo-fb"/></svg></div><div class="body"><p class="pt">We moved a client's checkout off a system nobody dared to touch. The trick was boring: small steps, and every one of them could be undone.</p></div><div class="bar"><span><svg><use href="#i-like-li"/></svg></span><span><svg><use href="#i-comment"/></svg></span><span><svg><use href="#i-fb-share"/></svg></span></div></div><div class="pf x-card"><span class="ava"><svg><use href="#person"/></svg></span><div class="main"><div class="nm">You <span>@you · 1d</span><svg class="logo"><use href="#logo-x"/></svg></div><p class="pt">A client asked why we push back on rushed deadlines. A rushed date is a guess, and the bug that shows up months later is very real.</p><div class="row"><svg><use href="#i-comment"/></svg><svg><use href="#i-repost"/></svg><svg><use href="#i-heart"/></svg><svg><use href="#i-views"/></svg><svg><use href="#i-share-up"/></svg></div></div></div></div></div>
-      <div class="pf cal-card"><div class="hd">Your calendar <span>This week</span></div><div class="grid"><b>Mo</b><b>Tu</b><b>We</b><b>Th</b><b>Fr</b><div class="col"><i class="busy"></i><i></i><i></i><i class="busy"></i><i></i><i></i></div><div class="col"><i></i><i class="busy"></i><i></i><i></i><i></i><i class="busy"></i></div><div class="col"><i></i><i></i><i class="busy"></i><i></i><i></i><i></i></div><div class="col"><i></i><i class="call"></i><i></i><i class="busy"></i><i></i></div><div class="col"><i class="busy"></i><i></i><i></i><i></i><i></i><i></i></div></div><div class="note"><svg><use href="#i-check"/></svg>Intro call with you, initiated by him</div></div>
-    </div>
+    <figure class="chain" aria-label="Example: a line from a call becomes a post">
+      <figcaption class="ex">Example</figcaption>
+      <div class="tx">
+        <div class="tx-hd" aria-hidden="true"><span class="rec"></span><span class="wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
+        <ol class="tx-lines">
+          <li><time>00:23:12</time><b>We</b><span>What went wrong when you moved the billing?</span></li>
+          <li><time>00:23:18</time><b>You</b><span>We put the nightly billing job onto a queue.</span></li>
+          <li><time>00:23:27</time><b>You</b><span>The first run sent some invoices out twice.</span></li>
+          <li><time>00:23:35</time><b>You</b><span>The client noticed before we did.</span></li>
+          <li class="hit"><time>00:23:41</time><b>You</b><span><mark>So now nothing ships until a dry run matches the previous run's totals.</mark></span></li>
+          <li><time>00:23:52</time><b>We</b><span>Would you tell that story to a new client?</span></li>
+          <li><time>00:23:58</time><b>You</b><span>I already do, on every first call.</span></li>
+        </ol>
+      </div>
+      <svg class="c-arrow" viewBox="0 0 120 90" aria-hidden="true"><path d="M14 2 C14 52, 60 70, 108 84"/><path class="head" d="M98 76 L109 84 L97 89"/></svg>
+      <div class="post">
+        <div class="post-hd"><span class="ava"><svg aria-hidden="true"><use href="#person"/></svg></span><b>You</b></div>
+        <p class="post-t"><span class="pw">We moved a client's nightly billing onto a queue, and the first run sent some invoices out twice.</span> <span class="pw">The client noticed before we did.</span> <span class="pw">Now <u class="carry">nothing ships until a dry run matches the previous run's totals</u>, line by line.</span></p>
+      </div>
+    </figure>
   </div>
 </section>
 
@@ -538,7 +572,7 @@ html{scrollbar-color:#C5CFDC transparent;caret-color:var(--cobalt)}
 <section class="belief" id="what">
   <div class="wrap">
     <figure class="belief-card">
-      <div class="belief-pic" aria-hidden="true"><img src="assets/site/belief-whiteboard.webp" alt="" loading="lazy" width="1536" height="1024"></div>
+      <div class="belief-pic" aria-hidden="true"><img src="assets/site/belief-whiteboard.webp" alt="" loading="lazy" width="1600" height="1068"></div>
       <p class="belief-t">This is for you if you believe that <span class="hl">sharing what you solved, and what failed</span>, helps the next person in your shoes, and that this is <span class="hl">how a buyer comes to trust you</span>.</p>
     </figure>
   </div>
@@ -546,7 +580,7 @@ html{scrollbar-color:#C5CFDC transparent;caret-color:var(--cobalt)}
 
 <!-- 3 the tension -->
 <section class="familiar">
-  <div class="fam-pic" aria-hidden="true"><img src="assets/site/tension-desk.webp" alt="" loading="lazy" width="1536" height="1024"></div>
+  <div class="fam-pic" aria-hidden="true"><img src="assets/site/tension-desk.webp" alt="" loading="lazy" width="1600" height="1068"></div>
   <div class="wrap">
     <p class="quote rv">Maybe you started posting, kept it up for a few weeks, and then a deadline took over.</p>
     <p class="quote rv">Maybe a buyer you'd have been perfect for picked someone he'd seen online, and you only heard about it later.</p>
@@ -558,10 +592,12 @@ html{scrollbar-color:#C5CFDC transparent;caret-color:var(--cobalt)}
   <div class="wrap">
     <h2 class="how-h rv">Buyers come to know you and trust you before the first call, while your own time stays on your clients and <span class="hl">you keep the final say on every word that carries your name</span>.</h2>
     <div class="how-grid">
-      <div class="stage rv"><figure class="post-fig" aria-hidden="true">
-        <div class="pf li-card"><div class="hd"><span class="ava"><svg><use href="#person"/></svg></span><div><div class="nm">You <span>· 1st</span></div><div class="sub">Owner of a software company</div><div class="sub">1d</div></div><span class="flw"><span class="f0">+ Follow</span><span class="f1">✓ Following</span></span></div><div class="body"><span class="ln" style="width:94%"></span><span class="ln" style="width:72%"></span><div class="more">…more</div></div><div class="media"><img src="assets/site/step2-linkedin.webp" alt="" loading="lazy"></div><div class="bar"><span style="color:#0A66C2"><svg><use href="#i-like-f"/></svg>Like</span><span><svg><use href="#i-comment"/></svg>Comment</span><span><svg><use href="#i-repost"/></svg>Repost</span></div></div>
-        <span class="ok"><svg><use href="#i-check"/></svg></span>
-        <div class="chips"><span class="chip"><svg><use href="#logo-li"/></svg></span><span class="chip"><svg><use href="#logo-yt"/></svg></span><span class="chip"><svg><use href="#logo-ig"/></svg></span><span class="chip"><svg><use href="#logo-tt-b"/></svg></span><span class="chip"><svg><use href="#logo-x"/></svg></span><span class="chip"><svg><use href="#logo-fb"/></svg></span></div>
+      <div class="stage rv"><figure class="review" aria-hidden="true">
+        <span class="ex">Example</span>
+        <div class="rv-post"><span class="ok"><svg><use href="#i-check"/></svg></span><div class="post-hd"><span class="ava"><svg><use href="#person"/></svg></span><b>You</b></div>
+          <p>We moved a client's nightly billing onto a queue, and the first run sent some invoices out twice. The client noticed before we did. Now nothing ships until <del>our tests pass</del> <ins>a dry run matches the previous run's totals, line by line</ins>.</p>
+        </div>
+        <ul class="outs"><li>LinkedIn</li><li>YouTube</li><li>Instagram</li><li>TikTok</li><li>X</li><li>Facebook</li></ul>
       </figure></div>
       <ol class="steps">
         <li class="step rv"><span class="n">1</span><p>We start by getting to know how you work and how you talk, and the first posts made from your own words go out only once they sound like you.</p></li>
@@ -575,8 +611,8 @@ html{scrollbar-color:#C5CFDC transparent;caret-color:var(--cobalt)}
 <!-- 5 for you, not for you -->
 <section class="fit">
   <div class="wrap">
-    <div class="side yes rv"><div class="side-pic"><img src="assets/site/wall-youtube.webp" alt="" loading="lazy" width="1200" height="800"></div><div class="side-t"><span class="mark"><svg><use href="#i-check"/></svg></span><p>It's for you if you already have stories worth sharing from your projects, and you'd rather the right buyers hear them than keep waiting for the next referral.</p></div></div>
-    <div class="side no rv"><div class="side-pic"><img src="assets/site/fit-street.webp" alt="" loading="lazy" width="1536" height="1024"></div><div class="side-t"><span class="mark"><svg viewBox="0 0 18 18"><path d="M4.5 4.5l9 9M13.5 4.5l-9 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><p>It's not for you if you want fast results from ads, or if you'd rather keep your stories to yourself, because the trust we help you earn comes from what you share and grows the longer you show up.</p></div></div>
+    <div class="side yes rv"><div class="side-pic"><img src="assets/site/fit-redpen.webp" alt="" loading="lazy" width="1200" height="1800"></div><div class="side-t"><span class="mark"><svg><use href="#i-check"/></svg></span><p>It's for you if you already have stories worth sharing from your projects, and you'd rather the right buyers hear them than keep waiting for the next referral.</p></div></div>
+    <div class="side no rv"><div class="side-pic"><img src="assets/site/fit-street.webp" alt="" loading="lazy" width="1600" height="1067"></div><div class="side-t"><span class="mark"><svg viewBox="0 0 18 18"><path d="M4.5 4.5l9 9M13.5 4.5l-9 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><p>It's not for you if you want fast results from ads, or if you'd rather keep your stories to yourself, because the trust we help you earn comes from what you share and grows the longer you show up.</p></div></div>
   </div>
 </section>
 
@@ -615,7 +651,7 @@ html{scrollbar-color:#C5CFDC transparent;caret-color:var(--cobalt)}
         <div><label for="femail">Your email</label><input id="femail" name="email" type="email" autocomplete="email" inputmode="email" required aria-describedby="femail-err"><p class="err" id="femail-err" hidden>Please add an email we can reply to.</p></div>
       </div>
       <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <p class="urgent">The first three owners who join save $18,000, and once those three places are taken, that saving is gone for good.</p>
+      <div class="urgent"><p>The first three owners who join save $18,000, and once those three places are taken, that saving is gone for good.</p><p class="why">The first three pay less because we are still refining the work, and we do that together with them, on their own stories.</p></div>
       <div class="go"><button class="ask" type="submit">See if you're a fit<svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button><p class="note-sm">Your answers go only to us.</p></div>
       <p class="form-msg" role="alert" hidden></p>
       </div>
@@ -634,6 +670,7 @@ html{scrollbar-color:#C5CFDC transparent;caret-color:var(--cobalt)}
     <h2 class="rv free-h">We share what we learn about reaching buyers who don't know you yet, and all of it is <span class="hl">free to use</span>, whether we ever work together or not.</h2>
     <div class="free-grid">
       <div class="chans rv"><a class="chan" href="https://www.linkedin.com/in/slavpetroff/" target="_blank" rel="noopener"><svg class="cl"><use href="#logo-li"/></svg><span class="cn"><b>LinkedIn</b>Stanislav · @slavpetroff</span><span class="cf">Follow<svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><a class="chan" href="https://www.youtube.com/@slavpetroff" target="_blank" rel="noopener"><svg class="cl"><use href="#logo-yt"/></svg><span class="cn"><b>YouTube</b>Stanislav · @slavpetroff</span><span class="cf">Follow<svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><a class="chan" href="https://www.instagram.com/slavpetroff/" target="_blank" rel="noopener"><svg class="cl"><use href="#logo-ig"/></svg><span class="cn"><b>Instagram</b>Stanislav · @slavpetroff</span><span class="cf">Follow<svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><a class="chan" href="https://www.tiktok.com/@slavpetroff" target="_blank" rel="noopener"><svg class="cl"><use href="#logo-tt-b"/></svg><span class="cn"><b>TikTok</b>Stanislav · @slavpetroff</span><span class="cf">Follow<svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><a class="chan" href="https://www.facebook.com/slavpetroff" target="_blank" rel="noopener"><svg class="cl"><use href="#logo-fb"/></svg><span class="cn"><b>Facebook</b>Stanislav · @slavpetroff</span><span class="cf">Follow<svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></div>
+      <a class="tpl rv" href="files/problem-to-post.md" download><span class="tpl-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M14 3v4h4M10 12h5M10 15.5h5M10 9h2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span><span class="tpl-t"><b>From last week's problem to a post a buyer can read</b><span>problem-to-post.md</span></span><svg class="tpl-dl" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19h14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       <div class="phone rv" aria-hidden="true">
         <div class="ph-top"><span>Example posts</span></div>
         <div class="ph-feed"><div class="ph-lane"><div class="pf x-card"><span class="ava"><svg><use href="#person"/></svg></span><div class="main"><div class="nm">Stanislav <span>@slavpetroff · 2h</span></div><p class="pt">The questions your clients ask on calls are your best post ideas, so write the answer down once and share it.</p><div class="media"><img src="assets/site/free-x.webp" alt=""></div><div class="row"><svg><use href="#i-comment"/></svg><svg><use href="#i-repost"/></svg><svg><use href="#i-heart"/></svg><svg><use href="#i-share-up"/></svg></div></div></div><div class="pf li-card"><div class="hd"><span class="ava"><svg><use href="#person"/></svg></span><div><div class="nm">Stanislav Petrov</div><div class="sub">1d</div></div><svg class="logo" style="margin-left:auto"><use href="#logo-li"/></svg></div><div class="body"><p class="pt">Share the problem you solved this week, because people remember a story about a fix long after a list of features.</p></div><div class="bar"><span><svg><use href="#i-like-li"/></svg></span><span><svg><use href="#i-comment"/></svg></span><span><svg><use href="#i-repost"/></svg></span><span><svg><use href="#i-send"/></svg></span></div></div><div class="pf ig-card"><div class="hd"><span class="ring"><span class="ava"><svg><use href="#person"/></svg></span></span>slavpetroff<span class="dots">•••</span></div><div class="media"><img src="assets/site/free-instagram.webp" alt=""></div><div class="row"><svg><use href="#i-heart"/></svg><svg><use href="#i-comment"/></svg><svg><use href="#i-send"/></svg><svg class="sv"><use href="#i-bookmark"/></svg></div><p class="pt"><b>slavpetroff</b> Write the way you talk on a call, because that is the voice your next client will trust.</p></div><div class="pf yt-card"><div class="media"><img src="assets/site/free-youtube.webp" alt=""><svg class="bigplay"><use href="#logo-yt"/></svg></div><div class="info"><span class="ava"><svg><use href="#person"/></svg></span><div class="t"><p class="pt">Small posts that keep showing up get noticed by the people who need you, long before one big post would.</p><div class="ch">Stanislav Petrov</div></div></div></div><div class="pf x-card"><span class="ava"><svg><use href="#person"/></svg></span><div class="main"><div class="nm">Stanislav <span>@slavpetroff · 2h</span></div><p class="pt">The questions your clients ask on calls are your best post ideas, so write the answer down once and share it.</p><div class="media"><img src="assets/site/free-x.webp" alt=""></div><div class="row"><svg><use href="#i-comment"/></svg><svg><use href="#i-repost"/></svg><svg><use href="#i-heart"/></svg><svg><use href="#i-share-up"/></svg></div></div></div><div class="pf li-card"><div class="hd"><span class="ava"><svg><use href="#person"/></svg></span><div><div class="nm">Stanislav Petrov</div><div class="sub">1d</div></div><svg class="logo" style="margin-left:auto"><use href="#logo-li"/></svg></div><div class="body"><p class="pt">Share the problem you solved this week, because people remember a story about a fix long after a list of features.</p></div><div class="bar"><span><svg><use href="#i-like-li"/></svg></span><span><svg><use href="#i-comment"/></svg></span><span><svg><use href="#i-repost"/></svg></span><span><svg><use href="#i-send"/></svg></span></div></div><div class="pf ig-card"><div class="hd"><span class="ring"><span class="ava"><svg><use href="#person"/></svg></span></span>slavpetroff<span class="dots">•••</span></div><div class="media"><img src="assets/site/free-instagram.webp" alt=""></div><div class="row"><svg><use href="#i-heart"/></svg><svg><use href="#i-comment"/></svg><svg><use href="#i-send"/></svg><svg class="sv"><use href="#i-bookmark"/></svg></div><p class="pt"><b>slavpetroff</b> Write the way you talk on a call, because that is the voice your next client will trust.</p></div><div class="pf yt-card"><div class="media"><img src="assets/site/free-youtube.webp" alt=""><svg class="bigplay"><use href="#logo-yt"/></svg></div><div class="info"><span class="ava"><svg><use href="#person"/></svg></span><div class="t"><p class="pt">Small posts that keep showing up get noticed by the people who need you, long before one big post would.</p><div class="ch">Stanislav Petrov</div></div></div></div></div></div>
@@ -695,23 +732,24 @@ html{scrollbar-color:#C5CFDC transparent;caret-color:var(--cobalt)}
   // sections in view (loops run only there)
   const vis = new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle('inview', e.isIntersecting)));
   document.querySelectorAll('main > section').forEach(s => vis.observe(s));
-  // the opening scene acts out the buyer's story, on a loop, only while seen
-  const scene = document.querySelector('.scene');
-  const beats = ['story-like', 'story-follow', 'story-call', 'story-note'];
+  // the opening chain: the call lines arrive, the line we take lights up, the arrow draws, the post assembles; on a loop, only while seen
+  const chain = document.querySelector('.chain');
+  const beats = ['c-lines', 'c-hit', 'c-link', 'c-post', 'c-carry'];
   let timers = [], playing = false;
   const clear = () => { timers.forEach(clearTimeout); timers = []; };
   const play = () => {
-    clear(); scene.classList.remove(...beats);
-    beats.forEach((b, i) => timers.push(setTimeout(() => scene.classList.add(b), 1300 + i * 1100)));
-    timers.push(setTimeout(play, 1300 + beats.length * 1100 + 3200));
+    clear(); chain.classList.remove(...beats);
+    const at = [500, 2900, 3900, 4700, 6900];
+    beats.forEach((b, i) => timers.push(setTimeout(() => chain.classList.add(b), at[i])));
+    timers.push(setTimeout(play, 12500));
   };
-  if (still) scene.classList.add(...beats);
+  if (still) chain.classList.add(...beats);
   else new IntersectionObserver(es => es.forEach(e => {
     if (e.isIntersecting && !playing) { playing = true; play(); }
-    if (!e.isIntersecting && playing) { playing = false; clear(); scene.classList.add(...beats); }
-  })).observe(scene);
-  // the resolution: the steps fill the line, and the post beside them grows with each one
-  const fig = document.querySelector('.post-fig');
+    if (!e.isIntersecting && playing) { playing = false; clear(); chain.classList.add(...beats); }
+  })).observe(chain);
+  // the resolution: the steps fill the line; beside them the same post is edited by you, approved, and goes out
+  const fig = document.querySelector('.review');
   const stepEls = [...document.querySelectorAll('.step')];
   const list = document.querySelector('.steps');
   const setStage = n => { fig.dataset.stage = n; stepEls.forEach((s, i) => s.classList.toggle('on', i < n)); };
