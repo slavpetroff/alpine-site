@@ -419,6 +419,37 @@ main .hl{background-image:none!important}
 .tpl-t{display:grid;gap:4px} .tpl-t b{font-size:16px;font-weight:650;line-height:1.3} .tpl-t span{font:500 12px/1 ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;color:rgba(247,248,245,.55)}
 .tpl-dl{width:22px;height:22px;color:var(--cobalt-light);transition:transform .3s var(--out)} .tpl:hover .tpl-dl{transform:translateY(2px)}
 
+/* the last polish: the belief as an editorial split, the ask with one focal card, the record with a spec feel, a quiet wordmark */
+.belief-card{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,1fr);align-items:stretch;min-height:min(80vh,760px);background:radial-gradient(70% 60% at 0% 0%,rgba(36,87,255,.28),transparent 60%),var(--noise),var(--ink)}
+.belief-pic{position:relative;inset:auto;z-index:0;grid-column:2;grid-row:1}
+.belief-pic img{object-position:58% 40%}
+.belief-pic::after{background:linear-gradient(90deg,rgba(11,22,38,.9),rgba(11,22,38,0) 34%)}
+.belief-t{grid-column:1;grid-row:1;align-self:end;padding:clamp(32px,4.6vw,76px);font-size:clamp(26px,2.9vw,46px);max-width:none}
+.ask-sec .wrap{grid-template-columns:minmax(0,4.6fr) minmax(0,7.4fr);gap:clamp(40px,6vw,112px);align-items:center}
+.ask-sec h2{font-size:clamp(28px,2.8vw,44px)}
+.seats{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:44px 0 22px;max-width:340px}
+.seat{height:auto;aspect-ratio:1;border-radius:22px;background:linear-gradient(180deg,rgba(91,132,255,.24),rgba(91,132,255,.06));border:1px solid rgba(91,132,255,.6);box-shadow:inset 0 1px 0 rgba(255,255,255,.12)}
+.seat svg{width:30px;height:30px} .seat::after{border-radius:22px}
+.ask-sec .wrap > .rv > p{font-size:17px;line-height:1.55;color:rgba(247,248,245,.8);max-width:38ch}
+.keeps{margin-top:36px;padding-top:28px;border-top:1px solid rgba(247,248,245,.12);gap:18px}
+.keep p{font-size:15px;line-height:1.5;color:rgba(247,248,245,.7)}
+.ask-sec .form{padding:clamp(28px,3.4vw,48px);box-shadow:0 60px 120px -50px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.08)}
+.project .draw{position:relative}
+.note{position:absolute;display:flex;align-items:center;gap:8px;font:600 12px/1 ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;color:var(--white);background:rgba(11,22,38,.74);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);padding:8px 11px;border-radius:8px;border:1px solid rgba(255,255,255,.2);opacity:0;transform:translateY(8px);transition:opacity .7s var(--out) .5s,transform .7s var(--out) .5s}
+.note i{width:7px;height:7px;border-radius:50%;background:var(--cobalt-light)}
+.note::after{content:"";position:absolute;width:44px;height:1px;background:rgba(255,255,255,.5)}
+.n1{left:6%;top:10%} .n1::after{left:100%;top:50%}
+.n2{right:6%;bottom:10%;transition-delay:.8s} .n2::after{right:100%;top:50%}
+.project.in .note{opacity:1;transform:none}
+.tags{gap:0;font:500 12px/1.4 ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;color:var(--ink-70)}
+.tags span{padding:0;border:0;background:none;border-radius:0;font:inherit;color:inherit}
+.tags span+span::before{content:"/";margin:0 9px;color:#A7B1BF}
+.project:first-child .txt{padding:clamp(24px,2.6vw,36px)}
+.foot-bar{position:relative;overflow:hidden;padding-top:72px}
+.foot-mark{font-weight:800;font-stretch:125%;letter-spacing:-.045em;text-transform:uppercase;font-size:clamp(44px,17.5vw,290px);line-height:.78;color:rgba(247,248,245,.055);text-align:center;margin:0 0 48px;white-space:nowrap;user-select:none;pointer-events:none}
+.fam-pic img{transform:translate3d(0,var(--py,0px),0) scale(1.1)}
+.fam-pic{--py:0px}
+
 /* reveal */
 /* motion */
 :root{--out:cubic-bezier(.16,1,.3,1);--noise:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
@@ -450,7 +481,7 @@ html{scrollbar-color:#C5CFDC transparent;caret-color:var(--cobalt)}
  *,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}
  .js .rv,.js .open .intro > *,.js .scene .feed,.js .scene .cal-card{opacity:1;filter:none;transform:none} .open .hl{background-size:100% .14em}
  .js .project .draw img{clip-path:none}
- .quote .w,.scrub .w{opacity:1} .tx-lines li,.post,.post-t .pw,.rv-post ins{opacity:1;transform:none} .belief-card{clip-path:none} .belief-pic img,.side-pic img{transform:none} .belief .hl{background-size:100% .1em} .pill{clip-path:none} .steps::after{transform:none}
+ .quote .w,.scrub .w{opacity:1} .note{opacity:1;transform:none} .fam-pic img{transform:none} .tx-lines li,.post,.post-t .pw,.rv-post ins{opacity:1;transform:none} .belief-card{clip-path:none} .belief-pic img,.side-pic img{transform:none} .belief .hl{background-size:100% .1em} .pill{clip-path:none} .steps::after{transform:none}
 }
 
 @media (max-width:1080px){
@@ -490,6 +521,15 @@ html{scrollbar-color:#C5CFDC transparent;caret-color:var(--cobalt)}
  .free .wrap{grid-template-areas:"h" "chans" "tpl" "phone";grid-template-rows:auto}
 }
 @media (max-width:520px){.tx{padding:12px 14px 14px}.tx-lines{font-size:12px}.tx-lines li{grid-template-columns:56px 30px minmax(0,1fr);gap:6px}.post{width:94%}.outs{grid-template-columns:repeat(2,minmax(0,1fr))}.tpl{grid-template-columns:40px minmax(0,1fr) auto;padding:16px}.tpl-ic{width:40px;height:40px}}
+@media (max-width:900px){
+ .belief-card{grid-template-columns:1fr;min-height:0}
+ .belief-pic{grid-column:1;grid-row:1;aspect-ratio:4/3}
+ .belief-pic::after{background:linear-gradient(180deg,rgba(11,22,38,0) 55%,rgba(11,22,38,1) 100%)}
+ .belief-t{grid-column:1;grid-row:2;margin-top:-28px}
+ .ask-sec .wrap{grid-template-columns:1fr}
+ .n2{display:none}
+}
+@media (max-width:520px){.seats{max-width:260px}.belief-t{padding:22px 22px 30px}}
 </style>
 </head>
 <body>
@@ -621,7 +661,7 @@ html{scrollbar-color:#C5CFDC transparent;caret-color:var(--cobalt)}
   <div class="wrap">
     <h2 class="rv">We come from the same work you do, so we would rather build it properly than promise it fast, because <span class="hl">the work that keeps running long after we leave</span> is the reputation every referral comes from.</h2>
     <div class="projects">
-      <article class="project rv"><div class="draw"><img src="assets/site/record-bigfour.webp" alt="A team in a boardroom listening to a presentation" loading="lazy" width="1200" height="900"></div><div class="txt"><span class="sector">A Big Four company</span><h3>We built the AI assistant that builds other assistants, and we kept a person in charge between every step, so nothing moved forward without their yes.</h3><div class="tags"><span>Google Vertex AI</span><span>Python</span></div></div></article>
+      <article class="project rv"><div class="draw"><img src="assets/site/record-bigfour.webp" alt="A team in a boardroom listening to a presentation" loading="lazy" width="1200" height="900"><span class="note n1" aria-hidden="true"><i></i>Google Vertex AI</span><span class="note n2" aria-hidden="true"><i></i>Python</span></div><div class="txt"><span class="sector">A Big Four company</span><h3>We built the AI assistant that builds other assistants, and we kept a person in charge between every step, so nothing moved forward without their yes.</h3><div class="tags"><span>Google Vertex AI</span><span>Python</span></div></div></article>
       <article class="project rv"><div class="draw"><img src="assets/site/record-retailer.webp" alt="Network cables running into a server rack" loading="lazy" width="1200" height="900"></div><div class="txt"><span class="sector">One of Europe's biggest retailers</span><h3>They trusted us with their cloud infrastructure and the platform on top of it, and we built and drove both together with their own team.</h3><div class="tags"><span>FastAPI</span><span>Go</span><span>Kubernetes</span></div></div></article>
       <article class="project rv"><div class="draw"><img src="assets/site/record-teachers.webp" alt="A teacher in front of a classroom" loading="lazy" width="1200" height="900"></div><div class="txt"><span class="sector">A platform for teachers</span><h3>We moved a vibe-coded platform that many teachers used for AI onto properly built software, so it could grow into the serious product it was meant to be.</h3><div class="tags"><span>Django</span><span>AWS</span></div></div></article>
     </div>
@@ -693,6 +733,7 @@ html{scrollbar-color:#C5CFDC transparent;caret-color:var(--cobalt)}
 </main>
 
 <footer class="foot-bar">
+  <div class="foot-mark" aria-hidden="true">Alpine</div>
   <div class="wrap">
     <nav class="fmenu" aria-label="Sections"><a href="#what">What it is</a><a href="#how">How it works</a><a href="#record">Our record</a><a href="#free">Free help</a><a href="#about">About us</a><a href="#ask">See if you're a fit</a></nav>
     <a class="brand" href="#top" aria-label="Alpine, back to the top"><svg viewBox="0 0 1024 1024" aria-hidden="true"><path fill="#2457FF" d="M80 690C275 616 490 560 690 486C785 451 836 415 871 373C904 333 930 280 946 194C909 201 876 220 854 251C827 287 809 332 781 363C739 411 678 440 603 465C418 526 226 595 80 690Z"/></svg>Alpine</a>
@@ -773,11 +814,13 @@ html{scrollbar-color:#C5CFDC transparent;caret-color:var(--cobalt)}
     walk(el); scrubWords.push(...el.querySelectorAll('.w'));
   });
   const belief = document.querySelector('.belief');
+  const famPic = document.querySelector('.fam-pic');
   const follow = () => {
     if (still) { belief.classList.add('lit'); return; }
     const mid = innerHeight * .7;
     scrubWords.forEach(w => { const r = w.getBoundingClientRect(); const t = Math.min(1, Math.max(0, (mid - r.top) / (innerHeight * .3))); w.style.setProperty('--o', (.16 + .84 * t).toFixed(3)); });
     const br = belief.getBoundingClientRect(); if (br.top < innerHeight * .55) belief.classList.add('lit');
+    const fr = famPic.getBoundingClientRect(); if (fr.bottom > 0 && fr.top < innerHeight) { const k = (innerHeight - fr.top) / (innerHeight + fr.height); famPic.style.setProperty('--py', ((k - .5) * -70).toFixed(1) + 'px'); }
     if (!narrow) { const lr = list.getBoundingClientRect(); const f = Math.min(1, Math.max(0, (innerHeight * .55 - lr.top) / lr.height)); list.style.setProperty('--fill', f.toFixed(3)); }
     else { const lr = list.getBoundingClientRect(); const f = Math.min(1, Math.max(0, (innerHeight * .6 - lr.top) / lr.height)); list.style.setProperty('--fill', f.toFixed(3)); }
   };
