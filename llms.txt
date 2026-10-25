@@ -6,8 +6,8 @@ Alpine Engineering (Alpine LTD) was founded in 2024 by Stanislav Petrov, who has
 
 ## The page
 
-- [What it is](https://alpine-engineering.eu/#what): What you already say about your work becomes your presence on every platform your buyers use, in your own words and under your own name.
-- [How it works](https://alpine-engineering.eu/#how): You're already in front of the people who need you, in the posts they watch and the views you both hold, so there's nothing left for them to find.
+- [What it is](https://alpine-engineering.eu/#what): This is for you if you believe that sharing what you solved, and what failed, helps the next person in your shoes, and that this is how a buyer comes to trust you.
+- [How it works](https://alpine-engineering.eu/#how): Buyers come to know you and trust you before the first call, while your own time stays on your clients and you keep the final say on every word that carries your name.
 - [Our record](https://alpine-engineering.eu/#record): AI assistants for a Big Four company (Google Vertex AI, Python); cloud infrastructure and platform for one of Europe's biggest retailers (FastAPI, Go, Kubernetes); a vibe-coded platform for teachers moved onto properly built software (Django, AWS).
 - [Free help](https://alpine-engineering.eu/#free): We share what we learn about reaching buyers who don't know you yet, and all of it is free to use, whether we ever work together or not.
 - [About us](https://alpine-engineering.eu/#about): We built this company because sharing what you know is the one free way left to earn attention, and when you keep showing up, that presence grows until the right people already know and trust you.
