@@ -616,6 +616,19 @@ html body main > section,html body .about,html body .foot-bar,html body .record{
 html body .outs li{background:#1C1D1D;border-color:rgba(231,229,228,.1)}
 html body .review[data-stage="2"] .outs li:nth-child(-n+3),html body .review[data-stage="3"] .outs li{background:#1C1D1D;border-color:rgba(231,229,228,.24);color:#fff}
 html body .review[data-stage="2"] .outs li:nth-child(-n+3)::before,html body .review[data-stage="3"] .outs li::before{background:#fff}
+/* the navy block in one family (the owner, 26.10): cards a lighter navy, no warm tint */
+html body .free,html body .rm-sec,html body .ask-sec,html body .about{--white:#17243A;--mist:#0F1A2B;--hair:rgba(231,229,228,.10)}
+html body .rm-sec{background:radial-gradient(70% 90% at 90% 0%,rgba(91,132,255,.10),transparent 60%),var(--navy)}
+html body .ask-sec{background:radial-gradient(60% 70% at 85% 0%,rgba(91,132,255,.12),transparent 62%),var(--noise),var(--navy)}
+html body .form{background:#17243A;border:1px solid rgba(231,229,228,.08)}
+html body .form textarea,html body .form input{background:#0F1A2B;border-color:rgba(231,229,228,.12)}
+html body .form textarea:focus,html body .form input:focus{background:#0C1524}
+html body .form .q .k{background:#0F1A2B}
+html body .form .urgent{background:rgba(91,132,255,.10);color:#C9D6FF}
+html body .chan{background:#17243A;border-color:rgba(231,229,228,.10)}
+html body .chan:hover{border-color:rgba(231,229,228,.24)}
+html body .chan .cf{color:#9DB4FF}
+html body .free .wrap::after{background:radial-gradient(70% 50% at 50% 30%,rgba(91,132,255,.16),transparent 70%),#17243A}
 </style>
 </head>
 <body>
