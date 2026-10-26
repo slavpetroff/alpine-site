@@ -531,16 +531,17 @@ html{scrollbar-color:#C5CFDC transparent;caret-color:var(--cobalt)}
 }
 @media (max-width:520px){.seats{max-width:260px}.belief-t{padding:22px 22px 30px}}
 
-/* the opening as the set (26.10): the owner as the guest, the photo whole, the words centred at the foot */
-.open.hero-set{align-items:end;background:#05070C}
+/* the opening as the set (26.10): the owner as the guest; as the owner's chosen mock-up C2, exactly */
+.open.hero-set{align-items:end;background:#05070C;min-height:calc(100dvh - 72px)}
 .open.hero-set::after{display:none}
 .open.hero-set::before{background:linear-gradient(180deg,rgba(5,7,12,.15) 0%,rgba(5,7,12,.2) 35%,rgba(5,7,12,.92) 70%)}
 .open.hero-set .set-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:-2}
 .open.hero-set .wrap{display:grid;grid-template-columns:1fr;justify-items:center;text-align:center;padding-top:0;padding-bottom:56px}
-.open.hero-set h1{max-width:22ch;margin-inline:auto}
-.open.hero-set .lede{max-width:44ch;margin-inline:auto}
-.open.hero-set .exit{max-width:46ch;margin-inline:auto}
-@media (max-width:760px){.open.hero-set{display:block;min-height:0}.open.hero-set::before{display:none}.open.hero-set .set-bg{position:relative;display:block;height:auto;aspect-ratio:3/2;z-index:0;-webkit-mask-image:linear-gradient(180deg,#000 70%,transparent);mask-image:linear-gradient(180deg,#000 70%,transparent)}.open.hero-set .wrap{padding-top:8px;padding-bottom:48px}}
+.open.hero-set h1{font-size:clamp(30px,3.6vw,54px);line-height:1.08;letter-spacing:-.03em;max-width:22ch;margin:0 auto;color:rgba(247,248,245,.66)}
+.open.hero-set h1 .k{color:#fff}
+.open.hero-set .lede{font-size:clamp(17px,1.3vw,20px);line-height:1.55;max-width:44ch;margin:22px auto 0;color:rgba(247,248,245,.82)}
+.open.hero-set .ask{margin-top:30px}
+@media (max-width:520px){.open.hero-set{display:block;min-height:0}.open.hero-set::before{display:none}.open.hero-set .set-bg{position:relative;display:block;height:auto;aspect-ratio:3/2;z-index:0;-webkit-mask-image:linear-gradient(180deg,#000 70%,transparent);mask-image:linear-gradient(180deg,#000 70%,transparent)}.open.hero-set .wrap{padding-top:8px;padding-bottom:48px}}
 </style>
 </head>
 <body>
@@ -592,10 +593,9 @@ html{scrollbar-color:#C5CFDC transparent;caret-color:var(--cobalt)}
   <img class="set-bg" src="assets/site/hero-set.jpg" alt="An owner in an armchair, talking about his work in front of a microphone, lit like the guest of a podcast" width="1536" height="1024" fetchpriority="high">
   <div class="wrap">
     <div class="intro">
-      <h1>Software companies that grew on referrals get the attention their good work deserves, from <span class="hl">the buyers who don't know them yet</span>.</h1>
+      <h1>Software companies that grew on referrals get the attention <span class="k">their good work deserves</span>, from the buyers who don't know them yet.</h1>
       <p class="lede">Referrals got you here, but they come when they come, and in the quiet months the client who needed exactly you signs with whoever he'd already heard of.</p>
       <a class="ask" href="#ask">See if you're a fit<svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-      <p class="exit">If it doesn't work for you, you just call us or send a message, and you're out the next day.</p>
     </div>
   </div>
 </section>
