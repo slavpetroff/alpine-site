@@ -590,7 +590,7 @@ html{scrollbar-color:#C5CFDC transparent;caret-color:var(--cobalt)}
 .rm-tag{font-size:12px;font-weight:700;padding:5px 10px;border-radius:999px;background:var(--mist);color:var(--ink-70);white-space:nowrap}
 .rm-st.here .rm-tag{background:var(--cobalt);color:#fff}.rm-st.past .rm-tag{background:transparent;border:1px solid var(--hair)}
 .rm-feel{margin-top:8px;color:var(--ink-70)}
-.rm-more{display:none;margin-top:18px;border-top:1px solid var(--hair);padding-top:18px}.rm-st.open .rm-more{display:block}
+.rm-more{display:none;margin-top:18px;border-top:1px solid var(--hair);padding-top:18px}.rm-st.rm-open .rm-more{display:block}
 .rm-lbl{font:700 12px/1 ui-monospace,Menlo,monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--cobalt);margin:18px 0 8px}.rm-lbl:first-child{margin-top:0}
 .rm-lbl.g{color:var(--go)}.rm-lbl.r{color:var(--stop)}
 .rm-goal{padding:14px 16px;border-radius:12px;background:var(--go-bg);border-left:3px solid var(--go)}
@@ -718,7 +718,7 @@ function email(){app.innerHTML=`<div class="rm-card"><div class="rm-prog"><i sty
  <input class="rm-in" id="rm-email" type="email" autocomplete="email" placeholder="Email (optional)"><input class="rm-in" id="rm-prof" placeholder="Your LinkedIn or site (optional)">
  <p class="rm-fine">Your email and profile link are used for this one note and nothing else, and you can ask us to delete them at any time. <a href="privacy.html">Privacy</a></p>
  <div class="rm-row"><button class="rm-btn" data-rm="send">See my roadmap</button><button class="rm-btn ghost" data-rm="result">Skip, just show me</button></div></div>`}
-function stagesHTML(h){return `<div class="rm-road">${S.map((s,i)=>`<div class="rm-st ${i<h?'past':i===h?'here open':''}"><div class="rm-dot">${i<h?'✓':i+1}</div><div class="rm-box" data-rm="toggle">
+function stagesHTML(h){return `<div class="rm-road">${S.map((s,i)=>`<div class="rm-st ${i<h?'past':i===h?'here rm-open':''}"><div class="rm-dot">${i<h?'✓':i+1}</div><div class="rm-box" data-rm="toggle">
  <div class="rm-name"><h4>${s.n}</h4><span class="rm-tag">${i<h?'Behind you':i===h?'You are here':'Ahead'}</span></div><p class="rm-feel">${s.feel}</p>
  <div class="rm-more"><p class="rm-lbl">What you want</p><p>${s.want}</p><p class="rm-lbl g">The goal</p><p class="rm-goal">${s.goal}</p>
  <p class="rm-lbl">The steps</p><ol class="rm-steps">${s.steps.map(t=>`<li>${t}</li>`).join('')}</ol>
@@ -739,7 +739,7 @@ app.addEventListener('click',e=>{const t=e.target.closest('[data-rm]');if(!t)ret
  if(k==='start')ask(0);else if(k==='opt'){A[+t.dataset.i]=Q[+t.dataset.i].o[+t.dataset.k];ask(+t.dataset.i+1)}
  else if(k==='free'){A[0]=(document.getElementById('rm-free')||{}).value||'';ask(1)}
  else if(k==='result')result();else if(k==='send')send();else if(k==='pdf')pdf();else if(k==='again'){A.length=0;intro();go()}
- else if(k==='toggle')t.parentElement.classList.toggle('open');
+ else if(k==='toggle')t.parentElement.classList.toggle('rm-open');
  if(k==='opt'||k==='start'||k==='free')go()});
 try{const r=new URL(location.href).searchParams.get('r');if(r){const v=r.split('|');if(v.length===7){A.splice(0,8,'',...v);result();}else intro()}else intro()}catch(e){intro()}
 })();
