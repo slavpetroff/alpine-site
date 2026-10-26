@@ -535,13 +535,42 @@ html{scrollbar-color:#C5CFDC transparent;caret-color:var(--cobalt)}
 .open.hero-set{align-items:end;background:#05070C;min-height:calc(100dvh - 72px)}
 .open.hero-set::after{display:none}
 .open.hero-set::before{background:linear-gradient(180deg,rgba(5,7,12,.15) 0%,rgba(5,7,12,.2) 35%,rgba(5,7,12,.92) 70%)}
-.open.hero-set .set-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:-2}
+.open.hero-set .set-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 12%;z-index:-2}
 .open.hero-set .wrap{display:grid;grid-template-columns:1fr;justify-items:center;text-align:center;padding-top:0;padding-bottom:56px}
 .open.hero-set h1{font-size:clamp(30px,3.6vw,54px);line-height:1.08;letter-spacing:-.03em;max-width:22ch;margin:0 auto;color:rgba(247,248,245,.66)}
 .open.hero-set h1 .k{color:#fff}
 .open.hero-set .lede{font-size:clamp(17px,1.3vw,20px);line-height:1.55;max-width:44ch;margin:22px auto 0;color:rgba(247,248,245,.82)}
 .open.hero-set .ask{margin-top:30px}
 @media (max-width:520px){.open.hero-set{display:block;min-height:0}.open.hero-set::before{display:none}.open.hero-set .set-bg{position:relative;display:block;height:auto;aspect-ratio:3/2;z-index:0;-webkit-mask-image:linear-gradient(180deg,#000 70%,transparent);mask-image:linear-gradient(180deg,#000 70%,transparent)}.open.hero-set .wrap{padding-top:8px;padding-bottom:48px}}
+
+/* ===== the studio palette (the owner, 26.10, option 1): the whole page in the opening's atmosphere; cobalt kept for the one action, the logo and the key highlights ===== */
+:root{--mist:#0E0E0E;--mist-cool:#121313;--white:#191A1A;--ink:#E7E5E4;--ink-70:rgba(231,229,228,.66);--hair:rgba(231,229,228,.10);--amber:#EBC8A6;--olive:#8A8C5C;--espresso:#0A0A0A;--glow:rgba(255,224,198,.07)}
+::selection{color:#fff}
+.top{background:rgba(14,14,14,.86)} .top.scrolled{background:rgba(14,14,14,.8)}
+.top.dark{background:var(--espresso);color:var(--ink)} .top.dark .menu a{color:rgba(231,229,228,.7)} .top.dark .menu a:hover{color:#fff}
+.ask,.ask:hover{color:#fff} .step.on .n{color:#fff} .yes .mark{color:#fff}
+.familiar{background:radial-gradient(60% 80% at 85% 10%,var(--glow),transparent 60%),#121313;color:var(--ink)}
+.familiar::after{background:radial-gradient(50% 80% at 100% 0%,var(--glow),transparent 70%),var(--noise)}
+.quote::before{background:rgba(235,200,166,.5)}
+.belief-card,.side{background:var(--espresso)}
+.yes{color:var(--ink)}
+.stage{background:radial-gradient(80% 60% at 50% 0%,var(--glow),transparent 70%)}
+.project .sector{color:var(--amber)}
+.project img,.record img{filter:saturate(.85) brightness(.9) contrast(1.04)}
+.free{background:#121313}
+.chan .cf{color:var(--amber)}
+.ask-sec{background:radial-gradient(60% 70% at 85% 0%,rgba(255,224,198,.09),transparent 62%),var(--noise),var(--espresso);color:var(--ink)}
+.form .urgent{background:rgba(255,224,198,.08);color:var(--amber)}
+.about-pic figcaption{background:rgba(14,14,14,.86);color:var(--ink-70)} .about-pic figcaption b{color:var(--ink)}
+.foot-bar{background:#0A0A0A}
+html body .rm-sec{background:radial-gradient(70% 90% at 90% 0%,rgba(255,224,198,.08),transparent 60%),#191A1A}
+.fam-pic img{filter:brightness(.82) saturate(.92);mix-blend-mode:normal;opacity:.62}
+.belief-pic img{filter:brightness(.85) contrast(1.05)}
+.belief-pic::after{background:linear-gradient(180deg,rgba(14,14,14,.05) 20%,rgba(14,14,14,.66) 54%,rgba(14,14,14,.95) 100%),linear-gradient(90deg,rgba(14,14,14,.6),rgba(14,14,14,0) 70%)}
+.yes .side-pic::after{background:linear-gradient(180deg,rgba(14,14,14,0) 30%,rgba(14,14,14,.92))}
+.no .side-pic::after{background:linear-gradient(180deg,rgba(14,14,14,.25) 0,rgba(14,14,14,.9))}
+/* paper under the lamp: these stay light, like a printed sheet or a phone screen */
+.rm-paper,.rm-map-wrap,.rm-card,.rm-box,.ph-top{--white:#fff;--mist:#F7F8F5;--ink:#132238;--ink-70:rgba(19,34,56,.72);--hair:#E2E8F0;color:var(--ink)}
 </style>
 </head>
 <body>
@@ -604,7 +633,7 @@ html{scrollbar-color:#C5CFDC transparent;caret-color:var(--cobalt)}
 <section class="belief" id="what">
   <div class="wrap">
     <figure class="belief-card">
-      <div class="belief-pic" aria-hidden="true"><img src="assets/site/belief-whiteboard.webp" alt="" loading="lazy" width="1600" height="1068"></div>
+      <div class="belief-pic" aria-hidden="true"><img src="assets/site/belief-whiteboard.webp?v=2" alt="" loading="lazy" width="1600" height="1068"></div>
       <p class="belief-t">This is for you if you believe that <span class="hl">sharing what you solved, and what failed</span>, helps the next person in your shoes, and that this is <span class="hl">how a buyer comes to trust you</span>.</p>
     </figure>
   </div>
@@ -612,7 +641,7 @@ html{scrollbar-color:#C5CFDC transparent;caret-color:var(--cobalt)}
 
 <!-- 3 the tension -->
 <section class="familiar">
-  <div class="fam-pic" aria-hidden="true"><img src="assets/site/tension-desk.webp" alt="" loading="lazy" width="1600" height="1068"></div>
+  <div class="fam-pic" aria-hidden="true"><img src="assets/site/tension-desk.webp?v=2" alt="" loading="lazy" width="1600" height="1068"></div>
   <div class="wrap">
     <p class="quote rv">Maybe you started posting, kept it up for a few weeks, and then a deadline took over.</p>
     <p class="quote rv">Maybe a buyer you'd have been perfect for picked someone he'd seen online, and you only heard about it later.</p>
@@ -643,7 +672,7 @@ html{scrollbar-color:#C5CFDC transparent;caret-color:var(--cobalt)}
 <!-- 5 for you, not for you -->
 <section class="fit">
   <div class="wrap">
-    <div class="side yes rv"><div class="side-pic"><img src="assets/site/fit-redpen.webp" alt="" loading="lazy" width="1200" height="1800"></div><div class="side-t"><span class="mark"><svg><use href="#i-check"/></svg></span><p>It's for you if you already have stories worth sharing from your projects, and you'd rather the right buyers hear them than keep waiting for the next referral.</p></div></div>
+    <div class="side yes rv"><div class="side-pic"><img src="assets/site/fit-redpen.webp?v=2" alt="" loading="lazy" width="1200" height="1800"></div><div class="side-t"><span class="mark"><svg><use href="#i-check"/></svg></span><p>It's for you if you already have stories worth sharing from your projects, and you'd rather the right buyers hear them than keep waiting for the next referral.</p></div></div>
     <div class="side no rv"><div class="side-pic"><img src="assets/site/fit-street.webp" alt="" loading="lazy" width="1600" height="1067"></div><div class="side-t"><span class="mark"><svg viewBox="0 0 18 18"><path d="M4.5 4.5l9 9M13.5 4.5l-9 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><p>It's not for you if you want fast results from ads, or if you'd rather keep your stories to yourself, because the trust we help you earn comes from what you share and grows the longer you show up.</p></div></div>
   </div>
 </section>
