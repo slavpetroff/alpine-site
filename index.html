@@ -530,6 +530,17 @@ html{scrollbar-color:#C5CFDC transparent;caret-color:var(--cobalt)}
  .n2{display:none}
 }
 @media (max-width:520px){.seats{max-width:260px}.belief-t{padding:22px 22px 30px}}
+
+/* the opening as the set (26.10): the owner as the guest, the photo whole, the words centred at the foot */
+.open.hero-set{align-items:end;background:#05070C}
+.open.hero-set::after{display:none}
+.open.hero-set::before{background:linear-gradient(180deg,rgba(5,7,12,.15) 0%,rgba(5,7,12,.2) 35%,rgba(5,7,12,.92) 70%)}
+.open.hero-set .set-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:-2}
+.open.hero-set .wrap{display:grid;grid-template-columns:1fr;justify-items:center;text-align:center;padding-top:0;padding-bottom:56px}
+.open.hero-set h1{max-width:22ch;margin-inline:auto}
+.open.hero-set .lede{max-width:44ch;margin-inline:auto}
+.open.hero-set .exit{max-width:46ch;margin-inline:auto}
+@media (max-width:760px){.open.hero-set{display:block;min-height:0}.open.hero-set::before{display:none}.open.hero-set .set-bg{position:relative;display:block;height:auto;aspect-ratio:3/2;z-index:0;-webkit-mask-image:linear-gradient(180deg,#000 70%,transparent);mask-image:linear-gradient(180deg,#000 70%,transparent)}.open.hero-set .wrap{padding-top:8px;padding-bottom:48px}}
 </style>
 </head>
 <body>
@@ -577,7 +588,8 @@ html{scrollbar-color:#C5CFDC transparent;caret-color:var(--cobalt)}
 
 <main>
 <!-- 1 the opening -->
-<section class="open">
+<section class="open hero-set">
+  <img class="set-bg" src="assets/site/hero-set.jpg" alt="An owner in an armchair, talking about his work in front of a microphone, lit like the guest of a podcast" width="1536" height="1024" fetchpriority="high">
   <div class="wrap">
     <div class="intro">
       <h1>Software companies that grew on referrals get the attention their good work deserves, from <span class="hl">the buyers who don't know them yet</span>.</h1>
@@ -585,26 +597,6 @@ html{scrollbar-color:#C5CFDC transparent;caret-color:var(--cobalt)}
       <a class="ask" href="#ask">See if you're a fit<svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       <p class="exit">If it doesn't work for you, you just call us or send a message, and you're out the next day.</p>
     </div>
-    <figure class="chain" aria-label="Example: a line from a call becomes a post">
-      <figcaption class="ex">Example</figcaption>
-      <div class="tx">
-        <div class="tx-hd" aria-hidden="true"><span class="rec"></span><span class="wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
-        <ol class="tx-lines">
-          <li><time>00:23:12</time><b>We</b><span>What went wrong when you moved the billing?</span></li>
-          <li><time>00:23:18</time><b>You</b><span>We put the nightly billing job onto a queue.</span></li>
-          <li><time>00:23:27</time><b>You</b><span>The first run sent some invoices out twice.</span></li>
-          <li><time>00:23:35</time><b>You</b><span>The client noticed before we did.</span></li>
-          <li class="hit"><time>00:23:41</time><b>You</b><span><mark>So now nothing ships until a dry run matches the previous run's totals.</mark></span></li>
-          <li><time>00:23:52</time><b>We</b><span>Would you tell that story to a new client?</span></li>
-          <li><time>00:23:58</time><b>You</b><span>I already do, on every first call.</span></li>
-        </ol>
-      </div>
-      <svg class="c-arrow" viewBox="0 0 120 90" aria-hidden="true"><path d="M14 2 C14 52, 60 70, 108 84"/><path class="head" d="M98 76 L109 84 L97 89"/></svg>
-      <div class="post">
-        <div class="post-hd"><span class="ava"><svg aria-hidden="true"><use href="#person"/></svg></span><b>You</b></div>
-        <p class="post-t"><span class="pw">We moved a client's nightly billing onto a queue, and the first run sent some invoices out twice.</span> <span class="pw">The client noticed before we did.</span> <span class="pw">Now <u class="carry">nothing ships until a dry run matches the previous run's totals</u>, line by line.</span></p>
-      </div>
-    </figure>
   </div>
 </section>
 
@@ -947,7 +939,7 @@ document.getElementById('rm-preview').innerHTML=mapHTML(2);
   const vis = new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle('inview', e.isIntersecting)));
   document.querySelectorAll('main > section').forEach(s => vis.observe(s));
   // the opening chain: the call lines arrive, the line we take lights up, the arrow draws, the post assembles; on a loop, only while seen
-  const chain = document.querySelector('.chain');
+  const chain = document.querySelector('.chain') || document.createElement('div');
   const beats = ['c-lines', 'c-hit', 'c-link', 'c-post', 'c-carry'];
   let timers = [], playing = false;
   const clear = () => { timers.forEach(clearTimeout); timers = []; };
