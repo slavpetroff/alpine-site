@@ -611,6 +611,11 @@ html body .free,html body .rm-sec,html body .ask-sec,html body .about,html body 
 html body .rm-sec{background:radial-gradient(70% 90% at 90% 0%,rgba(227,164,88,.10),transparent 60%),var(--navy)}
 html body .ask-sec{background:radial-gradient(60% 70% at 85% 0%,rgba(227,164,88,.10),transparent 62%),var(--noise),var(--navy)}
 html body .about{border-color:rgba(231,229,228,.08)}
+/* blend, no seams (the owner, 26.10): no lines between sections; the platform chips in the card's own colour */
+html body main > section,html body .about,html body .foot-bar,html body .record{border:0!important;box-shadow:none}
+html body .outs li{background:#1C1D1D;border-color:rgba(231,229,228,.1)}
+html body .review[data-stage="2"] .outs li:nth-child(-n+3),html body .review[data-stage="3"] .outs li{background:#1C1D1D;border-color:rgba(231,229,228,.24);color:#fff}
+html body .review[data-stage="2"] .outs li:nth-child(-n+3)::before,html body .review[data-stage="3"] .outs li::before{background:#fff}
 </style>
 </head>
 <body>
