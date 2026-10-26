@@ -629,6 +629,16 @@ html body .chan{background:#17243A;border-color:rgba(231,229,228,.10)}
 html body .chan:hover{border-color:rgba(231,229,228,.24)}
 html body .chan .cf{color:#9DB4FF}
 html body .free .wrap::after{background:radial-gradient(70% 50% at 50% 30%,rgba(91,132,255,.16),transparent 70%),#17243A}
+
+/* the three pains: one picture each, sides alternating */
+html body .familiar .pains{display:grid;grid-template-columns:1fr;gap:clamp(72px,12vh,140px)}
+html body .pain{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(32px,5vw,80px);align-items:center}
+html body .pain:nth-child(2) .pain-pic{order:2}
+html body .pain-pic{margin:0;border-radius:22px;overflow:hidden;aspect-ratio:3/2;box-shadow:0 40px 80px -40px rgba(0,0,0,.8)}
+html body .pain-pic img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.9) saturate(.92)}
+html body .pain .quote{margin:0;max-width:20ch;font-size:clamp(24px,2.4vw,38px)}
+html body .pain .quote:nth-child(2){margin-left:0}
+@media (max-width:760px){html body .pain{grid-template-columns:1fr}html body .pain:nth-child(2) .pain-pic{order:0}}
 </style>
 </head>
 <body>
@@ -699,10 +709,10 @@ html body .free .wrap::after{background:radial-gradient(70% 50% at 50% 30%,rgba(
 
 <!-- 3 the tension -->
 <section class="familiar">
-  <div class="fam-pic" aria-hidden="true"><img src="assets/site/tension-desk.webp?v=3" alt="" loading="lazy" width="1600" height="1068"></div>
-  <div class="wrap">
-    <p class="quote rv">Maybe you started posting, kept it up for a few weeks, and then a deadline took over.</p>
-    <p class="quote rv">Maybe a buyer you'd have been perfect for picked someone he'd seen online, and you only heard about it later.</p>
+  <div class="wrap pains">
+    <div class="pain"><figure class="pain-pic rv"><img src="assets/site/pain-quiet.webp" alt="" loading="lazy" width="1500" height="1000"></figure><p class="quote rv">When a month goes quiet, you scroll your contacts and wonder who might send the next client, because every client so far came through someone else.</p></div>
+    <div class="pain"><figure class="pain-pic rv"><img src="assets/site/pain-stopped.webp" alt="" loading="lazy" width="1500" height="1000"></figure><p class="quote rv">You posted a few times, the only likes came from colleagues and old friends, no prospect ever wrote to you, and so the posts stopped.</p></div>
+    <div class="pain"><figure class="pain-pic rv"><img src="assets/site/pain-notfound.webp" alt="" loading="lazy" width="1500" height="1000"></figure><p class="quote rv">You search for the exact problem you're best at solving, the way a prospect would, and page after page shows other names, but never yours.</p></div>
   </div>
 </section>
 
@@ -1066,7 +1076,7 @@ document.getElementById('rm-preview').innerHTML=mapHTML(2);
     walk(el); scrubWords.push(...el.querySelectorAll('.w'));
   });
   const belief = document.querySelector('.belief');
-  const famPic = document.querySelector('.fam-pic');
+  const famPic = document.querySelector('.fam-pic') || document.createElement('div');
   const follow = () => {
     if (still) { belief.classList.add('lit'); return; }
     const mid = innerHeight * .7;
