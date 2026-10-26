@@ -2,10 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://alpine-engineering.eu/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
     <image:image><image:loc>https://alpine-engineering.eu/assets/site/og.jpg</image:loc></image:image>
     <image:image><image:loc>https://alpine-engineering.eu/assets/site/owner.jpg</image:loc></image:image>
   </url>
+  <url><loc>https://alpine-engineering.eu/roadmap.html</loc><lastmod>2026-10-26</lastmod></url>
   <url><loc>https://alpine-engineering.eu/privacy.html</loc><lastmod>2026-10-23</lastmod></url>
   <url><loc>https://alpine-engineering.eu/terms.html</loc><lastmod>2026-10-23</lastmod></url>
 </urlset>
