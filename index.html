@@ -710,16 +710,30 @@ html body .pain .quote:nth-child(2){margin-left:0}
 <!-- 3 the tension -->
 <section class="familiar">
   <div class="wrap pains">
-    <div class="pain"><figure class="pain-pic rv"><img src="assets/site/pain-quiet.webp" alt="" loading="lazy" width="1500" height="1000"></figure><p class="quote rv">When a month goes quiet, you scroll your contacts and wonder who might send the next client, because every client so far came through someone else.</p></div>
+    <div class="pain"><figure class="pain-pic rv"><img src="assets/site/pain-quiet.webp" alt="" loading="lazy" width="1500" height="1000"></figure><p class="quote rv">When a month goes quiet, you catch yourself hoping an old client mentions your name to someone, because every client so far came through somebody else.</p></div>
     <div class="pain"><figure class="pain-pic rv"><img src="assets/site/pain-stopped.webp" alt="" loading="lazy" width="1500" height="1000"></figure><p class="quote rv">You posted a few times, the only likes came from colleagues and old friends, no prospect ever wrote to you, and so the posts stopped.</p></div>
     <div class="pain"><figure class="pain-pic rv"><img src="assets/site/pain-notfound.webp" alt="" loading="lazy" width="1500" height="1000"></figure><p class="quote rv">You search for the exact problem you're best at solving, the way a prospect would, and page after page shows other names, but never yours.</p></div>
   </div>
 </section>
 
-<!-- 4 the resolution -->
+<!-- 4 the relief -->
+<section class="relief" aria-labelledby="relief-h">
+  <div class="relief-glow rv" aria-hidden="true"></div>
+  <div class="wrap">
+    <h2 class="relief-h rv" id="relief-h">Someone reads one post of yours and thinks, okay, I want more of this, and when they click your name <span class="hl">it's all there</span>, every project you'd normally only talk about on a call.</h2>
+    <ul class="relief-lines">
+      <li class="rv" style="--i:0">A quiet month still comes now and then, but you're not left waiting on someone to mention your name, because your stories are still out there in people's feeds.</li>
+      <li class="rv" style="--i:1">You're juggling your team's questions, a client's problem on their end, the next prospect, and whatever else lands that day, and your profile keeps going anyway, every post in your own words.</li>
+      <li class="rv" style="--i:2">They never typed your name or searched for anything, they're just scrolling with that problem still on their mind, and there you are, explaining how you fixed it.</li>
+      <li class="rv" style="--i:3">If a post ever goes out that doesn't sound like you, that's on us and we make it right, and the most you'll ever do is say yes to the ideas, never stand in front of a camera.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 5 the resolution -->
 <section class="how" id="how">
   <div class="wrap">
-    <h2 class="how-h rv">Prospects come to know you and trust you before the first call, while your own time stays on your clients and <span class="hl">you keep the final say on every word that carries your name</span>.</h2>
+    <h2 class="how-h rv">Someone you've never met starts the call with, I read what you wrote about that billing mess, and <span class="hl">it feels like picking up a conversation you'd already started</span>, while your week stayed with your clients.</h2>
     <div class="how-grid">
       <div class="stage rv"><figure class="review" aria-hidden="true">
         <span class="ex">Example</span>
@@ -730,14 +744,14 @@ html body .pain .quote:nth-child(2){margin-left:0}
       </figure></div>
       <ol class="steps">
         <li class="step rv"><span class="n">1</span><p>We start by getting to know how you work and how you talk, and the first posts made from your own words go out only once they sound like you.</p></li>
-        <li class="step rv"><span class="n">2</span><p>Then you start seeing your own stories everywhere your prospects spend their time, each one made from what you told us and approved by you before it goes out.</p></li>
+        <li class="step rv"><span class="n">2</span><p>Then you open an app you've never posted on in your life, and there's your story about the migration that almost went wrong, told the way you told it to us.</p></li>
         <li class="step rv"><span class="n">3</span><p>From the third week your presence is full on every platform, and the prospects who need you keep running into your work until they already know whose work they trust.</p></li>
       </ol>
     </div>
   </div>
 </section>
 
-<!-- 5 for you, not for you -->
+<!-- 6 for you, not for you -->
 <section class="fit">
   <div class="wrap">
     <div class="side yes rv"><div class="side-pic"><img src="assets/site/fit-redpen.webp?v=4" alt="" loading="lazy" width="1200" height="1800"></div><div class="side-t"><span class="mark"><svg><use href="#i-check"/></svg></span><p>It's for you if you already have stories worth sharing from your projects, and you'd rather the right prospects hear them than keep waiting for the next referral.</p></div></div>
@@ -745,7 +759,7 @@ html body .pain .quote:nth-child(2){margin-left:0}
   </div>
 </section>
 
-<!-- 6 people like us -->
+<!-- 7 people like us -->
 <section class="record" id="record">
   <div class="wrap">
     <h2 class="rv">We come from the same work you do, so we would rather build it properly than promise it fast, because <span class="hl">the work that keeps running long after we leave</span> is the reputation every referral comes from.</h2>
@@ -877,6 +891,19 @@ ol.rm-steps{margin:0;padding-left:22px;display:grid;gap:10px}
 .rm-sec .rm-st.past .rm-dot{border-color:#fff;color:#fff}
 .rm-sec .rm-card .rm-btn{background:var(--ink);color:var(--mist)} .rm-sec .rm-card .rm-btn:hover{background:var(--cobalt);color:#fff} .rm-sec .rm-card .rm-btn.ghost{background:transparent;color:var(--ink-70);border-color:var(--hair)} .rm-sec .rm-card .rm-btn.ghost:hover{background:var(--mist);color:var(--ink)}
 .rm-sec .rm-st.here .rm-box{border-color:#fff;box-shadow:0 30px 60px -40px rgba(11,17,32,.7)}
+/* 4 the relief: the dark of the pains warms once it is reached */
+html body .relief{position:relative;overflow:hidden;isolation:isolate;padding:clamp(120px,20vh,220px) 0;background:#0E0E0E;color:var(--ink)}
+html body .relief-glow{position:absolute;inset:-10% -10% auto;height:120%;z-index:-1;pointer-events:none;background:radial-gradient(55% 45% at 50% 0%,rgba(227,164,88,.2),transparent 70%),radial-gradient(35% 30% at 85% 45%,rgba(227,164,88,.07),transparent 70%)}
+html.js body .relief-glow{filter:none;transform:none;transition:opacity 1.6s var(--out)}
+html body .relief-h{max-width:30ch;margin:0;font-size:clamp(30px,3.5vw,54px);line-height:1.12;letter-spacing:-.025em;font-weight:700;font-stretch:112%;color:var(--ink-70);text-wrap:balance}
+html body .relief-h .hl{color:var(--amber)}
+html body .relief-lines{list-style:none;margin:clamp(72px,12vh,128px) 0 0;padding:0;display:grid;grid-template-columns:minmax(0,1fr);row-gap:clamp(64px,11vh,120px)}
+html body .relief-lines li{position:relative;max-width:30ch;padding-top:32px;font-size:clamp(22px,2.1vw,32px);line-height:1.38;font-weight:500;font-stretch:104%;letter-spacing:-.015em;color:var(--ink);text-wrap:pretty}
+html body .relief-lines li::before{content:"";position:absolute;left:0;top:0;width:48px;height:2px;border-radius:2px;background:var(--amber)}
+html body .relief-lines li:nth-child(even){margin-left:auto}
+html.js body .relief-lines .rv{transition-delay:calc(var(--i,0) * 120ms)}
+@media (max-width:760px){html body .relief-lines li:nth-child(even){margin-left:0}html body .relief-h{font-size:clamp(26px,7vw,34px)}}
+@media (prefers-reduced-motion:reduce){html.js body .relief-lines .rv{transition-delay:0s}}
 </style>
 <section class="rm-sec" id="roadmap">
   <div class="wrap rm-grid">
