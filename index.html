@@ -641,6 +641,7 @@ html body .pain .quote:nth-child(2){margin-left:0}
 @media (max-width:760px){html body .pain{grid-template-columns:1fr}html body .pain:nth-child(2) .pain-pic{order:0}}
 </style>
 <script defer src="https://stats.alpine-engineering.eu/script.js" data-website-id="80b168b9-1b5c-40d0-9144-8054cc1a20bc"></script>
+<script>/* which section a visitor reached: a section that holds the middle of the screen for a second and a half counts once a visit */document.addEventListener("DOMContentLoaded",function(){if(!("IntersectionObserver"in window))return;var seen={},n=0,io=new IntersectionObserver(function(es){es.forEach(function(e){var s=e.target,k=s.dataset.sec;if(seen[k])return;if(e.isIntersecting){s._t=setTimeout(function(){seen[k]=1;if(window.umami)umami.track(k)},1500)}else clearTimeout(s._t)})},{rootMargin:"-45% 0px -45% 0px"});document.querySelectorAll("section").forEach(function(s){n++;s.dataset.sec="section-"+(n<10?"0":"")+n+"-"+(s.id||s.className.split(" ")[0]||"part");io.observe(s)})});</script>
 </head>
 <body>
 
