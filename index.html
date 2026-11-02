@@ -238,6 +238,30 @@ header nav{display:none}.strip span:last-child{display:none}
 }
 @media(max-width:820px){.col{padding:56px 20px 24px!important;min-height:0!important}.how{padding:56px 20px!important}.skins{padding:64px 0 56px!important}.story2{padding:64px 20px 0!important}.gift{padding:64px 20px!important}.ask{padding:64px 20px!important}.faq{padding:64px 20px!important}.fit>div{padding:48px 20px!important}.open .word{opacity:.55}}
 .mod .x{z-index:5}@media(max-width:820px){.open .word{display:none!important}.pmo{grid-template-rows:58vh auto!important;overflow:auto}.pfr{padding:16px!important}.ttv{height:100%;width:auto;aspect-ratio:9/16;max-height:none}.pfr iframe{height:100%!important}.pmo h3{font-size:40px!important}.mod .mtx{padding:20px!important}}
+/* ticker: words and arrows on one centre line */
+.tick .run{align-items:center}.tick span,.tick em{line-height:1;display:inline-flex;align-items:center}.tick em{font-family:Archivo;font-stretch:100%;font-weight:400;transform:translateY(-.04em)}
+@media(max-width:820px){
+/* hero fits one screen: headline, guest, then button and facts */
+.open{display:grid!important;grid-template-rows:auto minmax(0,1fr) auto auto;height:calc(100svh - 60px - 56px)!important;min-height:520px!important;padding:16px 0 14px!important;overflow:hidden}
+.cornL{grid-row:1;padding:0 20px!important}.cornL .lbl{font-size:9.5px!important;margin-bottom:8px!important}.cornL h1{font-size:clamp(34px,10.5vw,46px)!important}
+.guest{grid-row:2;align-self:end;justify-self:center;width:auto!important;height:100%!important;max-height:100%;max-width:112%!important;margin:0!important;object-fit:contain;object-position:bottom}
+.open .btn{grid-row:3;justify-self:start;margin:8px 20px 0!important;font-size:20px!important;padding:13px 20px!important}
+.cornR{grid-row:4;padding:12px 20px 0!important;gap:8px!important}.cornR b{font-size:20px!important}.cornR div{font-size:11px!important}
+.tick{height:56px}.tick span{font-size:22px!important;padding:0 16px!important}.tick em{font-size:20px!important}
+/* roadmap: line stops at the last stage, no flying mark */
+.road{position:relative}.plane svg{display:none!important}
+.road.in .plane{height:calc(100% - 46px)!important}
+.stg.on:before{box-shadow:0 0 0 5px rgba(36,87,255,.2)!important}
+.gift .bgm .big{display:none}
+/* footer fills the width */
+.ft{padding:0 20px!important}
+.ft .cols{grid-template-columns:1fr 1fr!important;gap:0!important}
+.ft .cols>div{padding:30px 0!important;border:none!important;text-align:left!important}
+.ft .cols>div:nth-child(3){grid-column:1/-1;border-top:1px solid rgba(242,238,232,.1)!important}
+.ft .cols>div:nth-child(2){padding-left:16px!important;border-left:1px solid rgba(242,238,232,.1)!important}
+.ft .cols a{font-size:22px!important}
+.ft .wm{top:50%!important;bottom:auto!important;transform:translateY(-50%);justify-content:center!important;font-size:38vw!important}.ft .wm svg{display:none}
+}
 </style>
 </head>
 <body><header><a class=logo href="#"><svg viewBox="60 170 900 540" width="34" aria-hidden=true><path fill="#2457FF" d="M80 690C275 616 490 560 690 486C785 451 836 415 871 373C904 333 930 280 946 194C909 201 876 220 854 251C827 287 809 332 781 363C739 411 678 440 603 465C418 526 226 595 80 690Z"/></svg>ALPINE</a><nav class=mono><a href="#how">How it works</a><a href="#who">Our record</a><a href="#faq">Questions</a><a href="#gift">Free roadmap</a></nav><a class=bk href="#ask">Book a call →</a></header>
