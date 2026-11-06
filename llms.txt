@@ -6,18 +6,17 @@ Alpine Engineering (Alpine LTD) was founded in 2024 by Stanislav Petrov, who has
 
 ## The page
 
-- [What it is](https://alpine-engineering.eu/#what): This is for you if you believe that sharing what you solved, and what failed, helps the next person in your shoes, and that this is how a prospect comes to trust you.
-- [How it works](https://alpine-engineering.eu/#how): Someone you've never met starts the call with, I read what you wrote about that billing mess, and it feels like picking up a conversation you'd already started, while your week stayed with your clients.
-- [Our record](https://alpine-engineering.eu/#record): AI assistants for a Big Four company (Google Vertex AI, Python); cloud infrastructure and platform for one of Europe's biggest retailers (FastAPI, Go, Kubernetes); a vibe-coded platform for teachers moved onto properly built software (Django, AWS).
-- [Free help](https://alpine-engineering.eu/#free): We share what we learn about reaching prospects who don't know you yet, and all of it is free to use, whether we ever work together or not.
-- [Free roadmap](https://alpine-engineering.eu/#roadmap): Answer eight quick questions, and you'll see which of the five stages you're at and the exact steps that move you to the next one. The roadmap itself: https://alpine-engineering.eu/roadmap.html
+- [How it works](https://alpine-engineering.eu/#how): One 40-minute call where we ask and you tell. A yes on the ideas, and a stop on any post. A full week of posts on every platform. Each one made from your words, in your voice.
+- [Our record](https://alpine-engineering.eu/#who): We come from the same work you do. For a Big Four company, an AI agent that builds other agents, with a human in the loop between steps (Google Vertex AI, Python). For one of Europe's biggest retailers, we were part of the team building their cloud infrastructure and platform (FastAPI, Go, Kubernetes). We were part of the team that rebuilt a vibe-coded AI platform for teachers (Django, AWS).
+- [Questions](https://alpine-engineering.eu/#faq): Will the posts sound like me? How much of my time does it take? Whose accounts are they? What if it doesn't work for me? Will a quiet month still come?
+- [Free roadmap](https://alpine-engineering.eu/#gift): Answer eight quick questions, and you'll see which of the five stages you're at and the exact steps that move you to the next one. The roadmap itself: https://alpine-engineering.eu/roadmap.html
 - [Join the list](https://alpine-engineering.eu/#ask): Join the list, and you get in before the launch, so you try it while we're still building it and what you tell us ends up in what everyone else gets.
-- [About us](https://alpine-engineering.eu/#about): We built this company because sharing what you know is the one free way left to earn attention, and when you keep showing up, that presence grows until the right people already know and trust you.
 
 ## Contact
 
 - Email: contact@alpine-engineering.eu
-- Founder: Stanislav Petrov, https://www.youtube.com/@slavpetroff, https://www.instagram.com/slavpetroff/
+- Company: https://www.linkedin.com/company/alpine-engineering-bg/, https://www.facebook.com/profile.php?id=61594447259011
+- Founder: Stanislav Petrov, https://www.linkedin.com/in/stanislav-petrov-a72739105/, https://www.youtube.com/@slavpetroff, https://www.instagram.com/slavpetroff/, https://www.tiktok.com/@slavpetroff
 
 ## Optional
 
